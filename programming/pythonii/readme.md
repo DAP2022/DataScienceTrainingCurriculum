@@ -2,8 +2,19 @@
 This will contain: 
 1. Lecture notes (Jupyter notebooks)
 2. Assignments
-3. Project Descriptions (for participants obtaining college credit for the course)
-4. Data files
+- [Problem Set 1](assignments/problem_set1.md)
+- [Problem Set 2](assignments/problem_set2.md)
+- [Problem Set 3](assignments/problem_set3.md)
+- [Problem Set 4](assignments/problem_set4.md)
+- [Problem Set 5](assignments/problem_set5.md)
+
+3. Projects (only for participants obtaining college credit for the course)
+- [Project Descriptions](projects/descriptions.md)
+
+4. Datasets
+- [Dataset 1](datasets/dataset1.csv)
+- [Dataset 2](datasets/dataset2.csv)
+
    
 ## Course Description: 
 This workshop is the second half of the introduction to the Python programming 
