@@ -1,3 +1,10 @@
+# Welcome to the Introduction to Python II 12-hour Mini-course. 
+This will contain: 
+1. Lecture notes (Jupyter notebooks)
+2. Assignments
+3. Project Descriptions (for participants obtaining college credit for the course)
+4. Data files
+   
 ## Course Description: 
 This workshop is the second half of the introduction to the Python programming 
 language course. We will review the fundamental capabilities of Python, undertake
