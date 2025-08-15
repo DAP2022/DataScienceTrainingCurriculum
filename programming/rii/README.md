@@ -10,3 +10,20 @@ Provide you with the tools to analyze and visualize data. By the end of the week
 - Use ggplot2 to plot your data
 - Conduct and implement standard statistical tests, parametric and nonparametric hypothesis tests
 
+## Course Material
+There will be five modules that will be in .rmd format. 
+
+## Assignments
+- [Problem Set 1](assignments/problem_set1.md)
+- [Problem Set 2](assignments/problem_set2.md)
+- [Problem Set 3](assignments/problem_set3.md)
+- [Problem Set 4](assignments/problem_set4.md)
+- [Problem Set 5](assignments/problem_set5.md)
+
+## Projects
+- [Project Descriptions](projects/descriptions.md)
+
+## Datasets
+- [Dataset 1](datasets/dataset1.csv)
+- [Dataset 2](datasets/dataset2.csv)
+
