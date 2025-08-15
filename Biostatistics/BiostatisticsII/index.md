@@ -1,3 +1,27 @@
+# Biostatistics II
+** This 12-hour mini-course is part of The Jackson Laboratory Foundational Data Science Training Curriculum **
+This folder will contain: 
+1. Lecture notes
+- [Lecture 1](Content/Module_1.md)
+- [Lecture 2](Content/Module_2.md)
+- [Lecture 3](Content/Module_3.md)
+- [Lecture 4](Content/Module_4.md)
+- [Lecture 5](Content/Module_5.md) 
+
+2. Assignments
+- [Problem Set 1](assignments/problem_set1.md)
+- [Problem Set 2](assignments/problem_set2.md)
+- [Problem Set 3](assignments/problem_set3.md)
+- [Problem Set 4](assignments/problem_set4.md)
+- [Problem Set 5](assignments/problem_set5.md)
+
+3. Projects (only for participants obtaining college credit for the course)
+- [Project Descriptions](projects/project_description.md)
+
+4. Datasets
+- [Dataset 1](datasets/dataset1.md)
+- [Dataset 2](datasets/dataset2.md)
+
 Topics covered in this second workshop will focus on focus on Hypothesis Testing and will include: Hypothesis testing as a reproducible pipeline, comparing means and medians of two (student’s t tests/Mann-Whitney U tests/Sign test) or more (ANOVA/Kruskal-Wallis) populations, investigating and applying basic supervised machine learning techniques (correlation, linear/logistic/multiple linear regression), and slightly more sophisticated unsupervised machine learning techniques (k-means, Principal Component Analysis). We will also spend time learning about the non-parametric versions of hypothesis testing, including bootstrap resampling, permutations, and simulation.
 
 The following topics will be covered in Biostatistics II: 
