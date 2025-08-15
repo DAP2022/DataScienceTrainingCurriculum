@@ -7,7 +7,8 @@ This folder will contain:
 - [Lecture 3](Content/Module_3.md)
 - [Lecture 4](Content/Module_4.md)
 - [Lecture 5](Content/Module_5.md) 
-3. Assignments
+
+2. Assignments
 - [Problem Set 1](assignments/problem_set1.md)
 - [Problem Set 2](assignments/problem_set2.md)
 - [Problem Set 3](assignments/problem_set3.md)
