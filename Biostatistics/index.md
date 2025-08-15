@@ -7,9 +7,9 @@ These are the folders that correspond to each of the three courses. Biostatistic
 - **Instructional Material:** See README.md inside the folder
 - **Project descriptions:** For participants seeking credit for the course.
 
-### [BioStatistics I](Biostatistics/statisticsi/)
+### [BioStatistics I](Biostatistics/Biostatisticsi/)
 
-### [BioStatistics II](Biostatistics/statisticsii/)
+### [BioStatistics II](Biostatistics/Biostatisticsii/)
 
-### [BioStatistics III](Biostatistics/statisticsiii/)
+### [BioStatistics III](Biostatistics/Biostatisticsiii/)
 
