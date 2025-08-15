@@ -1,6 +1,11 @@
 # Welcome to the Introduction to Python II 12-hour Mini-course. 
 This will contain: 
 1. Lecture notes (Jupyter notebooks)
+- [Module 1](course_content_jupyter_notebooks/Module_1.md)
+- [Module 2](course_content_jupyter_notebooks/Module_2.md)
+- [Module 3](course_content_jupyter_notebooks/Module_3.md)
+- [Module 4](course_content_jupyter_notebooks/Module_4.md)
+- [Module 5](course_content_jupyter_notebooks/Module_5.md) 
 2. Assignments
 - [Problem Set 1](assignments/problem_set1.md)
 - [Problem Set 2](assignments/problem_set2.md)
