@@ -12,7 +12,7 @@ This website contains instructional material, problem sets, projects, and datase
 2. Statistics
 - [BioStatistics I](Biostatistics/statisticsi/)
 - [BioStatistics II](Biostatistics/statisticsii/)
-- there will eventually also be BioStatistics III
+- (TBA) BioStatistics III
   
 3. Critical Thinking
 - [AI Literacy and DS Ethics](Critical_Thinking/AI_Literacy/)
