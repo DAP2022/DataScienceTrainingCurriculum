@@ -16,7 +16,7 @@ This folder will contain:
 - [Problem Set 5](assignments/problem_set5.md)
 
 3. Projects (only for participants obtaining college credit for the course)
-- [Project Descriptions](projects/project_descriptions.md)
+- [Project Descriptions](projects/project_description.md)
 
 4. Datasets
 - [Dataset 1](datasets/dataset1.csv)
