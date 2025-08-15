@@ -20,4 +20,4 @@ The following topics will be covered in Biostatistics I:
 •	Chi-squared tests (nonparametric, Goodness of fit and contingency)
 •	OR (with reference to use in GWAS)
 •	Z scores (relevant for RNAseq and many other situations)
-<img width="468" height="465" alt="image" src="https://github.com/user-attachments/assets/a16e06cc-c7bc-4edf-975f-698a89ec468f" />
+
