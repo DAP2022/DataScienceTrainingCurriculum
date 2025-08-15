@@ -10,8 +10,8 @@ This website contains instructional material, problem sets, projects, and datase
 - [Workshop: Creating Shareable Code for Collaborations](programming/Workshop_Coding_for_Collaboration/)
   
 2. Statistics
-- [BioStatistics I](Biostatistics/statisticsi/)
-- [BioStatistics II](Biostatistics/statisticsii/)
+- [BioStatistics I](Biostatistics/BiostatisticsI/)
+- [BioStatistics II](Biostatistics/BiostatisticsII/)
 - (TBA) BioStatistics III
   
 3. Critical Thinking
