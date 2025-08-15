@@ -1,6 +1,6 @@
 # Statistics Pipeline
 
-** These are three courses that provide the statistical training offered by The Jackson Laboratory as part of their Data Science Curriculum**
+** These are three courses that provide the foundational statistical training offered by The Jackson Laboratory as part of their Data Science Curriculum **
 
 Statistics provides a framework for weighing and evaluating EVIDENCE. It is applied epistemology. 
 Bayes’ and frequentist statistics bring slightly different philosophies to the table: Bayes is a quantification of personal
