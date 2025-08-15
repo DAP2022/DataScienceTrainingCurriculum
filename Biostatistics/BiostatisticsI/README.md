@@ -19,8 +19,8 @@ This folder will contain:
 - [Project Descriptions](projects/project_description.md)
 
 4. Datasets
-- [Dataset 1](datasets/dataset1.csv)
-- [Dataset 2](datasets/dataset2.csv)
+- [Dataset 1](datasets/dataset1.md)
+- [Dataset 2](datasets/dataset2.md)
 
 
 1.	Course Description: 
