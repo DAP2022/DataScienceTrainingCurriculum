@@ -12,6 +12,12 @@ Provide you with the tools to analyze and visualize data. By the end of the week
 
 ## Course Material
 There will be five modules that will be in .rmd format. 
+Lecture notes (TEST RII: rmd notebooks)
+- [Module 1](Course_content_RMD/Module_1.md)
+- [Module 2](Course_content_RMD/Module_2.md)
+- [Module 3](Course_content_RMD/Module_3.md)
+- [Module 4](Course_content_RMD/Module_4.md)
+- [Module 5](Course_content_RMD/Module_5.md)
 
 ## Assignments
 - [Problem Set 1](assignments/problem_set1.md)
