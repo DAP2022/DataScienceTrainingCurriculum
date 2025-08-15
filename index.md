@@ -7,7 +7,7 @@ This website contains instructional material, problem sets, projects, and datase
 - [Programming in Python II](programming/pythonii/)
 - [Programming in R I](programming/ri/)
 - [Programming in R II](programming/rii/)
-- [Workshop: Creating Shareable Code for Collaborations](programming/creating_publishable_code/)
+- [Workshop: Creating Shareable Code for Collaborations](programming/Workshop_Coding_for_Collaboration/)
   
 2. Statistics
 - [BioStatistics I](Biostatistics/statisticsi/)
