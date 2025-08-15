@@ -1,5 +1,27 @@
 # Biostatistics I
 ** This 12-hour mini-course is part of The Jackson Laboratory Foundational Data Science Training Curriculum **
+This folder will contain: 
+1. Lecture notes
+- [Lecture 1](Content/Module_1.md)
+- [Lecture 2](Content/Module_2.md)
+- [Lecture 3](Content/Module_3.md)
+- [Lecture 4](Content/Module_4.md)
+- [Lecture 5](Content/Module_5.md) 
+3. Assignments
+- [Problem Set 1](assignments/problem_set1.md)
+- [Problem Set 2](assignments/problem_set2.md)
+- [Problem Set 3](assignments/problem_set3.md)
+- [Problem Set 4](assignments/problem_set4.md)
+- [Problem Set 5](assignments/problem_set5.md)
+
+3. Projects (only for participants obtaining college credit for the course)
+- [Project Descriptions](projects/descriptions.md)
+
+4. Datasets
+- [Dataset 1](datasets/dataset1.csv)
+- [Dataset 2](datasets/dataset2.csv)
+
+
 1.	Course Description: 
 This 12-hour course is the first of three linked courses that constitute a broad survey of the field of biostatistics. This learning pathway will familiarize participants with statistical concepts necessary to evaluate the primary literature in the biological sciences. It will improve learners’ statistical literacy and sharpen analytical thinking. Topics covered in this first workshop will include: descriptive statistics and graphics, estimation, elementary probability theory, Bayes’ theorem, statistical distributions, hypothesis testing, power, sensitivity and specificity, and goodness of fit tests. 
 
