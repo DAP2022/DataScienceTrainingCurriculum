@@ -32,15 +32,16 @@ Statistics is not just a related series of equations that you can memorize, it i
 At the end of this set of three courses, you will be able to break down complex problems into their component pieces, identify which of these components are important to the hypothesis that you are testing, apply the appropriate statistical test and, of course, to quantify the uncertainty inherent in your conclusion and your data. Embrace diagraming flowcharts – they will be helpful in developing a heuristic about what tests to utilize under what circumstances! Much of the field of applied statistics, and therefore this course, is concerned with attributing variation to either 'noise' or 'signal' and logically justifying the steps you take in analyzing data sets.  
 
 The following topics will be covered in Biostatistics I: 
-•	Descriptive statistics
-•	Data types and how to visualize data
-•	Probability rules: addition/multiplication/conditional
-•	Bayes’ theorem
-•	Likelihood (with reference to applications in QTL and LOD scores)
-•	Variation and Standard Error
-•	Common distributions: Binomial, Normal, Poisson, Hypergeometric
-•	Hypothesis testing, including answering the question “what IS a p-value?” and quantifying how much uncertainty we are comfortable with in experimental design. 
-•	Chi-squared tests (nonparametric, Goodness of fit and contingency)
-•	OR (with reference to use in GWAS)
-•	Z scores (relevant for RNAseq and many other situations)
+
+- Descriptive statistics
+- Data types and how to visualize data
+- Probability rules: addition/multiplication/conditional
+- Bayes’ theorem
+- Likelihood (with reference to applications in QTL and LOD scores)
+- Variation and Standard Error
+- Common distributions: Binomial, Normal, Poisson, Hypergeometric
+- Hypothesis testing, including answering the question “what IS a p-value?” and quantifying how much uncertainty we are comfortable with in experimental design. 
+- Chi-squared tests (nonparametric, Goodness of fit and contingency)
+- OR (with reference to use in GWAS)
+- Z scores (relevant for RNAseq and many other situations)
 
