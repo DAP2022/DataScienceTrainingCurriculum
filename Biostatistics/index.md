@@ -8,6 +8,19 @@ These are the folders that correspond to each of the three courses. Biostatistic
 - **Project descriptions:** For participants seeking credit for the course.
 
 ### [BioStatistics I](Biostatistics/Biostatisticsi/)
+This will contain: 
+1. [Lecture notes]() 
+2. Assignments
+- [Problem Set 1](assignments/problem_set1.md)
+- [Problem Set 2](assignments/problem_set2.md)
+- [Problem Set 3](assignments/problem_set3.md)
+- [Problem Set 4](assignments/problem_set4.md)
+- [Problem Set 5](assignments/problem_set5.md)
+3. Projects (only for participants obtaining college credit for the course)
+- [Project Descriptions](projects/descriptions.md)
+4. Datasets
+- [Dataset 1](datasets/dataset1.csv)
+- [Dataset 2](datasets/dataset2.csv)
 
 ### [BioStatistics II](Biostatistics/Biostatisticsii/)
 
