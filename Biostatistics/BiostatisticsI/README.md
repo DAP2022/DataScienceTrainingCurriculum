@@ -1,3 +1,5 @@
+# Biostatistics I
+** This 12-hour mini-course is part of The Jackson Laboratory Foundational Data Science Training Curriculum **
 1.	Course Description: 
 This 12-hour course is the first of three linked courses that constitute a broad survey of the field of biostatistics. This learning pathway will familiarize participants with statistical concepts necessary to evaluate the primary literature in the biological sciences. It will improve learners’ statistical literacy and sharpen analytical thinking. Topics covered in this first workshop will include: descriptive statistics and graphics, estimation, elementary probability theory, Bayes’ theorem, statistical distributions, hypothesis testing, power, sensitivity and specificity, and goodness of fit tests. 
 
