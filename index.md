@@ -15,9 +15,10 @@ This website contains instructional material, problem sets, projects, and datase
 - [BioStatistics III](Biostatistics/statisticsiii/)
   
 3. Critical Thinking
-- [AI Literacy and DS Ethics](Critical_Thinking/ai_literacy/)
-- [Problem Solving: A Guide](Critical_Thinking/problem_solving/)
-- [Workshop: General Principles of Data Visualization](Critical_Thinking/general_visualization/)
-- [Workshop: How to Read Scientific Papers](Critical_Thinking/reading_science/)
-- [Workshop: How to Give a Scientific Presentation](Critical_Thinking/presenting_science/)
-- [Workshop: Introduction to GitHub](Critical_Thinking/Intro_github/)
+- [AI Literacy and DS Ethics](Critical_Thinking/AI_Literacy/)
+- [Problem Solving: A Guide](Critical_Thinking/Problem_Solving_A_Guide/)
+- [Workshop: DS ethics](Critical_Thinking/Workshop_DS_Ethics/)
+- [Workshop: General Principles of Data Visualization](Critical_Thinking/Workshop_General_Visualization/)
+- [Workshop: How to Read Scientific Papers](Critical_Thinking/Workshop_Reading_Science/)
+- [Workshop: How to Give a Scientific Presentation](Critical_Thinking/Workshop_Presenting_Science/)
+- [Workshop: Introduction to GitHub](Critical_Thinking/Workshop_Intro_to_Github/)
