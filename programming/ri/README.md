@@ -15,7 +15,7 @@ This course will provide you with the tools to analysis data. By the end of the 
 
 ## Course Material
 There will be five modules that will be in .rmd format. 
-Lecture notes (TEST: Jupyter notebooks)
+Lecture notes (TEST RI: rmd notebooks)
 - [Module 1](course_content_notebooks/Module_1.md)
 - [Module 2](course_content_notebooks/Module_2.md)
 - [Module 3](course_content_notebooks/Module_3.md)
