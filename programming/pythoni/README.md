@@ -17,8 +17,8 @@ By the end of this course, students will be able to use the Python programming l
 - Data manipulation, file management, and debugging
 - Loops, logic, and decision-making
 - Regular Expressions
-- 
-## Lecture notes (TEST for Python I: Jupyter notebooks)
+  
+## Lecture notes (Python I: Jupyter notebooks)
 - [Module 1](course_content_jupyter_notebooks/Module_1.md)
 - [Module 2](course_content_jupyter_notebooks/Module_2.md)
 - [Module 3](course_content_jupyter_notebooks/Module_3.md)
