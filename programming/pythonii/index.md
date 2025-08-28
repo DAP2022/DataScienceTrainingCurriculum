@@ -1,6 +1,7 @@
 # Welcome to the Introduction to Python II 12-hour Mini-course. 
 This will contain: 
 1. Lecture notes (TEST: Jupyter notebooks)
+   **I need to use the same format as for python i**
 - [Module 1](course_content_jupyter_notebooks/Module_1.md)
 - [Module 2](course_content_jupyter_notebooks/Module_2.md)
 - [Module 3](course_content_jupyter_notebooks/Module_3.md)
