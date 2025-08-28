@@ -3,6 +3,7 @@
 ** This is a 12-hour mini-course that is part of the Jackson Laboratory Data Science Training Program ** 
 
 Learn Python basics, data manipulation, and analysis.
+
 ## Course Learning Outcomes  
 By the end of this course, students will be able to use the Python programming language and do the following:
 - Clearly deconstruct a problem into manageable smaller problems.
