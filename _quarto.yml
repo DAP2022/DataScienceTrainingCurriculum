@@ -1,0 +1,22 @@
+project:
+  type: website
+  output-dir: _site
+
+website:
+  title: "Data Science Training Curriculum"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - text: Notebooks
+        menu:
+          - section: "All"
+          - text: Gallery
+            href: notebooks/index.qmd
+  page-navigation: true
+  search: true
+
+format:
+  html:
+    theme: cosmo
+    toc: true
