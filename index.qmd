@@ -1,0 +1,8 @@
+---
+title: "Welcome"
+---
+
+This site hosts the notebooks for the Data Science Training Curriculum.
+
+- Browse the full **[Notebook Gallery](notebooks/index.qmd)**.
+- Each notebook is rendered as a clean HTML page (no JSON).
