@@ -23,15 +23,19 @@ By the end of this course, students will be able to use the Python programming l
 There is an overview and downloadable .ipynb files. You can open these using Google Colab or whatever your favourite Jupyter Notebook software is.... 
 - [Module 1 Overview](course_content_jupyter_notebooks/Module_1.md)
   - <a href = "course_content_jupyter_notebooks/Module1A.ipynb" download>Download (Module1A.ipynb)<a>
-  - [Module 1B Jupyter Notebook](course_content_jupyter_notebooks/Module1B.ipynb)
+  - <a href = "course_content_jupyter_notebooks/Module1B.ipynb" download>Download (Module1B.ipynb)<a>
 - [Module 2 Overview](course_content_jupyter_notebooks/Module_2.md)
-  - [Module 2A Jupyter Notebook](course_content_jupyter_notebooks/Module2A.ipynb)
-  - [Module 2B Jupyter Notebook](course_content_jupyter_notebooks/Module2B.ipynb)
+  - <a href = "course_content_jupyter_notebooks/Module2A.ipynb" download>Download (Module2A.ipynb)<a>
+  - <a href = "course_content_jupyter_notebooks/Module2B.ipynb" download>Download (Module2B.ipynb)<a>
 - [Module 3 Overview](course_content_jupyter_notebooks/Module_3.md)
-  - [Module 3A Jupyter Notebook](course_content_jupyter_notebooks/Module3A.ipynb)
-  - [Module 3B Jupyter Notebook](course_content_jupyter_notebooks/Module3B.ipynb)
+  - <a href = "course_content_jupyter_notebooks/Module3A.ipynb" download>Download (Module3A.ipynb)<a>
+  - <a href = "course_content_jupyter_notebooks/Module3B.ipynb" download>Download (Module3B.ipynb)<a>
 - [Module 4 Overview](course_content_jupyter_notebooks/Module_4.md)
+  - <a href = "course_content_jupyter_notebooks/Module4A.ipynb" download>Download (Module4A.ipynb)<a>
+  - <a href = "course_content_jupyter_notebooks/Module4B.ipynb" download>Download (Module4B.ipynb)<a>
 - [Module 5 Overview](course_content_jupyter_notebooks/Module_5.md)
+  - <a href = "course_content_jupyter_notebooks/Module5A.ipynb" download>Download (Module5A.ipynb)<a>
+  -- <a href = "course_content_jupyter_notebooks/Module5B.ipynb" download>Download (Module5B.ipynb)<a>
   
 ## Assignments
 - [Problem Set 1](assignments/problem_set1.md)
