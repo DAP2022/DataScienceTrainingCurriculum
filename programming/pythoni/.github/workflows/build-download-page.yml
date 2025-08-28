@@ -1,0 +1,42 @@
+name: Build Download Page (pythoni)
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Generate index.html at repo root
+        shell: bash
+        run: |
+          SERVE_DIR="."   # change to "docs" if Pages serves from /docs
+          SCAN_DIR="programming/pythoni"   # base folder you mentioned
+          OUT="$SERVE_DIR/index.html"
+
+          mkdir -p "$SERVE_DIR"
+          {
+            echo "<!doctype html><meta charset='utf-8'><title>Download Notebooks</title>"
+            echo "<h1>Download .ipynb files</h1><ul>"
+            # find all notebooks recursively under SCAN_DIR
+            while IFS= read -r -d '' f; do
+              rel="${f#./}"            # strip leading ./ for clean URLs
+              name="$(basename "$f")"
+              echo "<li><a href=\"$rel\" download>Download $name</a> &nbsp;|&nbsp; <a href=\"https://github.com/DAP2022/DataScienceTrainingCurriculum/raw/main/$rel\">View raw on GitHub</a></li>"
+            done < <(find "$SCAN_DIR" -type f -name "*.ipynb" -print0 | sort -z)
+            echo "</ul>"
+            echo "<p>Tip: If your browser ignores the download hint, use the raw link and Save As.</p>"
+          } > "$OUT"
+
+      - name: Commit generated page
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Auto-generate download index for notebooks"
+          file_pattern: index.html docs/index.html
