@@ -1,4 +1,4 @@
-name: Build Download Page (pythoni)
+name: Build Download Page (multi-folder)
 
 on:
   push:
@@ -15,28 +15,47 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Generate index.html at repo root
+      # Pages serves from main /(root), so we write to "."
         shell: bash
         run: |
-          SERVE_DIR="."   # change to "docs" if Pages serves from /docs
-          SCAN_DIR="SCAN_DIR="programming/pythoni/course_content_jupyter_notebooks""   # base folder you mentioned
+          OWNER="DAP2022"
+          REPO="DataScienceTrainingCurriculum"
+          BRANCH="main"
+
+          SERVE_DIR="."   # keep this as "." since Pages serves from root
           OUT="$SERVE_DIR/index.html"
 
-          mkdir -p "$SERVE_DIR"
-          {
-            echo "<!doctype html><meta charset='utf-8'><title>Download Notebooks</title>"
-            echo "<h1>Download .ipynb files</h1><ul>"
-            # find all notebooks recursively under SCAN_DIR
+          mksection () {
+            local title="$1"; shift
+            echo "<h2>${title}</h2><ul>"
             while IFS= read -r -d '' f; do
-              rel="${f#./}"            # strip leading ./ for clean URLs
+              rel="${f#./}"                       # strip leading ./ for clean URL
               name="$(basename "$f")"
-              echo "<li><a href=\"$rel\" download>Download $name</a> &nbsp;|&nbsp; <a href=\"https://github.com/DAP2022/DataScienceTrainingCurriculum/raw/main/$rel\">View raw on GitHub</a></li>"
-            done < <(find "$SCAN_DIR" -type f -name "*.ipynb" -print0 | sort -z)
+              raw="https://github.com/${OWNER}/${REPO}/raw/${BRANCH}/${rel}"
+              echo -n "<li><a href=\"${rel}\" download>Download ${name}</a>"
+              # For ipynb, also offer an “Open in Colab” convenience link
+              if [[ "$name" == *.ipynb ]]; then
+                colab="https://colab.research.google.com/github/${OWNER}/${REPO}/blob/${BRANCH}/${rel}"
+                echo -n " &nbsp;|&nbsp; <a href=\"${colab}\">Open in Colab</a>"
+              fi
+              echo " &nbsp;|&nbsp; <a href=\"${raw}\">View raw on GitHub</a></li>"
+            done < <(find "$@" -type f \( -name "*.ipynb" -o -name "*.Rmd" \) -print0 | sort -z)
             echo "</ul>"
-            echo "<p>Tip: If your browser ignores the download hint, use the raw link and Save As.</p>"
+          }
+
+          {
+            echo "<!doctype html><meta charset='utf-8'><title>Download Course Files</title>"
+            echo "<h1>Download Course Files</h1>"
+            mksection "Programming / Python I (.ipynb)" programming/pythoni/course_content_jupyter_notebooks || true
+            mksection "Programming / Python II (.ipynb)" programming/pythonii/course_content_jupyter_notebooks || true
+            mksection "Programming / R I (.rmd)" programming/ri || true
+            mksection "Programming / R II (.rmd)" programming/rii || true
+            echo "<p>Tip: If your browser ignores the download, use the “View raw on GitHub” link and save the file.</p>"
+            echo "<p><a href=\"https://github.com/${OWNER}/${REPO}/archive/refs/heads/${BRANCH}.zip\">Download the entire repo as ZIP</a></p>"
           } > "$OUT"
 
       - name: Commit generated page
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "Auto-generate download index for notebooks"
-          file_pattern: index.html docs/index.html
+          commit_message: "Auto-generate download index"
+          file_pattern: index.html
