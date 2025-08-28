@@ -1,4 +1,4 @@
-name: Build Download Page (multi-folder)
+name: Build Section Download Pages
 
 on:
   push:
@@ -14,48 +14,68 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Generate index.html at repo root
-      # Pages serves from main /(root), so we write to "."
+      - name: Generate per-section download pages
         shell: bash
         run: |
           OWNER="DAP2022"
           REPO="DataScienceTrainingCurriculum"
           BRANCH="main"
 
-          SERVE_DIR="."   # keep this as "." since Pages serves from root
-          OUT="$SERVE_DIR/index.html"
+          # List of sections to generate (folder path | human title)
+          sections=(
+            "programming/pythoni|Programming in Python I"
+            "programming/pythonii|Programming in Python II"
+            "programming/ri|Programming in R I"
+            "programming/rii|Programming in R II"
+          )
 
-          mksection () {
-            local title="$1"; shift
-            echo "<h2>${title}</h2><ul>"
-            while IFS= read -r -d '' f; do
-              rel="${f#./}"                       # strip leading ./ for clean URL
-              name="$(basename "$f")"
-              raw="https://github.com/${OWNER}/${REPO}/raw/${BRANCH}/${rel}"
-              echo -n "<li><a href=\"${rel}\" download>Download ${name}</a>"
-              # For ipynb, also offer an “Open in Colab” convenience link
-              if [[ "$name" == *.ipynb ]]; then
-                colab="https://colab.research.google.com/github/${OWNER}/${REPO}/blob/${BRANCH}/${rel}"
-                echo -n " &nbsp;|&nbsp; <a href=\"${colab}\">Open in Colab</a>"
+          gen_section () {
+            local dir="$1"
+            local title="$2"
+            local out="${dir%/}/index.html"
+            mkdir -p "$dir"
+
+            {
+              echo "<!doctype html><meta charset='utf-8'><title>${title} — Downloads</title>"
+              echo "<h1>${title} — Downloads</h1>"
+
+              # Python notebooks in standard subfolder (if present)
+              if [ -d "${dir}/course_content_jupyter_notebooks" ]; then
+                echo "<h2>Jupyter Notebooks (.ipynb)</h2><ul>"
+                while IFS= read -r -d '' f; do
+                  rel="${f#./}"
+                  name="$(basename "$f")"
+                  raw="https://github.com/${OWNER}/${REPO}/raw/${BRANCH}/${rel}"
+                  colab="https://colab.research.google.com/github/${OWNER}/${REPO}/blob/${BRANCH}/${rel}"
+                  echo "<li><a href=\"/${rel}\" download>Download ${name}</a> &nbsp;|&nbsp; <a href=\"${colab}\">Open in Colab</a> &nbsp;|&nbsp; <a href=\"${raw}\">View raw</a></li>"
+                done < <(find "${dir}/course_content_jupyter_notebooks" -type f -name "*.ipynb" -print0 | sort -z)
+                echo "</ul>"
               fi
-              echo " &nbsp;|&nbsp; <a href=\"${raw}\">View raw on GitHub</a></li>"
-            done < <(find "$@" -type f \( -name "*.ipynb" -o -name "*.Rmd" \) -print0 | sort -z)
-            echo "</ul>"
+
+              # Any R Markdown files in the section tree
+              if find "$dir" -type f -name "*.Rmd" | grep -q .; then
+                echo "<h2>R Markdown (.Rmd)</h2><ul>"
+                while IFS= read -r -d '' f; do
+                  rel="${f#./}"
+                  name="$(basename "$f")"
+                  raw="https://github.com/${OWNER}/${REPO}/raw/${BRANCH}/${rel}"
+                  echo "<li><a href=\"/${rel}\" download>Download ${name}</a> &nbsp;|&nbsp; <a href=\"${raw}\">View raw</a></li>"
+                done < <(find "$dir" -type f -name "*.Rmd" -print0 | sort -z)
+                echo "</ul>"
+              fi
+
+              echo "<p><a href=\"/\">← Back to Home</a></p>"
+            } > "$out"
           }
 
-          {
-            echo "<!doctype html><meta charset='utf-8'><title>Download Course Files</title>"
-            echo "<h1>Download Course Files</h1>"
-            mksection "Programming / Python I (.ipynb)" programming/pythoni/course_content_jupyter_notebooks || true
-            mksection "Programming / Python II (.ipynb)" programming/pythonii/course_content_jupyter_notebooks || true
-            mksection "Programming / R I (.rmd)" programming/ri || true
-            mksection "Programming / R II (.rmd)" programming/rii || true
-            echo "<p>Tip: If your browser ignores the download, use the “View raw on GitHub” link and save the file.</p>"
-            echo "<p><a href=\"https://github.com/${OWNER}/${REPO}/archive/refs/heads/${BRANCH}.zip\">Download the entire repo as ZIP</a></p>"
-          } > "$OUT"
+          for entry in "${sections[@]}"; do
+            IFS='|' read -r path title <<< "$entry"
+            gen_section "$path" "$title"
+          done
 
-      - name: Commit generated page
+      - name: Commit generated pages
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "Auto-generate download index"
-          file_pattern: index.html
+          commit_message: "Auto-generate section download pages"
+          file_pattern: programming/**/index.html
+
