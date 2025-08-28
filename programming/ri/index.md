@@ -1,3 +1,4 @@
+**USE SAME FORMAT FOR FILE PATHS THAT I USED IN PYTHON I TO ENSURE THAT FILES ARE DOWNLOADABLE**
 # Introduction to R I
 ** This is a 12-hour mini-course that is part of the Jackson Laboratory Data Science Training Program **  
 
