@@ -35,7 +35,7 @@ There is an overview and downloadable .ipynb files. You can open these using Goo
   - <a href = "course_content_jupyter_notebooks/Module4B.ipynb" download>Download (Module4B.ipynb)<a>
 - [Module 5 Overview](course_content_jupyter_notebooks/Module_5.md)
   - <a href = "course_content_jupyter_notebooks/Module5A.ipynb" download>Download (Module5A.ipynb)<a>
-  -- <a href = "course_content_jupyter_notebooks/Module5B.ipynb" download>Download (Module5B.ipynb)<a>
+   <a href = "course_content_jupyter_notebooks/Module5B.ipynb" download>Download (Module5B.ipynb)<a>
   
 ## Assignments
 - [Problem Set 1](assignments/problem_set1.md)
