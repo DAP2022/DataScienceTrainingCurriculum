@@ -5,7 +5,7 @@ transduction of **raw data** into actionable **wisdom**.
 
 <img width="998" height="559" alt="Screenshot 2025-08-13 at 4 14 46 PM" src="https://github.com/user-attachments/assets/eef9f5cc-1707-490e-a51e-a11428860bc5" />
 
-Processing, modeling, and interpreting the data requires skills from three general disciplines: 
+Processing, modeling, and interpreting the data requires skills from *three* general disciplines: 
 
 1. Programming
 2. Statistics
