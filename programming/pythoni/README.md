@@ -21,7 +21,7 @@ By the end of this course, students will be able to use the Python programming l
   
 ## Lecture notes (Python I: Jupyter notebooks)
 There is an overview and downloadable .ipynb files.  
-(if you are using GitHub path, the content of the files will appear online; if you are using the website, you must download them and open them using You can open these using Google Colab or you can use whatever your favourite Jupyter Notebook software is....)
+(if you are using GitHub path, the content of the files will appear online when you click on "Download"; if you are using the website, you must download them and open them using You can open these using Google Colab or you can use whatever your favourite Jupyter Notebook software is....)
 - [Module 1 Overview](course_content_jupyter_notebooks/Module_1.md)
   - <a href = "course_content_jupyter_notebooks/Module1A.ipynb" download>Download (Module1A.ipynb)<a>
   - <a href = "course_content_jupyter_notebooks/Module1B.ipynb" download>Download (Module1B.ipynb)<a>
