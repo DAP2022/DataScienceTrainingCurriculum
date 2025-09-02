@@ -26,17 +26,15 @@ There is an overview and downloadable .ipynb files.
   - <a href = "course_content_jupyter_notebooks/Module1A.ipynb" download>Download (Module1A.ipynb)<a>
   - <a href = "course_content_jupyter_notebooks/Module1B.ipynb" download>Download (Module1B.ipynb)<a>
 - [Module 2 Overview](course_content_jupyter_notebooks/Module_2.md)
-  - <a href = "course_content_jupyter_notebooks/Module2A.ipynb" download>Download (Module2A.ipynb)<a>
-  - <a href = "course_content_jupyter_notebooks/Module2B.ipynb" download>Download (Module2B.ipynb)<a>
+  - <a href = "course_content_jupyter_notebooks/Module2AB_2025NEW.ipynb" download>Download (Module2AB.ipynb)<a>
 - [Module 3 Overview](course_content_jupyter_notebooks/Module_3.md)
-  - <a href = "course_content_jupyter_notebooks/Module3A.ipynb" download>Download (Module3A.ipynb)<a>
-  - <a href = "course_content_jupyter_notebooks/Module3B.ipynb" download>Download (Module3B.ipynb)<a>
+  - <a href = "course_content_jupyter_notebooks/Module3A_2025NEW.ipynb" download>Download (Module3A.ipynb)<a>
+  - <a href = "course_content_jupyter_notebooks/Module3B_2025NEW.ipynb" download>Download (Module3B.ipynb)<a>
 - [Module 4 Overview](course_content_jupyter_notebooks/Module_4.md)
-  - <a href = "course_content_jupyter_notebooks/Module4A.ipynb" download>Download (Module4A.ipynb)<a>
-  - <a href = "course_content_jupyter_notebooks/Module4B.ipynb" download>Download (Module4B.ipynb)<a>
+  - <a href = "course_content_jupyter_notebooks/Module4A_2025NEW.ipynb" download>Download (Module4A.ipynb)<a>
+  - <a href = "course_content_jupyter_notebooks/Module4B_2025NEW.ipynb" download>Download (Module4B.ipynb)<a>
 - [Module 5 Overview](course_content_jupyter_notebooks/Module_5.md)
-  - <a href = "course_content_jupyter_notebooks/Module5A.ipynb" download>Download (Module5A.ipynb)<a>
-  - <a href = "course_content_jupyter_notebooks/Module5B.ipynb" download>Download (Module5B.ipynb)<a>
+  - <a href = "course_content_jupyter_notebooks/Module5AB_2025NEW.ipynb" download>Download (Module5AB.ipynb)<a>
   
 ## Assignments
 - [Problem Set 1](assignments/problem_set1.md)
