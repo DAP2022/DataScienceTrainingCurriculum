@@ -1,4 +1,4 @@
-## 5ab- Title: The 'grammar of visualization': ggplot2
+## 5AB- Title: The 'grammar of visualization': ggplot2
 ## Learning Objectives: 
 1.	You will discover how to import libraries!
 2.	You will examine the basic model of ggplot2
