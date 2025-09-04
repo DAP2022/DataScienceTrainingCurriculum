@@ -20,7 +20,7 @@ Provide you with the tools to take a computational problem through the process o
 - Have a general understanding of the benefits and drawbacks of the major types of programming: procedural, functional, object oriented and Querying (SQLite)
 - Understand, Implement, and leverage commonly used libraries such as NumPy, Pandas, SQLite3.
 
-## Lecture notes (Python I: Jupyter notebooks)
+## Lecture notes (Python II: Jupyter notebooks)
 There is an overview and downloadable .ipynb files.  
 (if you are using GitHub path, the content of the files will appear online when you click on "Download"; if you are using the website, you must download them and open them using You can open these using Google Colab or you can use whatever your favourite Jupyter Notebook software is....)
 - [Module 1 Overview](course_content_jupyter_notebooks/Module_1.md)
