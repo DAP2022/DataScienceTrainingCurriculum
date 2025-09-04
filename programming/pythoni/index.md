@@ -46,6 +46,6 @@ There is an overview and downloadable .ipynb files. You can open these using Goo
 - [Project Descriptions](projects/descriptions.md)
 
 ## Datasets
-- [Dataset 1](datasets/dna.csv)
-- [Dataset 2](datasets/Module3_Example.txt)
+- [dna.csv](datasets/dna.csv)
+- [Module3_Example.txt](datasets/Module3_Example.txt)
 
