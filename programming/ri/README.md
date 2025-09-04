@@ -42,5 +42,6 @@ There is an overview and downloadable .rmd files.
 - [Project Descriptions](projects/descriptions.md)
 
 ## Datasets
-- [Dataset 1](datasets/dataset1.csv)
-- [Dataset 2](datasets/dataset2.csv)
+- [Bumpus Data](datasets/Bumpus_data.csv)
+- [Chr15SNP](datasets/Chr15SNP.csv)
+- [Great Apes](GA_Module4.csv)
