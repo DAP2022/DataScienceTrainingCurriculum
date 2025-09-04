@@ -1,12 +1,7 @@
 Day 3 questions: 
 
-These are open ended and exist to ensure that you are keeping up with the main concepts discussed in class. That means that there will be several 'correct' ways of answering them. To reiterate: I just want to ensure that you understand the main concepts that we covered. 
-
-From Module_2B: 
-
 We did these in class, so please include MANY comments explaining the details of your solution. 
-
-Question 1: 
+## Question 1: 
 # HAND IN THE CONVERSION TO HIGHER ORDER WITH ANONYMOUS functions. We'll work on this in class
 dna_list=["TAGC","ACGTATCGC","ATG","ACGGCTAG"]
 percent_A_T=[]
@@ -17,8 +12,7 @@ for dna in dna_list:
     percent_A_T.append((dna.count("A")+ dna.count("T"))/len(dna))
 print(percent_A_T)
 
-Question 2: 
-
+## Question 2: 
 translate this into a for loop 
 # An example of the use of map function: 
 squares = list(map(lambda x: x * x, [0, 1, 2, 3, 4]))
@@ -26,18 +20,15 @@ squares = list(map(lambda x: x * x, [0, 1, 2, 3, 4]))
 #square_no_List=map(lambda x: x * x, [0, 1, 2, 3, 4])
 print(squares)
 
-From module_3AB
-
-Question 3. Build a platypus class. It should inherit from the mammalian superclass and, because platypuses have some specialized traits that not all mammals have, it will also override some attributes and methods. Perhaps you can use a polymorphic method to differentiate between most mammals and platypuses. You will likely find it useful to follow the outline of the cars/electric cars cells, except (of course) replacing mammals/platypuses. 
-
+## Question 3.
+Build a platypus class. It should inherit from the mammalian superclass and, because platypuses have some specialized traits that not all mammals have, it will also override some attributes and methods. Perhaps you can use a polymorphic method to differentiate between most mammals and platypuses. You will likely find it useful to follow the outline of the cars/electric cars cells, except (of course) replacing mammals/platypuses. 
 https://en.wikipedia.org/wiki/PlatypusLinks to an external site.
-
 https://en.wikipedia.org/wiki/MammalLinks to an external site.
-
 In lecture, I mentioned: 
-
 Inheritance?  <-- could inherit from a mammal superclass, but they lay eggs, sweat milk, venomous spikes 
 Attributes? Maybe: total_fecundity, venomous spikes. 
 Methods? Maybe: laying_eggs
+You can be as creative as you like. 
+
 
 You can be as creative as you like. 
