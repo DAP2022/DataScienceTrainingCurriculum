@@ -24,8 +24,7 @@ a.	Subset, tapply
 ## Instructional and Assessment Activities: 
 - We will work through Module_1B
 - We will compare and contrast vectors, dataframes and different types of data. 
-Assignment: 
-- [Module 1 Assignment](assignments/problem_set1.md) 
+- Module 1 Assignment
 
 ## Extra Resources - R Markdown Intro Cheat sheet: 
 https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf
