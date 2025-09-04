@@ -1,8 +1,9 @@
 Day 3 questions: 
 
 We did these in class, so please include MANY comments explaining the details of your solution. 
+
 ## Question 1: 
-# HAND IN THE CONVERSION TO HIGHER ORDER WITH ANONYMOUS functions. We'll work on this in class
+#HAND IN THE CONVERSION TO HIGHER ORDER WITH ANONYMOUS functions. We'll work on this in class
 dna_list=["TAGC","ACGTATCGC","ATG","ACGGCTAG"]
 percent_A_T=[]
 for dna in dna_list:
