@@ -1,0 +1,174 @@
+---
+title: "Intro_to_R3A"
+output: pdf_document
+date: "2024-03-07"
+---
+# Data Wrangling
+__1. Introduction:__
+The R Programming language is heavily based around vectors of data. The most common data structure is a dataframe, and the second one is a vector or matrix. In Intro to R II, we will spend time working through ubiquitous packages, ggplot and tidyverse, that dedicate a lot of time to subsetting multidimensional arrays (it is so important that the NumPy package is the base package that other methods built upon). In this introduction to R I, we will investigate some basic element extractions in R and revisit the \*apply family of functions. 
+
+__2 Extraction of individual elements using indices:__
+
+This is slicing and uses square brackets: []. We will begin by creating a dataframe of Great Apes. We will use this for the slicing example and the logical operator example. 
+```{r}
+# Let's set up the Great Ape table given in Day1Assignment. We will input each column as a vector:
+GA_Species<-c("Gorilla gorilla", "Gorilla gorilla", "Pan troglodytes", "Pan troglodytes","Homo sapiens", "Homo sapiens", "Orangutan", "Orangutan", "Pan paniscus","Pan paniscus")
+
+
+
+```
+
+```{r}
+
+
+```
+Here we will illustrate slicing. Remember two key points in R: 
+1. Counting starts at 1
+2. When there is more than 1 dimension, the first dimension is always rows and the second is columns. 
+```{r}
+# Our dataframe has two dimensions: rows and columns. This is the order that R always 'sees' dimensions: Row, Column
+# If we want to extract an entire column, we can do this: 
+
+```
+
+```{r}
+
+
+```
+
+```{r}
+# If we want to extract an entire row, we can do this: 
+
+```
+__3. Using logical operators:__
+The logical operators evaluate each element to be equal to FALSE or TRUE to a given criteria. These operators include the following: 
+
+Operator | Meaning
+---------|--------
+    >    | Greater than
+   >=    | Great than or equal to 
+    <    | Less than
+   <=    | Less than or equal to 
+   ==    | equal to
+   !=    | Not equal to
+    &    | And
+    |    | Or
+------------------
+
+We are going to use logical conditions to exclude elements that don't fit our given criteria. We will only include items that evaluate to TRUE for the criteria. That is, if we want GA_DF[GA_DF[3]>=140,] this should only include 5 rows of the species that are greater than or equal to 140 in weight.
+Notice the peculiar syntax of this type of slicing: 
+```{r}
+
+```
+I'm just splitting the cell since it was long. 
+```{r}
+
+```
+You can also use slicing to add a column to an existing dataframe with indexing/slicing: 
+```{r}
+
+```
+We can rename the column name: 
+```{r}
+
+```
+Putting the attach in a separate cell so we don't keep calling it. 
+```{r}
+
+```
+
+__4. Other functions that can be used for extracting or selecting elements__
+
+You could also use: 
+A. which
+```{r}
+
+```
+B. subset
+The subset() function is one of the most useful data management functions in R. It allows you to slice and dice datasets just like you would with brackets, but the code is much more elegant. You can use this in a similar way to slicing and to which, but you can also select only specific columns with the argument select in the subset function. We briefly saw subset in module 1. 
+```{r}
+
+```
+
+__5. apply family revisited:__
+
+As a brief recap: All of the so-called *apply functions will split the data into smaller pieces, apply a function to each of the smaller pieces and then combine the results. They allow you to “automate” applying a function to multiple elements of a list, dataframe, vector or matrix. There is an entire family of these functions that are dependent upon the data you are manipulating and the outcome you want: sapply, lapply, tapply, vapply, etc. 
+
+For example: 
+
+* The lapply() function takes a list as input, applies a function to each element of the list and returns a list of the same length as the original one. 
+* The sapply() function takes the results of the lapply() function and simplifies it. In general, if the result is a list where every element is of length one, then sapply() returns a vector. If the result is a list where every element is a vector of the same length (>1), sapply() returns a matrix. If sapply() can’t figure things out, then it just returns a list, no different from what lapply() would give you.
+
+The apply family is usually much faster than a for loop in R (due to R being mostly a vector language). You can repeat a function on a column (or multiple columns) of data frame very efficiently using members of this family. 
+
+You can use the same logical criteria with apply functions, but it is often easier to solve the issue in a different way. Here is an example: 
+```{r}
+
+```
+
+
+## 3. Some final words on Boolean Logic and a few other operators that pop up sometimes:
+A. If you have had some experience with other programming logic, this may confuse you (depending on the your prior language experience and we will re-visit this difference when it is appropriate in the future): simple Boolean expressions using the & ,the logical expression “AND” apply across all elements of a vector, whereas &&, “AND” applies across JUST the first element of a vector, | , the logical expression “OR” across all elements of a vector and || ,“OR” across just the first element of a vector, can be evaluated to create straightforward programming expressions. It is also important to realize that all “AND” expressions are evaluated before the “OR” expressions.
+
+B. For completeness, here are a few other operators that are used often in R: 
+any() (TRUE if any element meets the condition)
+all() (TRUE if all elements meet the condition)
+%in% (TRUE if any element is in the following vector)
+match()
+
+```{r}
+#create a sequential vector
+i<-seq(1,10,2)
+# Use & and you will get evaluation at all five elements of the vector
+print(i> 2 & i<4)
+```
+```{r}
+# Use && and you will get only one output
+# To recycle the example from SWIRL() in the last module, here is an example for &&, ||
+# Chapter 8: Boolean logic. Evaluate the following examples from swirl()
+# && and || return a scalar TRUE/FALSE value whereas & and | return a vector
+# Usually you would use &&, for instance, in a conditional loop to see if the specified condition has been met. 
+FALSE || TRUE && FALSE
+TRUE && FALSE || 9 >= 4 && 3 < 6
+99.99 > 100 || 45 < 7.3 || 4 != 4.0
+TRUE && 62 < 62 && 44 >= 44 
+# There are more examples at this website, if you are interested: https://builtin.com/data-science/and-in-r
+```
+Finally, here are examples of the other grab bag of useful logical operators: 
+```{r}
+# we are setting up two vectors that have one overlapping component, "Human"
+a<-c("Gorilla","Chimp","Human","Orangutan")
+g<-c("Human","Bonobo","Gibbon")
+g2<-c("Gibbon","Bonobo","Human")
+g3<-c("Bonobo", "Human","Gibbon")
+#1. vector1 %in% vector 2
+# This weird one is used way more than you would expect:
+# Since these two vectors share "Human" - although not in the same position - they will have one TRUE and the other three elements will be FALSE
+print(a %in% g)
+```
+```{r}
+#2. any(). Uses %in%, but this should produce one outcome, TRUE, since there is at least one element that overlaps between the two vectors. 
+print(any(a %in% g))
+# 3. all(). Uses %in% but should produce FALSE since the elements aren't exactly the same in each list. 
+print(all(a %in% g))
+# g2 contains the elements as g but in a different order so this should produce TRUE
+print(all(g2 %in% g))
+# Since the elements are in different order in the two vectors, if you use boolean operator instad of %in%, this will return FALSE.
+print(all(g2==g))
+# 4. match()
+# Takes two arguments. The first argument is the order of the elements - usually columns - that you want and the second argument is a vector that
+# has some of the same elements, but often in a different, undesirable order
+print(match(g2,a)) # gives location of the one Column name, Human, that the two vectors have in common
+print(match(g2,g)) # the second vector has Human at location 3, Bonobo at location 2 and Gibbon at location/index 1
+print(g3[match(g2,g)]) # you can temporarily change the order by combining slicing and match
+g3 # back to the original order
+```
+Since we changed the GA_DF file, we want to place the modified file into our RData folder. 
+```{r}
+#read.csv()
+write.csv(GA_DF, file="/Users/presgd/MyRFiles/Intro_to_R/RData/GA_DF_new_column.csv")
+```
+Always remember to detach your Dataframes:
+```{r}
+detach(GA_DF)
+```
