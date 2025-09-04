@@ -4,7 +4,7 @@
 - You will create a new .rmd file
 - You will correctly incorporate the R Markdown language
 - You will appropriately use 'R chunks' to manipulate data using R
-- You will successfully 'Knit' (equivalent to 'compiling') your final .rmd document into a word document  save as a html or word
+- You will successfully 'Knit' (equivalent to 'compiling') your final .rmd document into a word document and save as a html or word
 - You will examine the basic features of dataframes
 - You will manipulate a built-in data set as well as upload an external .csv file into the RStudio memory
 
@@ -13,8 +13,6 @@
 - We will import a dataframe and peek at it.
 - We will create, save, and knit our own file for our first Assignment. 
 
-## R Markdown Intro Cheat sheet: 
-https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf
 
 ## 1B: Title: Data Types & Structures in R
 ## Learning Objectives:
@@ -29,4 +27,5 @@ a.	Subset, tapply
 Assignment: 
 - [Module 1 Assignment](assignments/problem_set1.md) 
 
-
+## Extra Resources - R Markdown Intro Cheat sheet: 
+https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf
