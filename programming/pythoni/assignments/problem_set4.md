@@ -7,30 +7,38 @@
 -----------------------------------
 
 ## PLEASE SUBMIT FOR YOUR DAY 4 Completion activity: 
+## Question 1: 
+1.	An “Open Reading Frame” provides a heuristic for a potential gene. Here is the definition on Wikipedia: https://en.wikipedia.org/wiki/Open_reading_frame.
+We will use our sequence and use conditional statements to apply general rules to the sequence to identify any open reading frames. Remember that this sequence has known introns so you will want to remove those as well (we did this as part of Module 1B):
+5’- ATCGATCGATCGATCGACTGACTAATCATAGCTATGCATGCTACTCGATCGATCGATCGATCGATCGATCGATCGATCGATCATGCTAACATCGATCGATATCGATGCATCGACTAGTACTAT-3'
 
-1. A DNA string is called an open reading frame (ORF) if it begins with 'ATG', ends with 'TGA', 'TAG', or 'TAA', and has
- a length that is a multiple of 3. ORFs are interesting because they can encode proteins.
+A.	Is there a start codon which is the sequence "ATG"?
+B.	Is there a stop codon (any of the following: "TGA", "TAA", TAG") present
+C.	Is the number of nucleotides between any start and any stop codon divisible by 3? 
+If these conditions are met, print out "there is a possible ORF in this sequence". If the conditions are not met, print out "There is no possible reading frame in this sequence". 
 
-A. Write a function called ORFadviser(DNA) that takes a string called DNA as input and works as follows:
-The function returns the string 'This is an ORF.' if the input string satisfies all three of the conditions required of ORFs
-Otherwise, if the first three symbols are not 'ATG', the function returns the string 'The first three bases are not ATG.'
-Otherwise, if the string does not end with 'TGA', 'TAG', or 'TAA', the function returns the string 'The last three bases are not a stop codon.'
-Otherwise, the function returns the string 'The string is not of the correct length.'
-Note: this is a question that is recycled from Module 3, but asks you to bundle your code solution (that has if/elif/else conditions) into a function format that will work with any sequence. 
 
-B. Bundle this function into a module and call it from a new cell in your ipynb (This should look like the Module4B example
-that we did in class). 
+## Question 2:
+Use the dictionary in Module4B to __translate the ORF from your sequence into a string of Amino Acids__. 
+Hint:  To solve this problem easily, you need to first recognize that there are three major components/sub-problems that you have to solve. 
+1. You need to split the nucleotide sequence into codons.     
+-    we have already learned how to ‘pull out’ parts of strings - now we just need to ‘automate’  process
+-    recognize that each codon is three nucleotides long
+2. Translate each codon into the appropriate amino acid
+-    The given dictionary would come in handy here!
+3. Create a protein by adding all the amino acids together
 
------------------------------------------------
+## Question 3:
+Pick any one of the questions (a through e) to answer and submit. **You do not need to do them all**; just complete one and label it so that I know which one you picked!
+We created the “data.csv” in a previous module that should be in your files. The file contains four columns corresponding to species name, nucleotide sequence, gene name and expression level of gene. There are 6 rows with four different species of Melanogaster indicated.
+You will want to make this program work for any file that has the same type of structure as data.csv (that is the first column is species, the second column is sequence, the third columns is name and the fourth column is expression) that it is given so you will likely need if conditions imposed. Hint: remember that the .split () method can use “,” as the criteria for splitting.
 
-2. Note: This is about understanding code, tweaking it modestly, and explaining both the code and your improvement(s). You will recycle other people's code A LOT in the wild! Use the MCMC program discussed in Module 4 as a base to answer the following: I have written a terribly inefficient program that takes an original 4 nucleotide string and mutates it according to certain rules over a specified number of steps (approximately 1,000,000). At certain step numbers (1,100,1000, 10000) the program prints out what the 4 nucleotides have mutated into. Pick one of the options (a, b, or something from group c) to add to the MCMC code and write a paragraph explaining what the code is doing. 
+a. Print out all the gene names for all genes belong to Drosophila melanogaster OR Drosophila simulans to two different external files (one for melanogaster and one for simulans). You can name them melanogaster and simulans.
 
-a. You often want to be able to 'dip' into the simulation at certain time points and sample what the state of the 4 nucleotide string is at that point. In order to accomplish that, add in a counter that tracks the replication cycle and prints out both the cycle number and what the mutated four nucleotide sequence is at that time point. I have hard coded in four time points (1,100,1000,10000) but you want the user to be able to specify what time points are to be sampled so it needs to be passed in as an argument. You should ask your user for input when the function is called and have the user specify the sampling step numbers. 
+b. Print out all the gene names for genes between 90 and 110 bases long (inclusive at both ends so, for example, a gene that was 89 bases long wouldn't be included but that is 90 base pairs long would be include) .
 
-b. Add in a feature that keeps track of when a mutation event happened, where in the four sequences it happened and what the mutation was. This only needs to have a simple print statement that identifies these things to the user (maybe at the end of the program?)
+c. Print out all the gene names for the genes whose AT content is less than 0.5 AND whose expression level is greater than n .)
 
-c. Add in one of the following features of your choosing:
-•    Better encapsulation of the function by breaking it up into smaller functions that are called from within the main function. Compare the time that your program takes with better 'encapsulation' versus the original. Explain any difference in time.  
-•    Replace the while loop with for loop(s) since while loops tend to be inefficient. Compare the time that your program takes between the while and for loops. If there is or is not improvement in time, suggest a reason. 
-•     Allow user to specify as large of a nucleotide sequence as they want – instead of just 4 nucleotides, users could specify 8 or 1000 or whatever length that they want. 
-•    You may have another idea to make this function more optimal - just include it in your comments/explanation so I know what it is. 
+d. Print out the gene names for all genes whose name begins with “k” or “h” EXCEPT those belonging to Drosophila melanogaster.
+
+e. For each gene, print out a message giving the gene name and saying whether its AT content is high (greater than 0.65), low (less than 0.45) or medium (between 0.45 and 0.65). To a separate file, print the genes whose AT content is greater than 0.5 AND whose expression level is greater than 200. For each gene that meets these criteria, include a line in the file that gives the gene name and the percentage of length.
