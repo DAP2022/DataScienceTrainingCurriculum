@@ -9,7 +9,7 @@ For the sequence given below:
 
  5’- ATCGATCGATCGATCGACTGACTAATCATAGCTATGCATGCTACTCGATCGATCGATCGATCGATCGATCGATCGATCGATCATGCTAACATCGATCGATATCGATGCATCGACTAGTACTAT-3'
 
-Introns are the noncoding parts of a DNA sequence that are spliced out (removed) from the sequence before it is translated into a chain of amino acids. In the following sequence, there are two exons and one intron. The first exon runs from the start of the sequence to the 63rd character. The second exon runs from the 91st character to the end of the sequence. (hint: in the following sequence of numbers what is the 3rd character? 0 1 2 3 4. It is "2" not "3" because the 1st character is "0". )
+Introns are the noncoding parts of a DNA sequence that are spliced out (removed) from the sequence before it is translated into a chain of amino acids. In the following sequence, there are two exons and one intron. The first exon runs from the start of the sequence to the 63rd character. The second exon runs from the 91st character to the end of the sequence. (hint: in the following sequence of numbers, 0 1 2 3 4, what is the 3rd character? It is "2" not "3" because the 1st character is "0".)
 
 1. Write a program that prints out JUST the coding regions of the DNA sequence to the screen (ie. removes the introns)
 2. Using the results of 1, write a program that will calculate what percentage of the DNA sequence that is coding.
