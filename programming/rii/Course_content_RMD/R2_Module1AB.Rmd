@@ -1,0 +1,332 @@
+---
+title: "R2_Module1AB"
+author: "Danni Presgraves"
+date: "2024-05-06"
+output: html_document
+---
+This Module is a review that covers the material we learned in RI by way of 3 examples:
+1. Basic R functionality
+2. Basic R graphing
+3. ggplot2 graphing
+
+__Datasets__
+1. R2_Mod1ABexample1.csv
+2. load(HairEyeColor) dataset that comes with R
+
+# Here is a whirlwind summary of what we learned in Intro to R I: 
+
+#### Module 1A:
+We were introduced to the four quadrants of Posit (formerly called RStudio). We learned about the assignment operator, "<-", c(), and how to knit, and save our files. Along the way, we refreshed the topic of file paths which are mostly confusing because there are two different formats based on your OS:
+__windows:__ 
+"C:\\Users\\YOURUsername\\Desktop\\Chr15SNP.csv"
+
+and __mac users:__
+"//Users/name/Downloads/Chr15SNP.csv
+
+It is even more confusing since we are technically using the cloud and that also has paths. So: this will depend on what platform you are using. 
+
+#### Module 1B: 
+This module focused on data structures (vectors, factors, matrices, lists and - most importantly in R - **dataframes**). We created data structures, added columns, removed columns, queried the data type, converted one type into another, and used built-in functions (such as mean(), sd()). We also discovered a very useful way to find the path of our data: file.choose() (<-- this can only be used in the console, not the Markdown quadrant, since it is interactive and therefore cannot be knit), and learned how to read in data using read.csv(). We also used the subset() along with some conditional statements about what to include in the subset condition and briefly saw the power of tapply().
+
+#### Module 2AB: 
+R as a programming language in this module. We had a narrow examination of built-in functions and the necessary syntax for user-defined functions. We also briefly examined anonymous functions, ellipsis, and higher order functions map and filter (we didn't investigate the other higher order functions). 
+
+If you want a refresher on Basic R data wrangling, this is an accessible training:
+
+From: https://hbctraining.github.io/Training-modules/IntroR/lessons/04_data-wrangling.html
+
+> __List of functions for data inspection:__ Here is a non-exhaustive list of functions to get a sense of the content/structure of data.
+
+> __All data structures:__
+
+> str(): compact display of data contents (env.)
+
+> class(): data type (e.g. character, numeric, etc.) of vectors and data structure of dataframes, matrices, and lists.
+
+> summary(): detailed display, including descriptive statistics, frequencies
+
+> head(): will print the beginning entries for the variable
+> tail(): will print the end entries for the variable
+
+> __Vector and factor variables:__
+
+> length(): returns the number of elements in the vector or factor
+
+> Dataframe and matrix variables:
+
+> dim(): returns dimensions of the dataset
+
+> nrow(): returns the number of rows in the dataset
+
+> ncol(): returns the number of columns in the dataset
+
+> rownames(): returns the row names in the dataset
+
+> colnames(): returns the column names in the dataset
+
+
+#### Module 3AB: 
+Slicing, using [], using :, and c(), and the syntax is [rows,columns]. the command to write data to a different place: write.csv(DF name, file="path")
+
+#### Module 4A: 
+Built-in visualization and arguments that allow some degree of personalization (plot(x,y, type=“o”) etc). We saw how to implement: 
+
+1. Scatterplots (including qqplot, qqnorm)
+
+2. Histogram
+
+3. Mosaicplot (and table data that needs to be groomed with, for instance, apply())
+
+We also saw some built-in distributions that allowed us to simulate the normal distribution, poisson distribution, binomial distribution etc. 
+
+#### Module 4B:
+This was a short module since we were running a bit behind. We looked at boxplots and uncertainty in this module. 
+
+#### Module 5AB:
+
+The FUNdamentals of ggplot2 and the grammar of data of visualization. We discovered the logic of building up layer ("geoms") to produce a plot in ggplot2. We will spend the next few modules focusing on other aspects of the 'tidyverse' from whence ggplot2 comes. 
+
+Let's begin here: https://r4ds.hadley.nz/intro
+
+### Part 1. Examples of manipulating data; and slicing, and rearranging datasets:
+note: we will use a dataset placed on Canvas (you will need to download it) and one that is a built-in dataset in R. To discover a list of all the built-in datsets in basic R, type data() into the console. A list will pop up! Most packages/libraries that we will use, will also have built in data sets to illustrate the data manipulation and functions that are important for these packages. 
+```{r}
+#what datasets come with basic R
+data()
+```
+Back to our example:
+```{r}
+# use the file.choose() in the console only to copy-and-paste the path where you placed the R2_Mod1ABexample1.csv file
+# read it in and place it into a variable name
+mod1ex<-read.csv(file="/Users/presgd/MyRFiles/Intro_to_R/RData/R2_Mod1ABexample1.csv")
+```
+Now let's inspect the dataframe and determine attributes. 
+```{r}
+# this is a small dataframe so we can confirm that the following work:
+head(mod1ex,2)
+tail(mod1ex)
+paste("Here is the class: ",class(mod1ex))
+print("~~~~~~~~~~~~~~~~~~~~~~~~~")
+print("Here is the summary: ")
+summary(mod1ex)
+print("Here is the dim: ")
+dim(mod1ex)
+print(" and the number of columns is: ")
+ncol(mod1ex)
+print("~~~~~~~~~~~~~~~~~~~~~~~~~")
+print("The row names are: ")
+rownames(mod1ex)
+print("The column names are: ")
+colnames(mod1ex)
+length(mod1ex)
+# let's check and see if factors were correctly encoded when we brought in the table as a data frame
+levels(mod1ex$genotype)
+# this is null, so factors were not brought in correctly. We need to set the factors for the two columns. 
+levels(factor(mod1ex$genotype))
+print("What is the internal structure of the object? Use str to find out information such as columns and their type: ")
+str(mod1ex)
+```
+We will convert the dataframe into a dataframe with factors for NOT the 1st column (which is the sample), but for columns 2,3,and 4.  
+```{r}
+# we can slice out only the middle 3 columns
+names <- c(2:4)
+# we get to see lapply here! the *apply family is used to perform iterations/loops in R, but lapply returns a list. 
+mod2ex<-lapply(mod1ex[,names],factor)
+#mod1ex[,names] <- lapply(mod1ex[,names] , factor) # this replaced the information but then I had to keep re-running line 101 - reading in the file - which was irritating
+str(mod2ex)
+summary(mod2ex)
+summary(mod1ex)
+```
+
+We will now investigate how to slice dataframes and we get to see lapply here! The *apply family is used to perform iterations/loops in R, but lapply returns a list. 
+```{r}
+#rows 1 through 6, but only the second column
+sliceA<-mod1ex[1:6,2]
+print(sliceA)
+# all rows, but only columns 1 and 4
+sliceB<-mod1ex[,c(1,4)]
+print(sliceB)
+print("~~~~~~~~")
+# I don't like it, but it is legitimate
+mod1ex[c(1,4)]
+#instead of location, we could call by column name
+mod1ex[,c("X","celltype")]
+# use Boolean conditions
+mod1ex[mod1ex$genotype=="KO"&mod1ex$celltype=="typeA",]
+#subset the dataframe
+subset(mod1ex, celltype == "typeA")
+subset(mod1ex, celltype == "typeA" & genotype == "Wt")
+sub_mod1ex2 <- subset(mod1ex, replicate < 2, select = c('genotype', 'celltype'))
+print(sub_mod1ex2)
+```
+```{r}
+# the incredibly useful tapply function!
+tapply(mod1ex$measurement,list(mod1ex$celltype,mod1ex$genotype),mean)
+#tapply(mod1ex$measurement, mod1ex$genotype, mean)
+```
+save file in a new place:
+```{r}
+write.csv(sub_mod1ex2, file="subsetted_module1ex.csv")
+```
+
+#### STOP - Let's tackle the Homework for Part 1 (on Canvas)
+**Q1.Use one of the following built-in datasets (iris or OrchardSprays) to do the following*:**
+a. Load in the data from the built-in R datasets.
+b. Inspect the dataframe with at least three attributes (explain what you choose and how it is implemented).
+c. Slice out rows and columns using any criteria that you wish, explain what the criteria is (and why), and then write it to an external file.
+d. Slice out the rows or columns using Boolean conditions.
+e. Subset the data in any way that you think is meaningful (explain why it is meaningful to you).
+f. Use tapply to breakdown the mean values of one of the columns based on the factors in the dataset.
+
+```{r Q1CoC}
+#a
+data(iris)
+data(OrchardSprays)
+#b
+str(OrchardSprays)
+dim(OrchardSprays)
+colnames(OrchardSprays)
+#rownames(iris)
+summary(iris)
+#c: slicing
+sub_iris<-iris[c(3,5,6:10),c(3,4)]
+print(sub_iris)
+write.csv(sub_iris,"Q1c_Mod1AB.csv")
+#d : slice with boolean
+iris[iris$Petal.Length>4 & iris$Species=="versicolor",]
+#e
+subset(iris,Species=="setosa")
+#f
+tapply(iris$Sepal.Length,iris$Species,mean)
+```
+### Part 2. Examples of using basic graphing/data visualization in R:
+If you need more examples than just the following one, this tutorial is accessible: https://www.digitalocean.com/community/tutorials/plot-function-in-r
+
+We will build a mosaic plot with UBAdmissions data. This dataset is a famous example of a phenomenon known as "Simpsons paradox" (related to the Will Rogers' phenomenon, but broader) which is a fantastic example of really understanding confounding variables and interactions: https://pubmed.ncbi.nlm.nih.gov/29484824/. "Simpson’s Paradox is a statistical phenomenon where an association between two variables in a population emerges, disappears or even reverses when the population is divided into subpopulations!" (https://plato.stanford.edu/entries/paradox-simpson/). 
+The dataset has three dimensions (three-way table) of the data: Admissions, Gender, Department. We are going to spend a lot of time building mosaic plots with this data - because mosaic plots are one of the rare cases where it is more challenging to build them in ggplot- to refresh our appreciation of how to set up plots in regular, vanilla R (before moving on to the fancier, more intuitive ggplot2).
+```{r UCBAdmissions}
+data("UCBAdmissions")
+UCBAdmissions
+dim(UCBAdmissions)
+class(UCBAdmissions)
+print(head(data.frame(UCBAdmissions)))
+```
+This dataset is a table so, much like the titanic dataset that we examined in Intro to RI, we will plot out the table (and then we will manipulate the data to address specific questions/queries): 
+```{r}
+# here is the default with some gratuitious colour added!
+mosaicplot(UCBAdmissions,col=c("Red","Orange", "Yellow","Green","Blue","Purple"))
+```
+We can refresh our apply() function and see how we took the marginals and then graph them!: 
+```{r}
+mosaicplot(apply(UCBAdmissions, c(1, 2), sum),
+           main = "Student admissions at UC Berkeley")
+```
+
+Let's look at ordering the three dimensions does to the standard mosaic plot output: 
+As an aside: ~ is used as an operator in R to delay evaluation of arguments. For plot functions, this means that you can think of ~ as indicating a dependence. So, plot(y~x, ...) is equivalent to plot(x,y,...). Which one you use is mostly a matter of personal preference (although there is a useful linear model function, lm() that uses the y~x format, so I tend to use that format.)
+
+```{r}
+mosaicplot( ~ Admit + Gender, data = UCBAdmissions, col= c("Blue", "Pink"))
+# This looks fairly conclusive that Berkeley rejected way more female candidates than male candidates.
+```
+```{r}
+mosaicplot( ~ Admit + Dept, data = UCBAdmissions, col= c("Purple", "Yellow"))
+# the departments individually admitted and rejected different percentages of applicants. 
+```
+But now let's see the mosaicplot with all three dimensions and what that illustrates: 
+```{r}
+mosaicplot( ~ Dept + Gender + Admit, data = UCBAdmissions, col= c("Blue", "Red"))
+mosaicplot( ~ Gender + Dept + Admit, data = UCBAdmissions, col= c("Purple", "Green"))
+mosaicplot( ~ Admit + Dept + Gender, data = UCBAdmissions, col= c("Yellow", "Orange"))
+```
+
+```{r}
+# let's see what reducing this mosaic to 2 dimensions does: 
+mosaicplot( ~ Admit + Gender, data = UCBAdmissions, col= c("Red", "Orange"))
+# This looks fairly conclusive that Berkeley rejected way more female candidates than male candidates. 
+```
+
+Let's save this last plot: 
+```{r}
+# plain R
+pdf("UCB_gender_admit.pdf")
+mosaicplot( ~ Admit + Gender, data = UCBAdmissions, col= c("Red", "Orange"))
+dev.off()
+```
+
+#### STOP - Let's tackle the Homework for Part 2 (on Canvas)
+**Q2. Use the HairEyeColor built-in dataset for basic R to create a mosaic plot. This will be a similar process to what we did in class. Ask and answer, using a graph, a question based on this table.**
+```{r}
+data("HairEyeColor")
+dim(HairEyeColor)
+mosaicplot(HairEyeColor,col=c("Purple","Yellow"))
+mosaicplot(~Hair +Eye, HairEyeColor,col=c("Red","Yellow","Blue","Purple"))
+```
+
+### Part 3. Examples of using ggplot2 (part of the tidyverse package) in R:
+
+Remember that tidyverse has an entire philosophy of "the grammar of visualization" and this is seen in the layers of ggplot2. Here is the official **cheatsheet**: https://posit.co/wp-content/uploads/2022/10/data-visualization-1.pdf
+
+Remember that you will need to load the package (we downloaded it during Intro to R I, but if you didn't do it at that time, you will also need to install it.)
+```{r}
+library(ggplot2)
+```
+to use built-in data set from ggplot2
+```{r midwest}
+data(midwest)
+dim(midwest)
+```
+There are a number of features of ggplot2 and the underlying visualization of grammar that you will need to understand. This logical framework will guide the feature of the tidyverse that we will investigate, as well. A plot in ggplot begins with a generic layer, the ggplot() layer, and then adds information layer by layer via geoms. There is also aesthetic criteria that are mapped to the graph. For additional refresher, see Intro_to_R_5A.rmd. I have chosen a data set from the built-in data sets that is different from the examples we covered in Intro_to_R_5A to give you more exposure to scope of the visualization. But we will see the same pipeline: 
+```{r}
+# here we see the first layer, which doesn't produce any data points since it is laying down the foundation for the top geom layers
+ggplot(data=midwest,mapping=aes(x=percollege,y=percadultpoverty,color=county))
+
+```
+
+```{r}
+# 
+ggplot(data=midwest,mapping=aes(x=percollege,y=percadultpoverty))+
+  geom_point(mapping = aes(color = state))+
+  #geom_point()+
+  geom_smooth(method=lm)+
+  labs(
+    title = "Poverty rate and percentage of college",
+    subtitle = "Broken down by midwest state",
+    x = "Percent of population who graduate from college", y = "percent adults in poverty",
+    color = "state"
+  )
+```
+
+ggplot makes it easy to save plots, too: 
+```{r}
+ggsave(filename = "Poverty_rate_and_percentage_of_population_who_graduated_from_college.png")
+```
+
+You can also do it the analogous way as for plain R: 
+```{r}
+pdf("Poverty_rate_and_percentage_of_population_who_graduated_from_college_2.png")
+# Same as above - cut and pasted from above cell 
+ggplot(data=midwest,mapping=aes(x=percollege,y=percadultpoverty))+
+  geom_point(mapping = aes(color = state))+
+  #geom_point()+
+  geom_smooth(method=lm)+
+  labs(
+    title = "Poverty rate and percentage of college",
+    subtitle = "Broken down by midwest state",
+    x = "Percent of population who graduate from college", y = "percent adults in poverty",
+    color = "state"
+  )
+# you have to close the file in order to flush the buffer
+dev.off()
+```
+#### STOP - Let's tackle the Homework for Part 3 (on Canvas)
+**Q3. Use the built-in data set for ggplot2, msleep, to create a visualization using ggplot and geoms (not base R) that answers questions about mammals sleeping. **
+```{r}
+data("msleep")
+head(msleep)
+#ggplot(msleep, aes())+geom_point()+geom_smooth()
+```
+
+
+
+

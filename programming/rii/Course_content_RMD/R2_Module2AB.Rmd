@@ -1,0 +1,243 @@
+---
+title: "R2_Module2AB"
+author: "Danni Presgraves"
+date: "2024-05-06"
+output: html_document
+---
+The world of the Tidyverse. Just as we worked through graphing in "regular" R and compared that to graphing in "ggplot2", we are going to compare regular R manipulation with the structure of the tidyverse. The tidyverse follows the same type of rules, logic, and layering that we saw in ggplot2. 
+
+Here are some useful links: 
+----------------
+1. The original paper from Hadley Wickham in which he discusses 'tidy' data as a way to reduce the 80% of time spent on data munging/data wrangling/data preparation and to allow for a more efficient development of tools that are based on encountering regularized data: https://vita.had.co.nz/papers/tidy-data.pdf
+2. Worked examples - we will probably use similar ones - from here: https://r4ds.hadley.nz
+3. Another Philip Guo product: https://tidydatatutor.com/
+----------------
+# First up, we're going to discuss Hadley Wickham's Workflow: 
+
+```{r pressure, echo=FALSE, fig.cap="A caption", out.width = '100%'}
+knitr::include_graphics("/Users/presgd/Desktop/Screenshots/WickhamsWorkFlow.png")
+```
+
+Wickham mentions studies that point out approximately 80% of data science work is with data wrangling (i.e. Data Cleaning). This is not only dreadfully dreary work, it is inefficient effort and reduces the development of universal tools. Wickham's answer to this sad state of data chaos is to apply a similar universal logic to data production that he did to data visualization (with ggplot). 
+
+Step 1: 
+Install tidyverse package (you can use the Packages tab to do this), which bundles the many packages of the tidyverse together, and then load the package for this session: 
+```{r}
+library(tidyverse)
+```
+This will tell you the packages that are loaded in the tidyverse as well as any conflicts with Base R that exist. Tidyverse has an explicit policy that no errors or conflicts (or missing data) should be silent or invisible to the user so it will tell you when there is a possibility of conflict. It also, helpfully, gives you the solution. If you desperately need to use the Base R filter() method, you can still do so, but you will need to use the full name of stats::filter() so that R knows which 'namespace' to interrogate for it!
+
+We will also retrieve a data set to use for illustrating the power of the tidy philosophy. Dataframes that follow the principles of being 'tidy' are called *tibbles*. 
+```{r}
+# you can see all the built in data sets for base R, along with your loaded packages, by typing this:
+data()
+```
+Step 2: load the built in data set for Star Wars characters. 
+```{r}
+# we're using built in datasets, but if we read in a dataframe we could use, the base R version:
+#read.csv()
+# or... the tidyverse version that forces our dataframe to be a tibble
+#read_csv(database)
+#load builtin dataset records of star wars characters
+data(starwars)
+# you can get a glimpse of the data set that tells you the data type of each column 
+glimpse(starwars)
+```
+
+# Now we will explore the general capabilities of dplyr, the data manipulation package of the tidyverse. 
+
+You build up expressions in dplyr, like you built up layers of a visualization with ggplot2.This is not a coincidence and is, as I have mentioned previously, an attempt at regularizing how we interact with data. Wickham calls functions "verbs" and he stacks them to tackle complex challenges, in a similar way as you might use multiple verbs to express a complex thought. He has systematized the dplyr functions in the following ways: 
+
+1. The first argument is ALWAYS a dataframe
+2. The second argument is usually the columns that will be manipulated
+3. The function produces a new dataframe 
+
+A pipe is used to combine functions. In new versions of R (4.0 and above), the pipe is now represented with "|>". The pipe takes the object on the left and passes it to the function on its right. Wickham recommends thinking about the pipe as a "then" statement.
+
+There are four categories of dplyr 'verbs' based on what they operate on: *rows*, *columns*, *groups* or *tables*. We will spend our time looking at the first three categories. 
+
+Note: dplyr does not ever modify the original dataframe; it creates a new dataframe at the end of its operations. 
+
+Let's begin by predicting what the following does (and noting the particular syntax of the command)
+```{r}
+starwars |>
+  filter(homeworld == "Tatooine" | homeworld=="Naboo") |> 
+  group_by(species,gender) |> 
+  summarize(
+    height = mean(height, na.rm = TRUE)
+  )
+```
+The functions (or 'verbs') are stacked and the end of each one is indicated by the |> symbol and it is at the end of the line, similar to how the + acts with ggplot geom layers. 
+## Row functions
+The most important row functions are the following: filter(), arrange(), distinct(), and count(). 
+
+### Filter()
+Uses the typical >, <, >=, <=, ==,!= and you can combine these fundamental conditions with & as well as |.  
+```{r}
+OldOnes<-starwars |>
+  filter(birth_year>100) 
+print(OldOnes)
+```
+```{r}
+oldOrYoung<-starwars |>
+  filter(birth_year>100 | birth_year<25)
+print(oldOrYoung)
+#---------------------
+weirdAgeCoincidence<-starwars |>
+  #filter(birth_year==19.0 |birth_year==41.9)
+  # since the above filter is a OR looking for two things to be equal, you can combine them using %in%
+# this keeps rows where the variable on the left is equal to one of the items on the right
+  filter(birth_year %in% c(41.9,19.0))
+print(weirdAgeCoincidence)
+```
+### arrange() changes the order of the rows based on the desired column values. 
+You can use a helper word like 'desc' to override the default of ascending values. 
+```{r}
+eyecolorsw<-starwars |>
+  arrange(eye_color, hair_color)
+# you can see that the default sorting is alphabetical
+print(eyecolorsw)
+#---------
+eyecolorswDesc<-starwars |>
+  arrange(desc(eye_color), hair_color)
+# you can see that the default sorting is alphabetical
+print(eyecolorswDesc)
+```
+### distinct()
+finds all the unique rows in a dataframe. Let's see it with species: 
+```{r}
+uniqueSpeciesSW <- starwars |>
+  distinct(species)
+print(uniqueSpeciesSW)
+# you can keep the other columns when filtering for unique values by adding the .keep_all = TRUE argument
+# you can also remove duplicate rows in your dataframe by running this with an empty argument
+uniqueRows <- starwars |>
+  distinct()
+print(uniqueRows)
+```
+### count()
+```{r}
+countUniqueSpeciesSW <- starwars |>
+  # we can add sort=TRUE if we want the most frequent species first. 
+  count(species,sort=TRUE)
+print(countUniqueSpeciesSW)
+```
+## Quick group question:
+Can we, as a group, in a single statement, create a dataframe that does the following: 
+* the species is a human from either Kamino or Coruscant
+* has blond hair and blue eyes
+* is at least 170 cm tall
+```{r}
+groupdataframe<-starwars |>
+  filter(species=="Human") |>
+  filter(homeworld=="Kamino"|homeworld=="Coruscant")|>
+  filter(height>=170 & hair_color=="blond" & eye_color=="blue")
+print(groupdataframe)
+# Another Answer: 
+groupdataframe2<-starwars|>
+filter((homeworld == "Kamino" | homeworld=="Coruscant") & species== "Human", height >= 170 & hair_color == "blond" & eye_color == "blue")
+print(groupdataframe2)
+#Another answer: 
+groupdataframe3<-starwars|>
+  filter(species == "Human", 
+         homeworld == "Kamino" | homeworld == "Coruscant",
+         hair_color == "blond",
+         eye_color == "blue",
+         height >= 170)
+print(groupdataframe3)  
+```
+## Column functions
+The most important column functions are mutate(), select(), rename(), relocate(). 
+### Mutate
+Adds a column to the end of the dataframe that is the result of manipulations of other columns (i.e. like summing across multiple columns)
+```{r}
+starwars |> 
+  mutate(
+    bmi=round((mass/height^2)*10,3),
+    # the .before argument says to override the default of putting this new column at the end
+    # and to place it at the specified place
+    #.before=4
+    #.after
+    .before=hair_color
+  )
+
+```
+### select
+allows the subsetting of particular columns of the dataset.
+```{r}
+starwars |>
+  #all of the following are equivalent
+  #select(name, height, mass, birth_year, homeworld, species)
+  #select(name:mass, birth_year, homeworld:species)
+  #select(!hair_color:gender & !films:starships)
+  select(hair_color, gender)
+```
+
+There are a number of auxillary commands that are used with select. These include: 
+select(where(is.character)), starts_with(""), ends_with(""), contains("") etc. 
+
+### Rename and relocate
+If you want to keep all your columns, but you want to rename some of them, you can use rename(), funnily enough. 
+```{r}
+starwars |>
+  rename(height_cm=height,mass_kg=mass) |>
+  relocate(species)
+```
+
+Amazingly, you can combine the output of dplyr and ggplot:
+```{r}
+starwars |> 
+  mutate(
+    bmi=round((mass/height^2)*10,3),
+    # the .before argument says to override the default of putting this new column at the end
+    # and to place it at the specified place
+    .before=4
+  )|>
+  ggplot(aes(x=height, y=bmi)) +
+  geom_smooth()
+```
+
+## Grouping!
+This allows us to focus on specific groups and to slice our tibble. 
+#### group_by
+Seem familiar? If you any passing familiarity with pandas, it is the same command!
+```{r}
+starwars |>
+  group_by(species)
+```
+
+#### summarize
+This reduces the tibble to one row per group. 
+```{r}
+starwars |> 
+  mutate(
+    bmi=round((mass/height^2)*10,3),
+    .before=4
+  )|>
+  group_by(species)|>
+  summarise(mean_bmi=round(mean(bmi,na.rm = TRUE),3))
+```
+#### slice_ functions
+You can extract specific rows from a within a group: 
+
+df |> slice_head(n = 1) takes the first row from each group.(if n=2, it will take 2 rows etc; or you can select prop =0.1 to select 10% of the group )
+df |> slice_tail(n = 1) takes the last row in each group.
+df |> slice_min(x, n = 1) takes the row with the smallest value of column x.
+df |> slice_max(x, n = 1) takes the row with the largest value of column x.
+df |> slice_sample(n = 1) takes one random row
+```{r}
+starwars|>
+  group_by(species) |>
+  #try playing around with n. If you leave out n, what happens? 
+  slice_max(height,n=2) |>
+  relocate(species,.before=height)
+```
+### Certificate of Completion Question on Canvas: 
+
+You should use the built in data set iris to tackle this question.
+
+Is this data 'tidy'? Why or why not? How might you demonstrate that it follows the conventions of "tidy" data?
+We want to do a selective breeding experiment using only the individuals with the largest 2 Petal.Lengths from each species. Create a tibble called "largestPetalSize" that contains the 6 individuals that fulfill this criteria. What do you notice about the output and what does this suggest about how tied values are resolved?
+Now, we want to find the mean Sepal.Length of each of the iris species.
+We want to add a new column to this dataframe that is the area of the petals. We will make some approximations and claim that petals are exactly rectangular shapes so that area is simply Petal.Length*Petal.Width.
+Finally, we want to graph out a boxplot, using ggplot, of only the smallest 10 Petal.Lengths of each species. This should be one command.

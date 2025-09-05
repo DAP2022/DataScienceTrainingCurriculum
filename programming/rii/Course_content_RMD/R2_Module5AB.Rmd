@@ -1,0 +1,478 @@
+---
+title: "R2_Module5AB"
+author: "Danni Presgraves"
+date: "2024-05-09"
+output: html_document
+---
+# Preamble: 
+
+This is a VERY long document, where I have attempted to include an exhaustive overview of ANOVA and Correlation/Regression. It is highly unlikely that we will make it through this notebook, but I wanted you to have it in case you want to reference any pieces/suggestions that might be relevant to your own work.
+
+These are the two general sections of this notebook: 
+
+1. ANOVA
+  * we will spend a lot of time investigating/testing assumptions of ANOVA and then demonstrating how one-way ANOVA and TukeyHSD works, how transformation works, and how the non-parametric alternatives to ANOVA/TukeyHSD, named Kruskall-Wallis and Dunn's z-test work. Just to demonstrate differences between the two test, I have used the same data set to illustrate both (this is obviously not legitimate since if a data set conforms to the assumptions, you should use ANOVA; and if it doesn't, you should use Kruskal-Wallis).
+2. Correlation/Regression
+
+# ANOVA Introduction: 
+ANOVA, like a lot of the statistics that we use, is fundamentally about trying to differentiate between any actual 'signal' in the data from the intrinsic 'noise' that is due to sampling. It attempts to answer the question: Does the treatment explain any differences in mean between treatment groups or is it just due to sampling particular individuals? If the answer is "it is just due to the particular sample of individuals in our data set" than we will see different results when we sample different individuals. Comparing the variance between treatment and sample is explicitly declared in it's name: AN(alysis).O(f).VA(riance); we are literally analyzing the variance and *seeing if we can attribute it to either a treatment effect or if it is just noise and using this attribution to support if the means between our groups are different*.  
+
+The Wikipedia entry for anova was too dense; I thought this was more accessible: https://www.qualtrics.com/experience-management/research/anova/. I have added this link in, too: https://demonstrations.wolfram.com/VisualANOVA/ 
+
+Remember that, as we have discussed in R2_Module_4AB, every test has certain assumptions that must be met in order to justify (or believe) the results of that test. For One-way ANOVA, the important assumptions are about the normality of the data points in each group and the equality of variances in each group. *It might be obvious to you that, since ANOVA is based on partitioning out the variance into the 'noise' and the 'meaningful signal', violating the assumption of equal variance is devastating for one way ANOVA.* This means that we will construct our usual pipeline (stating the null and alternate hypotheses, naming the test and and investigating any assumptions) before conducting the test. There is a non-parametric version of one way ANOVA called Kruskall-Wallis that we can use if we find that our variances are significantly different. 
+
+Additionally, if we are able to reject the null hypothesis that the means of our groups are the same, we can then follow up our ANOVA with a post-hoc test called TukeyHSD. This test compares each pair of groups and determines *which* one (or more than one) has a different mean than the other groups. There is a non-parametric version of this post-hoc test, too, called Dunn's Z-approximation. When we have been forced to substitute a Kruskall-Wallis test for an ANOVA due to not fulfilling assumptions, we follow up with a Dunn's Z-approximation. 
+
+For our example, investigating any relationship between the amount of Maize produced in a region and the level of malaria present (the vector that spreads malaria uses maize as a food source), we use the following general terminology: 
+
+DV = Dependent Variable; it is the response variable
+
+Factor = what we are testing, ie. different treatments, medications etc.
+
+### Malaria and Maize production.
+The pollen of the corn (maize) plant is known to be a source of food to larval mosquitoes of the species Anopheles arabiensis, the main vector of malaria in Ethiopia. In 2010, malaria caused an estimated 660 000 deaths (with an uncertainty range of 490 000 to 836 000), mostly among African children. The production of maize has increased substantially in certain areas of Ethiopia recently, and over the same time malaria has entered into new areas where it was previously rare. This raises the question: is the increase of maize cultivation partly responsible for the increase in malaria?
+```{r}
+library(ggplot2)
+```
+In this case, the (alleged) dependent variable is Malaria incidence and Maize is the independent variable and, additionally, has three factor levels: low, medium and high production.
+
+```{r}
+# let's read in the data
+mal_maize<-read.csv("/Users/presgd/MyRFiles/Intro_to_R/RData/R2_MalariaMaize.csv",header=TRUE)
+attach(mal_maize)
+names(mal_maize)
+head(mal_maize)
+class(mal_maize)
+summary(mal_maize)
+```
+Previously, we used the t-test to demonstrate a test that was fairly robust to violations of assumptions. ANOVA, as a contrast, is **very sensitive** to any violations of a couple of assumptions: normally distributed data in each of the factors (low, medium and high categories should have similar normal shapes in their data) and homoscedasticity (the variances should be similar between the low, medium and high categories). This shouldn't surprise you because ANOVA is analyzing the VARIANCE to tell us something about any difference between means of groups so you should expect that it may be particularly sensitive to the assumption that the variances in each category are the same and that the categories are all normally distributed. 
+
+First, let's see if the data set is normally distributed by checking the normal distribution *at each level (low, medium and high cultivation)*:
+
+```{r}
+ggplot(mal_maize,aes(x=Maize_yield, y=IncidenceRate_10000)) +
+  geom_point()
+# hmmmm... looks like there is an outlier in the low cultivation area.
+# Let's look with qqnorm plot since that it often where we begin with this analysis
+```
+```{r}
+qqnorm(IncidenceRate_10000)
+qqline(IncidenceRate_10000)
+# let's apply some of the tests we saw in Module4AB
+# normal distributed incidence rate across all the data - this is not
+# a requirement for ANOVA which needs to have a normal distribution in each of the categories but not the overall data. We'll use it here so that you can be refreshed on how the test works. 
+shapiro.test(IncidenceRate_10000)
+#############################
+```
+```{r}
+# What is a requirement for one way ANOVA is that the data in Each category is normally distributed. Here is how you can test for that: 
+# use the by() function which is a 'wrapper' for the tapply function and give it the shapiro.test function as an argument:
+cat(" Here is the by function: \n")
+# you can also use the print function but the output is subtly different as the two functions do slightly different things
+print(" ******* ")
+cat("-------------------------- \n")
+by(IncidenceRate_10000,Maize_yield, shapiro.test)
+# compare the by() wrapper to just using the tapply(): 
+cat(" Here is the tapply function: \n")
+cat("-------------------------- \n")
+tapply(IncidenceRate_10000,Maize_yield, shapiro.test)
+# you will notice that the by() function prints out the results to the screen in a more attractive format but there shouldn't be any significant differences since tapply is the basis of the by() function. 
+#############################
+```
+Now let's investigate the REALLY important assumption that each factor (or category) has approximately equal variances. The null hypothesis of this test is: 
+
+$H_o: \sigma_1^2 =\sigma_2^2 = \sigma_3^2$
+
+If we are able to significantly reject this null hypothesis, we will need to use the typical pipeline of transforming the data to see if there is a transformation that will cause the variances to be equal. When that doesn't work (since it will only rarely work), we will adopt the non-parametric version of ANOVA called Kruskal-Wallis. 
+
+So, we'll start with Bartlett: 
+```{r}
+# is the variance of the incidence rate in each factor level approximately the same?
+# Bartlett test of Homogeneity of variances
+bartlett.test(IncidenceRate_10000~Maize_yield,data=mal_maize)
+
+# the p-values of those two tests suggest that the assumptions of an
+# anova test will not be met!
+# Another test for homogeneity is the Levene's test. It does NOT require that the distributions having their variances compared are normally distributed. This is unlike both var.test and Bartlett which assume that the distributions are normally distributed. However, the Levene's test require yet another package, called car.
+leveneTest(IncidenceRate_10000~Maize_yield,median,data=mal_maize)
+#this is a bit unexpected. While Bartlett's test is known to be sensitive to departures from normality (and the "low" category), I am surprised at the large rejection/nonrejection spread. 
+```
+These do not look normally distributed since the p-value is very small so we reject the null hypothesis of variance equality! At least with Bartlett's. However, Levene's test has better performance when the groups are not all normally distributed so....maybe homoscedasticity is a fine assumption? 
+
+Let's move on and determine another aspect of variance that needs to be met to use ANOVA. We need to avoid a 'wedge shape' in our variance versus mean graph. If we can't reject the null hypothesis of homogeneity of variances, the following condition is already met but it is always good to double check! If only, to ensure that nothing about our analysis is questioned by the audience.
+
+We can now ask: are the factors homoscedastic? Homoscedastic means 'equal scatter' and it is usually a term associated with ANOVA/correlation/regression. However, it is also useful for identifying the problematic "wedge or funnel shape" of data. One method to test this is to draw a scatter plot of mean versus variance. It may not be intuitive why this is a useful graph but *there are a number of statistical tests that allow for violations in homogeneity of variance but only if the variance does not increase with increasing sample mean (which is the dreaded wedge shape that I have mentioned repeatedly) * so only if the data is approximately homoscedastic. So even if the samples variances are not equal (heteroscedastic), if the variances does not increase with increasing mean than, depending on the test, that still might be okay. We’ll use our old buddy tapply to demonstrate. Of course, there are only three data points in this case so it probably won't be informative for our purposes but it is, in general, an illustrative way of visualizing whether or not the variance increases with increasing mean:  
+```{r}
+plot(tapply(IncidenceRate_10000,Maize_yield,mean),
+     tapply(IncidenceRate_10000,Maize_yield,var), col="Red", 
+     main = "Does the variance increase with increasing mean?")
+```
+Drat!! 
+
+If we our data doesn't behave (ie. it doesn't follow the assumptions), can we force our data to be normally distributed and homeoscedastic by using one of the common transformations? If so, we could then use a parametric test (aov) on the transformed data. If not, we will need to use the non-parametric version of anova called Kruskall-Wallis. Non-parametric versions of tests are less desirable than the parametric version because you give up power when using a non-parametric version and you really don't want to have to give up power in your test. However, sometimes you have to! 
+
+So let's see about a transforming our data first. Let's begin with sqrt+0.5 transformation: 
+```{r}
+qqnorm(sqrt(IncidenceRate_10000+0.5))
+qqline(sqrt(IncidenceRate_10000+0.5))
+boxplot(sqrt(IncidenceRate_10000+0.5)~Maize_yield, 
+        main="Maize_yield and Malaria Incidence")
+tapply(sqrt(IncidenceRate_10000+0.5),Maize_yield, shapiro.test)
+# It still isn't normally distributed, so we use Levene
+leveneTest(sqrt(IncidenceRate_10000+0.5)~Maize_yield,data=mal_maize)
+```
+It may be starting to behave. ..but not quite enough. Let's try a log transformation since that is pretty common in biology. 
+
+log transformation: 
+```{r}
+qqnorm(log(IncidenceRate_10000))
+qqline(log(IncidenceRate_10000))
+boxplot(log(IncidenceRate_10000)~Maize_yield,
+        main="TRANSFORMED Maize_yield and Malaria Incidence")
+# might want to try to erase ambiguity by using a measurement of 
+# normality like shapiro-wilks
+tapply(log(IncidenceRate_10000),Maize_yield, shapiro.test)
+#shapiro.test(log(IncidenceRate_10000))
+# this let's us believe that we can't reject the data sets being
+# normally distributed so we should be able to use bartlett test now: 
+bartlett.test(log(IncidenceRate_10000)~Maize_yield)
+#Nope - no homogeneity of variance!
+```
+
+Okay! Now we have data that looks normal-ish enough ....although it rejects equality of variances between the groups so one way ANOVA is probably not appropriate **(Note: we are working through this example to compare it to the non-parametric alternative so we wouldn't usually continue to use regular ANOVA - aov() - at this point in the 'real world' except that we are using it here specifically to compare it to the non-parametric outcome so we will continue to use it).** Maybe? Does it? That is the artistry of statistics; data is messy and sometimes you continue onwards with an analysis with the potential flaws of your assumptions in the back of your mind so that you may confess them to your audience in your conclusions and your discussion sections.
+
+#### ANOVA:
+
+For a one-way ANOVA, you have various function choices but the most straight-forward option is >aov(DV∼Factor, data=name of file). This function is a ‘wrap’ function of lm(). lm() refers to “Linear Model” function. In fact, it is often more useful to use lm() rather than aov() for one-way ANOVA as long as your design has balanced numbers of individuals. In the case of our data set, which has required transformation, we can obtain an ANOVA table in the following manner:
+```{r}
+maizeMal_log.aov<-aov(log(IncidenceRate_10000)~Maize_yield)
+# let's call the variable where we have put the results of our aov function
+maizeMal_log.aov
+# aov has the useful feature of allowing you to call summary()
+summary(maizeMal_log.aov)
+```
+
+Fine! We know that parametric one-way ANOVA is inappropriate for our data, even transformed, because the variances are not equal between the categories. We conducted the analysis so that we would all know how to conduct ANOVA in R. Plus, we now have the results of the one-way parametric ANOVA that will allow us to compare those results with the nonparametric alternative (Kruskall Wallis). Remember that because variances aren't equal, we *should* be using Kruskal Wallis so this is the appropriate test for this particular data set. You could use kruskal wallis on the original, untransformed data set. I have used kruskal on the log transformed data set so that we could compare the results to those obtained from the parametric aov function: 
+```{r}
+NP_Mal_log.kwt<-kruskal.test(log(IncidenceRate_10000)~Maize_yield)
+NP_Mal_log.kwt
+```
+
+Here is the non-parametric Kruskal-Wallis test on the original, untransformed data: 
+```{r}
+NP_Mal.kwt<-kruskal.test(IncidenceRate_10000~Maize_yield)
+NP_Mal.kwt
+```
+**Let's pretend that we were able to reject our Ho that all categories means are equal.** (the p-value >0.05 so we can't actually do that, but I am demonstrating the functions for you so we are just pretending that we could) We would now run the post-hoc test. The function to do that is >TukeyHSD(result.aov) and it works by taking pairwise comparisons of each of the factors (for instance, in the case of the malaria and the maize production, Tukey would compare the malaria deaths between the High-Low yields, Low-Medium yields and High-Medium yields and it would put upper and lower bounds on these treatments). In our case, we didn't reject the null hypothesis of the ANOVA in the first place so it is not surprising that none of the three pairwise comparisons results in a significant p-value. 
+```{r}
+TukeyHSD(maizeMal_log.aov)
+```
+Unsurprisingly, since we failed to reject the null hypothesis for our data, none of the three pairwise comparisons yields a significant p-value (all the p values are greater than 0.05). This is actually reassuring since it would have been upsetting news if we ran a TukeyHSD after FTR the null and got at least one mean that was significantly different! That would suggest that our analysis had a major problem!
+
+Tangent: To calculate the power of our anova test, we can use the power.anova.test
+```{r}
+# This is a generic example is taken from the Help tab examples. You can decide 
+# the power you want to get the n or you can decide the n you have, to calculate
+# the power.
+
+groupmeans<-c(120,130,140,150)
+power.anova.test(groups = length(groupmeans),
+                 between.var = var(groupmeans),
+                 within.var = 500, power = .80)
+```
+```{r}
+#load the rstatix library - if you don't have it, you will need to install it
+library(rstatix)
+#there dunn.test() -- the nonparametric version of TukeyHSD() is found in this package
+NP_Mal.dunn<-dunn_test(mal_maize,IncidenceRate_10000~Maize_yield)
+NP_Mal.dunn
+```
+
+Since we have finished up with the ANOVA section, I am detaching the file here (normally I would detach it at the end of the notebook).
+
+```{r, echo=FALSE}
+detach(mal_maize)
+```
+
+# LINEAR Correlation and LINEAR Regression Introduction 
+An important announcement: 
+https://xkcd.com/2048/
+
+### Introduction
+In this module we will look at two more powerful analyses that build on the tools used in ANOVA: 
+
+1. simple linear correlation 
+
+2. simple linear regression 
+
+Both of these are parametric tests and have some fairly rigorous assumptions that must be met. If we can meet these assumptions, correlation and regression can provide us with detailed information about the relationship between two variables. 
+
+Of the two tests, regression is used to describe a much more powerful relationship, one in which changes in an independent variable (X) cause predictable and measurable changes in a dependent variable (Y). ** Regression allows us to predict Y if we know X.** On the other hand, correlation is a way to describe two variables that are associated with each other, that vary together. Neither correlation nor regression imply causation. Warning: carrying out a regression analysis and finding a significant relationship does not necessarily mean that you have found ** a cause and effect relationship**. Demonstrating a cause and effect relationship also requires proper experimental design, with appropriate controls to rule out other possibilities. This is the annoying statement "Correlation is not Causation" (a fact that you will need to modify if you ever read about Causal Analysis...)
+
+### Correlation: 
+
+We will illustrate the steps of using the program to do regression and linear correlation with the same data set: predicting the age of a lion from the amount
+of black on its nose pad. In the data file (Nose_age.csv), the age of lion is called age, given in years, and the proportion of black on its nose pad is called proportion.black. 
+```{r}
+# I have renamed this file to be Nose_age and it is available in the data sets on Canvas
+age_lion<-read.csv("/Users/presgd/MyRFiles/Intro_to_R/RData/R2_age_lion.csv")
+attach(age_lion)
+names(age_lion)
+```
+Make a scatter plot of the relationship between age and proportion.black. Remember that age is one variable (V1) and proportion.black (V2) is the second variable in the functions given below. In the plot commands below, we use pch =8. Try out different numbers to see what the dots change to (you can google the table of pch numbers and their output).
+```{r}
+plot(age,proportion.black, main="Age and proportion of nose that is still black ",pch=8)
+```
+To calculate the regression line (you may have heard expressions that are somewhat interchangeable with what we will call the regression line: line of best fit or ordinary least squares regression line) and test the null hypothesis that the slope is zero, we follow a similar procedure to what we did when we used ANOVA: we need to check that all of the assumptions of the Pearson correlation test are fulfilled and then conduct the actual test. 
+
+#### 1. Check assumptions:
+
+##### (a) Bivariate normality of the two variables
+The joint XY population distribution is bivariate normal. This situation only occurs when both individual populations (X and Y) are each normally distributed. We can use the graphical methods that we have already seen in previous chapters such as boxplots or hist to visualize any serious violations of bivariate normality (ie. if the distributions are highly skewed or have outliers present). Of course, remember that you can modify the boxplots to be whatever color you wish (it doesn't have to be "Blue" as it is in the example below). In some cases, a continuous variable (such as the ones in the above lion age/nose coloration example), for instance, a simple scatter plot will work better. For example, a box plot doesn't produce anything useful in this case (because the age variable is continuous)!
+```{r}
+# boxplot won't show up anything useful since age is continuous. However,if given categorical variable, obviously it would work the best!
+# boxplot(proportion.black~age,col="Blue")
+# let's look at the histograms of the two variables to see if they are both normally-ish distributed: 
+hist(proportion.black, col="Green", main="Is the Proportion of nose \n that is black normally distributed? ")
+hist(age, col="Orange", main="Is the age of the lions \n normally distributed? ")
+# age looks closer to normal than proportion.black but we'll have to continue on to see...
+```
+Nothing informative will be produced (you might be able to see that the distributions of age and proportion.black are seem to have different histograms but it isn't clear if that is significant or not).
+
+To remind you of previous tools: You can also use qqplots to plot the quantiles of two variables against each other. In order to ensure that each variable is normally distributed, you can plot each of them against a randomly generated normal distribution like so:
+```{r}
+# plot age against 32 points pulled from a normal distributed data set:  
+qqplot(age,rnorm(32,mean(age),sd(age)), col="Orange",pch=14, main="Is age normally distributed?")
+# this is equivalent to qqnorm(age)
+qqline(age, col="green")
+# plot proportion.black against 32 points pulled from a normal distributed data set: 
+qqplot(proportion.black,rnorm(32,mean(proportion.black),
+                              sd(proportion.black)),col="Green",pch=6, main="Is proportion of black on nose normally distributed?")
+qqline(proportion.black, col="orange")
+```
+Or, better yet, we can compare the variable directly to see if we get a straight line scatter plot. It is even better to plot the two variables against each other since, for correlation we don't just care if they are individually normally distributed, we care that they are bivariately distributed: 
+```{r}
+# Do these produce the straight lines that we expect from a qqplot when two normal distributions are compared? Probably not...
+qqplot(age,proportion.black,main="Do these two variables have the same distribution?")
+# you put the y variable as the argument for qqpline:
+# Note: you wouldn't normally do this, but I did it to remind you that the two variables aren't normally
+# distributed, even though they produce a straight-ish line. 
+# Note: Besides MVN, there are other methods to determine bivariate normality but many of them involve sorting # your data and plotting it using 
+# a chi squared Q-Q plot. More information about that strategy is here: # https://core.ac.uk/download/pdf/234680353.pdf
+# but that also requires the downloading of different libraries. 
+qqline(proportion.black, col="orange")
+# you could also see what a line of best fit looks like between the two variables. This uses the function lm() which is 'linear model'.
+abline(lm(proportion.black~age))
+```
+And...of course, there is always the qqnorm function. Let's try it on age (or proportion.black):
+```{r}
+qqnorm(age)
+qqline(age,col="Dark Red")
+```
+
+For a more quantitative/formal test, consider also using the shapiro.test(V1) on each of the two variables. If the resulting pvalue is smaller than your specified $\alpha$, you can reject the null hypothesis that your data set is normally distributed. There are other tests such as Roylston's multivariate normality test which are similar to Shapiro wilks but test more than one variable simultaneously. You will usually have to download a package (such as MVN) to use those. I show it in the cell below after the shapiro.test.  
+```{r}
+shapiro.test(age)
+shapiro.test(proportion.black)
+# Neither age nor proportion.black are normally distributed - we can
+# reject the null hypothesis of normal distribution. 
+
+```
+# -------------------------------------------------------------------------------
+# load the library MVN after downloading it using the package tab and installing it. 
+#-------
+If for whatever reason you are unable to download the MVN library, don't fret! When I recently tried to update the MVN library, I discovered that I had to update and download MANY other libraries and packages which are 'dependencies' of this package update. It is a useful package if you are considering doing any analysis where you need to show, for instance, bivariate normality but it might not be worth the hassle of spending a lot of time downloading it for just that function. I will leave it up to you whether or not you download it. 
+```{r}
+library(MVN)
+# for informatin on the specific mvn function, please see the help documentation here:
+# https://cran.r-project.org/web/packages/MVN/MVN.pdf
+# this mvn function includes shapiro.wilk tests inside of it, as well as other 
+# tests including skewedness and summaries of each variable. 
+# Notice that we give it the entire data set age_lion instead of individual 
+# columns to graph
+
+#Now we can show fancy contour plots: 
+
+mvn(age_lion,multivariatePlot = "contour")
+# the contour plot is pretty cool and it doesn't show up bivariate normality.
+# Google contour plots of normally distributed variables if you are confused by
+# this. Basically, they should like concentric rings of ovals. 
+```
+
+##### (b) Linearity of data points can also be demonstrated via a simple scatterplot:
+```{r}
+plot(age,proportion.black, pch=4,col="Red", main=" Is age and proportion of \n black on nose linearly related?")
+```
+If the assumptions are met (or approximately met) then we can move on to actually testing the null hypothesis: $H_0: \rho=0$ (the population correlation coeficient is equal to 0; there is no linear relationship between the two variables)
+
+#### 2. The actual correlation test
+If Parametric assumptions met (use Pearson's correlation). Pearson's correlation is the default of the cor.test() function. 
+```{r}
+age_lion.cor<-cor.test(~age+proportion.black)
+age_lion.cor
+```
+The lion dataset will *not meet the assumptions* but you may wish to conduct a correlation test anyway for practice. If Parametric assumptions are not met and could not be met by transformation (that's right! More transformation!) then one of the non-parametric versions of correlation need to be used instead. Luckily, R differentiates between these methods simply by their names (you specify the appropriate non-parameter test name as an argument, the default is Pearson):
+
+##### (a) If Sample size: 7 <n <30 (Spearman rank method)
+```{r}
+# you need to specify that that the method is 'spearman'
+cor.test(~age+proportion.black, method = "spearman")
+```
+
+##### (b) If Sample size: n >30 (Kendall method)
+```{r}
+# you need to specify that the method is Kendall
+cor.test(~age+proportion.black, method = "kendall")
+```
+The Lion data set has 32 data points so you should use Kendall. There are some values which are tied which will throw a warning but the results are still valid. You can notice that the correlation value that is calculated is different between the three methods (you might think about why that is...) but, in this case, the most appropriate method is Kendall. 
+
+#### 3. Conclusion
+You might want to superimpose the "best fit" line onto your scatter correlation plot. In order to do that, you need to first fit a "general linear model". You will use the same methodology as outlined in the linear regression section (next up) to do this. Once you have the general linear model, use the abline() command - with the linear model as the argument- to superimpose the line of best fit onto your graph
+
+### Regression: 
+The difference between correlation and regression is that in regression either one of the variables has been set (not measured) or there is an implied causality between variables (one variable could influence the other but the reverse is unlikely). 
+
+In regression analysis there are two variables: one is the Independent variable (IV) and the other is the dependent variable (DV) whose value is hypothesized to be predicted by the independent variable.
+
+With regression $H_0:\beta$ = 0 (this means that we are testing that the true population slope is equal to zero). The first two steps in establishing assumptions are the same as linear correlation; the third step, homogeneity of variance, is new.
+
+1. Linearity
+
+2. Normality of response variable
+
+We already looked at this when we were analyzing the data with correlation but I wanted to introduce a slightly different member of the *apply* family of functions. In the previous module (9), we used *tapply* on the ANOVA data. tapply was appropriate in that case because the data was grouped (high, medium and low maize yield). In our case, the age is continuous, not grouped, so we need to use another member of the apply family. In fact, we use apply(). Since the apply family is a massively important family of functions (if you have experience with other programming languages, it is equivalent to *map()* functions so it can take the place of a programming loop).
+```{r}
+# you can do this for both columns simultaneously by using 'apply' instead of 'tapply' since we don't have 'groups' like we did with ANOVA in module 9. We use it like so: 
+apply(age_lion,2,shapiro.test)
+```
+
+3. Homoscedasticity (of variance): 
+
+This term translates into variance that is equally scattered at any given value of the independent variable. You can visualize this via a residual plot, once you have fitted a general linear model to your data, where the residuals versus X (Independent Variable) should be a  line. 
+
+```{r}
+# the linear model uses the function: lm(). As usual, we park the results 
+# of this function into a meaningfully named variable
+age_lion.lm <-lm(proportion.black~age)
+# let's look at the residuals using the resid function that we can use on the results of the linear function: 
+age_lion.resid<-resid(age_lion.lm)
+# you can plot the residuals in the order in which the individuals are presented
+# in the csv file like so:
+plot(age_lion.resid)
+# you can do fancy stuff like superimpose the names of variable onto the points # although it doesn't make much sense to do that with numerical data but you can see it here for completeness: there will be a 5.4 and 5.8 etc. This would be 
+# interesting to do on categories of,say, animals etc.
+
+#note: the cex argument just controls how big the labels are. The default is 1. You can
+# play around with different cex sizes here, like cex=0.8 or cex=0.1
+# the pos argument locates the label. Try out different values of pos to see what happens.
+# you can also play around with rotating the labels with additional arguments like srt 
+# you can compare the two lines by hashing out one and running it and then hashing out the other
+#############################################
+#text(age_lion.resid, labels=age, cex=0.4, pos=1)
+text(age_lion.resid, labels=age, srt=45,cex=0.4, pos=1)
+# we expect no slope with residuals so it is visually useful to plot a plain,
+# straight line
+abline(0,0)
+# note that you can also plot the residuals by age, for instance by:
+plot(age,age_lion.resid)
+# you can't then use the text() to label the plots, though (although
+# you could sort them and then label them, I suppose)
+# you can also use good old histogram of the residuals to see thta they are normally distributed. 
+hist(age_lion.resid)
+```
+If there is no obvious wedge or funnel pattern apparent in the residual plot (confirming that the assumption of homscedasticity of variance is likely met) than we can move on. Remember that the **residual plot = observed-predicted** where the predicted value is predicted by the line of best fit produced by regression (by the linear model). This means that there should be a reasonable and equal scatter above and below the "0" line. This seems okay (the assumption appears to be met). We can also look at the response value (proportion.black) for each level of the predictor variable (Age), to see if 
+
+### Let's now look at the single response value for each level of the predictor variable (AKA: what does running regression - a linear model - give us for estimates of intercept and slope?) 
+
+To refresh your memory about linear regression: 
+$Y = A + \beta*X$
+
+The linear model gives us the A (y-intercept) as well as the slope.
+
+```{r}
+# repeat what we did in the cell above but we will look at the actual 
+# linear model and what it contains instead of only graphing it as we did 
+# in the above cell. 
+age_lion.lm<-lm(proportion.black~age)
+# let's see the estimate intercept and age 
+cat("Here is the linear model: \n")
+age_lion.lm
+#plot out all the information hiding in the lm object. 
+# There is some useful information to us - that we have seen in 
+# qqlots and residual plots - and some that is more advanced than this course...
+plot(age_lion.lm)
+```
+```{r}
+# what is the summary statistics of the linear model? 
+cat("Here is the summary of the linear model:\n")
+summary(age_lion.lm)
+```
+```{r}
+# What is the ANOVA statistics - producing an ANOVA table - of the linear model? 
+cat("Here is the ANOVA table of the linear model:\n")
+anova(age_lion.lm)
+```
+The >summary() gives you the intercept and slope of your linear model line among many other useful numbers such as $R^2$ and the anova() takes your lm objects and spits out an anova table. 
+
+#### Compute confidence interval:
+In order to calculate the 95% confidence intervals of the intercept of the regression equation and of the independent variable you use the >confint() function. 
+```{r}
+# this function allows you to state the level of confidence 
+# that you want. 99? 95? 90?
+confint(age_lion.lm, level = 0.99)
+```
+
+The relationship of the independent variable and the dependent variable is nicely summarized by graphing the original scatter plot along with a superimposed >abline() of the regression line and confidence bands:
+```{r}
+plot(proportion.black~age,pch=16,xlab="Age",
+     ylab="Proportion Black",main="Confidence Bands")
+#use the abline function to plot the line of best fit by using
+# the results of the linear model as the argument
+abline(age_lion.lm,col="red")
+```
+Producing confidence bands can be a little tricky. In an effort to keep this recitation to a reasonable length, I will skip over some of the underlying complications and just give basic instructions. I suspect (but haven't used it myself yet) that the procedure for producing confidence bands is much easier in ggplot2 since there is a dedicated geom called "geom_ribbon" that apparently does the same thing.
+
+First we need the fitted values and their standard errors for all the observations. We use the >predict() function to obtain these and we will save them by placing them ever so carefully into an object. We can call this object whatever we wish but using a clear name makes it easier to keep track of all the pieces. Let's name it "CI":
+```{r}
+#predict is a method that belongs to lm objects, we want it to return standard errors 
+CI<-predict(age_lion.lm, se.fit = TRUE)
+CI
+```
+We also need the Working-Hotelling multiplier (these bands are sometimes called the Working-Hotelling (1-$\alpha$)100 Confidence bands). For a 95% confidence band, we use the following, along with n-2=30 (there are 32 data points in the lion data set):
+```{r}
+W<-sqrt(2*qf(0.95, 2, 30))
+W
+```
+
+There are just a few more steps. We need to have R calculate the upper and the lower bounds of the confidence band for each observation and we will save these calculations in another object (we column bind them with the cband function). Let's call this one "Band":
+```{r}
+Band<-cbind(CI$fit-W*CI$se.fit, CI$fit+W*CI$se.fit)
+plot(Band)
+```
+
+To superimpose these lines on your scatterplot, do the following: If your estimated regression line has a positive slope, use the following commands, with the variable names modified as needed:
+```{r}
+# I'm not sure why but you seem to need to call the plot in the
+# same chunk as the points command
+plot(proportion.black~age,pch=16,xlab="Age",
+     ylab="Proportion Black",main="Confidence Bands")
+abline(age_lion.lm,col="red")
+#type is line and it is dashed so it is equal to 2. You
+# can google what 0,1,2,3,4 etc mean wrt lines. 
+points(sort(age),sort(Band[,1]),type="l",lty=2)
+points(sort(age),sort(Band[,2]),type="l",lty=2)
+
+```
+You get the confidence band enclosing the estimated regression line, as shown on the next page. You can save this plot, just as previously done with the original scatter plot. If your estimated regression line has a negative slope, you need to sort the columns of Band in reverse order. So change the above R commands to (I have hashed these commands out because our data has a positive slope so you wouldn't use them for the Lion age data set):
+```{r}
+#points(sort(age), sort(Band[,1], decreasing=TRUE), type="l", lty=2)
+#points(sort(age), sort(Band[,2], decreasing=TRUE), type="l", lty=2)
+```
+ Always remember to detach (I sometimes forget :( )
+ 
+```{r}
+detach(mal_maize)
+ detach(age_lion)
+```
+
+  
