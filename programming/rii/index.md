@@ -1,9 +1,11 @@
 **USE THE SAME FORMAT AS PYTHON I TO ENSURE THAT THE FILES ARE DOWNLOADABLE AND REABLE IN GITHUB**
 # Introduction to RII
 ** This is a 12-hour mini-course offered as part of The Jackson Laboratory Data Science Training Curriculum **
+See [the syllabus](IntroRIISyllabus.docx) for details.
 
 ## Course Description: 
-This workshop is the second half of the introduction to the R programming language course. We will build on the capabilities of R as a visualization tool, through ggplot and the Tidyverse, and spend most of our time exploring the power of R for statistical analysis of datasets. Topics covered will include: ggplot and the Tidyverse philosophy, hypothesis testing, goodness-of-fit tests (chi-squared, Fisher’s exact test), Student’s t test, normal distributions, correlation, Regression, ANOVA, and non-parametric versions of these parametric tests.  
+This workshop is the second half of the introduction to the R programming
+anguage course. We will build on the capabilities of R as a visualization tool, through ggplot and the Tidyverse, and spend most of our time exploring the power of R for statistical analysis of datasets. Topics covered will include: ggplot and the Tidyverse philosophy, hypothesis testing, goodness-of-fit tests (chi-squared, Fisher’s exact test), Student’s t test, normal distributions, correlation, Regression, ANOVA, and non-parametric versions of these parametric tests.  
 
 ## Course Goals: 
 Provide you with the tools to analyze and visualize data. By the end of the week, you will be able to:
@@ -13,12 +15,17 @@ Provide you with the tools to analyze and visualize data. By the end of the week
 
 ## Course Material
 There will be five modules that will be in .rmd format. 
-Lecture notes (TEST RII: rmd notebooks)
-- [Module 1](Course_content_RMD/Module_1.md)
-- [Module 2](Course_content_RMD/Module_2.md)
-- [Module 3](Course_content_RMD/Module_3.md)
-- [Module 4](Course_content_RMD/Module_4.md)
-- [Module 5](Course_content_RMD/Module_5.md)
+Lecture notes
+- [Module 1 Overview](course_content_notebooks/Module_1.md)
+  - <a href = "course_content_notebooks/Module1AB.rmd" download>Download (Module1A.rmd)<a>
+- [Module 2 Overview](course_content_notebooks/Module_2.md)
+  - <a href = "course_content_notebooks/Module2AB.rmd" download>Download (Module2AB.rmd)<a>
+- [Module 3 Overview](course_content_notebooks/Module_3.md)
+  - <a href = "course_content_notebooks/Module3AB.rmd" download>Download (Module3A.rmd)<a>
+- [Module 4 Overview](course_content_notebooks/Module_4.md)
+  - <a href = "course_content_notebooks/Module4AB.rmd" download>Download (Module4A.rmd)<a>
+- [Module 5 Overview](course_content_notebooks/Module_5.md)
+  - <a href = "course_content_notebooks/Module5AB.rmd" download>Download (Module5AB.rmd)<a>
 
 ## Assignments
 - [Problem Set 1](assignments/problem_set1.md)
