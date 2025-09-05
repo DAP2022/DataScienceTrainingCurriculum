@@ -39,6 +39,12 @@ Lecture notes
 - [Project Descriptions](projects/descriptions.md)
 
 ## Datasets
-- [Dataset 1](datasets/dataset1.csv)
-- [Dataset 2](datasets/dataset2.csv)
+- [Bumpus](datasets/Bumpus.csv)
+- [Asymmetrical Snakes](datasets/R2_AsymmetricalSnakes.csv)
+- [Malaria Maize](datasets/R2_MalariaMaize.csv)
+- [Lion Age](datasets/R2_age_lion.csv)
+- [Circadian Mutant Health](datasets/R2_circadian_mutant_health.csv)
+- [Cuckoo eggs](datasets/R2_cuckooeggs.csv)
+- [Mammals](datasets/R2_mammals.csv)
+- [Sleep](datasets/R2_sleep.csv)
 
