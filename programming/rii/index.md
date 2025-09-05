@@ -16,17 +16,17 @@ Provide you with the tools to analyze and visualize data. By the end of the week
 ## Course Material
 There will be five modules that will be in .rmd format. 
 Lecture notes
-- [Module 1 Overview](course_content_RMD/Module_1.md)
-  - <a href = "course_content_RMD/R2_Module1AB.Rmd" download>Download (R2_Module1A.rmd)<a>
-- [Module 2 Overview](course_content_RMD/Module_2.md)
-  - <a href = "course_content_RMD/R2_Module2AB.Rmd" download>Download (R2_Module2AB.rmd)<a>
-- [Module 3 Overview](course_content_RMDs/Module_3.md)
-  - <a href = "course_content_RMD/R2_Module3AB_HypothesisTesting.Rmd
+- [Module 1 Overview](Course_content_RMD/Module_1.md)
+  - <a href = "Course_content_RMD/R2_Module1AB.Rmd" download>Download (R2_Module1A.rmd)<a>
+- [Module 2 Overview](Course_content_RMD/Module_2.md)
+  - <a href = "Course_content_RMD/R2_Module2AB.Rmd" download>Download (R2_Module2AB.rmd)<a>
+- [Module 3 Overview](Course_content_RMDs/Module_3.md)
+  - <a href = "Course_content_RMD/R2_Module3AB_HypothesisTesting.Rmd
 " download>Download (R2_Module3A.rmd)<a>
-- [Module 4 Overview](course_content_RMD/Module_4.md)
-  - <a href = "course_content_RMD/R2_Module4AB.Rmd" download>Download (R2_Module4A.rmd)<a>
-- [Module 5 Overview](course_content_RMD/Module_5.md)
-  - <a href = "course_content_RMD/R2_Module5AB.Rmd" download>Download (R2_Module5AB.rmd)<a>
+- [Module 4 Overview](Course_content_RMD/Module_4.md)
+  - <a href = "Course_content_RMD/R2_Module4AB.Rmd" download>Download (R2_Module4A.rmd)<a>
+- [Module 5 Overview](Course_content_RMD/Module_5.md)
+  - <a href = "Course_content_RMD/R2_Module5AB.Rmd" download>Download (R2_Module5AB.rmd)<a>
 
 ## Assignments
 - [Problem Set 1](assignments/problem_set1.md)
