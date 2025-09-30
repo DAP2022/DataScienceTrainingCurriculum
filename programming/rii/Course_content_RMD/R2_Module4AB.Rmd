@@ -1,9 +1,4 @@
----
-title: "R2_Module4AB"
-author: "Danni Presgraves"
-date: "2024-05-07"
-output: html_document
----
+
 # Pre-amble: 
 There are visualizations of important statistical concepts given in Module 3 (Canvas) "Summaries of Necessary Statistics Basics". These are taken from Biostatistics I and Biostatistics II lecture notes. You might need to refresh some of these ideas. 
 
