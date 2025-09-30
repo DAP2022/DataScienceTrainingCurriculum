@@ -1,9 +1,3 @@
----
-title: "R2_Module2AB"
-author: "Danni Presgraves"
-date: "2024-05-06"
-output: html_document
----
 The world of the Tidyverse. Just as we worked through graphing in "regular" R and compared that to graphing in "ggplot2", we are going to compare regular R manipulation with the structure of the tidyverse. The tidyverse follows the same type of rules, logic, and layering that we saw in ggplot2. 
 
 Here are some useful links: 
