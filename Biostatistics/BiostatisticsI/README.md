@@ -2,11 +2,16 @@
 ** This 12-hour mini-course is part of The Jackson Laboratory Foundational Data Science Training Curriculum **
 This folder will contain: 
 1. Lecture notes
-- [Lecture 1](Content/Module_1.md)
-- [Lecture 2](Content/Module_2.md)
-- [Lecture 3](Content/Module_3.md)
-- [Lecture 4](Content/Module_4.md)
-- [Lecture 5](Content/Module_5.md) 
+- [Lecture 1](Content/BiostatisticsI_Module1A.pdf)
+- [Lecture 1](Content/BiostatisticsI_Module1B.pdf)
+- [Lecture 2](Content/BiostatisticsI_Module2A.pdf)
+- [Lecture 2](Content/BiostatisticsI_Module2B.pdf)
+- [Lecture 3](Content/BiostatisticsI_Module3A.pdf)
+- [Lecture 3](Content/BiostatisticsI_Module3B.pdf)
+- [Lecture 4](Content/BiostatisticsI_Module4A.pdf)
+- [Lecture 4](Content/BiostatisticsI_Module4B.pdf)
+- [Lecture 5](Content/BiostatisticsI_Module5A.pdf)
+- [Lecture 5](Content/BiostatisticsI_Module5B.pdf)
 
 2. Assignments
 - [Problem Set 1](assignments/problem_set1.md)
