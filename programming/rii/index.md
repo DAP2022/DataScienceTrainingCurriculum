@@ -1,4 +1,3 @@
-**USE THE SAME FORMAT AS PYTHON I TO ENSURE THAT THE FILES ARE DOWNLOADABLE AND REABLE IN GITHUB**
 # Introduction to RII
 ** This is a 12-hour mini-course offered as part of The Jackson Laboratory Data Science Training Curriculum **
 See [the syllabus](IntroRISyllabus_2025.docx) for details.
