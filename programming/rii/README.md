@@ -1,6 +1,6 @@
 # Introduction to RII
 ** This is a 12-hour mini-course offered as part of The Jackson Laboratory Data Science Training Curriculum **
-See [the syllabus](IntroRISyllabus_2025.docx) for details.
+See [the syllabus](IntroRIISyllabus.docx) for details.
 
 ## Course Description: 
 This workshop is the second half of the introduction to the R programming
