@@ -1,9 +1,3 @@
----
-title: "R2_Module1AB"
-author: "Danni Presgraves"
-date: "2024-05-06"
-output: html_document
----
 This Module is a review that covers the material we learned in RI by way of 3 examples:
 1. Basic R functionality
 2. Basic R graphing
