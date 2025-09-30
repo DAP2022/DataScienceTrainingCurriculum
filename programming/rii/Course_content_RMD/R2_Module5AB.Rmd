@@ -1,9 +1,4 @@
----
-title: "R2_Module5AB"
-author: "Danni Presgraves"
-date: "2024-05-09"
-output: html_document
----
+
 # Preamble: 
 
 This is a VERY long document, where I have attempted to include an exhaustive overview of ANOVA and Correlation/Regression. It is highly unlikely that we will make it through this notebook, but I wanted you to have it in case you want to reference any pieces/suggestions that might be relevant to your own work.
