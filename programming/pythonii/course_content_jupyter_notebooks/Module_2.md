@@ -21,7 +21,10 @@ https://pythontutor.com/render.html#mode=displayLinks to an external site.
 - General overview and comparison of the three major type of programming:
     - Procedural: What we have done so far
     - Functional programming: We are going to focus on list comprehensions and higher order function (map, filter)
-    - Object Oriented Programming:Encapsulation into objects 
+    - Object Oriented Programming:Encapsulation into objects
+    - For the simplified MCMC code, here is an image that outlines what it is doing:
+      programming/pythonii/course_content_jupyter_notebooks/images/MCMC_Example.jpeg
+       
  ## Extra (external) resources:
 If you are interested in longer introduction to this topic, I thought this was quite accessible:
 https://maryrosecook.com/blog/post/a-practical-introduction-to-functional-programmingLinks to an external site.
