@@ -3,7 +3,7 @@
 - Goodness of fit Tests: Chi squared, Fisher’s Exact test
 
 ## Goals:
-- Revisit the general outline of Hypothesis Testing (4 steps, null/alternate hypothesis, p-values, Type I, Type II error). See this compressed pdf with images of the major statistical concepts:  https://github.com/DAP2022/DataScienceTrainingCurriculum/blob/main/programming/rii/Course_content_RMD/Statistics_Review_R2.pdf
+- Revisit the general outline of Hypothesis Testing (4 steps, null/alternate hypothesis, p-values, Type I, Type II error). See this compressed pdf with images of the major statistical concepts:  
 - Build up a Binomial Distribution
     - The hard way: using sample, pbinom(), tidyverse etc.
     - The easy way: using binom.test() and prop.test()
