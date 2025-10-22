@@ -1,8 +1,8 @@
 ## Module 3AB - Title: Hypothesis Testing: a pipeline for your thinking
 - Statistical analysis using R
 - Goodness of fit Tests: Chi squared, Fisher’s Exact test
-- to refresh your memory about hypothesis testing and big concepts in type I/II errors, power, sensitivity, specificity, I have put together a short pdf that can be found in the Course_content_RMD folder: 
-[PDF](/programming/rii/Course_content_RMD/Statistics_Review_R2.pdf)
+- to refresh your memory about hypothesis testing and big concepts in type I/II errors, power, sensitivity, specificity, I have put together a short pdf that can be found in the Course_content_RMD folder.
+- INSERT THE LINK TO THE PDF HERE
 
 ## Goals:
 - Revisit the general outline of Hypothesis Testing (4 steps, null/alternate hypothesis, p-values, Type I, Type II error). See this compressed pdf with images of the major statistical concepts:  
