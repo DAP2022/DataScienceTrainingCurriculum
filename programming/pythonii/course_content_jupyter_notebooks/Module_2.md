@@ -23,7 +23,7 @@ https://pythontutor.com/render.html#mode=displayLinks to an external site.
     - Functional programming: We are going to focus on list comprehensions and higher order function (map, filter)
     - Object Oriented Programming:Encapsulation into objects
     - For the simplified MCMC code, here is an image that outlines what it is doing:
-      [programming/pythonii/course_content_jupyter_notebooks/images/MCMC_Example.jpeg](https://github.com/DAP2022/DataScienceTrainingCurriculum/blob/main/programming/pythonii/course_content_jupyter_notebooks/images/MCMC_Example.jpeg)
+      [MCMC_Example.jpeg](https://github.com/DAP2022/DataScienceTrainingCurriculum/blob/main/programming/pythonii/course_content_jupyter_notebooks/images/MCMC_Example.jpeg)
        
  ## Extra (external) resources:
 If you are interested in longer introduction to this topic, I thought this was quite accessible:
