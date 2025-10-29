@@ -2,16 +2,16 @@
 ** This 12-hour mini-course is part of The Jackson Laboratory Foundational Data Science Training Curriculum **
 This folder will contain: 
 1. Lecture notes
-- [Lecture 1A](Content/BiostatisticsI_Module1A.pdf)
+- [Lecture 1A](Content/Biostatistics_Module1A.pdf)
 - [Lecture 1B](Content/BiostatisticsI_Module1B.pdf)
-- [Lecture 2A](Content/BiostatisticsI_Module2A.pdf)
-- [Lecture 2B](Content/BiostatisticsI_Module2B.pdf)
-- [Lecture 3A](Content/BiostatisticsI_Module3A.pdf)
-- [Lecture 3B](Content/BiostatisticsI_Module3B.pdf)
-- [Lecture 4A](Content/BiostatisticsI_Module4A.pdf)
-- [Lecture 4B](Content/BiostatisticsI_Module4B.pdf)
-- [Lecture 5A](Content/BiostatisticsI_Module5A.pdf)
-- [Lecture 5B](Content/BiostatisticsI_Module5B.pdf)
+- [Lecture 2A](Content/Biostatistics_Module2A.pdf)
+- [Lecture 2B](Content/Biostatistics_Module2B.pdf)
+- [Lecture 3A](Content/Biostatistics_Module3A.pdf)
+- [Lecture 3B](Content/Biostatistics_Module3B.pdf)
+- [Lecture 4A](Content/Biostatistics_Module4A.pdf)
+- [Lecture 4B](Content/Biostatistics_Module4B.pdf)
+- [Lecture 5A](Content/Biostatistics_Module5A.pdf)
+- [Lecture 5B](Content/Biostatistics_Module5B.pdf)
 
 2. Assignments
 - [Problem Set 1](assignments/problem_set1.md)
