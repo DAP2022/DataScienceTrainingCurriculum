@@ -37,8 +37,8 @@ Ai literacy is emancipatory. Understanding the limits and benefits of popular Ai
 - Appreciate the power (and pitfalls) of large-scale pre-training through guest talk & games.
 
 ## Lecture notes (pdfs)
-- [Module 1](AiOverview_Module1_Dec2025.pdf)
-- [Module 2_and_3](LLM_Overview_Module2_Module3_dec2025.pdf)
+- [Module 1](Content/AiOverview_Module1_Dec2025.pdf)
+- [Module 2_and_3](Content/LLM_Overview_Module2_Module3_dec2025.pdf)
 - [Module 4](Content/Module_4_Intro_to_Neural_Networks.pdf)
 - [Module 5](Content/Module_5_Generative_Models_Transformers.pdf)
   
