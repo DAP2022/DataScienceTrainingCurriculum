@@ -39,8 +39,8 @@ Ai literacy is emancipatory. Understanding the limits and benefits of popular Ai
 ## Lecture notes (pdfs)
 - [Module 1](AiOverview_Module1_Dec2025.pdf)
 - [Module 2_and_3](LLM_Overview_Module2_Module3_dec2025.pdf)
-- [Module 4](Content/Module_4.md)
-- [Module 5](Content/Module_5.md)
+- [Module 4](Content/Module_4_Intro_to_Neural_Networks.pdf)
+- [Module 5](Content/Module_5_Generative_Models_Transformers.pdf)
   
 ## Assignments
 - [Problem Set 1](assignments/problem_set1.md)
