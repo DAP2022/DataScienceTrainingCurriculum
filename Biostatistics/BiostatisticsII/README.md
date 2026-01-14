@@ -1,8 +1,8 @@
 # Biostatistics II
-** This 12-hour mini-course is part of The Jackson Laboratory Foundational Data Science Training Curriculum **
+** This 12-hour mini-course is part of The Jackson Laboratory Foundational Data Science Training Curriculum**
+
 This folder will contain: 
-1. Lecture notes
-This folder will contain: 
+
 1. Lecture notes
 - [Lecture 1A](content/LP2_Module1A.pdf)
 - [Lecture 1B](content/LP2_Module1B.pdf)
