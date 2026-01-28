@@ -14,4 +14,6 @@ Introns are the noncoding parts of a DNA sequence that are spliced out (removed)
 1. Write a program that prints out JUST the coding regions of the DNA sequence to the screen (ie. removes the introns)
 2. Using the results of 1, write a program that will calculate what percentage of the DNA sequence that is coding.
 3. Write a program that will print out the original genomic DNA sequence coding bases in UPPERCASE letters and the intronic (non-coding) bases in lowercase.  (Hint: Built-in methods can make solving this problem more straight forward and efficient)
-4. Write a program that will split the genomic DNA into coding and non-coding  parts. 
+4. Write a program that will split the genomic DNA into coding and non-coding  parts.
+
+Note: This is a vague question, partially to accommodate past creative answers from participants that avoided using the tools that I wanted them to demonstrate proficiency with. In your answers to these parts of the question, I want to ensure that you can use the following: variable assignment and concatenation and slicing. Between the four questions, you should use those three key tools. 
