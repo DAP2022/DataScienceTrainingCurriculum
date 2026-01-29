@@ -13,8 +13,11 @@ We will use our sequence and use conditional statements to apply general rules t
 5’- ATCGATCGATCGATCGACTGACTAATCATAGCTATGCATGCTACTCGATCGATCGATCGATCGATCGATCGATCGATCGATCATGCTAACATCGATCGATATCGATGCATCGACTAGTACTAT-3'
 
 A.	Is there a start codon which is the sequence "ATG"?
+
 B.	Is there a stop codon (any of the following: "TGA", "TAA", TAG") present
+
 C.	Is the number of nucleotides between any start and any stop codon divisible by 3? 
+
 If these conditions are met, print out "there is a possible ORF in this sequence". If the conditions are not met, print out "There is no possible reading frame in this sequence". 
 
 
