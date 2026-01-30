@@ -1,0 +1,195 @@
+---
+title: "Intro_to_R1B_2026"
+author: "Danni Presgraves"
+format: pdf
+editor: visual
+---
+
+# Hint
+
+As we work through these notebooks, please take a moment and *PREDICT* what cells will print out *BEFORE* you run the cell. This will help as we work through the material.
+
+# Preamble
+
+Manipulation of data is usually a function of what type of data that you have in your file. In R, there are six **types** of primitive data types: numeric, integer, character (use quotes), logical (Boolean: TRUE and FALSE), complex and raw. We will almost entirely focus on numeric, character and logical data types.
+
+These data types can be combined into *Data Structures* such as : vectors, factors, matrices, lists and - most importantly in R - **dataframes**.
+
+# Vectors:
+
+A. **Basics**:
+
+-   needs to be all the same data type (all numeric, all characters, or all Boolean)
+
+-   use c()
+
+```{r}
+apes<-c("Gorilla gorilla", "Homo sapiens","Pan troglodytes")
+apes
+```
+
+You can add to an existing vector by using the c() function again like this:
+
+```{r}
+apes<-c(apes,"Orangutans")
+apes<-c("Pan paniscus",apes)
+print(apes)
+```
+
+B. **Factors:**
+
+-   Categorical data can be stored in a special type of vector called a factor.
+
+-   Each unique category is referred to as a factor level (i.e. category = level). For instance, if we have four animals and the first animal is female, the second and third are male, and the fourth is female, we could create a factor that appears like a vector, but has integer values stored under-the-hood. The integer value assigned is as a default a one for females and a two for males. The numbers are assigned in alphabetical order, so because the f- in females comes before the m- in males in the alphabet, females get assigned a one and males a two.
+
+-   Factors impose order on categorical values with no intrinsic order.
+
+-   Factors are necessary for many statistical methods. For example, descriptive statistics can be obtained for character vectors if you have the categorical information stored as a factor. Additionally, you want to denote which category is your base level for a statistical comparison, then you would need to have your category variable stored as a factor with the base level assigned to 1.
+
+-   Anytime that it is helpful to have the categories thought of as *groups* in an analysis, the factor function makes this possible. For instance, *if you want to color your plots by treatment type*, then you would need the treatment variable to be a factor. We'll see factors again.
+
+```{r}
+expression <- c("low", "high", "medium", "high", "low", "medium", "high")
+# turn expression vector of strings into factor. Note that in this case, there is an 
+# issue since the numbers are assigned based on alphabetical order: high=1, low=2, medium=3 
+# This makes no sense. 
+expression <- factor(expression)
+str(expression)
+# Relevel the factors so that low=1, medium=2, and high=3. This will be 
+# important for plotting graphs of the categories and the order that they are displayed. 
+# Luckily, this is an easy thing to do since there are arguments in the factor()
+# the "levels" argument will override the alphabetical default with your combined.
+
+
+
+```
+
+C. **Matrix**:
+
+-   Controversially, I view matrices as a vector with an extra dimension added to it. This is because they are filled with vectors of the same datatype and the same length.
+
+[How to input matrix data and then turn it into a table (and a dataframe):]{.underline}
+
+Below find lifestyle data on individuals’ smoking and exercise habits. We will want to eventually answer the question: **are smoking and frequent exercising independent events?** We want to draw a mosaic plot and produce a contingency table (and run a chi-squared test) to conduct that analysis. *We don't know how to do any of these things yet so, for now, we'll focus on reading in data and turning it into a usable data structure.*
+
+We will do this in two ways:
+
+1.  Reading it in as a vector first and then converting it to a matrix.
+
+    -   Pros: Simple; Cons: no headings
+
+2.  Reading it in as a contingency table.
+
+    -   Pros: headings included; Cons: a bit harder to do.
+
+| Smoking level     | Frequent Exerciser | Seldom Exerciser |
+|-------------------|--------------------|------------------|
+| Heavy Smoker      | 7                  | 4                |
+| Frequent Smoker   | 9                  | 8                |
+| Occasional Smoker | 12                 | 9                |
+| Never Smoke       | 87                 | 102              |
+
+Here are the two strategies mentioned above to create a matrix in R. As with all things in R, there are more ways to do this than just the strategies presented in this notebook!
+
+```{r}
+#input your data as one long vector starting with the first element of the first column 
+# and going to the last element of the first column and then snaking back up to the first 
+# element of the second column. This is a bit awkward and nonintuitive.
+smoking_exercise<-c(7,9,12,87,4,8,9,102)
+```
+
+Here is the second way:
+
+```{r}
+#---------------
+# Another way of producing a matrix: we could DIRECTLY use matrix(data,nrow=,ncol=). If don't # need to provide both nrow and ncol arguments because once you provide one, it will know the # other one. 
+smoking_exercise2<-c(7,9,12,87,4,8,9,102)
+```
+
+Now add names to columns and rows
+
+```{r}
+
+
+```
+
+D. **Lists**:
+
+Highly flexible data structure in R; they can hold any number of other data structures in one place which makes it particularly convenient when we want to iterate over something. Some functions will require that you convert your data into a list to use as an argument, but we won't worry about that at this point. Here is an example of how to create a list:
+
+```{r}
+list_1<-list(apes,c(400,150,110,200,99))
+list_1
+```
+
+# DataFrames:
+
+The most important Data Structure in R? Maybe. They are certainly the default that is expected in R. They are similar to Matrices, but - unlike a matrix- each column can have different types of data. Dataframes are (basically) equivalent to excel spreadsheets: each row is one individual (record) and each column is a measured value for that one individual (field). We can bind together vectors of the same length to make a dataframe by using the data.frame(vector_1,vector_2) or we can read a dataframe into our memory directly.
+
+In order to access one particular column in a dataframe we use the format:
+
+dataframe_name\$column_name
+
+or
+
+we attach the dataframe and then just call the column name by itself. If you do this, [you will need to remember to detach the file at the end of the R file because, I promise, you **will forget**]{.underline}!
+
+-   As a reminder (yes, again): We are going to use a FANTASTICALLY USEFUL COMMAND THAT ONLY RUNS IN THE CONSOLE (you can't embed it into a coding chunk since it requires user interaction so your document won't knit if you do) that will help you locate the path name for the file you want to load into memory. Into the [**console**]{.underline} (not an R Chunk) type:
+
+"\>file.choose()"
+
+-   This will allow you to interact with a pull down menu to navigate to the file that you want and then it returns the path for you to cut and paste into your R coding chunk.
+
+\*Attach **and** Detach\*\*: You might want to attach your file so that you can call individual columns by their names instead of using the \$ shortcut: dataframe_Name\$columnname
+
+We will use the ***Bumpus_Data.csv*** data set which contains data on house sparrow (Passer domesticus) population caught in a wind storm in the 1880’s. One hundred-thirty-six dead or moribund were brought to Professor Herman Bumpus. He divided the birds into those that were dead and those that were alive when he received them. He then took various data points from the skeleton of each bird (weight, wing span length etc). Yes, this means that he killed the ones that were alive when he received them and skeletonized them. He found differences in shape and size between the survivors and the non-survivors and he published all of his data. *These data were among the first to demonstrate natural selection, in fact, **stabilizing selection,** in a wild population. **Stabilizing selection*** occurred as the environment favored birds with intermediate weight, total length, and sternum length, as opposed to smaller/lighter ones. (Note: the data has been reanalyzed using more 'modern' methods such as PCA some nuance was discovered such as, broadly, stabilizing selection was found to act on certain traits, such as female size, while directional selection acted on other traits, such as male size)
+
+Here is the description (<https://richardlent.github.io/pdf/Johnston.pdf):>
+
+```         
+On February 1, 1898, after an uncommonly severe storm with snow, rain and sleet and of long duration, several samples of moribund house sparrows were brought to the biological laboratories of Hermon Bumpus at Brown University, Providence, Rhode Island. Almost half these birds died as a result of stress from the storm, and Bumpus assumed that he could get new information on the operation of natural selection if he properly exploited this differential survival. He accordingly made specimens of all the birds, recording gross body weight at the time, and later took measurements of eight size variables, six of them of skeletal elements. In roughly a year he had reported (Bumpus, 1899) the results of his study.
+```
+
+Since the Bumpus dataset was used to demonstrate stabilizing selection we are going to conduct some initial data exploration on the dataframe. Normally, this would include visualizing the data, but we will do that in a later module when we focus on visualization so you will see this Bumpus dataset again (repeatedly, in fact).
+
+In case you aren't an evolutionary biologist, here is a broad explanation of stabilizing selection: *selection which operates on the extreme values of both tails on the curve of variation is called stabilizing, or normalizing selection, because under this mode of selection, the average value of the trait does not change and individuals who are 'too small' or 'too large' have a lower survival rate.*
+
+## Overall strategy for initial Bumpus data set exploration:
+
+-   Access each column and calculate how much variation exists using a built in function, sd (standard deviation) and the mean for each column, using mean()
+-   Since birds are sexually dimorphic, and will therefore have different expectations for size etc., so pick one sex at a time to analysis. R allows you to choose a subset of your data to analyze at a given time; you can use this argument to only choose the males or the females for any particular analysis. For example, let’s say you decided to focus on the skull width of each bird and you wanted to see if there was a difference in the total skull widths of birds who survived (at least until Bumpus got his hands on them!) and those who died in the storm.
+
+```{r}
+#file.choose() in console which gave me the path that I then put into the read.csv function
+
+```
+
+We can examine this dataframe for a few moments.
+
+We're going to use some popular functions on individual columns of this dataframe to show off some R.
+
+```{r}
+
+
+
+```
+
+Happily, there is a much easier way to subset your data, though! Use the TAPPLY function which is part of the broader \*apply function family (apply, lappy, sapply, vapply, tapply, mapply) and is used on continuous data. As a side-note: If you wanted to use it on categorical variables you should use the table() function to get counts of categorical variables and use the prop.table() function to get proportions.
+
+The apply family of functions in R allow you to repetitively perform an action on multiple chunks of data. An apply function is essentially a for loop, but runs faster than loops. The type of data that you provide it will dictate which one of the apply functions is appropriate.
+
+The basic structure of the tapply command is:
+
+```         
+tapply(data column,by which variable, function)
+```
+
+```{r}
+
+```
+
+And...always remember to detach the dataframe [if you have attached it]{.underline}!
+
+```{r}
+#detach(bumpus)
+```

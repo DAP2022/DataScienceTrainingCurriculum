@@ -1,0 +1,271 @@
+---
+title: "Intro_to_R4A"
+format: pdf
+editor: visual
+---
+
+# Pre-amble:
+
+In today's lecture we are going to introduce basic plotting functions. So far, we have investigated how to read in data, how to manipulate data (especially dataframes) and we even learned to do some mild programming in R. However, much of the work you will do with R (in my opinion) is with [preliminary statistical analysis]{.underline} and [visualization]{.underline} of your data. Since I assume no previous training in statistics for Intro to RI, we won't cover the statistics (or, if we do, it will be incidental, not a central focus, so if you don't have any statistics training, don't worry! Although if you don't have statistics in your training yet, seek out as much as you can get in the future - it is central to evaluating evidence which is what science is all about.)
+
+There are some really great websites that help you choose what graph you might need depending on your data; this is an example of the type of open-source community resource development that is one of the great aspects of learning an open-source language (like R or Python). One of these websites can be found here: <https://www.data-to-viz.com>
+
+## Agenda:
+
+1.  Scatter plots
+2.  qqplot
+3.  qqnorm
+4.  Histogram
+5.  Mosaic plot
+
+## Refresh our Data:
+
+We will want to read in our data (you may or may not attach it, depending on your preference). If you attach your data, you can call the columns by their names instead of with the \$, but you will also need to detach your data at the end of the notebook so that names in memory don't conflict.
+
+```{r}
+bumpus<-
+Chr15SNP<-
+```
+
+If you need to re-read your files into R, just remember to put them in a different chunk than the one below, so you aren't constantly re-reading them in every time you render/knit the document.
+
+```{r}
+
+```
+
+There is some vocal disagreement in the R community about attaching files (IF you choose to attach your files then remember to put a chunk at the end of your file where you detach the files so that you don't end up with conflicts in your memory between column names). Some smart individuals argue that you should never attach files because, inevitably you will forget to detach some files that you attached and chaos in your namespace will follow. If you don't want to risk attaching your file because you don't trust yourself to remember to detach your file, **you can call individual columns from your data set by using the \$ sign**. This can get cumbersome is your file names are long. I usually create two R chunks simultaneously when I am trying to attach dataframes - one where I attach the data and one at the very end of the .rmd file where I detach all the dataframes. You can scroll to the bottom and see all the dataframes detached.
+
+```{r}
+#attach(bumpus)
+#attach(Chr15SNP)
+```
+
+## Basic Data Confirmation Commands:
+
+You first need to identify what type of variable you have. There are several commands (other than just realizing if you have numeric or categorical variables in your datafrae by looking at the file itself): is.numeric(), is.vector() etc. To see this, let's use the basic data that we inputted by hand, the heights data, as an arguement for the most often used of these data identifying commands:
+
+```{r}
+
+```
+
+## Scatter plots:
+
+-   The most straightforward plot is the scatter plot and this is the likely starting point for almost all of your initial data exploration **when you have two numeric variables**. Scatter plots can help us see if there are any possible relationships present in the data set that we can then quantify more formally.
+
+-   The plot() function is a generic overloaded function (which is scary programming lingo that means it results in different types of plots depending upon the class of objects passed as arguments to it). To produce a scatter plot of y against x, both must be numeric. The function will simply be:
+
+```         
+      Example syntax:
+            plot(x,y,...)
+      Those "..." mean that there are a number of non-required arguments that can be modified
+                                
+```
+
+-   The plot() function is versatile and can be modified by tweaking parameters. For instance, you might be interested in adding lines to the graph via the type parameter:
+
+```         
+      Example syntax: 
+            plot(x,y, type=“o”)
+```
+
+| Type |      Description       |
+|:----:|:----------------------:|
+|  p   |         Points         |
+|  l   |         Lines          |
+|  o   |        Overplot        |
+| b,c  | Points joined by lines |
+|  n   |  No lines nor points   |
+
+Of course, in R there are always multiple ways to achieve a goal. The function **lines()** can be used after graphing a scatter plot and will, strangely enough, add lines attaching the points. The lines( ) function adds information to a graph; it can not produce a graph on its own. Usually it follows a plot(x, y) command that produces a graph. This function can be further tweaked via the lty parameter:
+
+```         
+        Example syntax: 
+                  plot(x,y)
+                  lines(x,y, lty=6)
+```
+
+lty can take a value between 1 (solid line) and 6 (a dotted line). There are a number of other values but they start to become a bit complicated. From the files which you have imported, you can use the scatter plot as demonstrated.
+
+We'll begin by manipulating the bumpus data set. In the R chunk below, you will see that we take the two columns of the bumpus data set (it helps to visualize data sets, like bumpus.csv, as Excel spreadsheets and to think of graphing two columns), totlen (total length), and wgt(weight) as the "x" and the "y" argument of the plot function.
+
+We will plot **wgt** on the ***x-axis*** and **totlen** on the ***y-axis***. This is because weight tends to be dependent on length whereas length is not dependent on weight. Specifying these two variables are the only required parts of using the plot function. We can also add a title to our graph (which we should always do, even when we are in a hurry!).
+
+-   We can use the following argument to do add a title:
+
+main="Insert Your Title Here".
+
+-   We can also add a subtitle:
+
+sub="Insert Your Subtitle Here".
+
+-   You should also label your x-axis and y-axis by using the **xlab** and **ylab** arguments.
+
+-   You can specify a different colour for your scatter plot by using the argument:
+
+col="whatever colour name you want".
+
+-   For a list of colors, go here: <http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf>
+
+-   Finally, you can change the default circle of a scatter plot by using the argument **pch** (you can find the options for pch here: <http://www.endmemo.com/program/R/pchsymbols.php)>
+
+```{r}
+# example of splitting up the plot function so that it doesn't run off the page on the rendered document!
+
+```
+
+Let's dissect out all of the nifty extra tweaks we put into this simple scatter plot.
+
+1\. a title
+
+2\. a subtitle, for example:
+
+```         
+title(main = "My Main Title", sub = "My Subtitle", line = 3)
+```
+
+3\. x and y axis names
+
+4\. I colored the crosses based on their sex, male or female. That is the argument "col" and you can see that I used the sex column as an argument for the factor function. You could also do this for survival. (you can find the options for pch here: <http://www.endmemo.com/program/R/pchsymbols.php)>
+
+```{r}
+# you can use your own colors instead of the default: 
+
+```
+
+Testing for a normal distribution is something that we do A LOT of the time since our common parametric statistical tests typically depend on normality as one of their assumptions.
+
+We can use a specialized scatter plot called a **q-q norm plot** **to test if our data is normally distributed**. A quantile plot is an excellent starting place to investigate normality. A Q-Q plot (which stands for Quantile-Quantile plot) compares two distributions by plotting their quantiles against each other; if the two distributions are similar, the comparison points *should* result in a straight line through y=x. If the two distributions are not the same but are related in a linear manner then they should lie on a different line.
+
+**A normal quantile plot is a cumulative frequency plot that has a Y axis scaled so that a normal distribution will appear as a straight, diagonal line**. A Normal Q-Q plot works in the same way as a Q-Q plot, but it compares the distribution of your data to a general normal distribution. This means that if your data is normally distributed (or close), than the two distributions are equal and so the plotted points should lie on a straight line. These curves are useful in assessing how and where a non-normal distribution differs from the ideal. Exponential relationships will appear as curves, while skews will cause the quantile plot to fall above or below the ideal straight line. If your data isn't normally distributed, the Q-Q normal plot should give some insight into whether or not it is a linear combination of normal distributions or something more sinister altogether. In other words, the Q-Q normal plot will give you some insight into whether parametric methods could possibly be appropriate or if other tools (transformation or non-parametric methods) will need to be used.
+
+So far, we have used actual data. What about if we **simulate** some data that we KNOW is normally distributed so we can see what a normally distributed histogram looks like? I'm glad you asked! You can use the function ***rnorm()*** to simulate a bunch of points from a standard normal distribution (mound shaped and symmetrical distribution). Other useful distribution functions include:
+
+-   rbinom()
+-   rpois()
+
+You can type one of these into the help search bar and see that, for each of these popular probability distributions, there will also be density, probability distribution and quantile generators: dnorm(), pnorm(), qnorm() etc.
+
+```{r}
+
+
+```
+
+Now let's take a quick peek at each of these columns to see if they are both normally distributed:
+
+```{r}
+
+```
+
+Let's create a variable that is distinctly NOT normally distributed.
+
+```{r}
+
+```
+
+## Histograms
+
+What if we have frequency data? That is when we would want to use a histogram. <https://en.wikipedia.org/wiki/Histogram>
+
+Histograms also give us information about the general 'shape' of our data which can be crucial when deciding if the assumptions for specific statistical tests are met, i.e. is it approximately normally distributed? One of the best ways to know whether a population is approximately Normally distributed is to plot a histogram of the data. If the sample size is large and the data look even approximately normally distributed, then that will be close enough for most statistical and exploratory purposes. This is because many of our commonly used statistical tests are robust to small violations of the assumptions of each test. Histograms are also particularly useful for immediately identifying whether the data set contains potential outliers.
+
+We will use the Chr15SNP.csv data set from 938 unrelated individuals and draw a histogram of the number of count of A1A1 for the different samples. We use the function "hist" to produce this type of plot but many of the same arguments are found within the function as were used in our scatter plot function above.
+
+### As an aside, for individuals who need a quick refresher on definitions:
+
+-   **Single-nucleotide polymorphism (SNP)**: A nucleotide base pair that is *polymorphic* (i.e. it has multiple types or *alleles* in the population)
+-   **Allele:** A particular variant form of DNA (e.g. A particular SNP may have the "A-T" allele in one DNA copy and "C-G" in another; We typically define a reference strand of the DNA, and then denote the alleles according to the reference strand base - so for example, these might be called simply the "A" and "C" alleles. In many cases we don't care about the precise base, so we might call these simply the $A_1$ and $A_2$ alleles, or the $A$ or $a$ alleles, or the 0 and 1 alleles.)
+-   **Minor allele:** The allele that is more rare in a population
+-   **Major allele:** The allele that is more common in a population
+-   **Genotype:** The set of alleles carried by an individual (E.g. AA, AC, CC; or AA, Aa, aa; or 0, 1, 2)
+-   **Genotyping array:** A technology based on hybridization with probes and florescence that allows genotype calls to be made at 100s of thousands of SNPs per individual at an affordable cost.\
+
+```{r}
+
+
+```
+
+We can see that the A1A1 have a lot of counts of 0 and 1 compared to the other counts. If we reran this analysis with the A1A2 heterozygotes and the A2A2 homozygotes, what might we see?
+
+```{r}
+
+```
+
+Let's revisit the non-normal distribution, the poisson distributed example that we saw above in the qqnorm/qqline plot:
+
+```{r}
+#compare to the normal distribution
+# AND SEE that you can override the default bin size. 
+
+```
+
+## Mosaic plots
+
+Finally, Mosaic plots are what we use when we have categorical data. You can think of it as a Venn diagram, but made up of squares. Wikipedia even uses the same data that we are about to use to show it. How fancy! <https://en.wikipedia.org/wiki/Mosaic_plot>
+
+Mosaic plots are usually quick and easy to tell **whether the two variables are independent** which is another fundamental assumption for most statistical tests. Note that the mosaic treats the row and column variables differently. The column variable is treated as a conditioning variable, a “treatment”, and the row variable is treated as a “response”. Each column is a histogram, with bins stacked on top of each other instead of side by side.
+
+```{r}
+#load the default Titanic dataset into your memory
+
+```
+
+Titanic is a TABLE which is crucial for producing a mosaic plot. Let's use the built in *mosaicplot* function and see what happens.
+
+The first argument of the mosaicplot function expects either a table OR a formula that indicates the presumptive dependent or independent variable (column). In the following chunk, the first argument is a table since that is what the built-in Titanic data set is:
+
+```{r}
+
+```
+
+Well...that worked, but it isn't particularly readable. There is waaaaay too much information crowded on this visualization. This is where the tools we learned about in corralling data will come in handy as will thinking about what we actually want to display. In order to effectively use the mosaicplot function, we have to organize the data within Titanic first based on sex and then on survival.
+
+Since “Titanic” sorts data based on the class of the passengers (information that we aren’t interested in right now), we have to group all the females (who survived or not and regardless of their class) and all the males (who survived or not and regardless of their class) into female and male bins/categories. This is a slightly different process than we saw with the bumpus data which wasn’t in a table format and on which we used the function **tapply()** to sort by sex of the birds. The tapply() function expects an array (or dataframes) as input. Luckily, the \*apply family has various options that depend on your argument so we can use a related function, **apply**, which expects our data to be in a table format, to summarize the data in our table.
+
+For instance, it may be useful to know how many men or women were present on the titanic: **\>apply(Titanic, 2, sum)**.
+
+You can also ask for summaries of more than one of the dimensions of this table, for instance, try a command which should break down the survival of men and women: **\>apply(Titanic, c(2,4), sum)**.
+
+Tables also have their very own commands; in order to sort based on a specified condition in a table, we use the function margin.table (remember you can use Google or help(margin.table) to find out more about this function).
+
+We have specified “2” in this table to indicate that we are summing over the second dimension in this four-dimension table **(1d= class; 2d= sex; 3d= age; 4d= survival)** to get the total female and male passengers. You can see by the plot that there were more male passengers than female passengers.
+
+```{r}
+
+```
+
+Use mosaicplot again but with just the dimension 2 (sex) data as it's first argument. We can see that we can create a table of counts:
+
+```{r}
+
+```
+
+And now we use that table of counts as the first argument in the mosaicplot function.
+
+```{r}
+
+```
+
+Not the most interesting plot, right? But we can now do fun things to it - add colour, add another dimension (probably 4 - survival).
+
+```{r}
+
+```
+
+You can also use the apply function with the mosaicplot()
+
+```{r}
+)
+```
+
+Finally, another - slightly more complex - format of is the following. The first argument in this case is \~Sex+Age which translates to: Sex is the (presumed) independent variable since it is right next to the tilda and Age is the (presumed) dependent variable.
+
+```{r}
+
+```
+
+Remember to Detach if you attached your data!
+
+```{r}
+#detach(bumpus)
+#detach(Chr15SNP)
+```

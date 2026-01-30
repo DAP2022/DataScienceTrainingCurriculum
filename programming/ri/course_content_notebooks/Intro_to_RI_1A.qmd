@@ -1,0 +1,238 @@
+---
+title: "Intro_to_R1A_NEW"
+format: docx
+editor: visual
+---
+
+# Overview
+
+In this .qmd file, we are going to explore the functionality of the R programming language and Posit (formerly called "RStudio" which means that, since I have been using it forever, I still accidentally call it RStudio sometimes). I used to use .rmd files (.rmd stands for **R M**arkdown **D**ocument) for this course, but the newer .qmd files (**Q**uarto **M**arkdown **d**ocuments) make the Markdown part much more user-friendly so that is what we will use going forward. Both types of files are similar 'under the hood' and you will use Posit/RStudio to open either one. As we work through the material, I will point out any differences between .rmd and .qmd files that we encounter.
+
+## Data files
+
+We will access files in a few ways (although not all of them will be done today).
+
+Today, we will read in two files:
+
+1\. Chr15SNP.csv
+
+2\. Bumpus_Data.csv
+
+We will also:
+
+3\. Create our own file and export it
+
+Finally, we will also (not today, but in a later module):
+
+4\. Use a Built-in data set
+
+## Preamble
+
+Success! If you have opened this .qmd file, You have managed to successfully download RStudio and the R programming language. This is an exciting milestone on your path to becoming a data analyst.
+
+------------------------------------------------------------------------
+
+We will first attempt to answer the BIG questions:
+
+1.  **Why R?**
+
+-   R is one of the 'table-stakes' open-source programming languages for Data Science
+
+-   Effective for "big Data" analysis and Statistical Analysis
+
+-   Powerful visualization and graphical capabilities
+
+-   Integrated and rich Packages in Genomics an Computational Biology
+
+-   Platform Agnostic
+
+-   addendum: I asked ChatGPT for a list of why science trainees should learn R and the reasons it gave me overlapped almost exactly with this list. Except it added an emphasis on reproducibility and "future proofing" since it is open source. These are excellent additions!
+
+2.  **Why RStudio (Posit)?**
+
+-   integrated development environment that makes life much easier due to Graphical User Interface (not just command prompt -- but you can still see the command prompt quadrant!)
+-   easy to install packages and keep your environment organized
+-   you can intersperse text chunks (like this one) with R coding chunks
+-   free for academic use
+
+------------------------------------------------------------------------
+
+We'll spend some more time going through how to create an .qmd file yourself but first we are going on a whirlwind tour of the RStudio environment so that we are appropriately oriented.
+
+------------------------------------------------------------------------
+
+## Outline of Module 1:
+
+1.  Navigating the four quadrants/panels of RStudio
+    1.  Console - naked R; you can type commands and see output (this is what R looks like with no RStudio)
+    2.  Files/Plots/Packages/Help/Viewer
+    3.  Environment/History/Connections - shows all active objects and keeps track of commands run in console
+    4.  Script Editor: Markdown language and R Chunks - how to use this to write assignments
+2.  Determine how to input/output data sets - we will use a built-in data set and also upload a data set that you will download from Canvas/GCP
+3.  Explore some basic functionality in R - we will do some basic graphing and apply some statistical tests so that we are prepared for the rest of the modules (we are going to see a broad range of basic functionality).
+
+## Posit/RStudio
+
+One of the benefits of an open source programming language such as R is the plethora of free tutorials that have been placed on the web. YouTube (or even just Google) is especially good for providing an exploration of RStudio. [Here](https://ourcodingclub.github.io/2016/11/13/intro-to-r.html) is one example, but there are plenty more!
+
+### 1. The Console
+
+The easiest quadrant to start in is the console quadrant. This is where the R programming language that we will put into "R Chunks" (discussed momentarily in the markdown language quadrant -- where you are reading this document) is actually interpreted. This is old school R (before RStudio made R easier to use). Basically, you can input R commands directly into the console instead of into one of the 'R chunks' that we will usually use. It is pretty rare to use the console directly when working with RStudio because it is much easier to use the R Markdown language quadrant but there are occasional commands that we need to use the console directly to run. For instance, we will use the console with a fantastically useful command that we will use when trying to find the path that gives the location of a file called "**file.choose()**". This command allows you to interactively find the path for a file which you can then copy and paste into your script. **When you run commands in the console - especially interactive ones - your document won't knit properly! Knitting the chunks requires static (non-interactive code).**
+
+**Example 1**
+
+We will try to find the path for a file that you have downloaded from the course website called **Chr15SNP.csv.** This file contains information about single nucleotide sequence variants at specific areas on chromosome 15 in human beings. The 'csv' part means 'comma separated values' and it is usually how you should save any excel spreadsheet-type of data sets that you use in this course. You could also use tab separated values, but csv tends to be more universally expected.
+
+In order to input this data file, we need to know where we downloaded it to on our computer. My guess is that it is probably in your *downloads* file but we don't have to actually *guess*, we can just use the **file.choose()** command in the **Console** quadrant and then, when the path is returned to our screen in the console quadrant, we can simply cut-and-paste it into our R chunk (we'll learn about that later on in this overview). THERE IS ALSO A TAB COMPLETION function in R (I have limited experience with it since I usually use file.choose()). Go to the console and at the '\>' type file.choose(). You will have a menu of your files pop up and you can simply navigate to the file that you want (once again: it is probably in your download file since you will have downloaded it from Canvas to your computer).
+
+### 2. The Files/Plots/Packages/Help/Viewer quadrant
+
+This quadrant contains a number of tabs which all hold different information (and some may not be populated yet - you might have to manipulate files before they show up). The tabs that are most important are the **Plots** tab, the **Packages** tab, and the **Viewer** tab.
+
+Packages (mostly synonymous with the term "library") are collections of R functions, data, and compiled code in a well-defined format, created to add specific functionality. There are tens of thousands of packages available! However, R comes pre-loaded with some standard or based packages. We will need to download additional packages (we will mostly do this in Intro to RII), but - for the vast majority of this introductory course - we will be using pre-loaded base packages. RStudio makes downloading additional packages straightforward. The Packages tab helps us keep track of what packages we have already downloaded and have access to. Packages are an important aspect of using **R** since they allow us to download field-specific functions instead of wasting memory in our base **R** by including all kinds of functions that most people won't need (political scientists, as a group, may need to be able to use particular kinds of mathematical functions that physicists don't need and vice versa so it wouldn't make sense to include every function that every type of user would need in the base **R** that everyone downloads. That would take up way too much memory and make **R** quite bloated.).
+
+The new user will find the **Help** tab to be use. If you type in a function (or package name), the Help tab will return the definitions, variables and arguments - default and user-specified - that the function takes. You can see this by typing in file.choose into the search bar of the help tab. In my opinion, the only problem with the **Help** tab is that you have to know the name of the function that you need to use in the first place. Sometimes I forget the function name so I mostly use Google to answer questions about functions. Although sometimes I will discover the name via Google and then go back and use the **Help** tab to get the appropriate arguments for the function. So, you too will likely use a combination of Google and **Help** tabs!
+
+### 3. Environment/History/Connections tab
+
+The **Environment** tab is useful since it keeps tabs on the data that you have loaded into the working memory of **R**. It will tell you what type of data you are using and whether it is a globally or locally available variable.
+
+### 4. R Markdown quadrant
+
+Lastly, this is the most important quadrant of the RStudio IDE (well, really, probably the console is since that is where R is actually running). This quadrant allows us to intersperse the R programming language and the graphs, the tables, and statistics that we produce within a text document. Let's begin with the RMarkdown document itself.
+
+#### A. RMarkdown
+
+With Quarto many of the challenges and steep learning curve of RMarkdown vanish. However, it is always dangerous to rely on something that you don't know. The following are a list of resources for navigating through RStudio and Markdown functionality:
+
+1.  https://ourcodingclub.github.io/tutorials/rmarkdown/
+
+2.  Remember that there are multiple handy cheatsheets produced by RStudio here that summarizes the different commands and layout of R Markdown:
+
+    1.  https://rstudio.github.io/cheatsheets/html/rmarkdown.html
+
+    2.  https://rmarkdown.rstudio.com/lesson-15.HTML
+
+We will a new Quarto document (in fact, it will end up being our Day1 document) by clicking on the down arrow attached to the icon in the upper left corner that has a green circle with a "+" sign on it. There will be a bunch of different options listed for the type of document that you want (including R script, R Notebook and R Markdown). These produce different types of documents that you may want in the future but, for this course, we will restrict our focus to Quarto documents (these documents end in **.qmd** just like this file). Choose the Quarto Document option. A new menu will pop up. The default is document, which is what we will use in this course. There are other options like 'shiny' (a slightly different user interface that the RStudio company also provides) but we don't cover that in this course.
+
+The pop-up menu will ask you for your document name. You will use the following format for your Module Assignments: **FirstInitialLastName_Day_1**. So, for me, the title of this document would be: DPresgraves_Day_1. The default document type produced by R Markdown is an html file which is the most flexible and standard document type. You can use the word or straight pdf (I have set up this first workbook to knit to a pdf to demonstrate this option, but I had to download LaTEX on my computer to do that. The default is html.) but you will need other software on your computer to do that. For instance, you will need MS word for word documents and some flavour of LaTEX for producing pdf documents.
+
+You now have a document! It has a YAML header section containing the title of the document, the author, and the output (the type of document created when we run the 'knit' command in a moment) that looks like the following (note that in order to keep the original formatting I put three ticks before and three ticks after the chunk. If I had not done that, the original formatting would be lost):
+
+```         
+---
+title: "Intro_to_R1A_NEW"
+format: docx
+editor: visual
+---
+```
+
+#### B. R chunks: running them!
+
+The next part of your new .qmd file is a grayed area that is enclosed in triple ticks \`\`\` to begin it and triple ticks \`\`\` to end it. You indicate that you are using the R programming language by placing a "{r}" after the ticks. This is a default 'R chunk' that outlines some of the behavior expected from R in your document. What is an R chunk? So glad you asked... the R Chunks are the parts of your document that are written in the R programming language and that contain commands. We haven't encountered an R chunk yet, but we will! Note: sometimes the first default R chunk that is in an .rmd files gives us some global (meaning that they are the preferences for the entire document) options for our document. I don't use these options regularly. In fact, every time I want to tweak the output of my Knitted file, I tend to visit this website (<https://yihui.org/knitr/options/)> and revisit the specific commands for specific outcomes. Those chunks will look like so:
+
+```{r setup}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#### C. Knitting and/or saving your final document.
+
+We can't render our document just yet, because it is missing a file path (it is coming up in the next section), but for completeness in this section: The Render command (the big blue arrow button with Render next to it) uses a program called knitter that 'knits' together the R programming chunks and the text chunks of your document to produce an output document that it saves to the **same location as your .qmd file**. You can change that default if, for instance, you have a folder where you place your problem set documents (which is a good idea). When you press the Render icon, a new menu will pop up asking you for the name of your new document. You should use the same format as already discussed for this document: FirstInitialLastName_Day_1.
+
+To emphasize this point: If you want to compile your entire document, you just hit the Render button and it will save your outputted document (combining your text with the results of your R programming chunks) to the save place/path that you specified when you set up your document. If you want to just run one R programming chunk to ensure that each chunk is independently compiling before your try to knit the entire document (if any given R chunk has a mistake in the programming language then the knit attempt will fail), you should click into the R chunk and hit the Run icon (or choose from the pull down menu to run only a particular line or an entire chunk) in the top right of the Markdown Quadrant.
+
+Always remember to save your document! Knitting the document together saves it but you can also use the "File" menu next to the RStudio icon and choose "save" to save your file without having to knit it together (remember that while you are working on a file, you might make mistakes in your R Chunks and won't be able to knit the document together until they are fixed. However, you should ALWAYS be saving the document even if you can't knit it yet.)
+
+# Worked examples
+
+1.  **Reading in a dataframe to the working memory of the program**
+
+```         
+Several steps: 
+  a. find the file
+    *file.choose()
+  b. read in the file
+    *read.csv() which is what we will use most often
+    *read.table(), the generic version of read.csv()
+    * we should spend a moment and look up these functions in help to see what arguments go into them. 
+  c. inspect the file
+    *head(), tail()
+    * shows us, by default, first six or last six rows of a file
+    * summary()
+  d. Confirm type of data
+    *class()
+    *type()
+  e. Specific for data types: 
+    * length(): vector
+    * dim(): returns of dimensions
+    *nrow(),ncol(): number of rows or columsn
+    *rownames(), colnames(): the names of the rows or names of the columns
+```
+
+We will input a dataframe that contains over 19000 SNPs on Chromosome 15 into our Day 1 assignment document and use the file.choose() function in the console quadrant to choose the dataset that we have downloaded from Blackboard. This function will return the path to the file which we can then cut and paste into our R chunk.
+
+Note: you **cannot** use file.choose() as a command in an R Chunk because, fundamentally, it is an interactive command which will cause the knit function to fail to compile the document. **But, you can use the file.choose() in the R Console quadrant to get the path to the file which you can then copy and paste into your R chunk.** This is a stable path location and so it can be compiled by knit.
+
+As a side note: windows users may will have a different path format to what I present here since I have a Mac (obviously the path to where you placed your copy of the downloaded Chr15SNP.csv file will not necessarily be on your Desktop or in your downloads file but note that you will have slashes with different orientations etc than I have in my .qmd files):
+
+windows: "C:\\Users\\YOURUsername\\Desktop\\Chr15SNP.csv"
+
+and some mac users: "//Users/YOURUsername/Downloads/Chr15SNP.csv
+
+We will mostly use dataframes in this course. A useful heuristic for explaining a dataframe is simply to look at an excel spreadsheet. A spreadsheet often contains heterogeneous data, a fancy term for saying one column could be of descriptive data like "RS number" whereas another column could be full of numeric data such as the particular nucleotide that is the wildtype at the site and another column could be the mutation nucleotide at the site, which is usually pretty difficult for computer languages to input, weirdly. Computer languages historically have wanted data to all be of the same 'type' (ie. all string or all numeric). For the most part, we will input excel spreadsheet data that has been saved as a Comma-Separated Value (csv) and we will call this a dataframe in R.
+
+We can create an R chunk in multiple ways including simply typing "`{r} " and ending the chunk by typing "`". This format lets the compiler know that we are encountering R programming now. You can also use the green Insert icon above or the Insert pull down menu which will allow you to insert a wide variety of programming languages (as long as you have downloaded them into your working space already) but the default is R.
+
+```{r}
+# call the database Chr15 and read in the Chr15 dataframe by using the read.csv() command. remember that you can google R commands or use the Help menu, if you forget. 
+# ----------------------
+# IN THIS CASE - 
+# SINCE IT IS THE FIRST TIME WE HAVE USED READ.CSV() WE WILL TYPE IT INTO THE HELP MENU AND SPEND A MOMENT LOOKING AT THE STRUCTURE OF R FUNCTIONS. YOU CAN SEE THAT THIS FUNCTION REQUIRES ONLY ONE
+# ARGUMENT -- THE FILE PATH -- SINCE THE OTHER ARGUMENTS HAVE DEFAULTS OR ARE OPTIONAL. LET'S TAKE A SECOND TO LOOK AT THESE OTHER ARGUMENTS AND DEVELOP A SENSE OF WHAT THEY ARE DOING....
+# ----------------------
+# Use the ASSIGNMENT OPERATOR <- to place the information from the Chr15 dataset into the Chr15 object
+# ----------------------
+# I used the file.choose() command in the R Console to both choose the file that I wanted loaded into my working R memory and to return the path to that file which I then cut and pasted into the R chunk. Since that path is a string, I put it in double quotes:
+Chr15<-read.csv("/Users/presgd/MyRFiles/Intro_to_R/RData/Chr15SNP.csv")
+
+```
+
+2.  **Assignment to variables**
+
+Besides accessing dataframes, there are a few points about R scripts that you will need to know:
+
+1.  The assignment operator: assigns values on the right to variables on the left using "\<-"
+
+```         
+example: 
+  x<-3
+```
+
+2.  Variables: symbolic name for information or a reference to where the information lies in memory. They are typical naming conventions (ie. can't start with a number, avoid names similar to built-in functions, do not use dots. in the name since that is similar to other conventions; use nouns for object names and verbs for function names; R is case sensitive). This document outlines some standard name conventions: <https://web.stanford.edu/class/cs109l/unrestricted/resources/google-style.html> Here is a list of built in functions: <https://statisticsglobe.com/r-functions-list/>
+
+```         
+example: 
+y<-5
+z<-x+y
+```
+
+when you run the above in an R chunk, they will be introduced as values in your Global Environment panel.
+
+```{r}
+x<-3
+y<-5
+z<-x+y
+print(z)
+```
+
+3.  c() can Combines or concatenates a bunch of inputted values and converts them into a vector. We will use this A LOT. We often want to see our datatype so I have included a couple of other built in functions.
+
+```{r}
+v<-c(0,1,2,3,4,5,6,7,8)
+class(v)
+is.vector(v)
+```
+
+# Conclusion
+
+At this point, now that you understand the basics of loading in a dataset and have an overview of RStudio.
