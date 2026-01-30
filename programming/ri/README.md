@@ -21,8 +21,8 @@ There is an overview and downloadable .rmd files.
 - [Module 1 Overview](course_content_notebooks/Module_1.md)
   - <a href = "course_content_notebooks/Intro_to_RI_1A.qmd" download>Download (Module1A.qmd)<a>
   - <a href = "course_content_notebooks/Intro_to_RI_1B.qmd" download>Download (Module1B.qmd)<a>
-- [Module 2 Overview](course_content_notebooks/Module_2.qmd)
-  - <a href = "course_content_notebooks/Intro_to_RI_2AB.Rmd" download>Download (Module2AB.qmd)<a>
+- [Module 2 Overview](course_content_notebooks/Module_2.md)
+  - <a href = "course_content_notebooks/Intro_to_RI_2AB.qmd" download>Download (Module2AB.qmd)<a>
 - [Module 3 Overview](course_content_notebooks/Module_3.qmd)
   - <a href = "course_content_notebooks/Intro_to_RI_3AB.Rmd" download>Download (Module3AB.qmd)<a>
 - [Module 4 Overview](course_content_notebooks/Module_4.qmd)
