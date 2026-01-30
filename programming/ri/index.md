@@ -19,17 +19,17 @@ There will be five modules that will be in .rmd format.
 There is an overview and downloadable .rmd files.  
 (if you are using GitHub path, the content of the files will appear online when you click on "Download"; if you are using the website, you must download them and open them using You can open these using Google Colab or you can use whatever your favourite Jupyter Notebook software is....)
 - [Module 1 Overview](course_content_notebooks/Module_1.md)
-  - <a href = "course_content_notebooks/Intro_to_R1A.Rmd" download>Download (Module1A.rmd)<a>
-  - <a href = "course_content_notebooks/Intro_to_R1B.Rmd" download>Download (Module1B.rmd)<a>
+  - <a href = "course_content_notebooks/Intro_to_RI_1A.qmd" download>Download (Module1A.qmd)<a>
+  - <a href = "course_content_notebooks/Intro_to_RI_1B.qmd" download>Download (Module1B.qmd)<a>
 - [Module 2 Overview](course_content_notebooks/Module_2.md)
-  - <a href = "course_content_notebooks/Intro_to_R2AB.Rmd" download>Download (Module2AB.rmd)<a>
-- [Module 3 Overview](course_content_notebooks/Module_3.md)
-  - <a href = "course_content_notebooks/Intro_to_R3AB.Rmd" download>Download (Module3AB.rmd)<a>
+  - <a href = "course_content_notebooks/Intro_to_RI_2AB.qmd" download>Download (Module2AB.qmd)<a>
+- [Module 3 Overview](course_content_notebooks/Module_3.qmd)
+  - <a href = "course_content_notebooks/Intro_to_RI_3AB.Rmd" download>Download (Module3AB.qmd)<a>
 - [Module 4 Overview](course_content_notebooks/Module_4.md)
-  - <a href = "course_content_notebooks/Intro_to_R_4A.Rmd" download>Download (Module4A.rmd)<a>
-  - <a href = "course_content_notebooks/Intro_to_R_4B.Rmd" download>Download (Module4B.rmd)<a>
+  - <a href = "course_content_notebooks/Intro_to_RI_4A.qmd" download>Download (Module4A.qmd)<a>
+  - <a href = "course_content_notebooks/Intro_to_RI_4B.qmd" download>Download (Module4B.qmd)<a>
 - [Module 5 Overview](course_content_notebooks/Module_5.md)
-  - <a href = "course_content_notebooks/Intro_to_R_5AB.Rmd" download>Download (Module5AB.ipynb)<a>
+  - <a href = "course_content_notebooks/Intro_to_R_5AB.rmd" download>Download (Module5AB.rmd)<a>
   
 ## Assignments
 - [Problem Set 1](assignments/problem_set1.md)
