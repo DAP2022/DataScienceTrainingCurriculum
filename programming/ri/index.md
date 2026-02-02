@@ -29,7 +29,7 @@ There is an overview and downloadable .rmd files.
   - <a href = "course_content_notebooks/Intro_to_RI_4A.qmd" download>Download (Module4A.qmd)<a>
   - <a href = "course_content_notebooks/Intro_to_RI_4B.qmd" download>Download (Module4B.qmd)<a>
 - [Module 5 Overview](course_content_notebooks/Module_5.md)
-  - <a href = "course_content_notebooks/Intro_to_R_5AB.qmd" download>Download (Module5AB.qmd)<a>
+  - <a href = "course_content_notebooks/Intro_to_RI_Module5AB.qmd" download>Download (Module5AB.qmd)<a>
   
 ## Assignments
 - [Problem Set 1](assignments/problem_set1.md)
