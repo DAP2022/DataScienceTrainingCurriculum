@@ -1,6 +1,6 @@
 ## Day 3 Assignment:
 
-Hand in a file name "firstinitialLastname_Day3.rmd". 
+Hand in a file name "firstinitialLastname_Day3.qmd". 
 ## Question 1:
 Using the Great Apes Dataframe, do the following:
 - With slicing: Reverse the rows so that Pan Paniscus are the first two rows
