@@ -1,6 +1,6 @@
 ## Day 2 Assignment:
 
-Hand in a .rmd file saved as “FirstInitialLastname_Day2.rmd” that has markdown explanations and coding chunks (with hashed out comments). It is not cheating to use google for help!
+Hand in a .qmd file saved as “FirstInitialLastname_Day2.qmd” that has markdown explanations and coding chunks (with hashed out comments). It is not cheating to use google for help!
 
 ## Question 1
 
