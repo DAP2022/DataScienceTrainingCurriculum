@@ -1,11 +1,13 @@
 ## Day 5 Assignment:
 
-Hand in a .rmd file saved as “FirstInitialLastname_Day5.rmd” that has markdown explanations and coding chunks (with hashed out comments).
-## Question 1:
-Redo your visualizations from Module 4, but **use ggplot instead of Base R**. We did not cover all types of graphs, but armed with google (and a cheatsheet), this should be reasonably straightforward to translate within the ggplot layers. 
+Hand in a .qmd file saved as “FirstInitialLastname_Day5.qmd” that has markdown explanations and coding chunks (with hashed out comments).
 
-With the bumpus dataset choose a numeric trait (one of the columns such as head, humer, wgt etc):
+Simulate a dataset from a small randomized clinical trial created using the biostats package. The study compares Drug A vs Placebo on a continuous outcome called response. The dataset includes the variables:
+•	treatment (DrugA, Placebo)
+•	sex (Male, Female)
+•	response (numeric)
+which are the same ones that we saw in class. 
 
-- Using two different types of graphs, visually inspect to determine if your chosen variable is normally distributed.
-- Graph a boxplot for your chosen variable that is divided by sex and survival.
-- Draw a mosaic plot (Note: use a stacked bar plot scaled to 1, same as the diamond example in Module 5A, to mimic a mosaic plot) of the survival of the female versus male birds.
+1.	 Conduct some basic exploratory data analysis. Find mean, sd and visualize any suspected relationships. 
+2.	Write a single line of base R code that computes the total number of missing values in the dataset. Why is reporting only the total number of missing values often insufficient in practice? Give one concrete reason. How could you fix this issue using built-in functions in biostats? Run the command. 
+3.	Briefly, in your own words, explain Simpson’s Paradox. Under what circumstance does it happen? 
