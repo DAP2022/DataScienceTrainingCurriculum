@@ -1,6 +1,6 @@
 # Module 1 Assignment:
 
-Hand in a .rmd file saved as “FirstInitialLastname_Day1.rmd” that has BOTH
+Hand in a .qmd file saved as “FirstInitialLastname_Day1.qmd” that has BOTH
 markdown explanations and coding chunks (with hashed out comments).
 
 ## Question 1:
