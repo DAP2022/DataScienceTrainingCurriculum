@@ -1,4 +1,5 @@
 # Introduction to R I
+
 ** This is a 12-hour mini-course that is part of the Jackson Laboratory Data Science Training Program **  
 The syllabus can be downloaded [here.](IntroRISyllabus_2026.docx)
 
