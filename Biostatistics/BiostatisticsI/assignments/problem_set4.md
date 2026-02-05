@@ -1,3 +1,4 @@
+OLD ASSIGNMENTS - DO NOT USE!
 # Biostatistics I: Module 4A Questions: 
 
 1. Submit the answer to “Was Mendel’s data too good” in the previous slide. We will work through it in class, so please explain the steps to your answer. 
