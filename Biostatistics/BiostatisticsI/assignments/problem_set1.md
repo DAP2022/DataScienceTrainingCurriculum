@@ -1,3 +1,4 @@
+OLD ASSIGNMENTS - DO NOT USE!
 ## Biostatistics I: Module 1A Questions
 
 A. Can the Standard deviation ever be zero? If so, when would that situation occur?
