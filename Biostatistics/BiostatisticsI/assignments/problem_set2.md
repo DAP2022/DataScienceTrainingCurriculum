@@ -1,4 +1,4 @@
-
+OLD ASSIGNMENTS - DO NOT USE!
 # Biostatistics I: Module 2A Questions:
 A man went to Monte Carlo to try and make his fortune. Whilst he was there, he had an opportunity to bet on the outcome of rolling dice. He was offered the same odds for each of the following outcomes (in each case the dice are rolled simultaneously):
 
