@@ -1,3 +1,4 @@
+OLD ASSIGNMENTS - DO NOT USE!
 # Biostatistics I: Module 5A Questions
 
 Using the following data, estimate the OR in favour of Myocardial Infarction (MI) over three years for an OC user compared with a non-OC user (i.e. the disease odds ratio): 
