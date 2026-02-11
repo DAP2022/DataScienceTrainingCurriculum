@@ -11,7 +11,7 @@ We consider 12 mice from three strains (B6, BALB, CAST) on two diets (Chow vs Hi
 |ID	|Strain|Diet|	Sex| Weight0|	Weight12|	Glucose12|	Activity |	Pparg	|I16|	Hyperglycemia|
 |---|---|---|---|---|---|---|---|---|---|---|
 |M1 |	B6| Chow |M	| 20| 22 | 118 |3.0	| 6	|4 |No|
-|M2	| B6| Chow |F	| 19| 21|116 |3.5 |6 |4	No|
+|M2	| B6| Chow |F	| 19| 21|116 |3.5 |6 |4	|No|
 |M3	| B6| HFD	|M| 20| 27| 162| 6.0| 8 | 7 | Yes|
 |M4	| B6| HFD	|F| 19| 26| 160	| 6.5	| 8	|7	|Yes|
 |M5	| BALB| Chow|	M |19 |21 |114 |4.0	|6 |4	|No|
