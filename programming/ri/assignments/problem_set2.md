@@ -2,7 +2,6 @@
 
 Hand in a .qmd file saved as “FirstInitialLastname_Day2.qmd” that has markdown explanations and coding chunks (with hashed out comments). It is not cheating to use google for help!
 
-## Question 1
 
 1. Write a function that takes one number and raises it to the power of a second number.
  
