@@ -7,7 +7,7 @@ Using the Great Apes Dataframe, do the following:
 - With slicing: Print out all the columns except for the height column
 - With slicing: Only include males that are smaller than 120 lbs or shorter than 140 cm
 - With Slicing: Add a column to your dataframe of whatever characteristic you choose (age of first reproduction, number of chromosomes etc).
-- Use the subset function to reproduce c.
+- Use the subset function to reproduce the answer to "Only include males that are smaller than 120 lbs or shorter than 140 cm"
 - Now that you have added a column to the Great Apes dataframe, save it (under a different name) to your RAssignments folder.
  
 ## Question 2:
