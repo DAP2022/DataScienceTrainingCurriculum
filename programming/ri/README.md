@@ -6,6 +6,8 @@ The syllabus can be downloaded [here.](IntroRISyllabus_2026.docx)
 ## Course Description: 
 This workshop is the first of two workshops that constitute a broad survey of the R programming language, a major language central in the fields of bioinformatics, genomics, statistics, and Data Science. No prior programming experience is required. We will use RStudio (now called “Posit”), installed prior to the beginning of the course. After completion of this initial class, there will be a second half offered later in the year (R II) which will cover packages important in Data Science (for example: NumPy, Pandas) and basic statistical analysis capabilities of R. We will use .qmd instead of .rmd files. 
 
+![Flowchart of Intro to RI](rI_Flowchart_2026.png)
+
 ## Course Goals: 
 This course will provide you with the tools to analysis data. By the end of the week, you will be able to:
 - Navigate the Posit (RStudio) interface and use the RMarkdown Language to document analysis
