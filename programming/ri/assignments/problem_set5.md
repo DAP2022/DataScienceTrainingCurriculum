@@ -3,9 +3,10 @@
 Hand in a .qmd file saved as “FirstInitialLastname_Day5.qmd” that has markdown explanations and coding chunks (with hashed out comments).
 
 Simulate a dataset from a small randomized clinical trial created using the biostats package. The study compares Drug A vs Placebo on a continuous outcome called response. The dataset includes the variables:
-•	treatment (DrugA, Placebo)
-•	sex (Male, Female)
-•	response (numeric)
+ - treatment (DrugA, Placebo)
+ - sex (Male, Female)
+ - response (numeric)
+
 which are the same ones that we saw in class. 
 
 1.	 Conduct some basic exploratory data analysis. Find mean, sd and visualize any suspected relationships. 
