@@ -47,4 +47,4 @@ There is an overview and downloadable .rmd files.
 ## Datasets
 - [Bumpus Data](datasets/Bumpus_data.csv)
 - [Chr15SNP](datasets/Chr15SNP.csv)
-- [Great Apes](datasets/GA_Module4.csv)
+- [10 Chimps](datasets/GA_Module4.csv)
