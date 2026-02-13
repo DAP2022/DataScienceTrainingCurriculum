@@ -1,0 +1,483 @@
+---
+title: "Intro_to_R_5AB"
+format: docx
+editor: visual
+---
+
+## Preamble
+
+We are going to download and use our first package.
+
+In the last module, we saw some simple graphing functions that are included in the standard "base model" R that you downloaded. Now, we are going to download the **biostats** package to learn about extending our basic R functionality. Information about this package is found [here](https://cran.r-project.org/web/packages/biostats/readme/README.html).
+
+What is a package? Why do we care? When we download R/RStudio, we are downloading a version that includes functions and features that were determined, by the developer, to be widely used and necessary for most end-users. However, not all functions used by every individual could be included in the base version of R/RStudio because including every niche equation and function would impossibly memory-intensive. This means that, as biologists', there are many functions that we might want to use that we will need to download individually in packages.
+
+Luckily, RStudio/Posit makes life very easy for us - we can use the "Install" icon on the Packages tab (bottom right quadrant) to, well, install this package. Once we have done that, we need to load the package into our current memory in order to use the methods that are available in it. We typically do this by checking the package in the User Library list.
+
+```{r}
+library(biostats)
+```
+
+# Agenda:
+
+1.  Use biostats package to compute descriptive statistics: mean, median, sd, correlation
+
+    -   Show how **biostats standardizes descriptive summaries** and reduces boilerplate.
+
+        -   Mean, median, SD
+
+        -   Correlation
+
+        -   Grouped summaries
+
+        -   We could do these things in base R, but having a dedicated packages makes it easier and provides more appropriate defaults for common biomedical challenges.
+
+2.  Simpsons paradox with built-in data set
+
+3.  Last 30 minutes of class to answer and review any lingering questions
+
+# biostats package
+
+The biostats package exists to make common statistical reasoning faster, safer, and more reproducible for biomedical data. Clinical data typically has:
+
+-   multiple covariates (age, sex, site)
+
+-   treatment vs control
+
+-   missing values
+
+-   subgroup effects
+
+-   messy distributions
+
+## 1. Simulate trial participant data
+
+-   biostats simulates a **generic bio-marker**. We are going to call it "systolic blood pressure" and we will want to test if a small randomized clinical trial comparing Drug A vs Placebo has an impact on systolic blood pressure.
+
+-   Outcome: **biomarker** Predictors: **treatment, sex, age, weight**
+
+-   **response** is a categorical outcome representing clinical response classification. This is commonly used in oncology (RECIST-style outcomes), treatment efficacy summaries, responder analysis. In this case there are **three generic categories:**
+
+    -   Complete - full response to treatment; outcome fully resolved
+
+    -   Partial - some improvement, but not complete resolution
+
+    -   None - no meaningful response to treatment
+
+```{r}
+#using an example from the biostats help page
+# simulate basic clinical data
+clinical_df1<-clinical_data(n=100,visits=3,arms=c("Placebo","Treatment A"),dropout=0, missing=0)
+# there are multiple arguments to modify the simulation (see in the help menu)
+#the defaults are: n=100, visits=3,arms=c("Placebo","Treatment A"), dropout=0, missing=0
+```
+
+Let's peek at the 'simple' (default values) simulated data set here:
+
+```{r}
+head(clinical_df1)
+tail(clinical_df1)
+```
+
+We are going to also simulate a slightly more complex data set here (including missing values, and study drop outs)
+
+```{r}
+clinical_df_complex<-clinical_data(n=500,visits=10, arms=c("A", "B", "C"), dropout=0.10,missing=0.05)
+```
+
+Let's peek at this more complex data set (that is usually closer to what you typically have with real data):
+
+```{r}
+head(clinical_df_complex,20)
+tail(clinical_df_complex,10)
+```
+
+## 2. Descriptive Statistics
+
+1.  Let's see how Base R handles this simulated data set:
+
+    -   using our good old **base R** standard commands
+    -   notice that it is not particularly easy to test for normality
+    -   you must explicitly ask for missing values
+
+```{r}
+#Run the simulated patients in base R
+
+#something like: 
+print(summary(clinical_df1)) 
+# you can substitute any numeric variable here: weight or age
+print(tapply(clinical_df1$biomarker, clinical_df1$treatment, mean, na.rm = TRUE))
+print(tapply(clinical_df1$biomarker, clinical_df1$treatment, sd, na.rm = TRUE))
+```
+
+Let's peek at normality in Base R of the placebo:
+
+```{r}
+clinical_df1_treatP<- clinical_df1[clinical_df1$treatment == "Placebo", ]
+qqnorm(clinical_df1_treatP$biomarker)
+qqline(clinical_df1_treatP$biomarker,col="blue")
+hist(clinical_df1_treatP$biomarker)
+```
+
+and missing values -- as long as they are NA:
+
+```{r}
+sum(is.na(clinical_df_complex))
+colSums(is.na(clinical_df_complex))
+```
+
+These are 'fine' - especially as first-pass EDA, but probability aren't polished enough to present during lab meeting.
+
+2.  Let's compare this to **built-in methods of biostats**
+
+-   Now, let's run the built-in functions from this package (remember: the Help menu will give you this list, or you can investigate online. These are the commands that come demonstrated with the package.)
+
+-   biostats has command for missing values!
+
+-   It also runs through straightforward tests for normality etc. (yes, I know that base R does that too with qqnorm(), but biostats makes it easier)
+
+### Exploratory Data Analysis
+
+```{r}
+# according to the biostats pages: 
+#Generates a summary table for biostatistics and clinical data analysis with #automatic normality, effect size, and statistical test calculations. Handles #both numeric and categorical variables, performing appropriate descriptive #statistics and inferential tests for single-group summaries or two-group #comparisons.
+
+summary_table(clinical_df1)
+```
+
+This looks professional but includes unnecessary details, like participant_id (we know that there are 100 participants, who were each measured 3 times).
+
+```{r}
+# Overall summary without considering treatment groups
+summary_table(clinical_df1, exclude = c('participant_id', 'visit'))
+```
+
+This looks better! You can continue to refine, by modifying other arguments. For instance, **group_by** (we will see this again in tidyverse in Intro to RII) is used as an optional argument:
+
+```{r}
+# Grouped summary by treatment group
+summary_table(clinical_df1, group_by = 'treatment', exclude = c('participant_id', 'visit'))
+```
+
+We can investigate more sophisticated **exploratory data analysis**, such as:
+
+```{r}
+# Grouped summary by treatment group with all stats and effect size
+summary_table(clinical_df1,
+              group_by = 'treatment',
+              all = TRUE,
+              effect_size = TRUE,
+              exclude = c('participant_id', 'visit'))
+```
+
+The tables that are produced are more professional **and** they provided you with the statistical analysis, too!
+
+### **Normality**
+
+These are the examples taken from the biostats readme file
+
+```{r}
+# Filter clinical data to Placebo arm
+clinical_df1_treatP <- clinical_df1[clinical_df1$treatment == "Placebo", ]
+
+# Normally distributed variable
+normality(data = clinical_df1_treatP, "biomarker")
+
+```
+
+How about the treatment arm?
+
+```{r}
+# Filter clinical data to Placebo arm
+clinical_df1_treatA <- clinical_df1[clinical_df1$treatment == "Treatment A", ]
+
+# Normally distributed variable
+normality(data = clinical_df1_treatA, "biomarker")
+ 
+```
+
+and now let's look at one of the other variables, like weight:
+
+```{r}
+
+# Non-normally distributed variable with points outside 95% CI displayed
+normality(data = clinical_df1_treatA, "weight", all = TRUE)
+
+```
+
+### Missing Data
+
+Clinical data (observational data generally) is never complete. Can we easily answer the question: How many patients are missing outcome values? Yes! There is a built-in method called missing_values() that "Provides descriptive statistics and visualizations of missing values in a dataframe". Sounds really nice, doesn't it?
+
+```{r}
+# Missing value analysis of only variables with missing values
+# this should give an error since clinical_df1 was simulated to not have any missing values.....
+#missing_values(clinical_df1)
+# -----------
+# We will need to use the clinical_df_complex dataframe since THAT was simulated to contain a certain percentage of missing data
+# this will give us values for ONLY the columns with missing data
+missing_values(clinical_df_complex)
+# we can also do this for every column 
+missing_values(clinical_df_complex,all=TRUE)
+```
+
+### outliers
+
+How we address 'outliers' is an analysis decision. It can be a bit tricky. In biostats, there is a built-in method called outliers() that "Identifies outliers using Tukey’s interquartile range (IQR) method and provides descriptive statistics and visualizations for outlier assessment in numeric data". How straightfoward it that?
+
+```{r}
+# Basic outlier detection
+outliers(clinical_df1, "biomarker")
+```
+
+Using custom cut-offs for what defines an outlier:
+
+```{r}
+
+# Using custom threshold
+outliers(clinical_df1, "biomarker", threshold = 1.0)
+```
+
+## Determining Sample size and Power
+
+In Base R, there is a suite of commands that works for highly specific tests, such as **power.t.test**. If you are not dealing with a version of a t test (one sample, paired, two sample), this can't calculate power for you.
+
+```{r}
+#assumes no drop out rate....
+power.t.test(
+  delta = 10,        # mean difference (Drug A - Placebo)
+  sd = 15,           # common SD
+  power = 0.80,      # desired power
+  sig.level = 0.05,
+  type = "two.sample",
+  alternative = "two.sided" #paired or one.sample as arguments
+)
+
+#what if we can only recruit 25 per group? 
+power.t.test(
+  n = 25,            # per group
+  delta = 10,
+  sd = 15,
+  sig.level = 0.05,
+  type = "two.sample" #you could also used paired or one.sample
+)
+
+```
+
+In **biostats,** you can do this more easily. **sample_size()** is a command that uses standard formulas for hypothesis testing. There are still parameters for two-sample or one-sample, and a delta (the size of the significant difference). Examples from **biostats** given below:
+
+```{r}
+# Two-sample parallel non-inferiority test for means with 10% expected dropout
+sample_size(sample = 'two-sample', design = 'parallel', outcome = 'mean',type = 'non-inferiority', x1 = 5.0, x2 = 5.0, SD = 0.1, delta = -0.05, k = 1, dropout = 0.1)
+
+```
+
+```{r}
+# One-sample equivalence test for means
+sample_size(sample = "one-sample", outcome = "mean", type = "equivalence",x1 = 0, x2 = 0, SD = 0.1, delta = 0.05,dropout = 0.1)
+
+```
+
+**sample_size_range()**
+
+Calculates required sample sizes for specified power levels (70%, 80%, 90%) across a range of treatment effect values (*x1*), while keeping the control group value (*x2*) fixed. Internally calls *sample_size()* and generates a plot to visualize how total sample size changes with varying *x1*.
+
+```{r}
+# Two-sample parallel non-inferiority test for proportions with 10% dropout
+result <- sample_size_range(x1_range = c(0.65, 0.75), x2 = 0.65, step = 0.01,
+                            sample = "two-sample", design = "parallel", outcome = "proportion",
+                            type = "non-inferiority", delta = -0.1, dropout = 0.1)
+
+print(result)
+
+result$data
+
+```
+
+You could also do this for one-sample
+
+```{r}
+# One-sample equivalence test for means
+result <- sample_size_range(x1_range = c(-0.01, 0.01), x2 = 0, step = 0.005,
+                            sample = "one-sample", outcome = "mean", type = "equivalence",
+                            SD = 0.1, delta = 0.05, alpha = 0.05)
+
+print(result)
+
+```
+
+## Statistical Inference
+
+1.  **Base R**
+
+    We will spend most of Intro to RII doing this type of analysis (t-tests, ANOVA, Correlation, Regression), so we won't spend time recapitulating what we will learn later. R is most often used as a statistical language (even though it is a general purpose language) so even base R is terrific for statistical analysis.
+
+2.  **biostats**
+
+    **omnibus()**: Performs omnibus tests to evaluate overall differences between three or more groups. Automatically selects the appropriate statistical test based on data characteristics and assumption testing. Supports both independent groups and repeated measures designs. Tests include one-way ANOVA, repeated measures ANOVA, Kruskal-Wallis test, and Friedman test. Performs comprehensive assumption checking (normality, homogeneity of variance, sphericity) and post-hoc testing when significant results are detected.
+
+    We will use the clinical_df_complex dataframe because we need at least three treatments and this simulated dataframe has A, B, and C.
+
+```{r}
+# Compare numerical variable across treatments
+omnibus(data = clinical_df_complex, y = "biomarker", x = "treatment")
+
+```
+
+**Effect measures:** Calculates measures of effect: Odds Ratio (OR), Risk Ratio (RR), and either Number Needed to Treat (NNT) or Number Needed to Harm (NNH).
+
+```{r}
+effect_measures(exposed_event = 15, 
+                    exposed_no_event = 85,
+                    unexposed_event = 5,
+                    unexposed_no_event = 95)
+```
+
+**Visualization:**
+
+```         
+1.  Base R: We've seen some plotting in Base R already. We will spend a lot of time in Intro to RII working through the **tidyverse** package and the **ggplot2** package (of tidyverse) to wrangle/clean our data and to plot it. This means that we won't spend time doing that here.
+
+2.  biostats: seems to use gglot2 functions.
+```
+
+```{r}
+# Simulate clinical data 
+clinical_df <- clinical_data()
+# Proportion of response by treatment
+plot_bar(data = clinical_df, x = "treatment", group = "response", position = "fill", values = TRUE)
+
+
+# Grouped barplot of categorical variable by treatment with value labels
+plot_bar(data = clinical_df, x = "response", group = "visit", facet = "treatment", values = TRUE)
+
+plot_line(data = clinical_df, x = "visit", y = "biomarker",
+          group = "treatment", stat = "mean", error = "se")
+# Mirror histogram for 2 groups with mean lines
+plot_hist(clinical_df, x = "biomarker", group = "treatment", stat = "mean")
+
+
+```
+
+## Simpson's Paradox
+
+[Wikipedia explanation of Simpson's Paradox](https://en.wikipedia.org/wiki/Simpson%27s_paradox)
+
+Drug A shows modest improvement over Drug B, But wait!
+
+-   Stratify by age or sex (or another covariate)
+-   [Using biostats grouping tools:]{.underline}
+    -   Drug A is **better in men**
+
+        -   No effect (or worse) in women
+
+        -   **Aggregated mean ≠ subgroup mean**
+
+        -   Why clinicians care about this
+
+            -   FDA subgroup analyses
+
+            -   sex-specific dosing
+
+            -   real-world harm from averaging
+-   note: you could use ANCOVA in this situation (we'll discuss in RII)
+-   also note: we need to use two other packages: **dplyr(), tidyverse()**
+
+```{r}
+set.seed(123)
+
+df <- clinical_data(
+  n = 300,
+  visits = 1,
+  arms = c("Placebo", "DrugA")
+)
+
+df <- df |>
+  mutate(
+    sex = ifelse(runif(n()) < 0.6, "Female", "Male")
+  )
+
+
+```
+
+-   to create this simulation, we also need to use dplyr (we'll see more about this in RII)
+
+```{r}
+# most men get drug A, and most women get the placebo
+df <- df |>
+  mutate(
+    treatment = case_when(
+      sex == "Female" ~ ifelse(runif(n()) < 0.85, "Placebo", "DrugA"),
+      sex == "Male"   ~ ifelse(runif(n()) < 0.85, "DrugA", "Placebo")
+    )
+  )
+
+```
+
+-   We now define the data-generating truth.
+    -   Let response = systolic BP reduction (higher = better):
+        -   Men: Drug A is better
+        -   Women: Drug A is slightly worse
+        -   Women overall have larger BP reductions regardless of treatment
+        -   more Women than Men are given placebo
+
+```{r}
+df <- df |>
+  mutate(
+    response = case_when(
+      sex == "Male"   & treatment == "DrugA"   ~ rnorm(n(), 10, 3),
+      sex == "Male"   & treatment == "Placebo" ~ rnorm(n(), 5,  3),
+
+      sex == "Female" & treatment == "DrugA"   ~ rnorm(n(), 7,  3),
+      sex == "Female" & treatment == "Placebo" ~ rnorm(n(), 12, 3)
+    )
+  )
+table(df$sex, df$treatment)
+
+```
+
+-   If you ignore sex, you will see that placebo typically does better than Drug A
+
+```{r}
+df |>
+  group_by(treatment) |>
+  summarise(mean_response = mean(response))
+
+```
+
+-   if you break down the data by sex and treatment
+
+```{r}
+df |>
+  group_by(sex, treatment) |>
+  summarise(mean_response = mean(response), .groups = "drop")
+
+```
+
+Let's visualize this:
+
+```{r}
+boxplot(
+  response ~ treatment,
+  data = df,
+  main = "Aggregated: Drug A looks worse"
+)
+
+boxplot(
+  response ~ treatment + sex,
+  data = df,
+  las = 2,
+  main = "Stratified: Simpson's Paradox Revealed"
+)
+
+```
+
+This is **not** a mathematical trick.\
+
+It arises because:
+
+-   Treatment is **not independent** of subgroup
+
+-   Subgroup is **strongly associated** with outcome
+
+-   **Aggregation hides causal structure**
