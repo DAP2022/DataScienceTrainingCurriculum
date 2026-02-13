@@ -1,6 +1,6 @@
 Hand in a .qmd file saved as “FirstInitialLastname_Day4.qmd” that has markdown explanations and coding chunks (with hashed out comments).
 ## Question 1:
-__USE BASE R to do the following (you will redo the same question using ggplot2 for Module 5 Assignment).__
+__USE BASE R to do the following (you will redo the same question using ggplot2 for Intro to RII Module 3 Assignment).__
 
 With the bumpus dataset choose a numeric trait (one of the columns such as head, humer, wgt etc):
 
