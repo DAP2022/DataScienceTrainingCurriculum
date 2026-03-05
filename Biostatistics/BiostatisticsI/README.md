@@ -1,5 +1,6 @@
 # Biostatistics I
 ** This 12-hour mini-course is part of The Jackson Laboratory Foundational Data Science Training Curriculum **
+Here is the [syllabus](BI_Learning_Path.docx)
 This folder will contain: 
 1. Lecture notes
 - [Lecture 1A](Content/Module1A.pdf)
