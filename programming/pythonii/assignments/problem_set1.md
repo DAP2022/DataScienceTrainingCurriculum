@@ -10,6 +10,4 @@ A. Write a function called ORFadviser(DNA) that takes a user-defined string call
 Use the following test case for your code: "ATGAAATTTTGA"
    
 B. Use the provided dictionary to translate it into amino acids.
-Note: this is a question that is recycled from an earlier module but asks you to bundle your code solution (that has if/elif/else conditions) into a function format that will work with any sequence. 
-
-Using a for loop turn the following sequence (it can be hard-coded into your cell) into a list of codons:  5’- ATCGATCGATCGATCGACTGACTAATCATAGCTATGCATGCTACTCGATCGATCGATCGATCGATCGATCGATCGATCGATCATGCTAACATCGATCGATATCGATGCATCGACTAGTACTAT-3'. You should end up with a list that prints ["ATC","GAT", etc].
+Note: this is a question that is recycled from an earlier module but asks you to bundle your code solution (that has if/elif/else conditions) into a function format that will work with any sequence. AS part of your solution, you should use a for loop turn the following sequence (it can be hard-coded into your cell) into a list of codons:  5’- ATCGATCGATCGATCGACTGACTAATCATAGCTATGCATGCTACTCGATCGATCGATCGATCGATCGATCGATCGATCGATCATGCTAACATCGATCGATATCGATGCATCGACTAGTACTAT-3'. You should end up with a list that prints ["ATC","GAT", etc].
