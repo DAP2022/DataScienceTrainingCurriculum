@@ -38,11 +38,11 @@ This folder will contain:
 - [Lecture 5WrapUp](Content/Module5_WrapUp.pdf)
   
 2. Assignments
-- [Problem Set 1A](assignments/1A.pdf)
-- [Problem Set 1B](assignments/1B.pdf)
-- [Problem Set 1C](assignments/1C.pdf)
-- [Problem Set 1D](assignments/1D.pdf)
-- [Problem Set 1E](assignments/1E.pdf)
+- [Problem Set 1A](assignments/1AQ.pdf)
+- [Problem Set 1B](assignments/1BQ.pdf)
+- [Problem Set 1C](assignments/1CQ.pdf)
+- [Problem Set 1D](assignments/1DQ.pdf)
+- [Problem Set 1E](assignments/1EQ.pdf)
 - [Problem Set 2A](assignments/2A.pdf)
 - [Problem Set 2B](assignments/2B.pdf)
 - [Problem Set 2C](assignments/2C.pdf)
