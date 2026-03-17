@@ -1,1 +1,21 @@
-This will contain details of the project required for participants taking the course for credit.
+# Project ideas for 1-credit course
+
+For a course to earn 1 credit, the project needs to demonstrate sustained independent work, integration across multiple course concepts, 
+and some form of original analysis.
+
+Python I possible projects:
+# Option A — Genomic sequence analyzer 
+I will give you data (e.g., a set of mouse gene sequences). You will write a program that:
+1. reads and parses the file without BioPython (or other packages), 
+2. for each sequence, identifies any ORFs using the conditions from M4, 
+3. translates any ORFs using the codon dictionary, 
+4. computes GC content and writes a summary report to a CSV file. 
+Your solution should be include **working script** and a 1-page written reflection comparing their results against a known annotation. 
+
+#Option B — Bioinformatics pipeline for your OWN data!
+Students bring a small dataset from their lab or from a public repository (GenBank, GEO, NCBI). They write a Python I-level pipeline that
+reads the data, applies at least three of the tools from the course (loops, conditions, file I/O, string methods, regex), and generates a 
+cleaned output file with a summary.
+
+Your solution will include working script, a brief methods description, and a short discussion of one thing you would do differently if they
+had access to the Python II tools.
