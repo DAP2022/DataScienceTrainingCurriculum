@@ -25,3 +25,6 @@ Introns are the noncoding parts of a DNA sequence that are spliced out (removed)
 3. **Label exons vs. introns visually**: Write a program that will print out the original genomic DNA sequence coding bases in UPPERCASE letters and the intronic (non-coding) bases in lowercase. Hint: Built-in methods can make solving this problem more straight forward and efficient. 
 
 4. **Store coding and non-coding separately**: Write a program that will split the genomic DNA into coding and non-coding  parts. 
+
+-------------
+Note: The exon/intron splitting you've written here will be recycled in Python II Module 1 — where you'll be asked to bundle this exact logic into a reusable function called ORFadviser(). Keep your solution clear and commented; you'll thank yourself later!
