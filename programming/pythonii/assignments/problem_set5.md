@@ -1,11 +1,9 @@
-## Question 1: 
+# Module 5
+What this assignment tests: 
+1. **SQL queries**: SELECT, WHERE, ORDER BY, LIMIT, JOIN
+2. **pd.read_sql_query**: bridging SQL and Pandas
 
-Use the following to explore the maternal mortality dataframe (included in the Module 4 datasets): 
-
-1. use groupby in a command. This is an artificial question (there are better methods to answer it for this data set), but use groupby to get the count of countries reporting maternal mortality for the following years (or substitute in other years, if they are particularly interesting to you): "1800", "1850", "1910","1925","1950","2000","2013". 
-
-2. Plot the data. You can do what we did in class and plot countries and a few selected years. You can use the matplotlib cheatsheets (https://matplotlib.org/cheatsheets/_images/cheatsheets-1.png
-https://matplotlib.org/cheatsheets/_images/cheatsheets-2.pngLinks to an external site.) to make your plots slightly more fancy. You might find an interesting pattern!
+!
 
  
 
