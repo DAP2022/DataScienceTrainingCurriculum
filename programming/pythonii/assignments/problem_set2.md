@@ -15,7 +15,7 @@ Use the **ORFadvisor()** function that you wrote in the assignments for Module 1
 ## Question 2: MCMC mutation simulation - read, extend, explain
 *Note: This is a summative question about understanding code, tweaking it modestly, and explaining both the code and your improvement(s). You will recycle other people's code A LOT in the wild and so being able to read and extend code you didn't create yourself is really important!* 
 
-Use the MCMC program discussed in Module 2B of Python II as a base for this question: 
+Use the MCMC program discussed in Module 2B of Python II as a base for this question and remember that there is a diagram of what it is doing here: [MCMC](https://github.com/DAP2022/DataScienceTrainingCurriculum/blob/main/programming/pythonii/course_content_jupyter_notebooks/images/MCMC_Example.jpeg) 
 
 --------
 I have written a terribly inefficient program that takes an original 4 nucleotide string and mutates it according to certain rules over a specified number of steps (approximately 1,000,000). At certain step numbers (**1,100,1000, 10000**) the program prints out what the 4 nucleotides have mutated into. Do the following: 
