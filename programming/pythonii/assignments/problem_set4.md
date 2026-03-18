@@ -20,3 +20,9 @@ In the following table we have expression values for 5 genes at 4 time points. T
 - Find the mean expression value per time point (these are the columns)
 - Identify which gene has the maximum mean expression value
 - sort the gene names by the max expression value and print them to the screen. 
+
+## Question 2 - Pandas groupby and plotting
+Using the maternal mortality DataFrame: 
+1. Use groupby to get the count of countries reporting maternal mortality data for these years: 100, 1850, 1920, 1925, 1950, 200, 2013. Print the results clearly.
+2. Plot the data - at a minimum, select a few countries and plot their maternal mortality rate over time. Add axis labels, a title, and a legend. Use the matplotlib cheatsheets to make at least one stylistic improvement beyond the defaults.
+3. In 2-3 sentences, describe the most interesting pattern that you found in the data. 
