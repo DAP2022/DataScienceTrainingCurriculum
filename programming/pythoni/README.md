@@ -44,7 +44,7 @@ There is an overview and downloadable .ipynb files.
 - [Problem Set 5](assignments/problem_set5.md)
 
 ## Projects
-- [Project Descriptions](projects.md)
+- [Project Descriptions](projects)
 
 ## Datasets
 - [Dataset 1](datasets/dataset1.csv)
