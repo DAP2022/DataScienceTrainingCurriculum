@@ -43,7 +43,7 @@ There is an overview and downloadable .ipynb files. You can open these using Goo
 - [Problem Set 5](assignments/problem_set5.md)
 
 ## Projects
-- [Project Descriptions](projects/descriptions.md)
+- [Project Descriptions](projects)
 
 ## Datasets
 - [dna.csv](datasets/dna.csv)
