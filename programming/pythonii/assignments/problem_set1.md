@@ -15,7 +15,9 @@ A DNA string is called an open reading frame (ORF) if it begins with 'ATG', ends
 
   C. "TGATTTTAA" <--- this should not pass (no start codon)
 
-  D. Include a couple of other test cases that should pass and fail in your code and explain them. **Trying to break your own code with test cases that are increasingly challenging is a crucial aspect of creating robust logic and code!**
+  D. "atgaaataa"<--- this is lowercase, but otherwise fulfills the criteria.
+
+  E. Include a couple of other test cases that should pass and fail in your code and explain them. **Trying to break your own code with test cases that are increasingly challenging is a crucial aspect of creating robust logic and code!**
   
    
 **2.** Use the provided dictionary to translate it into amino acids.
