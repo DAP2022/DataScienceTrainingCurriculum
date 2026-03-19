@@ -2,7 +2,7 @@
 
 ** This is a 12-hour mini-course that is part of the Jackson Laboratory Data Science Training Program ** 
 
-Learn Python basics, data manipulation, and analysis. See [the syllabus](PythonISyllabus_2026.docx) for details.
+Learn Python basics, data manipulation, and analysis. See [the syllabus](Python1Syllabus_2026.docx) for details.
 
 ## Course Learning Outcomes  
 By the end of this course, students will be able to use the Python programming language and do the following:
@@ -23,18 +23,18 @@ By the end of this course, students will be able to use the Python programming l
 There is an overview and downloadable .ipynb files.  
 (if you are using GitHub path, the content of the files will appear online when you click on "Download"; if you are using the website, you must download them and open them using You can open these using Google Colab or you can use whatever your favourite Jupyter Notebook software is....)
 - [Module 1 Overview](course_content_jupyter_notebooks/Module_1.md)
-  - <a href = "course_content_jupyter_notebooks/Module1A.ipynb" download>Download (Module1A.ipynb)<a>
-  - <a href = "course_content_jupyter_notebooks/Module1B.ipynb" download>Download (Module1B.ipynb)<a>
+  - <a href = "course_content_jupyter_notebooks/Module1A_updated_0326.ipynb" download>Download (Module1A.ipynb)<a>
+  - <a href = "course_content_jupyter_notebooks/Module1B_updated_0326.ipynb" download>Download (Module1B.ipynb)<a>
 - [Module 2 Overview](course_content_jupyter_notebooks/Module_2.md)
-  - <a href = "course_content_jupyter_notebooks/Module2AB_2025NEW.ipynb" download>Download (Module2AB.ipynb)<a>
+  - <a href = "course_content_jupyter_notebooks/Module2AB_0326.ipynb" download>Download (Module2AB.ipynb)<a>
 - [Module 3 Overview](course_content_jupyter_notebooks/Module_3.md)
-  - <a href = "course_content_jupyter_notebooks/Module3A.ipynb" download>Download (Module3A.ipynb)<a>
-  - <a href = "course_content_jupyter_notebooks/Module3B.ipynb" download>Download (Module3B.ipynb)<a>
+  - <a href = "course_content_jupyter_notebooks/Module3A_0326.ipynb" download>Download (Module3A.ipynb)<a>
+  - <a href = "course_content_jupyter_notebooks/Module3B_0326.ipynb" download>Download (Module3B.ipynb)<a>
 - [Module 4 Overview](course_content_jupyter_notebooks/Module_4.md)
-  - <a href = "course_content_jupyter_notebooks/Module4A_2025NEW.ipynb" download>Download (Module4A.ipynb)<a>
-  - <a href = "course_content_jupyter_notebooks/Module4B_2025NEW.ipynb" download>Download (Module4B.ipynb)<a>
+  - <a href = "course_content_jupyter_notebooks/Module4A_0326.ipynb" download>Download (Module4A.ipynb)<a>
+  - <a href = "course_content_jupyter_notebooks/Module4B_0326.ipynb" download>Download (Module4B.ipynb)<a>
 - [Module 5 Overview](course_content_jupyter_notebooks/Module_5.md)
-  - <a href = "course_content_jupyter_notebooks/Module5AB_2025NEW.ipynb" download>Download (Module5AB.ipynb)<a>
+  - <a href = "course_content_jupyter_notebooks/Module5AB_0326.ipynb" download>Download (Module5AB.ipynb)<a>
   
 ## Assignments
 - [Problem Set 1](assignments/problem_set1.md)
