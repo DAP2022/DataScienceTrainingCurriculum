@@ -1,7 +1,8 @@
 # Introduction to RII
 ** This is a 12-hour mini-course offered as part of The Jackson Laboratory Data Science Training Curriculum **
-See [the syllabus](IntroRIISyllabus.docx) for details.
-
+- for Internal JAX participants (no credit hours): See [the syllabus](R2Syllabus_0326.pdf) for details.
+- for participants seeking 1 credit hour through UMaine: See [the Credit syllabus](R2Syllabus_UMaine_0326.pdf) for details.
+  
 ## Course Description: 
 This workshop is the second half of the introduction to the R programming
 anguage course. We will build on the capabilities of R as a visualization tool, through ggplot and the Tidyverse, and spend most of our time exploring the power of R for statistical analysis of datasets. Topics covered will include: ggplot and the Tidyverse philosophy, hypothesis testing, goodness-of-fit tests (chi-squared, Fisher’s exact test), Student’s t test, normal distributions, correlation, Regression, ANOVA, and non-parametric versions of these parametric tests.  
