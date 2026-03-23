@@ -35,7 +35,7 @@ Lecture notes
 - [Problem Set 5](assignments/problem_set5.md)
 
 ## Projects
-- [Project Descriptions](projects/descriptions.md)
+- [Project Descriptions](projects/project_description.md)
 
 ## Datasets
 - [Bumpus](datasets/Bumpus.csv)
