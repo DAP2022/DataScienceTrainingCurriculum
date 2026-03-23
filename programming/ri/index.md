@@ -49,4 +49,4 @@ There is an overview and downloadable .rmd files.
 - [Bumpus Data](datasets/Bumpus_data.csv)
 - [Chr15SNP](datasets/Chr15SNP.csv)
 - [10 Chimps](datasets/GA_Module4.csv)
-- [For UMaine participants this is the universal dataset for your projects:](datasets/JAXMouse_GeneExpression_Simulated.csv)
+- [Universal Data Set for UMaine Participants:](datasets/JAXMouse_GeneExpression_Simulated.csv)
