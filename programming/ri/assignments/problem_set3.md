@@ -14,5 +14,4 @@ Using the Great Apes Dataframe that you built in Module 1, do the following:
 Using the Bumpus data set: 
 - use tapply to investigate a summary statistic (ie. mean, median, sd, var) over the column of your choosing, but ensure that your information is split by **sex** and **survival**.
 - In Module 1, you used **tappply()** with a single grouping factor. Compare the outputs: What does using two grouping factors reveal that a single factor cannot? Give one biological interpretation of your result.
-- Check to see if any numeric columns in the Bumpus datast contain NA (missing) values. If they do, use na.omit() or the na.rm arguments to handle them. Report how many rows, if any, were removed and explain why missing data handling must be documented. 
 
