@@ -43,9 +43,10 @@ There is an overview and downloadable .rmd files.
 - [Problem Set 5](assignments/problem_set5.md)
 
 ## Projects
-- [Project Descriptions](projects/descriptions.md)
+- [Project Descriptions](projects/project_description.md)
 
 ## Datasets
 - [Bumpus Data](datasets/Bumpus_data.csv)
 - [Chr15SNP](datasets/Chr15SNP.csv)
 - [10 Chimps](datasets/GA_Module4.csv)
+- [Universal Data Science for UMaine Participants](datasets/JAXMouse_GeneExpression_Simulated.csv)
