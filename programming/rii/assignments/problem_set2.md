@@ -9,7 +9,8 @@ Please hand in an .rmd file in the format: **lastname_firstinitial_day2.qmd.** I
 - Compute the mean Sepal.Length for each iris species using group_by() and summarize().
 - Compute mean Sepal.Length for each iris species using **tapply()**. Compare the output to the results using group_by that you calculate above. Are the results identical? Which syntax do you find more readable?
 - Add a new column to this dataframe that is the area of the petals. We will make some approximations and claim that petals are exactly rectangular shapes so that area is simply Petal.Length*Petal.Width.
-- Finally, we want to graph out a boxplot of only the smallest 10 Petal.Lengths of each species. We will repeat this command in ggplot2 in Module 3.
+- Finally, we want to graph out a boxplot of only the smallest 10 Petal.Lengths of each species.
+- NOW Create a boxplot using **ggplot2** showing the distribution of Petal.Length for only the smallest 10 Petal.Length values per species. This should be accomplished in a single dplyr + ggplot2 pipeline using the pipe operator (|> or %>%). Describe what this plot reveals about variation within each species.
 
 ## Question 2: Tidy Thinking with the Bumpus Dataset
 1.	Load the Bumpus dataset and convert it to a tibble. Is it tidy? Identify any columns that might need reshaping for a ggplot2 visualization.
