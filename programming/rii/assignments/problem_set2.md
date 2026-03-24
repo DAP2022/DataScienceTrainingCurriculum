@@ -1,4 +1,4 @@
-Please hand in an .rmd file in the format: lastname_firstinitial_day2.rmd. Include markdown chunks with information about the question and, if appropriate, a general outline of your approach to solving it. Also use comments in your R coding chunks. Use a blank rmd notebook (it should not include the default chunks that are automatically rendered when you create a new .rmd file).
+Please hand in an .rmd file in the format: **lastname_firstinitial_day2.qmd.** Include markdown chunks with information about the question and, if appropriate, a general outline of your approach to solving it. Also use comments in your R coding chunks. Use a blank qmd notebook (it should not include the default chunks that are automatically rendered when you create a new .qmd file).
 
 -------------------------------
 
