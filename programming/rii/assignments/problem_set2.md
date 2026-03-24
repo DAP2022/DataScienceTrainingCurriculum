@@ -9,4 +9,8 @@ Please hand in an .rmd file in the format: **lastname_firstinitial_day2.qmd.** I
 - Compute the mean Sepal.Length for each iris species using group_by() and summarize().
 - Compute mean Sepal.Length for each iris species using **tapply()**. Compare the output to the results using group_by that you calculate above. Are the results identical? Which syntax do you find more readable?
 - Add a new column to this dataframe that is the area of the petals. We will make some approximations and claim that petals are exactly rectangular shapes so that area is simply Petal.Length*Petal.Width.
-- Finally, we want to graph out a boxplot of only the smallest 10 Petal.Lengths of each species. We will repeat this command in ggplot2 in Module 3. 
+- Finally, we want to graph out a boxplot of only the smallest 10 Petal.Lengths of each species. We will repeat this command in ggplot2 in Module 3.
+
+## Question 2: Tidy Thinking with the Bumpus Dataset
+1.	Load the Bumpus dataset and convert it to a tibble. Is it tidy? Identify any columns that might need reshaping for a ggplot2 visualization.
+2.	Use dplyr to recreate your tapply() result from R I Module 3 Q2: mean and SD of a numeric trait, grouped by sex AND survival. Write both the base R and the dplyr versions side by side in your .qmd. Which is more readable? Which would be easier to extend if you added a third grouping variable?
