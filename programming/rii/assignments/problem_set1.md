@@ -1,4 +1,4 @@
-Please explain your steps. Fully utilize the power of RStudio (Posit) by using Markdown cells AND R chunks (don't just use R chunks with hashed out comments). Use a new rmd file for your assignment and please use a format such as: **Lastname_Firstname_PS1.rmd** so that when I go through and mark/comment, it is straightforward for me to see that it is yours. Thank you!
+Please explain your steps. Fully utilize the power of RStudio (Posit) by using Markdown cells AND R chunks (don't just use R chunks with hashed out comments). Use a new rmd file for your assignment and please use a format such as: **Lastname_Firstname_PS1.qmd** so that when I go through and mark/comment, it is straightforward for me to see that it is yours. Thank you!
 
 --------------------------------
 
