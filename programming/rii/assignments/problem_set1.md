@@ -14,6 +14,6 @@ Please explain your steps. Fully utilize the power of RStudio (Posit) by using M
 - This will be a similar process to what we did in class. Ask and answer, using a graph, a question based on this table.
 
 ## Q3:Using the Bumpus dataset:
-- Recreate the three visualizations from R I Module 4 (histogram, grouped boxplot, mosaic plot) exactly. These are your baseline.
+- Recreate the three visualizations from R I Module 4 (histogram, grouped boxplot, scatterplot). These are your baseline.
 - Now load ggplot2. Without being taught it yet, use the ggplot2 cheat sheet (find online or in your syllabus) to attempt ONE of the three plots in ggplot2. What was the most confusing aspect of the ggplot2 syntax compared to base R?
 -	Save all four plots (three base R + one ggplot2 attempt) to a single PDF. This file will be referenced directly in Module 3 for a quality comparison.
