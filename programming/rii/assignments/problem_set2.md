@@ -2,7 +2,7 @@ Please hand in an .rmd file in the format: **lastname_firstinitial_day2.qmd.** I
 
 -------------------------------
 
-## Use built in data set iris to tackle this question.
+## Question 1. Use built in data set iris to tackle this question.
 
 - Is this data 'tidy'? Why or why not? How might you demonstrate that it follows the conventions of "tidy" data? Demonstrate that it follows (or violates) the three rules of tidy data in a Markdown chunk, with supporting code.
 - We want to conduct a selective breeding experiment using only the individuals with the largest 2 Petal.Lengths from each species. Create a tibble called "largestPetalSize" that contains the 6 individuals that fulfill this criteria. What do you notice about the output and what does this suggest about how tied values are resolved?
