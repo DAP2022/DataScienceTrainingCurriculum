@@ -1,0 +1,331 @@
+---
+title: "R2_Module1"
+format: docx
+editor: visual
+---
+
+# Review of RI
+
+-   This notebook covers the material we learned in RI by way of 3 examples
+
+1\. Basic R functionality
+
+2\. Basic R graphing
+
+3\. Using packages/libraries
+
+# **Datasets**
+
+1.  R2_Mod1ABexample1.csv (on [GitHub](https://github.com/DAP2022/DataScienceTrainingCurriculum/tree/main/programming/rii/datasets))
+2.  This is a small **simulated** data set taken from GEO (for mouse) and it is from [GSE1133](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE1133) which is a well-known multi-tissue mouse series. The simulated data is restricted to a few common tissues and is a lot more tractable! There are packages that would with this type of data, but they are old and have dependency issues so we will just simulate the data in the cell below so that it works for everyone!
+
+```{r}
+## 3D simulated contingency table: ExprCat x Tissue x Condition
+set.seed(42)
+
+ExprCat <- c("Low","Medium","High")
+Tissue <- c("brain","heart","liver")
+Condition <- c("control","treated")
+
+# Base tissue-specific probabilities for expression categories
+p_tissue <- list(
+  brain = c(Low = 0.20, Medium = 0.50, High = 0.30),
+  heart = c(Low = 0.30, Medium = 0.50, High = 0.20),
+  liver = c(Low = 0.25, Medium = 0.50, High = 0.25)
+)
+
+# Simple treatment effect: shift 0.10 from Medium -> High across tissues (clipped to [0,1])
+treat_effect <- function(p) {
+  shift <- 0.10
+  p2 <- p
+  take <- min(shift, p2["Medium"])
+  p2["Medium"] <- p2["Medium"] - take
+  p2["High"]   <- p2["High"]   + take
+  p2
+}
+
+# Sample size per (Tissue, Condition) block (tweak as you like)
+n_per_block <- 200
+
+# Build 3D array of counts
+counts <- array(0,
+  dim = c(length(ExprCat), length(Tissue), length(Condition)),
+  dimnames = list(ExprCat = ExprCat, Tissue = Tissue, Condition = Condition)
+)
+
+for (t in Tissue) {
+  # control probs
+  p_ctrl <- p_tissue[[t]][ExprCat]  # ensure order Low/Medium/High
+  counts[, t, "control"] <- as.vector(rmultinom(1, size = n_per_block, prob = p_ctrl))
+
+  # treated probs with shift
+  p_trt <- treat_effect(p_ctrl)
+  counts[, t, "treated"] <- as.vector(rmultinom(1, size = n_per_block, prob = p_trt))
+}
+
+# Convert to a "table" object (exactly like HairEyeColor/Titanic)
+tab3d <- as.table(counts)
+
+# Quick sanity check
+tab3d
+addmargins(tab3d)              # adds margins across all dims
+margin.table(tab3d, c(1, 2))   # collapse over Condition -> 2D table (ExprCat x Tissue)
+
+## --- Plotting (base R) ---
+
+# 3D mosaic (order of variables matters, just like Titanic/HairEyeColor)
+mosaicplot(~ ExprCat + Tissue + Condition, data = tab3d,
+           main = "Simulated: ExprCat × Tissue × Condition",
+           xlab = "ExprCat × Tissue (condition split inside)",
+           ylab = "Proportion within splits",
+           color = c("gray85","gray70","gray55"),
+           las = 1, border = "white")
+
+# Alternative view: collapse Condition if you want the simpler 2D mosaic
+tab2d <- margin.table(tab3d, c(1, 2))
+mosaicplot(tab2d, main = "Collapsed over Condition: ExprCat × Tissue",
+           xlab = "Tissue", ylab = "Expression category",
+           color = c("gray85","gray70","gray55"), las = 1, border = "white")
+
+# If you prefer Condition first (like Titanic's class/sex/age/survived ordering), just reorder:
+mosaicplot(~ Condition + Tissue + ExprCat, data = tab3d,
+           main = "Reordered: Condition × Tissue × ExprCat",
+           color = c("gray85","gray70","gray55"), las = 1, border = "white")
+
+```
+
+# Summary of each RI Module:
+
+#### Module 1A:
+
+We were introduced to the four quadrants of Posit (formerly called RStudio). We learned about the assignment operator, "\<-", c(), and how to knit, and save our files. Along the way, we refreshed the topic of file paths which are mostly confusing because there are two different formats based on your OS: **windows:** "C:\\Users\\YOURUsername\\Desktop\\Chr15SNP.csv"
+
+and **mac users:** "//Users/name/Downloads/Chr15SNP.csv
+
+It is even more confusing since we were (technically) using the cloud and that also has paths (to your own folder). So: the exact path will depend on what platform you are using.
+
+#### Module 1B:
+
+This module focused on data structures (vectors, factors, matrices, lists and - most importantly in R - **dataframes**). We created data structures, added columns, removed columns, queried the data type, converted one type into another, and used built-in functions (such as mean(), sd()). We also discovered a very useful way to find the path of our data: file.choose() (\<-- this can only be used in the console, not the Markdown quadrant, since it is interactive and therefore cannot be knit), and learned how to read in data using read.csv(). We also used the subset() along with some conditional statements about what to include in the subset condition and briefly saw the power of tapply().
+
+#### Module 2AB:
+
+R as a programming language in this module. We had a narrow examination of built-in functions and the necessary syntax for user-defined functions. We also briefly examined anonymous functions, ellipsis, and higher order functions map and filter (we didn't investigate the other higher order functions).
+
+If you want a refresher on Basic R data wrangling, this is an accessible training:
+
+From: <https://hbctraining.github.io/Training-modules/IntroR/lessons/04_data-wrangling.html>
+
+> **List of functions for data inspection:** Here is a non-exhaustive list of functions to get a sense of the content/structure of data.
+
+> **All data structures:**
+
+> str(): compact display of data contents (env.)
+
+> class(): data type (e.g. character, numeric, etc.) of vectors and data structure of dataframes, matrices, and lists.
+
+> summary(): detailed display, including descriptive statistics, frequencies
+
+> head(): will print the beginning entries for the variable tail(): will print the end entries for the variable
+
+> **Vector and factor variables:**
+
+> length(): returns the number of elements in the vector or factor
+
+> Dataframe and matrix variables:
+
+> dim(): returns dimensions of the dataset
+
+> nrow(): returns the number of rows in the dataset
+
+> ncol(): returns the number of columns in the dataset
+
+> rownames(): returns the row names in the dataset
+
+> colnames(): returns the column names in the dataset
+
+#### Module 3AB:
+
+Slicing, using \[\], using :, and c(), and the syntax is \[rows,columns\]. the command to write data to a different place: write.csv(DF name, file="path")
+
+#### Module 4A:
+
+Built-in visualization and arguments that allow some degree of personalization (plot(x,y, type=“o”) etc). We saw how to implement:
+
+1.  Scatterplots (including qqplot, qqnorm)
+
+2.  Histogram
+
+3.  Mosaicplot (and table data that needs to be groomed with, for instance, apply())
+
+We also saw some built-in distributions that allowed us to simulate the normal distribution, poisson distribution, binomial distribution etc.
+
+#### Module 4B:
+
+This was a short module since we were running a bit behind. We looked at boxplots and uncertainty in this module.
+
+#### Module 5AB:
+
+We were introduced to a package, *biostats*, and used it to simulate clinical data. We compared the built-in methods of the package to the products of similar functions in base R to understand why packages/libraries are created and why/when they are worth using.
+
+# Details of each RI Module:
+
+Let's begin here: <https://r4ds.hadley.nz/intro>
+
+### Part 1. Examples of manipulating data; and slicing, and rearranging datasets:
+
+Note: To discover a list of all the built-in datsets in basic R, type **data()** into the console. A list will pop up! Most packages/libraries that we will use, will also have built in data sets to illustrate the data manipulation and functions that are important for these packages.
+
+```{r}
+# Lets see what datasets come with basic R?
+data()
+# we will need to be able to load the msleep built-in dataset from ggplot2. 
+# install ggplot2 if you haven't already and ensure that the check mark is visible. 
+# all available data sets will appear in the data() command!
+```
+
+Back to our example:
+
+```{r}
+# use the file.choose() in the console only to copy-and-paste the path where you placed the R2_Mod1ABexample1.csv file
+# read it in and place it into a variable name
+
+```
+
+Now let's inspect the dataframe and determine attributes.
+
+```{r}
+# this is a small dataframe so we can confirm that the following work:
+
+
+```
+
+Here are some of the inspection methods we covered:
+
+```{r}
+
+
+
+```
+
+```{r}
+
+```
+
+We will convert the dataframe into a dataframe with factors for all columns except the 1st column (which is the sample id), but for columns 2,3,and 4.
+
+```{r}
+# we can slice out only the middle 3 columns
+
+```
+
+```{r}
+# we get to see lapply here! 
+# the *apply family is used to perform iterations/loops in R, but lapply returns a list. 
+
+```
+
+```{r}
+
+```
+
+We will now investigate how to slice dataframes and we get to see lapply here! The \*apply family is used to perform iterations/loops in R, but lapply returns a list.
+
+```{r}
+#rows 1 through 6, but only the second column
+
+```
+
+```{r}
+#subset the dataframe
+
+```
+
+```{r}
+# the incredibly useful tapply function!
+
+```
+
+save file in a new place:
+
+```{r}
+
+```
+
+#### STOP - Let's tackle the Certificate of Completion Assignment 1 (on GitHub)
+
+Note: This is a slightly different question, but is very similar to Question 1:
+
+\*\*Use one of the following built-in datasets (iris or OrchardSprays) to do the following\*:\*\* a. Load in the data from the built-in R datasets. b. Inspect the dataframe with at least three attributes (explain what you choose and how it is implemented). c. Slice out rows and columns using any criteria that you wish, explain what the criteria is (and why), and then write it to an external file. d. Slice out the rows or columns using Boolean conditions. e. Subset the data in any way that you think is meaningful (explain why it is meaningful to you). f. Use tapply to breakdown the mean values of one of the columns based on the factors in the dataset.
+
+```{r Q1CoC}
+
+```
+
+### Part 2. Examples of using basic graphing/data visualization in R:
+
+If you need more examples than just the following one, this tutorial is accessible: <https://www.digitalocean.com/community/tutorials/plot-function-in-r>
+
+We will build a mosaic plot with UBAdmissions data. [This dataset](https://pubmed.ncbi.nlm.nih.gov/29484824/) is a famous example of a phenomenon known as "Simpsons paradox" (related to the Will Rogers' phenomenon, but broader) which is a fantastic example of really understanding confounding variables and interactions. [This quote](https://plato.stanford.edu/entries/paradox-simpson/) summarizes:
+
+"Simpson’s Paradox is a statistical phenomenon where an association between two variables in a population emerges, disappears or even reverses when the population is divided into subpopulations!"
+
+The data set has three dimensions (three-way table) of the data: **Admissions**, **Gender**, **Department**. We are going to spend a lot of time building mosaic plots with this data - because mosaic plots are one of the rare cases where it is more challenging to build them in ggplot and because they are fantastic at demonstrating conditional probability and illustrating the dependency status of variables- to refresh our appreciation of how to set up plots in regular, vanilla R (before moving on to the fancier, more intuitive ggplot2).
+
+```{r UCBAdmissions}
+
+```
+
+This data set is a table so, much like the titanic data set that we examined in Intro to RI, we will plot out the table (and then we will manipulate the data to address specific questions/queries):
+
+```{r}
+
+```
+
+We can refresh our apply() function and see how we took the marginals and then graph them!:
+
+```{r}
+
+```
+
+Let's look at ordering the three dimensions does to the standard mosaic plot output: As an aside: \~ is used as an operator in R to delay evaluation of arguments. For plot functions, this means that you can think of \~ as indicating a dependence. So, plot(y\~x, ...) is equivalent to plot(x,y,...). Which one you use is mostly a matter of personal preference (although there is a useful linear model function, lm() that uses the y\~x format, so I tend to use that format.)
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+But now let's see the mosaicplot with all three dimensions and what that illustrates:
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+Let's save this last plot:
+
+```{r}
+
+```
+
+#### STOP - Let's tackle the CoC Assignment for Part 2 (on GitHub)
+
+**Q2. Use the HairEyeColor built-in dataset for basic R to create a mosaic plot. This will be a similar process to what we did in class. Ask and answer, using a graph, a question based on this table.**
+
+```{r}
+
+```
+
+#### STOP - Let's tackle the CoC Assignment for Part 3 (on GitHub)
+
+```{r}
+
+```
+
+Now, let's peek at the [ggplot2 cheatsheet](https://posit.co/wp-content/uploads/2022/10/data-visualization-1.pdf) and see if you can replicate one of the graphs above but using ggplot2.
