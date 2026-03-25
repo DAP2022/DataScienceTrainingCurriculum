@@ -21,7 +21,8 @@ Lecture notes
 - [Module 2 Overview](Course_content_RMD/Module_2.md)
   - <a href = "Course_content_RMD/R2_Module2.qmd" download>Download (R2_Module2.qmd)<a>
 - [Module 3 Overview](Course_content_RMD/Module_3.md)
-  - <a href = "Course_content_RMD/R2_Module3AB_HypothesisTesting.Rmd" download>Download (R2_Module3A.rmd)<a>
+   - <a href = "Course_content_RMD/R2_Module3_Hypothesis_Testing_Review.qmd" download>Download (R2_Module3_HypoTestRev.qmd)<a>
+  - <a href = "Course_content_RMD/R2_Module3.qmd" download>Download (R2_Module3.qmd)<a>
 - [Module 4 Overview](Course_content_RMD/Module_4.md)
   - <a href = "Course_content_RMD/R2_Module4AB.Rmd" download>Download (R2_Module4A.rmd)<a>
 - [Module 5 Overview](Course_content_RMD/Module_5.md)
