@@ -1,0 +1,558 @@
+---
+title: "R2_Module3"
+format: docx
+editor: visual
+---
+
+# Preamble - What we will cover in this module:
+
+1.  **General Hypothesis testing features**: The **four steps of hypothesis testing** and a quick mention of terms such as Null and Alternate hypotheses, type I and type II errors, p-values, false discovery rate of multiple testing, sensitivity, specificity. There is a document called **"R2_Module3_Hypothesis_Testing_Review.qmd"** that covers these definitions, as well as a [review pdf](https://github.com/DAP2022/DataScienceTrainingCurriculum/blob/main/programming/rii/Course_content_RMD/Statistics_Review_R2.pdf) here. These are concepts that were covered in Biostatistics I and Biostatistics II so these are superficial reviews, but might be necessary refreshers!
+
+2.  **The Binomial Distribution** and how to use it. This section will include a little programming in R, as well as:
+
+    -   The Hard Way (using sample(), dbinom\*(), using tidyverse)
+
+    -   The Easy Way:
+
+        -   Using built in functions for the Binomial Test
+
+        -   Comparing the output of the Binomial Test to the more general Proportion Test (based on the chi-squared test).
+
+3.  **The Normal Distribution**
+
+    -   How to **visualize** whether or your data is Normally distributed
+
+    -   How to **formally** test if your data is Normally distributed
+
+4.  **A worked example**: Using Hypothesis testing on the bumpus Data set
+
+# 1. Hypothesis Testing Review
+
+-   See the separate notebook called R2_Module3_Hypothesis_Testing_Review.qmd
+-   And: [review pdf](https://github.com/DAP2022/DataScienceTrainingCurriculum/blob/main/programming/rii/Course_content_RMD/Statistics_Review_R2.pdf) document on GitHub.
+
+# 2. The Binomial distribution:
+
+To investigate hypothesis testing, we will rely on the most simple and intuitive distribution available to us: ***The Binomial distribution.***
+
+The Binomial distribution is a discrete probability distribution. It describes the outcome of n independent trials in an experiment. Each trial is assumed to have **only two outcomes**, either success or failure. If the probability of a successful trial is p, then the probability of having x successful outcomes in an experiment of n independent trial is: $f(x)=\binom{n}{x}p^x(1-p)^{n-x}$
+
+A clear - but boring- illustration of a binomial distribution uses coin flips or rolls of die. We can find this at an online simulator, like the following:
+
+#### A. [Online](https://www.random.org/dice/) dice roller.
+
+#### B. Simulation using *sample()* function in R
+
+Or, we can use a built-in R function to simulate the binomial distribution. In fact, use the help menu (or Google) to explore the **sample()** function. If you are using the help menu, depending on any other packages that you are using, you might need to use base::sample().
+
+We can use ***sample()*** to accomplish the same task as the online dice roller. On the first line of code, we will first roll *five* dice that each have possible values 1 through 6. Just like a real die would. We have, however, rolled 5 of them simultaneously.
+
+```{r}
+# roll five dice simultaneously. Each die has possible values of 1 through 6 and they are all fair die so any value (between 1 and 6) has the same chance of facing upwards on each one.
+
+# What do we think the argument replace=TRUE means? 
+
+
+# To answer the above question, we can use the same arguments in the sample() but # include replace=FALSE
+
+# display the results of these two variables:
+
+
+
+# What is the argument replace do in the sample() function?
+# an easier way: 
+
+
+
+# we can also look at coinflips
+# we can put in the probabilities for a fair and an unfair coin
+
+
+
+```
+
+#### C. Generating the actual binomial distribution in R:
+
+Now we will move on to using the actual Binomial distribution, rather than just approximating it! This is easy in R, because - as a mostly statistical programming language - there is a built-in function for the binomial distribution in R called **dbinom()**. The binomial distribution is widely used as a null distribution for a null hypothesis of independent events with a constant probability of success and failure. This is a circumstance that occurs a lot in genetics ("A" or "a" allele, for instance). There is a common format among various distributions (*d*function, *r*function, *q*function, *p*function) that is used for simulating Poisson and Normal distributions (we will see concrete examples of these two distributions in the Normal Distribution section) or randomly generating numbers from those distributions.
+
+$$p(x) = {{n}\choose{x}}p^x(1-p)^{n-x}$$
+
+We will look at all four of these functions but usually we are mostly interested in calculating the **exact probability** of the arguments that have been provided: **\>dbinom(X, size = n, prob = p)** or in generating a **random sample** of individuals from a binomial distribution: **\>rbinom(n, size, prob)**.
+
+```{r}
+# density -we have 100 trials and one of them produce heads in a presumed fair coin which
+# means that each trial has 0.5 probability of producing heads. What is the exact
+# probability of getting 1 heads out of the one hundred trials? This should be super small
+
+
+```
+
+```{r}
+# The FOUR types of distribution probability: d, p, q, and r in the format: dfunction, pfunction, qfunction, rfunction
+# -------------------------
+# what about the total probability of getting 1 or 0 heads? This should be slightly bigger, since you will add the TWO probabilities together, but still very very small. We can do that this way:
+
+
+# or we could use the distribution function - cumulative probability. This should give the
+# same result as the cumulative probability calculated above: pbinom returns P(X<=x)
+# Test to make sure that it does!
+
+
+# random deviates- generate 5 coin tosses 100 times to see how many heads appear in each of
+# the 100 simulations
+
+
+# we can draw this out:
+
+# quantiles:We can also find the quantiles of a binomial distribution. For example, here is
+# the 95th percentile of a binomial distribution with n = 5 and p=0.5.
+
+
+```
+
+**This section is EXTRA Material (for your own interest or if we have time during the class)**
+
+You can interrogate the Binomial Distribution function by running through an example from the countbayesie website ([here](https://www.countbayesie.com/blog/2015/3/3/6-amazing-trick-with-monte-carlo-simulations)). You can see how constructing the Binomial distribution using atomic functions in R compares to our built-in binomial function simulation.
+
+```{r}
+# flip a coin 10 times, what is the probability of getting more than 3 heads? 
+# defining how many times to repeat our simulation
+runs <- 100000
+# defining a new function that sums up the number of times that more than 3 heads appears
+# in the simulation of 10 coin tosses
+one.trial <- function(){
+# use sample to create one iteration of 10 coin tosses add it to #running total with sum
+# function if more than 3 heads
+# if not more than 3 heads return FALSE - so it adds 0 instead of 1
+sum(sample(c(0,1),10,replace=TRUE))>3
+}
+# summing up each trial over the 100000 runs with the built in replicate function which
+# re-evaluates and stores in vector (a little bit like tapply,actually)
+mc.binom<-sum(replicate(runs,one.trial()))/runs
+mc.binom
+```
+
+Let's compare this answer to what we would see in the built in function pbinom with the same arguments:
+
+```{r}
+pbinom(3,10,0.5,lower.tail=FALSE)
+```
+
+Hopefully they were very similar (although since one is more exact than the other, you don't expect them to be exactly the same.)
+
+And now back to the required course work.....
+
+------------------------------------------------------------------------
+
+(This is a bit challenging, but can be done!) We can also use the tidyverse suite to draw a distribution of expected Heads across 100 coin flips:
+
+```{r}
+library(tidyverse)
+```
+
+```{r}
+#vector of numbers since we want to know the probability of each of them happening. If we wanted the probability of just one event happening
+# that is: x=45 successes in 100 throws, we would just use 45. 
+
+# the number of trials
+
+#probability of success in each trial
+
+
+#print(df1)
+
+
+
+
+
+```
+
+Do you notice something about the Binomial Distribution as n–\> bigger? Looks familiar, doesn't it?
+
+We want to reject using an alpha of 0.05 (which is the standard value). We will color this on the above binomial distribution:
+
+```{r}
+#numFlips=100
+#k = 0:numFlips
+
+
+#-----------------------
+
+#What am I doing in the following line: 
+
+
+
+
+
+
+
+
+
+#pbinom(40, size = 100, prob = 0.5) # 0.02844 
+#1-pbinom(59, size = 100, prob = 0.5) # Equivalent
+```
+
+Look at that! It is nicely set up to illustrate the rejection zones of our null hypothesis!
+
+#### D. binom.test()
+
+-   Using the Binomial distribution as the null hypothesis for hypothesis testing is such as a common procedure that R has a built in function for it: **binom.test()**. There is also a second built in function for hypothesis testing called the **Proportion test** (this is based on a chi-squared test, it is [**not**]{.underline} an exact test).
+
+```{r}
+#we can compare the two sided probabilities with this simple test (no simulations, or long tidy manipulations necessary!)
+
+
+```
+
+# 3. The Normal Distribution: The QUEEN of distributions
+
+We will now spend time obsessing over the Normal Distribution. We care about whether or not our variable has a normal distribution because many of our powerful parametric tests depend on the validity of that assumption. In fact, once we confirm how to assess normality, we'll look at the **t distribution** and different versions of the **t test** which all require normality; we'll also examine their [robustness to violations]{.underline} of this assumption.
+
+In order to refine our understanding of normal distribution assessment, we are going to begin by simulating two distributions:
+
+1.  one distribution will be **normal**
+2.  and the other distribution will be **Poisson** (which is definitely NOT normal; see [here](https://en.wikipedia.org/wiki/Poisson_distribution)).
+
+We can then compare the results of the various assessments/tests and see how they handle normal versus non-normal data. We will do the following:
+
+Investigate how to determine if our distribution is Normally distributed. We have two major approaches to this task:
+
+## [**1. Visual assessment:**]{.underline} histograms/boxplots, and ***Q-Q plots***
+
+-   A **Q-Q plot** (which stands for Quantile-Quantile plot) compares any two distributions by plotting their quantiles against each other; [if the two distributions are similar, the comparison points should result in a straight line through y=x.]{.underline} If the two distributions are not the same but are related in a linear manner then they should lie on a different line.
+
+-   A **normal quantile plot** is a cumulative frequency plot that has a Y axis scaled so that a normal distribution will appear as a straight, diagonal line. A Normal Q-Q plot works in the same way but it compares the distribution of your data to a general normal distribution. [This means that if your data is normally distributed (or close), than the two distributions are equal and so the plotted points should lie on a straight line.]{.underline} These curves are useful in assessing how and where a non-normal distribution differs from the ideal
+
+-   Let's create *four* data sets where **one of them, x, is normally distributed** and **one of them, y, is not normally distributed (Poisson).**
+
+-   We also create two other variables that are normally distributed with either significantly different variance but the same mean (z) or the same mean and sd as the poisson distributed variable (q). We will use these latter two distributions in a bit, when we test *homogeneity of variances*, a requirement for some parametric tests.
+
+-   We can then run through some visual assessments to help us get used to what data will look like 'ideally': We will start by *simulating* a normal, a normal with large variance, and a non-normal distribution so we can compare them:
+
+```{r}
+#similar to the dbinom(), pbinom(), qbinom(), and rbinom() but for the normal distribution and the Poisson distribution:
+# ---------------------------------
+# normal distribution with 100 observations, mean of 1 and standard deviation of 1
+
+# we can visualize this with a histogram
+
+# Poisson distribution with lamda = 1
+
+# the histograms of these two distributions should convince you that these two distributions
+# are VERY different
+
+# -------------------
+# Now one companion distribution that is normally distributed, but has very different sd and variance (not equal to 1)
+
+#visual assessments
+
+# Now let's peek at a boxplot
+
+```
+
+If we didn't happen to know that one variable (**norm_1**) was from a normal distribution and the second variable (**pois_1**) was from a Poisson distribution, we could test them by creating a ***normal quantile plot*** followed by a line that plots the theoretical quantiles from a normal distribution that had the same mean and sd as the variable that you provide it with.
+
+The initial visual results give us a sense of whether or not we need to transform the data or apply a non-parametric alternative to our parametric tests.
+
+```{r}
+# qqnorm plot
+
+
+
+
+# -------
+
+
+# qqline on top of the qqnorm
+
+```
+
+Note that we can also do this in ggplot2 (prettier but not necessary) with built in function, **stat_qq()** and **stat_qq_line()**. In order to keep ggplot consistent, you can also use the same functions but in 'geom' name format: **geom_qq()** and **geom_qq_line()**. You can see examples of this done [here](https://ggplot2.tidyverse.org/reference/geom_qq.html) in much fancier ways.
+
+```{r}
+#call library so that we can knit the document together later!
+#library(ggplot2)
+#re-simulate our normal distribution as a dataframe first since ggplot2 requires dataframes!
+# notice that it has the same number of samples, and the same mean and sd as rnorm_1 variable used throughout the rest of this rmd file. 
+
+
+```
+
+As an additional tangent (I am undisciplined with information that I hope you find useful!), although the *qqnorm()* is most often used due to the assumption of normality that most parametric tests require, **you can also compare two distributions to see if they are from the same underlying distribution (basically to determine if they are the same or not)** by using a slightly different Q-Q function called **qqplot()**. For instance, if we had two distributions and we knew that one of them followed a Poisson distribution with particular parameters, we could use **qqplot(distr_1,known_poisson_distr)** and see if a straight-ish line was produced. We don't use this function as much simply because, as mentioned, most of the time what we really need to know is if our sample follows a normal distribution. However, there are *some standard tests that require two distributions be similar (not necessarily Normally Distributed) in order to use the test,* so it does come up occasionally.
+
+```{r}
+# In the following cases, there are three comparisons using qqplot: 
+#1. Normal to Poisson distribution centered on same mean
+#qqnorm()
+
+#2. Normal distribution, mean =1, sd=1 compared to Normal Distribution with mean=0 sd=6
+
+
+# you can see from this last plot that qqplot doesn't warn us about when the variances aren't equal!! 
+```
+
+## 2. [Formal test of normality:]{.underline} **Shapiro.wilk test**.
+
+Now, we move on to quantitative tests of normality to confirm or refine our initial visual judgment.
+
+Shapiro-Wilks test **Shapiro.wilk tests the null hypothesis, Ho: x\~Normal distributed**. This means that if the shapiro.wilk test is rejected, then the distribution is *significantly different* from a Normal Distribution.
+
+```{r}
+# are these variables normally distributed? Let's hope norm_1, and norm_2 are and that pois_1 are not! 
+
+# this should not be normally distributed since it simulated from a POISSON distribution!
+
+
+```
+
+# 4. Worked Eexample: **Hypothesis Testing**
+
+-   **with the bumpus data set**
+
+-   We are going to run the Binomial test, using the hypothesis testing four step framework, on the bumpus data set (and also sneak in some refresher with a few side quests for how to do some exploratory data analysis).
+
+```{r}
+bumpus<-read.csv("/Users/presgd/MyRFiles/Intro_to_R/RData/bumpus.csv")
+glimpse(bumpus)
+```
+
+This is just a reminder: [Cheat sheets](https://rstudio.github.io/cheatsheets/data-visualization.pdf)!
+
+```{r}
+# you will want to start with some data visualization to see if there are any potentially interesting patterns with any of the variables....
+
+
+
+
+
+```
+
+We're quickly going to remind ourselves of apply functions next. Note that usually in this course, we will be dealing with data that are in dataframes (or tibbles) so we will usually use the **tappy** function. However, remember that there is a whole family of these functions that are specific to the data type and the intention. For instance, there is also a mapply() function for matrix data (like Titanic) and a vapply() function for vector data.
+
+Here we will do some more basic data exploration. Let's look at median values.
+
+```{r}
+
+
+# --------------
+# tapply!!!!!
+#---------------
+#what if we want to only consider the length by sex of the bird?
+
+
+
+#in the tidyverse world, we would want to use group_by to emulate the tapply function
+```
+
+Now we are going to use the *FOUR STEPS* of hypothesis testing to test for differences in proportion of survivors between males and females. **We are going to use two major tests for comparing proportions, The Binomial Test and The Proportion Test, and see if they give the same answers.**
+
+```{r}
+#how many females survived the storm?
+
+
+# how many females did not survive the storm?
+
+
+
+
+# how many males did not survive the storm?
+
+
+#let's make sure this adds up appropriately
+
+
+```
+
+The question that allows us to develop a **testable null hypothesis is** $H_{o}$**: were male and female birds equally likely to die during the storm?**
+
+We could answer this question using a chi squared contingency test (with the command: **chisq.test(x,p)**) but we are going to rephrase it so that we can answer it with a **binomial test.**
+
+### Step 1: formulate a test-able null hypothesis about the POPULATION
+
+(note: we are not testing the sample proportions, because we know them already. We are testing the population parameters about survivor proportion using the sample proportions. This is what statistics allows us to do!)
+
+1.  Ho: P(females surviving)=P(females killed in storm) = 0.5
+
+This means that even though our sample doesn't contain equal proportions of males and females, we think that the POPULATION that the samples were pulled from has equal proportions or males and females. So we are really asking: what is the probability of a female surviving, if we naively believed that males and females were equally likely to survive. Is our sampled data significantly different from 50%?
+
+### Step 2: choose our test based on the null distribution implied by the null hypothesis
+
+-   Binomial test (binom.test()). We should look up the test and ensure that our data fulfills the assumptions of the test (and that it is legitimate to use the test on our type of data)
+
+### Step 3: what alpha do we want?
+
+3.  alpha = 0.05
+
+### Step 4: Conclude
+
+-   any CI or additional information to include in our rejection or failure-to-reject the null hypothesis?
+
+There are a number of ways of re-phrasing the given null hypothesis in step 1 in such a way that you can use the built in functions. Remember that the table you have counted is:
+
+```         
+          Survived      Died      Total
+---------------------------------------
+Females       21         28        49
+Males         51         36        87
+---------------------------------------
+              72        64         136
+```
+
+-   Putting your data counts into a table format often helps you refine your problem! Because of the variables that are fed into the binom.test, you need to re-frame the question a tiny bit. Possibly the easiest way to test this null hypothesis is to pick females (or males) and then use how many survived (or died) and use the proportion of survivor (or non-survivors) from the other sex.
+
+```{r}
+# we run TWO tests on this hypothesis since we are also comparing and contrasting the results of the binomial test and the proportion test. 
+# -------------------
+#run the binomial test with the numbers that we collected above. We track the  female survivors.
+# We are going to test the null hypothesis that the proportion of female survivors are 50%. 
+# There are 21 females who survive and a total of 49 females were brought to Bumpus. 
+
+# if alpha=0.05
+
+# -----------------------
+#run the prop.test with the same numbers
+
+
+```
+
+The results of both of these tests suggest that females and males do not have a significant difference in their survival proportion. The p-value for both tests is higher than 0.05 and the 95% confidence interval of the proportion of female survivors does include the hypothesized null value of 0.50 (it ranges from 0.2911658 to 0.5770986).
+
+We could also ask about the null hypothesis from the male perspective instead of female:
+
+```{r}
+# we run TWO tests on this hypothesis since we are comparing and contrasting the 
+# binomial test and the proportion test. 
+# -------------------
+#run the binomial test with the numbers that we collected above. We track the 
+# male survivors. We are going to test the null hypothesis that the proportion of male survivors are 50%.  There are 51 males who survive and a total of 49 females were brought to Bumpus. 
+
+
+# -----------------------
+#run the prop.test with the same numbers
+
+
+```
+
+The male binomial and proportion tests suggest that we fail to reject the null hypothesis that male survivors are significantly different than 50%, just as the females did. This isn't actually directly testing that females and males have the same survival proportion but it did allow us to familiarize ourselves with the prop.test and binom.test which are important and commonly used tests. To directly test the probability of survival of females to males, we would want to use a contingency test (maybe with an accompanying mosaic plot?). In a possibly futile attempt to reduce the functions that I show you, I have included a brief example of the contingency test here:
+
+```{r}
+#convert data to a matrix
+
+#run a chisq.test on the matrix
+
+
+# let me show you that you can see each individual column for test results
+#print(chisq.results$)# I am relying on tab completion to show me the expected columns
+```
+
+As mentioned, our data is also odd in another way: only about 1/3 of the entire sample of birds collected were female. Maybe, we should also test if the original sample of females brought to Dr. Bumpus is 0.5 (since that is what we expect the proportion to be in the natural population of house sparrows) and therefore that something might be happening with that original selection/sample that is reflective of underlying selection pressures. Maybe more male sparrows were found and brought to Dr. Bumpus because they were bigger or had a characteristic that was different than the female sparrows? Since we expect that 50% of house sparrows in the entire population of house sparrows are female, you can rephrase the above question as: Why then were only 36% of our samples female? Is that a significant difference from the expected 50% of the sample that should be female?
+
+```{r}
+# test of the proportion of females sampled from a wider population where the females are 50%:
+
+
+#run the prop.test with the same numbers
+
+
+```
+
+hmmmm. It seems like the proportion of females in the original sample brought to Dr. Bumpus was significantly different from 50% so we reject the null hypothesis. I included possible interpretation of this difference above: maybe males were larger or had brighter coloration and were therefore easier to spot by the individuals who found them? I'm not sure we know the answer from this data set.
+
+### Certificate of Completion Questions
+
+> Remember to include the four steps of hypothesis testing. Recall the steps are:
+
+> 1.  Stating the Ho/Ha
+> 2.  Stating and running the appropriate test and listing any assumptions mentioned so far
+> 3.  Stating the alpha and how the p-value compared to this alpha
+> 4.  Concluding – do you reject or fail to reject your null hypothesis. These steps should be included in your markdown chunks not your R programming chunks. **Include interpretation for your answers.**
+
+#### Question 1:
+
+> Q1. Focus on only one trait in the Bumpus data set (you can choose whichever numeric trait appeals to you):
+>
+> -   **is there any indication of stabilizing selection on your chosen trait among the house sparrows?** To rephrase the previous question, more precisely:**Do the survivors of the storm have less variance than the non-surviving** You don't need to conduct a hypothesis test just provide graphical (hint: probably a boxplot) evidence and summary statistic evidence (mean, median etc).
+
+```{r}
+# Q1: Let's focus on wgt
+# Ho: male_mu_wgt=female_mu_wgt
+
+
+
+```
+
+> Q2. Is there is a difference in the variance of the trait between male and female sparrow? Again, you don't need to conduct a formal test just provide graphical (boxplot) evidence with the males and female values of the trait separated and summary statistic evidence (mean, median etc).
+
+```{r}
+
+
+
+```
+
+> Q3. Using the age categorical variable **test** whether adult male and juvenile (young) male birds were equally likely to have survived the storm. In this data set, adult/youth information is only provided for the male birds; a=adult and y = young/juvenile. This question is like the hypothesis question we worked through in module 4 except that it is important to recognize that, for this question, n = total male survival count (where n=trials) and is not total survival (which would include females). Provide the answer using both the **binom.test()** and the **prop.test()** function. Which of these two tests had a smaller p-value? Explain why that is the case.
+
+```{r}
+# Ho: P(adult male survivors)=P(juvenile male survivors)
+
+
+
+
+
+```
+
+Contingency Test Now we shall run a a$\chi^2$ contingency test and compare it to the above outcomes with the Bumpus data!
+
+-   I have emphasized that it is a good programming habit to get into to 'park' the results of statistical tests into an informatively-named variable. What we haven't really seen yet is that you should also use a name that has a .ending that reflects the test used to create the variable. That is a hard sentence to parse, isn't it? The command in the next cell is an example of what I mean: '**Exercise_Smoking.chi'** is the variable where the results of running the 'chisq.test(smoking_exercise)' are parked in memory. This will make your life - and the memory of your computer- much easier.
+
+We'll create a fast matrix of the bumpus survival dataset:
+
+```{r}
+bumpus_sex_survival<-matrix(c(21,51,28,36), ncol=2)
+class(bumpus_sex_survival)
+str(bumpus_sex_survival)
+```
+
+```{r, echo=FALSE}
+# the Ho in contingency tests is always the varaibles are independent of each other. 
+#park the chisq.test results into the bumpus_sex_survival.chi variable and then call it
+
+
+# Oooooh! look at that: in the bumpus_sex_survival.chi variable where we parked 
+# our results, we have 9 columns which we can look at individually. 
+
+#let's look at the expected column. This should be the numbers of individuals
+# in each category that is expected by the model: 
+
+#let's look at the observed column. This is the number of individuals in 
+# each category that is actually observed in our data set: 
+
+#when you conduct a $\chi^2$ contingency test by hand, you are usually trying 
+# to find the difference between the observed count and the expected column so
+# this could be useful on other homework assignments!
+```
+
+### Question 2
+
+We explored multiple ways to answer the following question so use any two methods you want to get the answer: If you flipped a coin 1000 times, what is the probability of having 84 or fewer heads? How do your two answers compare (for instance, are they exactly the same? Are they different? If so, why are they different?)
+
+```{r}
+
+
+
+```
+
+### Question 3
+
+Most animals are bilaterally symmetric, and among those that are there are very few systematic differences where the left side is larger or small than the right side. In part, this basic symmetry seems to be common because it is difficult to evolve asymmetry, but also for most things a symmetric condition seems to be most functional. In some cases, however, asymmetry may be lead to higher fitness. One such case is among snail-eating snakes. Snails are themselves asymmetrical (because they tend to coil to the right, rather than to the left), and for snakes who eat snails, it turns out to be more useful to have more teeth on the right side of the head, because the snakes grip the snail most effectively on the right to remove them from their shells. Given this, is asymmetry common among snail-eating snakes? The data file "R2_AsymmetricalSnakes.csv" contains data on the asymmetry score (right side tooth count minus left side tooth count) for twelve species of snakes that eat snails. Follow the general visual procedure outlined in Module_4AB and answer the above question using the qqnorm and qqline functions. Use a formal test to see if the data set is normally distributed. Could you run a t-test on this data? Explain why or why not.
+
+```{r}
+snakes <- read.csv("/Users/presgd/MyRFiles/Intro_to_R/RData/R2_AsymmetricalSnakes.csv")
+glimpse(snakes)
+# first: here are the visual plots of asymmetry
+
+
+#Here is the quantitative hypothesis test for normality
+
+```
+
+## 
