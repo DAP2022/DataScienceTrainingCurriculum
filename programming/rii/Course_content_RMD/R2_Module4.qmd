@@ -1,0 +1,813 @@
+---
+title: "R2_Module4_ANSWERS"
+format: docx
+editor: visual
+---
+
+# Review:
+
+-   We investigated the Normal Distribution (and Binomial Distribution)
+
+-   We learned about the pipeline for testing normality:
+
+    -   Visual assessment (histograms/boxplots/QQnorm plots) –\> Shapiro-Wilks test
+
+    -   Most of our powerful statistical tests are based on the assumption of a normally distributed variable
+
+        -   Some are robust to this assumption (but only to a certain extent)
+
+-   We refreshed the Hypothesis testing pipeline:
+
+    -   Null hypothesis–\> identifying test and assumptions –\> alpha, p-value –\> Conclusion and Confidence interval and interpretation
+    -   Remember: There is a [review on GitHub](https://github.com/DAP2022/DataScienceTrainingCurriculum/blob/main/programming/rii/Course_content_RMD/Statistics_Review_R2.pdf) that recycles some slides from Biostatistics I and Biostatistics II.
+
+    # Preamble:
+
+    -   Another important assumption: **equal variances**
+
+    -   **t-tests:**
+
+        -   one sample t-test, paired t-test, two sample t-tests
+
+        -   assumptions of each one, and an example
+
+    -   **Non-parametric alternatives:**
+
+        -   What happens when your assumptions are not met?
+        -   Pipeline for this scenario:
+            -   ignore–\> transform –\> **NonParametric Alternative** –\> Simulation
+        -   Kaplan-Meier Survival Curves (assumption of complete data is violated).
+
+    -   **ROC (Receiver Operator Curves)** and AUC (Area Under Curve) for multiple testing. These will require that we understand sensitivity and specificity.
+
+    -   **(extra) Fisher's Exact test**
+
+        ------------------------------------------------------------------------
+
+    # 1. Variance Homogeneity
+
+    -   Are the variances equal (or, at least similar enough?): The **var.test()**
+
+    -   variance test (Note: each population MUST be normally distributed to use this test). You can use the same visual pipeline as we used to test for Normality. However, it is also important to use a formal quantitative test.
+
+    -   For now, we will focus on *var.test* but there is another test called *bartlett.test* that we will use when we learn about ANOVA (we need linear models to use it and we'll learn about those in Module 5)
+
+    -   I have pasted this from Module 3 - it is the four different simulated distributions:
+
+    ```{r}
+    #similar to the dbinom(), pbinom(), qbinom(), and rbinom() but for the normal distribution and the Poisson distribution: 
+    # --------------------------------- 
+    # normal distribution with 100 observations, mean of 1 and standard deviation of 1 
+    norm_1<-rnorm(100,1,1) 
+    # we can visualize this with a histogram 
+    hist(norm_1,main="Normal distr'n with mean=1 and sd=1",col="Red") 
+    # Poisson distribution with lamda = 1 
+    pois_1<-rpois(100,1) 
+    # the histograms of these two distributions should convince you that these two distributions 
+    # are VERY different 
+    hist(pois_1,main="Poisson distr'n with lamda = 1",col="Blue") 
+    # ------------------- 
+    # Now one companion distribution that is normally distributed, but has very different sd and variance (not equal to 1) 
+    norm_2<-rnorm(100,0,6) 
+    #visual assessments 
+    hist(norm_2,main="Normal Distribution with large sd",col="Purple") 
+    # Now let's peek at a boxplot 
+    boxplot(norm_1, norm_2,pois_1)
+    ```
+
+    ```{r}
+    # let's have a look at the standard deviations of the three previously manufactored distributions:
+     #sd=1, mean=1
+     # sd=mean=lambda=1
+     #sd=6, mean=0
+    # for fun, I have played with the conf.level and changed it from it's
+    # default of 0.95 to 0.99. 
+    # You will notice that you are now providing TWO arguments in the var.test 
+    # function since you are comparing the variances of TWO samples. I have
+    # compared norm_1, pois_1, and norm_2 below:  Corresponds to an alpha=0.01
+     #alpha=0.01 ; confidence level=0.95, alpha=0.05
+    ```
+
+    # 2. The Student's t test: 
+
+    -   an approximation of Normal/Z test (z-scores) fueled by Guinness beer.
+
+    -   *t tests!* are used to test if a population mean is equal to a particular value (one sample t test), to the mean of a different population (two sample t test) or if the difference between two means is equal to a particular value. All three of these tests use the same R command but they take different arguments in the same function. You can read up on the Student's t test here: <https://en.wikipedia.org/wiki/Student%27s_t-test>
+
+        ## 1. We will start with the [**one sample t test**]{.underline}:
+
+    $Ho: \mu_{moose}= 423 kg$ $Ha: \mu_{moose} \neq 423 kg$
+
+    ```{r}
+    # one sample t tests: moose weights!
+    # statistical test is the one sample t test because we want to know if the population of all moose is equal to 423kg based on this sampl 
+    weights_moose<-c(401,380,393,450,420,435,426,397,415)
+    # 1. we usually begin with some visual assessment
+    # with only n=9, we don't expect our histogram to give us much information
+
+    # we could also use the density function
+
+    # it is mound shaped so it is likely okay. We could do further testing with
+    # qqnorm and qqline plots
+
+
+    # let's see what the formal test tells us. We don't really need normality for this test, but we do need mound shaped and symmetric so the density graph was useful!
+
+    # let's check in and see what the mean is for this subset of 9 moose.
+
+    ```
+
+    ```{r}
+    # there don't appear to be any serious violations so let's continue with the t test
+
+
+    #var.equal=TRUE isn't a required argument for one sample t-tests because, well, 
+    # there's only one sample so there are not two samples to compare variance. I am 
+    # just pointing out that this argument exists since you will need it for two sample
+    # t-tests. An additional argument that is part of the t.test() is one that specifies
+    # whether or not the t test is a one sided or two sided test. That argument can
+    # be one of three things: 
+    # alternative = c("two.sided", "less", "greater")
+    # If we want to use the alternate hypothesis that the mean of our sample of
+    # moose is less than the mean of the moose population, mu=423, we would use the following command: 
+
+
+    ```
+
+    ### 2. Moving on to the [***two sample t test***]{.underline}: 
+
+    six individuals are given a treatment and 6 are given a placebo and we want to test whether or not there is a true difference between them: $H_o: \mu_1 - \mu_2 = 0$ $H_A: \mu_1 - \mu_2 \neq 0$ The assumption for the two sample t test is that the variances are reasonably equal (in fact, the t test can absorb up a difference of up to 3X the sd). If the variances are dramatically different, you should use the default Welch's approximate t-test to buffer against unequal variances.
+
+    ```{r}
+    Drug<-c(101,110,103,93,99,104)
+    Placebo<-c(91,87,99,77,88,91)
+    # we should test these variables to see if they are both from normal distributions
+    # the par function that allows you to, for instance, put both graphs into one window
+
+    # density function
+
+
+    # good old boxplot to get an instant visual of the median and variation
+
+
+    # compare the means of the Drug and Placebo groups
+
+
+    # overlay the means onto the last graph plotted - in this case the boxplot - with
+    # the points function. Boxplots show medians but not means so we are just adding the means to this plot.  
+
+    ```
+
+    ```{r}
+    # standard deviations comparison
+
+    ```
+
+    ```{r}
+    # let's see if this works (we will see the var.test to test for equal variances below)
+
+
+    # when standard deviations are really different, we need to use a welch's 
+    # approximate t-test and here we are comparing the results from welsh to the
+    # results from a regular t test. 
+
+
+    # welch's t test is the default of the two sided t test, and assumes that variances are unequal. This is a conservative test
+    # which is why it is the default. 
+    ```
+
+    ### 3. Lastly, the [**paired t test**]{.underline} 
+
+    -   also uses the t.test function but with the argument **paired=TRUE** (the default argument is FALSE).
+
+    Do cars get better gas mileage when they are filled with premium gas versus when they are filled with regular gas? We can't use the regular t test because the assumption of the *independence of data points is violated* since we are testing each car twice (with regular gas and with premium gas) which means that by specifying the argument paired=TRUE in the t.test(), **R** modifies the $\alpha$ so that it doesn't become inflated. $H_o: \mu_{premium} - \mu_{regular} = 0$ $H_A: \mu_{premium} - \mu_{regular} \neq 0$
+
+    ```{r}
+    Regular<-c(16,20,21,22,23,22,27,25,27,28)
+    Premium<-c(19,22,24,24,25,25,26,26,28,32)
+    # by setting paired to be TRUE, you get a paired t-test instead of a t-test. 
+
+
+    ```
+
+    ### Certificate of Completion for Module 4
+
+    > Q1. It is discovered that the data discussed in the recitation were all male mooses (let's not discuss how this was ascertained). Female mooses from the same region, the north region, were all weighed: 301, 320, 382, 401, 349, 318, 342 and 369. Do northern female mooses weight less than their male counterparts? (include ALL four hypothesis testing steps and code with answer).
+
+    $Ho: \mu_{female} = \mu_{male}$ A two sample t test (assumptions: independently sampled, normally distributed OR similar shaped distributions, similar variances)
+
+    ```{r}
+    female_moose_weights<-c(301, 320, 382, 401, 349, 318, 342, 369)
+    male_moose_weights<-c(401,380,393,450,420,435,426,397,415)
+
+    ```
+
+    ### 4. Power of the t test!
+
+    We can use this to determine the $n_{i}$ that we need for each group we are testing in a two sample t-test or the $n$ in a paired t test. The usual trade off is that to pick up a smaller true difference between two means, we have to use a lot more data. How much more data? Well, **that will depend on the difference that we want to detect.** For instance, to pick up a difference of 0.2 between the gas mileage with premium versus regular gas, what *n* would need for our paired t test to give us a power of 0.9? We have to input the sd that we are using:
+
+    \*\* Remember that the variances for the different t tests (one sample, two sample, welch's approx and paired) are all calculated slightly differently. You must use the correct stand deviation or, as you can see with the examples below, you will get incorrect results!\*\*
+
+    ```{r}
+    # calculate the sd of the data set where Regular-Premium since we are trying to test the difference between the two fuels
+
+
+    # pair is defined
+
+
+    # let's see if the differences between Regular-Premium are normally distributed
+    # since that is the assumption of the paired t-test
+
+    # run the power t test with the appropriate sd
+
+    # how does this compare to if you forget to use the appropriate sd and 
+    # just use the default value of 1?
+
+    ```
+
+    Let's see what happens with a power test for a two sample t test:
+
+    First we need to calculate the pooled sd (or we can test to see if the variances are exactly the same). As in the case above, we compare the calculations for n under the circumstance where we use the correct sd value and under the default argument of the function to see how wildly different the results are!
+
+    ```{r}
+    # sd: 
+
+
+
+
+    # pooled sd when each group has n=6. df=n-1=5 We do this by hand. There might be an easier 
+    # built-in way to do it but I haven't found it. If you do, as always, let me know!
+
+
+    # run the power t test with the appropriate pooled sd
+
+    # how does this compare to if you forget to use the appropriate sd 
+    # and just use the default value of 1?
+
+    ```
+
+    #### Certificate of Completion for Module 4:
+
+    > Q2. The data file "R2_Sleep contains information on 10 individuals who took two different sleep aids. Each row represents a different individual, measured in each of the two ways. Do both measurements give the same result? (include ALL four hypothesis testing steps and code with answer)
+
+    Step 1: $Ho: \mu_{A}=\mu_{B}$ $Ha:\mu_{A}\neq\ \mu_{B}$
+
+    Step 2: The test itself and any assumptions Looking at the data set, we can see you are recycling the same 10 individuals with both medications so they are not independently, and randomly chosen. Therefore, you should use paired t test. Assumptions: difference between A and B is normally distributed.
+
+    ```{r}
+    # read in dataset
+    sleep<-read.csv("/Users/presgd/MyRFiles/Intro_to_R/RData/R2_sleep.csv")
+    glimpse(sleep)
+    ```
+
+    ```{r}
+
+
+
+
+
+    # so that's bad news - the paired differences are not normally distributed according to shapiro.
+    # but we will use it anyway and then see what happens with transformations. 
+
+    ```
+
+    >  If we wanted to pick up a difference of 1.0 between Drug A and Drug B and we wanted a power level of 0.90, what sample size would we need?
+
+    ```{r}
+
+
+
+    ```
+
+    # 3. Non-parametric alternative to the t test
+
+    ## Introduction:
+
+    We will learn about some *non-parametric* - but useful!- tests such as Welch's approximate t-test (used when two groups have vastly difference variances), Wilcoxon test (the non-parametric alternative to a paired t test or a Mann Whitney U test, depending on how the variables are inputted into the formula), simulations, and Kaplan-Meier estimators and survival curves.
+
+    The most important questions about your data set: Is it normally distributed and, if there is more than one sample, are the variances (really most tests rely on equal-ish standard deviations but statistics tends to use "homogeneity of variances" a lot and equal variances can be considered the same as equal standard deviation) equal? As working researchers, you will inevitably create your own pipeline which you will fine tune as necessary.
+
+    **In general, a common pipeline would be:**
+
+    \*\* Visual assessment --\> Formal tests of assumptions (usually based on the visual assessment) --\> Formal tests that rely on the assumptions (ie. t-tests and other parametric tests) or Formal tests that don't rely on the assumptions (ie. Welch's approximate t-test, Wilcoxon test, simulation, or Kaplan-Meier estimator and curve)\*\*
+
+    1.  You can use online simulations to explore to what extent we can violate the assumptions of the t test and still **appropriately** use the *t test* to analyze data. (for instance,[this](http://onlinestatbook.com/stat_sim/sampling_dist/index.html) helps you see what normally distributed samples look like).
+        -   ***Appropriately using a test*** **in statistics usually translates to: "this test *actually* gives us the** $\alpha$ **value that we have stated rather than overestimating or underestimating Type I error thereby leading our audience astray".**
+    2.  Are the assumptions of our test met? For Student's t test this would include: A. normal distribution-ish (mound shaped and symmetrical) B. equal variances-ish (a bit of buffering for variances that are within 3X of one another) C. and independent data points.
+
+    If any of these assumptions are not met, you must use do one of the following:
+
+    A. Transform the dataset to force it to be normal and meet the variance requirements.
+
+    B. Different tests or your conclusions will not be accurate.
+
+    C. Simulate the p-value using a model.
+
+    D. Use a *NonParametric* version of the test. You will give up power to do so, but your answer will be accurate, instead of inaccurate!
+
+    ### Welch's approximate t-test:
+
+    Welch's t-test is most appropriate if we know that the standard deviations are \>3. However, Welch's approx t-test is the default output of the t.test() and you need to explicitly provide the argument var.equal=TRUE in order to not use it! Note the difference in the degrees of freedom in the output and think about why that is the case.
+
+    ```{r}
+    # let's compare what happens when we use welch's approx t test, since 
+    # variances are different to what results from just using a regular t-test
+    # and the norm_2 distribution has a sd that is 6 times the sd
+    # of the norm_1 distribution.
+    #norm_1: mean=1, sd=1
+    #norm_2: mean=0, sd=6
+
+
+    # call them! ESPECIALLY LOOK AT THE DEGREES OF FREEDOM!!
+
+
+    # Now let's see what happens when we compare two distributions that have
+    # similar shapes and similar variances:norm_1 and I am creating norm_3 which has a mean of 0 and a sd of 1:
+    ```
+
+    ```{r}
+    # third norm_3: mean=0,sd=1
+
+
+
+
+
+
+    ```
+
+    ```{r}
+    # let's see how significant the test is between two completely different
+    # distributions which have the same mean (1) and sd (1). 
+    # Variable q (normal distribution) and variable y (poisson distribution)  
+
+
+
+    # pretty robust even though the distributions are different, eh? 
+    # Althought the distributions aren't actually hugely different: 
+
+
+
+    ```
+
+    ### Can we 'transform away' violations so that we can revert to a parametric test?
+
+    Let's see if we can 'transform away' any violations from normality. I have little faith that transformations will usually work - they are often effort that ends up wasted, but you still don't want to skip this part of the pipeline because it sometimes DOES work and then you are able to use the much more powerful parametric test! So I am a practical pessimist when it comes to transformations. Understand them and learn how to use them anyway!
+
+    A common transformation with biological data is the log transformation. This is because biological data is often skewed and log transformations tend to help that type of data become more normally distributed:
+
+    ```{r}
+    #log transformation; log()
+
+
+    #let's see visually if this has helped at all.Note that it should still be
+    # pretty normally distributed because the variable x is normally distributed 
+
+
+
+    # do the same thing but with the Poisson distributed variable y
+
+
+    # Oh. Wait - why isn't this working? Let's remember what happens when you take a log(0)...
+
+    # ah... so transformation won't work with certain distributions....
+    # I have hashed the following out. Why don't you think they work? 
+    #qqnorm(transformed_poisson)
+    #qqline(transformed_poisson)
+    ```
+
+    ## Wilcox test:
+
+    Transformation let us down (it often does)! We will need to use a non-parametric test. The Wilcox-test can be used. Remember: Depending on how the arguments of the function are inputted, the Wilcoxon signed rank test can be equivalent to a non-parametric paired t-test OR to a Mann Whitney U test. You can read more about this in the help pages or Google (of course).
+
+    *IF you had normally distributed data, the power lost by substituting a Wilcox test is 80% of the equivalent t test*. HOWEVER, \*\* YOU CANNOT LOSE POWER THAT YOU NEVER HAD\*\* and it is inappropriate to use a parametric test when the assumptions are violated.
+
+    In the example below, this function is equivalent to the MWU test because two independent arguments are inputted and separated by a comma. You would need to download additional libraries that conduct simulations for you to get the power of the wilcox test. I decided that this course was full enough and did not want to add more to it. You can look up the package MKpower for more information. A short worked example is given below a *Extra* material. Here is the package description: <https://cran.r-project.org/web/packages/MKpower/vignettes/MKpower.html>
+
+    Let's compare the answers from wilcox.test to the results from the t.test:
+
+    ```{r}
+    # Mann Whitney test is performed which is the non-parametric alternative 
+    # to the two sample t test. These are both normally distributed, but have vastly different sd. 
+    # A Welch's approximate t test would be best here. This is for illustration purposes only!
+
+     # since the var.equal argument in t.test is set to FALSE, this gives Welch's already
+
+
+
+    #compare the normal and the poisson distributed variables
+    #Second_Comparison_WC<-wilcox.test(norm_1,pois_1)
+    #Second_Comparison_TT<-t.test(norm_1,pois_1)
+    #print("Let's compare the output of the WC to the TT")
+    #print(Second_Comparison_WC)
+    #print(Second_Comparison_TT)
+    # non-parametric alternative,wilcoxon signed rank test, to paired t test
+    #Third_Comparison_WC<-wilcox.test(norm_1,pois_1,paired=TRUE)
+    #Third_Comparison_TT<-t.test(norm_1,pois_1,paired=TRUE)
+    #print("Let's compare the output of the WC to the TT")
+    #print(Third_Comparison_WC)
+    #print(Third_Comparison_TT)
+    ```
+
+    EXTRA Material: Using the MKpower package example:
+
+    ```{r}
+    #First comparison was for two distributions with different means and different sd: norm_1,norm_2
+    n1x <- function(n) rnorm(n, mean = 1, sd = 1) 
+    n2y <- function(n) rnorm(n, mean = 0, sd = 6) 
+    ## two-sample
+    sim.ssize.wilcox.test(rx = n1x, ry = n2y, n.max = 1000, iter = 1000)
+    #emp.power is the empirical power that is calculated for each 'n'
+    # Second comparison was for two distributions: norm_1,pois_1
+    n1x <- function(n) rnorm(n, mean = 1, sd = 1) 
+    p1y <- function(n) rpois(n, lambda=1) 
+    ## two-sample
+    sim.ssize.wilcox.test(rx = n1x, ry = p1y, n.max = 1000, iter = 1000)
+     
+    ```
+
+    ## EXTRA: Simulations
+
+    Are we living in a simulation? Maybe, but we don't know. As we figure it out, we can learn how to program simulations.
+
+    If we can't use a t.test, we can't transform away any deviations from normality, and the non-parametric version of the test is not satisfying for whatever reason, we have one tool left: Let's try some simulations. For this, we'll use the **rbeta** function. The beta distribution, generally, is a catch-all distribution that can produce other distributions (Binomial, normal etc) depending on the two parameters: $\alpha$ and $\beta$ fed into it. It is an important distribution in computational biology so I wanted the opportunity to show it to you!
+
+    This is another example that I have taken from the [count bayesie website](https://www.countbayesie.com/blog/2015/4/25/bayesian-ab-testing)[.](https://www.countbayesie.com/blog/2015/4/25/bayesian-ab-testing).){.uri} I can't recommend his website/blog and his book enough as an accessible introduction to the joys of programming and probability! This example deals with a common procedure called an A/B test which determines which of two options is more popular (in the example given, count bayesie is testing two styles of website but the A/B test is generalizable to other contexts. The A/B test is used EVERYWHERE...):
+
+    ```{r}
+    runs<-100000
+    # page A converted 20 individuals and 100 did not convert after exposure to page type A
+    a.samples<-rbeta(runs,20,100)
+    # page b 38 converted and 110 did not convert
+    b.samples<-rbeta(runs,38,110)
+    # we want to know the difference between A and B in convincing people to sign
+    # up but this difference isn't normally distributed.This would be equivalent 
+    # to a one sided t-test where Ho: a-b=0 and Ha: a>b
+    mc.p.value<-sum(a.samples>b.samples)/runs
+    mc.p.value
+    # let's see what this looks like
+    hist(b.samples/a.samples)
+    ```
+
+    we can probably run the above as a t.test as well just to have a comparison (note that we need to specify greater as an argument since the alternative hypothesis is one sided!), [but the conditions for a t test aren't met so this isn't valid anyway]{.underline}:
+
+    ```{r}
+    t.test(a.samples, b.samples,var.equal=TRUE, alternative="greater")
+    ```
+
+    Back to regular notebook:
+
+    -----------------------
+
+    # 4. ROC/AUC 
+
+    -   Receiver-Operator Curve
+
+    -   Area-Under-Curve
+
+    -   used in evaluating multiple hypotheses
+
+    -   you need to really understand sensitivity and specificity
+
+    ### ROC (Receiver Operator Curves) and AUC (Area Under the Curve):
+
+    ROC are efficient ways to assess **the fit of many models simultaneously under specific criteria where the key summaries of the model are visualized in one place.** Basically, ROC should help you determine which models fit your data better and [allow you to choose the best model]{.underline}. ROC can be used for ANY **binary classifier**, where there are TWO outcomes (logistic regression, Odds Ratio or other model where there are TWO outcomes). Accompanying the ROC is usually the AUC (area under the curve) value which provides a single number summarizing the performance of a particular model. You can graph the ROC and determine the AUC – and the corresponding confidence interval – for each model under consideration to decide which model is superior to another model.
+
+    The drawback of ROC curves is, of course, that some of these key summaries can be challenging to understand initially. Take a moment to understand the following important terms, TP (True Positive), TN (True Negative), FP (False Positive), FN (False Negative). Wikipedia has clear resources that summaries what each of these means and gives several example tables of them. Since ROC and AUC (Area under Curve) are used in fields ranging from engineering, precision medicine, and genomics, I highly recommend that you understand crucial basic terms such as sensitivity, specificity, type I, type II errors, and Power and, of course, the relationships between them all! https://en.wikipedia.org/wiki/Receiver_operating_characteristic
+
+    ```         
+                           Disease                     No Disease      
+    ---------------------------------------------------------------
+    Positive Test       True Positive(TP)             False Positive (FP)       
+    Negative Test       False Negative (FN)           True Negative (TN)
+    ---------------------------------------------------------------
+    ```
+
+    Sensitivity (same as Power): $True Positive Rate = P(+ test|Disease) = count TP/(count TP+ count FN)$
+
+    Type I error: $False Positive Rate =  P(+test| NO Disease)= count FP/(count FP + count TN)$
+
+    Specificity: $True Negative Rate = P(- test| No Disease)= count TN/(count FP +count TN)$
+
+    Accuracy: $count TP + count TN/(total count in entire population) = (countTP + countTN)/(count TP+countFP+countTN+countFN)$
+
+    Prevalence: True \# of individuals with condition in a population (usually estimated from population surveys)
+
+    In genomics, we increasingly see ROC/AUC when considering if a particular genetic variant (often a SNP, but also other variants) is associated with a disease. Note: this is also done with Odds Ratio tests. However, AUROC (this is another way we see ROC/AUC written) gives a way to compare "oranges" to "oranges" since it is often used for other (non-DNA variant) biomarkers. This means that over the last 10 years, AUROC has been increasingly used alongside Odds Ratio and Hazard scores. Besides the possibility of association of the SNP with the disease, we want to know HOW the variant contributes to the disease, that is: Does the variant (or, really, a linked causative nucleotide) contribute in a recessive, dominant, or co-Dominant, additive etc. manner?
+
+    As a side-note/warning: ROC curves tell us how well we can rank true variants higher than false ones. However, when true positives are rare, a great ROC can still hide poor precision. That’s why genomics often needs PR (precision-recall) curves or calibration plots alongside AUC.
+
+    ### pROC library/package
+
+    You will find a summary of the pROC library here: https://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-12-77 and the help pdf here: https://cran.r-project.org/web/packages/pROC/pROC.pdf
+
+    We are going to use the older and more established library, pROC.This library comes with a dataset called aSAH (Aneurysmal subarachnoid Hemorrhage Data). This data set, pulled from a paper (https://link.springer.com/article/10.1007/s00134-009-1641-y), contains 113 observations (patients) on 7 variables:
+
+    1.  gos6 (Glasgow score at 6 months)
+
+    2.  WFNS (World Federation of Neurological Surgeons) score when patient was admitted
+
+    3.  Gender
+
+    4.  Age
+
+    5.  s100b - calcium binding protein which is a biomarker the blood brain barrier (since it is glial specific) and Central Nervous System. Elevated levels suggest Nervous System damage.
+
+    6.  NDKA - Nucleoside Diphosphate Kinase A. This is another brain specific biomarker/enzyme
+
+    7.  outcome: good or poor
+
+    Stop! You will need to install the pROC library using the "Packages" tab in the fourth quadrant (lower right) of your RStudio. You can then load the library and check out the dataset aSAH.
+
+    ```{r}
+    library(pROC)
+    #let's peek at the data set embedded in this library
+    head(aSAH)
+    ```
+
+    We will now work through an example using Subarachnoid Hemorrhage Data.
+
+    ```{r}
+    # we are creating roc objects which result from the function 'roc' from pROC # library. 
+    # we want the outcome - presumably the dependent variable- along with one of the 
+    # 6 factors that were previously identified as impacting the outcome.
+    # remember that the $ means we are picking a particular column from the aSAH dataframe
+    # the x argument is the outcome (response) which we think is impacted by whatever
+    # column we put in the y axis (predictor). So in rocobjs100b, we think that the outcome
+    # is impacted by the level of s100b in the patients blood. 
+
+
+    ```
+
+    Now we will use ggplot2 to graph multiple curves simultaneously. Make sure ggplot2 is loaded!
+
+    ```{r}
+    #library(ggplot2)
+    # note: you want to use the argument legacy.axes=TRUE. 
+    # This will ensure that the y axis is "1-specificity" which is what we want
+    # for ROC curves!
+
+    # add labels to x and y axis and a grey dashed line that gives a y=x line
+    # this y=x line is where the model is better than random 
+
+
+    ```
+
+    We can now put TWO (or more) ROC curves on the same graph.
+
+    ```{r}
+    #bundle THREE ROC objects, rocobjs100b, rocobjwfns and a third object that is 
+    # created within this function, ndka = rock(aSAH$outcome, aSAH$ndka)
+
+
+
+
+    ```
+
+    ```{r}
+
+
+    ```
+
+    Since the AUC value is between 0.5 and 1, these would both be considered good classifiers, but wfns would be preferred between the two.
+
+    [**CoC Question 3**]{.underline}
+
+    ROC and AUC: Repeat the example that was worked in your Module 4 Notebook, but this time create **one graph that includes all of: gos6, WFNS, Age, s100b, and NDKA**. Calculate the AUC for these factors. Based on the AUC value, which of these factors are good classifiers for outcome after aSAH?
+
+    # 5. Kaplan-Meier Estimator and Survival Curve
+
+    -   There are a number of useful distributions that describe "time until a successful event", including common distributions such as the geometric distribution and the exponential distribution. These distributions are effective at explaining many biological problems and processes as long as their assumptions are met.
+
+    -   In health data, we often are interested in estimating the *'time until death'*. It is, admittedly, a bit morbid to label 'death' as a 'success', but it is unambiguous state and so that is the convention. With many circumstances, researchers end up with so-called **'right censored' datasets**. That is, many individuals join a study, but then some drop out and their information is no longer collected (that is why these are called "right" censored, since the data is thought to start on the left side of the page and time is usually pointing 'right' along the horizontal axis of the page). **There is a particular statistical challenge that arises when individual data points in a dataset are incomplete. If these censored data points are excluded in the data analysis, the resulting estimator is biased, and that is a *HUGE, MASSIVE* problem**. However, our conventional parametric distributions and estimators rely on assumptions that are not met when data is incomplete.
+
+    -   So: what do we do?
+
+    -   Enter the Kaplan-Meier estimator. It is a popular method (including in medicine) to describe the frequency of survival in particular time frames after a treatment is applied. That is, after chemotherapy to treat a particular type of cancer, a patient might have an X% of survival after Y months. The KM estimator is used more widely in biology than just in describing survival rates after cancer treatment, but survival after medical treatment is often where individuals first encounter the concept! You[have almost certainly seen a KM curve, even if you didn't realize that was what it was called. You can get an overview of KM on Wikipedia](https://en.wikipedia.org/wiki/Kaplan–Meier_estimator).
+
+    -   We will need to download some libraries - with built in data sets - to see how to create a Kaplan-Meier Curve. You will also want to call these packages to ensure that your rmd file knits properly.
+
+    I have taken the following example (with some slight modifications) from Emily Zabor's excellent distillation of KM curves in R that can be found [here](https://www.emilyzabor.com/tutorials/survival_analysis_in_r_tutorial.html#Estimating_survival_curves_with_the_Kaplan-Meier_method).
+
+    ```{r,echo=FALSE}
+    # load packages
+    library(knitr)
+    library(tidyverse)
+    library(survival)
+    library(survminer)
+    # Now that we have loaded these libraries, we can set output options <---- this is useful!
+    opts_chunk$set(fig.width = 5, fig.height = 4)
+    opts_knit$set(warning = FALSE,message = FALSE)
+    ```
+
+    Following Zabar's example, we will use the 'lung' dataset that is built-in to the survival package. In this dataset, males are assigned 1, females are 2. Under the Status columns, the Censored individuals are given 1 and dead individuals are assigned the number 2.
+
+    ```{r}
+    #using graphing that we have already seen, let's do a quick histogram. 
+    hist(lung$time, xlab="Length of Survival Time", main="Histogram of Survival Time \n in Lung cancer Patients")
+
+    # now for something much fancier (that uses ggplot2, just because...)
+    ggplot(lung, aes(x = time, fill = factor(status))) +
+      geom_histogram(bins = 25, alpha = 0.6, position = "identity") +
+      scale_fill_manual(values = c("blue", "red"), labels = c("Censored", "Dead")) +
+      labs(x = "Days",y = "Count")
+    ```
+
+    Here is a quote from the Zabar's example: "The Kaplan-Meier method is the most common way to estimate survival times and probabilities. It is a non-parametric approach that results in a step function, where there is a step down each time an event occurs.
+
+    -   The `Surv` function from the `survival` package creates a survival object for use as the response variable in a model formula. There will be one entry for each subject that is the survival time, which is followed by a `+` if the subject was censored. Let's look at the first 10 observations:""
+
+    ```{r survfunc}
+    Surv(lung$time, lung$status)[1:10]# 
+    # we can also peek at the columns in the lung dataset. You can confirm that the censored
+    # data appears in the dataframe... since the time column is adjacent to the status column
+    # THIS IS ALMOST ALWAYS A GOOD PLACE TO START YOUR ANALYSIS!
+    lung[1:10,]
+    ```
+
+    Now, we will take this object, and we will use the survfit function to create the survival curve. (here is the more information: <https://www.rdocumentation.org/packages/survival/versions/2.11-4/topics/survfit)>
+
+    ```{r,echo=FALSE}
+    # we fit the survival curve for the entire 'Surv' object that we created in the R chunk
+    # above and we will fit it on x="1". WHY DO YOU USE 1? This is the convention for 
+    # finding the expected survival for the entire group and not a subset. 
+    f1 <- survfit(Surv(time, status) ~ 1, data = lung)
+    #peek at the names/columns in this object --- we'll do this quite a bit when we discuss ANOVA and correlation/regression
+    f1
+    # we can see that we have 228 patients being tracked (originally) and 165 individuals were followed for the entire length of the study (63 individuals were censored). 
+    # we can also see that we have 310 days of median survival for the uncensored individuals and even the upper and lower bounds on the confidence interval!
+    print("--------------------Now let's use names() function-------------------------------")
+    names(f1)
+    print("-----------------Now let's use summary() function-------------------------------")
+    #summary(f1)
+    ```
+
+    Some key components of this 'survfit' object that will be used to create survival curves include:
+
+    -   time, which contains the start and endpoints of each time interval
+    -   surv, which contains the survival probability corresponding to each time
+
+    Great. Now let's plot this using just Base R:
+
+    ```{r}
+
+
+
+    ```
+
+    Zabar has a nice summary:
+
+    ```         
+    * The default plot in base R shows the step function (solid line) with associated confidence intervals (dotted lines)
+    * Horizontal lines represent survival duration for the interval
+    * An interval is terminated by an event
+    * The height of vertical lines show the change in cumulative probability
+    * Censored observations, indicated by tick marks, reduce the cumulative survival between intervals. (Note the tick marks for censored patients are not shown by default, but could be added using the option mark.time = TRUE)
+    ```
+
+    But we can make it even more attractive by using a ggplot-derived function. Zabar suggests:
+
+    ```         
+    Alternatively, the `ggsurvplot` function from the survminer package is built on ggplot2, and can be used to create Kaplan-Meier plots. Checkout the [cheatsheet](https://rpkgs.datanovia.com/survminer/survminer_cheatsheet.pdf) for the survminer package.
+    ```
+
+    ```{r}
+
+
+
+
+    ```
+
+    -   The default plot using ggsurvplot shows the step function (solid line) with associated confidence bands (shaded area).
+    -   The tick marks for censored patients are shown by default, somewhat obscuring the line itself in this example, and could be supressed using the option `censor = FALSE`
+
+    Here are a few extra fancy things you can do with this curve that are useful:
+
+    1.  Estimating $x$-year survival
+
+    One quantity often of interest in a survival analysis is the probability of surviving beyond a certain number ($x$) of days or years.
+
+    To estimate the probability of surviving to $1$ year, use the summary function with the times argument (*Note* the time variable in the lung dataset is actually in days, so we need to use times = 365.25)
+
+    ```{r 5yrest}
+
+
+    ```
+
+    The $1$-year probability of survival in this study is given in the surv column of the surv object. The associated lower and upper bounds of the 95% confidence interval are also displayed. 2. Median survival time? This is the time that corresponds to the survival probability of 50%. Note: Since survival times are not expected to be normally distributed, median is a more appropriate summary value than the mean. We can obtain the median directly from the f1 survfit object that we created above.
+
+    ```{r}
+    summary(f1)$table["median"]
+    # calling it in the following way will also give you CI around the median and remind you 
+    # how many individuals are left, in this case 165 individuals are left in the study at
+    # 310 days. 
+    survfit(Surv(time, status) ~ 1, data = lung)
+    ```
+
+    3.  Sometimes you want the point on the survival curve that corresponds to the $x$-year survival probability and you also want to compare that to the median survival time.
+
+    The $1$-year survival probability is the point on the y-axis that corresponds to $1$ year on the x-axis for the survival curve. This isn't particularly pretty, but I did make the median arrow "Blue" in order to distinguish it from the mean.
+
+    ```{r, fig.height = 5}
+    plot_main <- 
+      ggsurvplot(data = lung, fit = f1,
+        xlab = "Months",
+        legend = "none",
+        xscale = 30.4,
+        break.x.by = 182.4, 
+        risk.table = TRUE,
+        risk.table.y.text = FALSE)
+    plot1 <- plot_main
+    plot1$plot <- plot1$plot + 
+      geom_segment(x = 365.25, xend = 365.25, y = -0.05, yend = 0.4092416, 
+                   size = 1.5) +
+      geom_segment(x = 365.25, xend = -40, y = 0.4092416, yend = 0.4092416,
+                   size = 1.5, 
+                   arrow = arrow(length = unit(0.2, "inches")))+
+      geom_segment(x = 310, xend = 310, y = 0.5, yend = -0.03, size = 1.5, 
+                   arrow = arrow(length = unit(0.2, "inches")),colour="Blue")
+    plot1
+    ```
+
+    We can also compare the survival rate between groups using a log-rank test. A popular comparison is between females and males which happens to be a straightforward column in the lung dataset! The survdiff function uses a goodness of fit test to compare the
+
+    ```{r}
+
+    #remember males=1 and females =2
+
+    ```
+
+    ```{r}
+
+    ```
+
+    ------------------------------------------------------------------------
+
+    Here is a tangential point that compares TWO survival curves: one that does NOT include censored data and one curve that does include censored data. You can immediately see why including censored data (that is, including the information that we have until we don't have it) is important to getting an accurate probability of survival.
+
+    -   Impact on $x$-year survival of ignoring censoring:\*
+
+    -   Imagine two studies, each with 228 subjects. There are 165 deaths in each study. No censoring in one (orange line), 63 patients censored in the other (blue line)
+
+    -   Ignoring censoring leads to an **overestimate** of the overall survival probability, because the censored subjects only contribute information for **part** of the follow-up time, and then fall out of the risk set, thus pulling down the cumulative probability of survival
+
+    ```{r echo = FALSE, message = FALSE, warning = FALSE, fig.height = 6}
+    fakedata2 <- lung %>% 
+      mutate(time = ifelse(status == 2, time, 1022), 
+             group = "No censoring") %>% 
+      full_join(mutate(lung, group = "With censoring"))
+    fit3 <- survfit(Surv(time, status) ~ group, data = fakedata2)
+    ggsurvplot(
+      data = fakedata2, 
+      fit = fit3,
+      xlab = "Months",
+      legend = "bottom",
+      legend.title = "",
+      legend.labs = c("No censoring", "With censoring"),
+      xscale = 30.4,
+      break.x.by = 182.4, 
+      risk.table = TRUE,
+      risk.table.y.text = FALSE)
+    ```
+
+    ### Certificate of Completion Module 4
+
+    > Q4. Produce a Kaplan-Meier curve for the built-in Leukemia data set ('leukemia'). This dataset is similar to the lung dataset, but instead of male/female column, there is a column, x, that is "Maintained" or "Nonmaintained". Under the Status columns, the Censored individuals are given 1 and dead individuals are assigned the number 2. Begin by producing a ggplot histogram that distinguishes between censored and uncensored data. Create a survival object and peek at the columns. Use ggplot2 to draw an attractive KM survival curve with the median indicated on it. Use basic R to draw the survival curves for maintained and non-maintained individuals.
+
+    ## Another EXTRA Section for those who are interested - Fisher's exact test:
+
+    Similiar to $\chi^2$ contingency test but has fewer assumptions.
+
+    One of the most common tests of speciation in biology is called the *McDonald- Kreitman test*. It aligns sequences of multiple species of an organism and counts the number of two categories of mutation between them. The first category is **synonymous sites**: meaning that due to the degeneracy of the genetic code the nucleotide substitution does not result in a different amino acid. The second category is **non-synonymous sites**: a change in nucleotide does result in the specification of a different amino acid.
+
+    Nucleotide sites that varied were also categorized as **polymorphic** - they varied within a species - and **fixed differences** - they did not vary within a species but did vary between species. The underlying hypothesis is that: ” In the absence of natural selection, the ratio of synonymous to nonsynonymous sites should be the same for polymorphisms and fixed differences.
+
+    Like all statistical tests, MK has it's problems but under particular circumstances it provides initial information about what evolutionary force could be driving molecular variation so, despite its limitations, it is still commonly used. If you are interested, you can learn more here: https://en.wikipedia.org/wiki/McDonald–Kreitman_test
+
+    ## Synonymous Nonsynonymous
+
+    Polymorphism 43 2\
+    Fixed 17 7\
+    ---------------------------------------
+
+    ```{r}
+    #input the data 
+    fisher_example<-matrix(c(43,2,17,7),ncol=2,byrow=TRUE)
+    fisher_example_table<-as.table(fisher_example)
+    class(fisher_example_table)
+    #take a look at the dataset
+    fisher_example_table
+    #assign the column and row names
+    colnames(fisher_example_table)<-c("Synonymous","NonSynonymous")
+    rownames(fisher_example_table)<-c("Polymorphisms","Fixed")
+    fisher_example_table
+    ```
+
+    With this table in hand, we can test the $H_o$ which, in this case, will be p(Non-syn mutations/syn mutations WITHIN a species) = p(Non-syn mutations/syn mutations BETWEEN a species). So, $H_o: \frac{2}{43}=\frac{7}{17}$
+
+    ```{r}
+    fisher_example_table.fisher<-fisher.test(fisher_example_table)
+    fisher_example_table.fisher
+
+    ```
+
+    The $H_o: \frac{2}{43}=\frac{7}{17}$ is rejected. In this case, Fisher's test results in a conditional max. likelihood estimate of $\frac{\frac{43}{2}}{\frac{17}{7}} \approx 8.54$. This gives the ratio of 8.54 polymorphisms to each fixed difference between the species. This is suggestive of negative (purifying) selection. If there was a higher ratio of fixed differences to polymorphisms, that would suggest that positive (directional) selection was occurring.
