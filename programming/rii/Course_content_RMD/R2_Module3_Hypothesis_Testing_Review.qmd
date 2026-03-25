@@ -1,0 +1,108 @@
+---
+title: "R2_Module3_Hypothesis_Testing"
+format: docx
+editor: visual
+---
+
+# 1. Hypothesis Testing
+
+Hypothesis testing is the workhorse of the scientific method of inquiry since it allows us to draw conclusions on finite data sets. It provides us with a repeatable and objective set of criteria for quantifying what we know and how uncertain our knowledge is. Hypothesis testing answers the question **'does the provided evidence, and sample size, allow us to reject the null hypothesis at a certain level of comfort?'**. This is based on the Karl Popper falsification theory. This approach is summed up nicely in a devastating quote by Wolfgang Pauli (translated from German where it is even more biting):
+
+**"That is not only not right; it is not even wrong!".**
+
+In hypothesis testing, the null hypothesis is the hypothesis that we would like to reject; the alternate hypothesis will never be rejected (nor accepted).
+
+## A refresher on the general outline of the four steps:
+
+These steps will be illustrated with the bumpus data set later in this R Notebook.
+
+### Step 1: formulate a test-able null hypothesis about the POPULATION
+
+(note: we are not testing the sample proportions, we are testing the population parameters about survivor proportion using the sample proportions).
+
+A null hypothesis is a computationally tractable model of reality that allows you to get a null distribution. It is a falsifiable statement and you can use how extreme your test statistic value are on the null distribution to make your decision about rejection or Failure-to-reject.
+
+### Step 2: choose our test based on the null distribution implied by the null hypothesis.
+
+### Step 3: Level of uncertainty we consider acceptable. Usually this is reframed as "what alpha do we want"
+
+(Answer is usually at least 0.05)?
+
+Remember the definition of a p-value: **The probability of getting a value as extreme or more extreme than the test statistic observed, given that your null hypothesis is true.** In other words: there is no way of testing a hypothesis without a carefully crafted null hypothesis that you can reject.
+
+### Step 4: Make your decision/conclusion.
+
+Consider any CI or additional information to include in our rejection or failure-to-reject the null hypothesis.
+
+The level of comfort in step 3 is quantified by type I ($\alpha$) error and means that we reject a hypothesis **even though it is true** a certain percentage of the time. This comfort level (really, $\alpha = P[rejecting H_{o}|H_{o} true]$) is usually set at around 0.05 because **we are mostly okay with incorrectly rejecting a true null hypothesis** around 1 out of every 20 experiments. Note that this is a bit of an unsophisticated definition of hypothesis testing but it is a very applied definition. If you want to polish up your understanding of hypothesis testing, see [Wikipedia](https://en.wikipedia.org/wiki/Type_I_and_type_II_errors).
+
+A lot of genomics and "Big Data" involves testing multiple hypotheses simultaneously, for instance with GWAS (genome wide association studies) we test many variants to find ones associated with the focal phenotype. Due to false positives inflating our Type I error rate when we use multiple tests simultaneously, special care needs to be taken to correct for that inflation when doing multiple simultaneous hypothesis tests.
+
+As we utilize ROC (Receiver Operator Curves) and calculate AUC (Area Under Curve) to choose the best model from many possible models, you will need to have the details of Type I, Type II errors, as well as Sensitivity and Specificity *firmly* in your brain! We will revisit these definitions in the short ROC section in an attempt to help.
+
+## Errors in hypothesis testing:
+
+First, to ensure that everyone is caught up with how error is described in statistics, we will investigate a useful [analogy to the justice system.](http://www.intuitor.com/statistics/T1T2Errors.html) Note: This website used to have a fantastic java applet which nicely illustrated the trade-off between type I and type II error rates, that is: how decreasing type I error leads to increasing type II error (and vice-versa). However, it no longer is supported. The key points of this widget are to note that when we decrease type I error (alpha), we automatically increase type II error (beta) since these two errors are (non-linearly) inversely proportional. The only way to improve both type I and type II error rates at the same time is to increase your sample size (n). **This also allows you to discriminate between smaller and smaller differences in the Ho and Ha which is the power of your test!**
+
+I mostly thought that this analogy is useful for understanding the trade offs with error types; the only caution I have for you is that the website describes rejecting the null hypothesis as equivalent to accepting the alternate hypothesis. This is reasonably true when using the justice system as an illustration but it isn't true in science. In science (and statistics) we *NEVER* accept the alternate hypothesis since, among other reasons, there may emerge more data in the future that changes our conclusion.
+
+The most portable way to think of Type I/II errors is to put them into conditional probability statements:
+
+```         
+-----------------------
+Type I = False positive 
+       = P(Rejecting|Ho is true) = P(Positive test| No Disease Present)
+       = fire alarm with no fire; positive test for a disease when you don't have the disease
+
+Type II = False negative 
+        = P(NOT Rejecting|Ho is not true) = P(Negative test|Disease is Present)
+        = no fire alarm when there is a fire; negative test for a disease when you do have the disease
+
+Power=1-Type II
+
+-----------------------
+```
+
+#### Quick Stats Concepts in Plain language (I know that I am inserting this large section here, it is just for reference)
+
+**P-value**\
+The p-value tells you *how surprising your data would be* if nothing real were going on (if the null hypothesis were true).\
+- Small p-value (usually \< 0.05): your data are *unlikely* under “no effect” → maybe something real is happening.\
+- Large p-value: your data are *consistent with chance*.
+
+------------------------------------------------------------------------
+
+**Type I Error (False Positive)**\
+You think you found something real, but you didn’t.\
+Example: saying a drug works when it actually doesn’t.\
+- Controlled by the *significance level* (**α**), often 0.05.
+
+------------------------------------------------------------------------
+
+**Type II Error (False Negative)**\
+You missed something that *is* real.\
+Example: saying a drug doesn’t work when it actually does.
+
+------------------------------------------------------------------------
+
+**Power**\
+The chance you’ll correctly detect a real effect (avoid a Type II error).\
+- Higher power = better chance of spotting true effects.\
+- Typically aim for **80% or higher**.\
+*Think of power as the “sensitivity” of a statistical test — both describe how good you are at catching true positives.*
+
+------------------------------------------------------------------------
+
+**Sensitivity**\
+If something *is* real, how often do you correctly catch it?\
+Example: a COVID test correctly flags people who have the virus.\
+- “How good the test is at finding true positives.”
+
+------------------------------------------------------------------------
+
+**Specificity**\
+If something *isn’t* real, how often do you correctly say “no”?\
+Example: a COVID test correctly says negative for people who don’t have the virus.\
+- “How good the test is at avoiding false alarms.”
+
+Now that we have refreshed Type I and Type II errors, we can move on...
