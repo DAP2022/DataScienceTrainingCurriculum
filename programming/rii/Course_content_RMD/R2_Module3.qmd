@@ -8,6 +8,8 @@ editor: visual
 
 1.  **General Hypothesis testing features**: The **four steps of hypothesis testing** and a quick mention of terms such as Null and Alternate hypotheses, type I and type II errors, p-values, false discovery rate of multiple testing, sensitivity, specificity. There is a document called **"R2_Module3_Hypothesis_Testing_Review.qmd"** that covers these definitions, as well as a [review pdf](https://github.com/DAP2022/DataScienceTrainingCurriculum/blob/main/programming/rii/Course_content_RMD/Statistics_Review_R2.pdf) here. These are concepts that were covered in Biostatistics I and Biostatistics II so these are superficial reviews, but might be necessary refreshers!
 
+    -   In addition, here are two flowchart websites that include [decisions](https://statsandr.com/blog/what-statistical-test-should-i-do/#flowchart) about [**WHAT**](https://onishlab.colostate.edu/wp-content/uploads/2019/07/which_test_flowchart.png) test and even [one](https://www.scribbr.com/statistics/statistical-tests/) that goes into more depth about the same decisions that I outline over the next three R Notebooks. This [one](https://martinctc.github.io/blog/common-statistical-tests-in-r-part-i/) includes R (& Python) code and one that includes code for [visualizing](https://www.data-to-viz.com/) the data.
+
 2.  **The Binomial Distribution** and how to use it. This section will include a little programming in R, as well as:
 
     -   The Hard Way (using sample(), dbinom\*(), using tidyverse)
