@@ -1,12 +1,12 @@
 ---
-title: "Intro_to_R1A_NEW"
+title: "Intro_to_R1A"
 format: docx
 editor: visual
 ---
 
 # Overview
 
-In this .qmd file, we are going to explore the functionality of the R programming language and Posit (formerly called "RStudio" which means that, since I have been using it forever, I still accidentally call it RStudio sometimes). I used to use .rmd files (.rmd stands for **R M**arkdown **D**ocument) for this course, but the newer .qmd files (**Q**uarto **M**arkdown **d**ocuments) make the Markdown part much more user-friendly so that is what we will use going forward. Both types of files are similar 'under the hood' and you will use Posit/RStudio to open either one. As we work through the material, I will point out any differences between .rmd and .qmd files that we encounter.
+In this .qmd file, we are going to explore the functionality of the R programming language and Posit (formerly called "RStudio" which means that, since I have been using it forever, I still accidentally call it RStudio sometimes). I previously used .rmd files (.rmd stands for **R M**arkdown **D**ocument) for this course, but the newer .qmd files (**Q**uarto **M**arkdown **d**ocuments) make the Markdown part much more user-friendly so that is what we will use going forward. Both types of files are similar 'under the hood' and you will use Posit/RStudio to open either one. As we work through the material, I will point out any differences between .rmd and .qmd files that we encounter.
 
 ## Data files
 
@@ -68,7 +68,7 @@ We'll spend some more time going through how to create an .qmd file yourself but
     2.  Files/Plots/Packages/Help/Viewer
     3.  Environment/History/Connections - shows all active objects and keeps track of commands run in console
     4.  Script Editor: Markdown language and R Chunks - how to use this to write assignments
-2.  Determine how to input/output data sets - we will use a built-in data set and also upload a data set that you will download from Canvas/GCP
+2.  Determine how to input/output data sets - we will use a built-in data set and also upload a data set that you will download from GitHub.
 3.  Explore some basic functionality in R - we will do some basic graphing and apply some statistical tests so that we are prepared for the rest of the modules (we are going to see a broad range of basic functionality).
 
 ## Posit/RStudio
@@ -113,7 +113,7 @@ With Quarto many of the challenges and steep learning curve of RMarkdown vanish.
 
     2.  https://rmarkdown.rstudio.com/lesson-15.HTML
 
-We will a new Quarto document (in fact, it will end up being our Day1 document) by clicking on the down arrow attached to the icon in the upper left corner that has a green circle with a "+" sign on it. There will be a bunch of different options listed for the type of document that you want (including R script, R Notebook and R Markdown). These produce different types of documents that you may want in the future but, for this course, we will restrict our focus to Quarto documents (these documents end in **.qmd** just like this file). Choose the Quarto Document option. A new menu will pop up. The default is document, which is what we will use in this course. There are other options like 'shiny' (a slightly different user interface that the RStudio company also provides) but we don't cover that in this course.
+We will create a new Quarto document (in fact, it will end up being our Day1 document) by clicking on the down arrow attached to the icon in the upper left corner that has a green circle with a "+" sign on it. There will be a bunch of different options listed for the type of document that you want (including R script, R Notebook and R Markdown). These produce different types of documents that you may want in the future but, for this course, we will restrict our focus to Quarto documents (these documents end in **.qmd** just like this file). Choose the Quarto Document option. A new menu will pop up. The default is document, which is what we will use in this course. There are other options like 'shiny' (a slightly different user interface that the RStudio company also provides) but we don't cover that in this course.
 
 The pop-up menu will ask you for your document name. You will use the following format for your Module Assignments: **FirstInitialLastName_Day_1**. So, for me, the title of this document would be: DPresgraves_Day_1. The default document type produced by R Markdown is an html file which is the most flexible and standard document type. You can use the word or straight pdf (I have set up this first workbook to knit to a pdf to demonstrate this option, but I had to download LaTEX on my computer to do that. The default is html.) but you will need other software on your computer to do that. For instance, you will need MS word for word documents and some flavour of LaTEX for producing pdf documents.
 
@@ -132,10 +132,10 @@ editor: visual
 The next part of your new .qmd file is a grayed area that is enclosed in triple ticks \`\`\` to begin it and triple ticks \`\`\` to end it. You indicate that you are using the R programming language by placing a "{r}" after the ticks. This is a default 'R chunk' that outlines some of the behavior expected from R in your document. What is an R chunk? So glad you asked... the R Chunks are the parts of your document that are written in the R programming language and that contain commands. We haven't encountered an R chunk yet, but we will! Note: sometimes the first default R chunk that is in an .rmd files gives us some global (meaning that they are the preferences for the entire document) options for our document. I don't use these options regularly. In fact, every time I want to tweak the output of my Knitted file, I tend to visit this website (<https://yihui.org/knitr/options/)> and revisit the specific commands for specific outcomes. Those chunks will look like so:
 
 ```{r setup}
-knitr::opts_chunk$set(echo = TRUE)
+#knitr::opts_chunk$set(echo = TRUE)
 ```
 
-#### C. Knitting and/or saving your final document.
+#### C. Rendering and/or saving your final document.
 
 We can't render our document just yet, because it is missing a file path (it is coming up in the next section), but for completeness in this section: The Render command (the big blue arrow button with Render next to it) uses a program called knitter that 'knits' together the R programming chunks and the text chunks of your document to produce an output document that it saves to the **same location as your .qmd file**. You can change that default if, for instance, you have a folder where you place your problem set documents (which is a good idea). When you press the Render icon, a new menu will pop up asking you for the name of your new document. You should use the same format as already discussed for this document: FirstInitialLastName_Day_1.
 
@@ -194,7 +194,6 @@ We can create an R chunk in multiple ways including simply typing "`{r} " and en
 # ----------------------
 # I used the file.choose() command in the R Console to both choose the file that I wanted loaded into my working R memory and to return the path to that file which I then cut and pasted into the R chunk. Since that path is a string, I put it in double quotes:
 Chr15<-read.csv("/Users/presgd/MyRFiles/Intro_to_R/RData/Chr15SNP.csv")
-
 ```
 
 2.  **Assignment to variables**

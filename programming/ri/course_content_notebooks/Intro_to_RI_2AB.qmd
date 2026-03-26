@@ -53,12 +53,12 @@ These are two new ideas that we will investigate in this Workbook. Along the way
 ```{r}
 dogs<-c("Chihuhauas", "Golden Retreivers","German Shephards", "Great Pyrenese","Great Dane")
 #we want to add a few dog breeds to the end of the this list and we can do that by using the original list as the first arguments
-dogs<-c(dogs,"Norwegian elkhounds","Eurasier")
+
 # we can see that it has added elkhounds to the end of the list
-dogs
+
 # how do we add to the beginning of the list?
-dogs<-c("Pomeranians",dogs)
-dogs
+
+
 ```
 
 The *core functionality of R is as a statistics and data analysis language* (don't come at me: I KNOW that it is also a proper language, but statistics is how R is typically used) so it is not surprising that many of the built-in functions have to do with math and data grooming:
@@ -67,11 +67,11 @@ The *core functionality of R is as a statistics and data analysis language* (don
 # sqrt gives slightly different output depending on how many arguments you give it!
 print(sqrt(24))
 # you are giving it a vector here so it has one argument, but many individual pieces of the argument
-print(round(sqrt(c(0,1,4,9,16,25,36,42)),2))
+
 # round is a bit in function that has a default value if you give it just one argument it will round to a certain number of decimal points
-print(round(sqrt(42)))
+
 # if you provide it with an override for the default value, you can insist on as many significant digits as you like!
-print(round(digits=4,sqrt(42))) #print(round(sqrt(42),4))
+ #print(round(sqrt(42),4))
 print(round(pi,digits=10)) # this only goes to 6 unless you change the global options
 # in your rmd notebook. 
 # details of the function
@@ -135,8 +135,8 @@ my_mean<- function(my_vector){
   return(harm)
 }
 # once the function has been defined, we can call it with an argument
-trial_mean<-round(my_mean(c(1,2,3,4,5,6)),3)
-trial_mean2<-my_mean(24)
+
+
 #print(round(trial_mean,5))
 #print(trial_mean2)
 # once the function has been defined and called, it will appear in your Environment tab!
@@ -180,28 +180,29 @@ trial_mean2<-my_mean(24)
 # we need to have already defined a vector, x in order for the for loop to work. Let's define it here by using the c() function. 
 # We don't know what the c() function does? How would we find out what it does? We could look up the functions online. 
 # in fact, this is a commonly used function that we will see repeatedly! It COMBINES or CONCATENATES objects that you give it into a vector. 
-x<-c(1,4,9,16,25,36,49,64,81,100)
-print("*******")
-print(x)
-print("--------")
-print(class(x))
-print(typeof(x))
+
+
+
+
+
+
 # what happens if you want the for loop to repeat 11 times but give it a list of 10 as an argument. Most programming languages would throw an exception or give an error and it would halt the program until the error was resolved. R doesn't, though!
 ```
 
 ```{r}
 #------------------
 # we defined x above: x<-c(1,4,9,16,25,36,49,64,81,100)
-for(i in 1:11){ # run from 1 to 11 times
-  #this is how we can the value of each element in the vector: x[i]
- print(x[i])
-}
+
+
+
+
 #-----------
 # instead of giving it a set number, we can base the number of loops on the length of the particular vector x that happens to be passed into the loop
 # you will see this 'trick' a lot in other programming languages and it is 'best practices' for this type of loop.
-for(i in 1:length(x)){
- print(x[i]) 
-}
+
+
+
+
 ```
 
 #### **C. More worked examples of Functions**
@@ -212,15 +213,15 @@ A. Basics
 
 ```{r}
 # before the main body of the program where we DEFINE the function
-randomise<-function(f=10){ # f has a default value of 10
+  # f has a default value of 10
 # you really don't want to print out a huge quantity of random numbers 
 # so you can modify this to be much much smaller - or bigger - but just know that
 # you *CAN* run really big numbers with it!
-  return(round(runif(f),2))
-}
+ 
+  
+  
 #main body of the program where we are CALLING the function
-randomise(4)
-randomise()
+
 ```
 
 ```{r}
@@ -402,7 +403,7 @@ print(raise_function(6,6))
 
 -   THIS SECTION IS ENTIRELY OPTIONAL IF YOU WANT TO EXPLORE SOME PROGRAMMING IN R CAPABILITIES. We won't cover this during classtime!
 
-# 1. Learning to program in R with the package SWIRL()
+## 1. Learning to program in R with the package SWIRL()
 
 We won't spend much time on programming in R, because we will mostly use R as a data analysis language, the typical way to use R. However, it can be used as a more general programming language, too. It normally isn't because - as a gross generalization - compared to other popular languages, it is not efficient with memory usage. In this section, I introduce you to SWIRL(). This is a package that you can work through yourself that will teach you to program in R. This is extra and isn't necessary, but I wanted to include it since I know that some individuals will want to spend time working through it!
 
@@ -441,7 +442,7 @@ You can always leave swirl() with the command bye(), and you can return to the m
 library("swirl")
 ```
 
-# 2. Review of key concepts using SWIRL()
+## 2. Review of key concepts using SWIRL()
 
 Module1B focuses on the content from the SWIRL() library \textbf{Chapter 9: Functions}. However, the following chunk includes a summary of the other chapters of SWIRL() which are a basic review of material we have already seen (you should work through the chapters yourself if you are uncertain about your knowledge of the topics).
 

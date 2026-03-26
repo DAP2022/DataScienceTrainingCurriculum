@@ -71,6 +71,8 @@ Let's display these two files: first up, GA (this is sort of cheating because th
 
 # Below is the t-test and bootstrap
 
+-   We will officially learn t-tests in R2, Module 4 so this is an optional preview for those who are interested (or unable to join us for R2)
+
 Now, we will use the t.test() to obtain a 95% confidence interval for the true difference in means of the weight of the "all Great Apes" and the "Chimpanzees" datasets. 95% is the default argument in the t.tests but it is explicitly included in the chunk below so you can see it.
 
 **With a two sample t.test, you are comparing the mean of one data set (Great Apes set) to the mean of another data set (Only Chimpanzee data set) to see if there is a statistically significant difference between them.** In our case, the mean of the Chimpanzee set is smaller than the mean of the Great Apes data set so the confidence interval of the difference between them will be negative. If we swapped the two arguments around, the difference would be positive. (shown here as ttest_1 and ttest_2).
@@ -127,9 +129,9 @@ Upperlimit
 Lowerlimit
 ```
 
-# Bootstrap: 
+# Bootstrap:
 
-## The following section is really only if we have extra time. I am including it since some of you will already have some experience with R and might appreciate the extra depth
+### The following section is really only if we have extra time. I am including it since some of you will already have some experience with R and might appreciate the extra depth
 
 Finally: **Bootstrap**! Bootstraps are used to determine the confidence intervals for data that is not well behaved (it isn't normally distributed), or that can't be replicated (such as constructing phylogenies - really , a disproportionate amount of statistical thinking is embedded in phylogeny construction. But sometimes trying to solve one problem, also solves other problems!). Basically: when we have no other (easier) tools to use, we need to simulate values.
 

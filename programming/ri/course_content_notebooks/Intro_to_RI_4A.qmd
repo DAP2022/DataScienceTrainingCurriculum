@@ -12,11 +12,11 @@ There are some really great websites that help you choose what graph you might n
 
 ## Agenda:
 
-1.  Scatter plots
-2.  qqplot
-3.  qqnorm
-4.  Histogram
-5.  Mosaic plot
+1.  Scatter plots, including:
+    -   qqplot
+    -   qqnorm
+2.  Histogram
+3.  Mosaic plot
 
 ## Refresh our Data:
 
@@ -84,7 +84,7 @@ Of course, in R there are always multiple ways to achieve a goal. The function *
                   lines(x,y, lty=6)
 ```
 
-lty can take a value between 1 (solid line) and 6 (a dotted line). There are a number of other values but they start to become a bit complicated. From the files which you have imported, you can use the scatter plot as demonstrated.
+-   lty can take a value between 1 (solid line) and 6 (a dotted line). There are a number of other values but they start to become a bit complicated. From the files which you have imported, you can use the scatter plot as demonstrated.
 
 We'll begin by manipulating the bumpus data set. In the R chunk below, you will see that we take the two columns of the bumpus data set (it helps to visualize data sets, like bumpus.csv, as Excel spreadsheets and to think of graphing two columns), totlen (total length), and wgt(weight) as the "x" and the "y" argument of the plot function.
 
@@ -132,16 +132,15 @@ title(main = "My Main Title", sub = "My Subtitle", line = 3)
 
 ```
 
-Testing for a normal distribution is something that we do A LOT of the time since our common parametric statistical tests typically depend on normality as one of their assumptions.
+-   Testing for a normal distribution is something that we do A LOT of the time since our common parametric statistical tests typically depend on normality as one of their assumptions.
 
-We can use a specialized scatter plot called a **q-q norm plot** **to test if our data is normally distributed**. A quantile plot is an excellent starting place to investigate normality. A Q-Q plot (which stands for Quantile-Quantile plot) compares two distributions by plotting their quantiles against each other; if the two distributions are similar, the comparison points *should* result in a straight line through y=x. If the two distributions are not the same but are related in a linear manner then they should lie on a different line.
+-   We can use a specialized scatter plot called a **q-q norm plot** **to test if our data is normally distributed**. A quantile plot is an excellent starting place to investigate normality. A Q-Q plot (which stands for Quantile-Quantile plot) compares two distributions by plotting their quantiles against each other; if the two distributions are similar, the comparison points *should* result in a straight line through y=x. If the two distributions are not the same but are related in a linear manner then they should lie on a different line.
 
-**A normal quantile plot is a cumulative frequency plot that has a Y axis scaled so that a normal distribution will appear as a straight, diagonal line**. A Normal Q-Q plot works in the same way as a Q-Q plot, but it compares the distribution of your data to a general normal distribution. This means that if your data is normally distributed (or close), than the two distributions are equal and so the plotted points should lie on a straight line. These curves are useful in assessing how and where a non-normal distribution differs from the ideal. Exponential relationships will appear as curves, while skews will cause the quantile plot to fall above or below the ideal straight line. If your data isn't normally distributed, the Q-Q normal plot should give some insight into whether or not it is a linear combination of normal distributions or something more sinister altogether. In other words, the Q-Q normal plot will give you some insight into whether parametric methods could possibly be appropriate or if other tools (transformation or non-parametric methods) will need to be used.
+-   **A normal quantile plot is a cumulative frequency plot that has a Y axis scaled so that a normal distribution will appear as a straight, diagonal line**. A Normal Q-Q plot works in the same way as a Q-Q plot, but it compares the distribution of your data to a general normal distribution. This means that if your data is normally distributed (or close), than the two distributions are equal and so the plotted points should lie on a straight line. These curves are useful in assessing how and where a non-normal distribution differs from the ideal. Exponential relationships will appear as curves, while skews will cause the quantile plot to fall above or below the ideal straight line. If your data isn't normally distributed, the Q-Q normal plot should give some insight into whether or not it is a linear combination of normal distributions or something more sinister altogether. In other words, the Q-Q normal plot will give you some insight into whether parametric methods could possibly be appropriate or if other tools (transformation or non-parametric methods) will need to be used.
 
-So far, we have used actual data. What about if we **simulate** some data that we KNOW is normally distributed so we can see what a normally distributed histogram looks like? I'm glad you asked! You can use the function ***rnorm()*** to simulate a bunch of points from a standard normal distribution (mound shaped and symmetrical distribution). Other useful distribution functions include:
+-   So far, we have used actual data. What about if we **simulate** some data that we KNOW is normally distributed so we can see what a normally distributed histogram looks like? I'm glad you asked! You can use the function ***rnorm()*** to simulate a bunch of points from a standard normal distribution (mound shaped and symmetrical distribution). Other useful distribution functions include:
 
--   rbinom()
--   rpois()
+    -   rbinom(), rpois()
 
 You can type one of these into the help search bar and see that, for each of these popular probability distributions, there will also be density, probability distribution and quantile generators: dnorm(), pnorm(), qnorm() etc.
 
@@ -196,6 +195,21 @@ Let's revisit the non-normal distribution, the poisson distributed example that 
 #compare to the normal distribution
 # AND SEE that you can override the default bin size. 
 
+```
+
+[**This is new stuff: You can add a dnorm line on top of your histogram (since we are often interested in knowing how our variable compares to a normal distribution with the same mean and sd as our focal data column):**]{.underline}
+
+```{r}
+#hist(COLUMN NAME HERE,
+#main = "Histogram of COLUMN NAME",
+#xlab = "COLUMN NAME",
+#col = "lightblue",
+#border = "white",
+#probability = TRUE) # use density scale so we can overlay a curve
+
+#Overlay a normal distribution curve to compare
+#curve(dnorm(x, mean = mean(COLUMN NAME HERE), sd = sd(COLUMN NAME HERE)),
+#add = TRUE, col = "red", lwd = 2)
 ```
 
 ## Mosaic plots
@@ -254,7 +268,7 @@ Not the most interesting plot, right? But we can now do fun things to it - add c
 You can also use the apply function with the mosaicplot()
 
 ```{r}
-)
+
 ```
 
 Finally, another - slightly more complex - format of is the following. The first argument in this case is \~Sex+Age which translates to: Sex is the (presumed) independent variable since it is right next to the tilda and Age is the (presumed) dependent variable.

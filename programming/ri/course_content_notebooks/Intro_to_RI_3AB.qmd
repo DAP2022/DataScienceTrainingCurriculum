@@ -1,6 +1,7 @@
 ---
 title: "Intro_to_R3AB"
 format: pdf
+code-line-numbers: true
 editor: visual
 ---
 
@@ -17,14 +18,15 @@ This is slicing and uses square brackets: \[\]. We will begin by creating a data
 ```{r}
 # Let's set up the Great Ape table given in Day1Assignment. We will input each column as a vector:
 GA_Species<-c("Gorilla gorilla", "Gorilla gorilla", "Pan troglodytes", "Pan troglodytes","Homo sapiens", "Homo sapiens", "Orangutan", "Orangutan", "Pan paniscus","Pan paniscus")
-
-
-
+GA_Sex<-c("M","F","M","F","M","F","M","F","M","F")
+GA_Weight<-c(400,175,120,85,180,140,160,82,86,68)
+GA_Height<-c(180,140,150,150,178,165,137,115,78,73)
+GA_DF<-cbind.data.frame(GA_Species,GA_Sex,GA_Weight,GA_Height)
 ```
 
 ```{r}
-
-
+#attach(GA_DF)
+names(GA_DF)
 ```
 
 Here we will illustrate slicing. Remember two key points in R:
@@ -34,14 +36,16 @@ Here we will illustrate slicing. Remember two key points in R:
 2.  When there is more than 1 dimension, the **first dimension is always rows** and the **second dimension is columns.**
 
 ```{r}
-# Our dataframe has two dimensions: rows and columns. This is the order that R always 'sees' dimensions: Row, Column
+# Our dataframe has two dimensions: rows and columns. This is the order that R always 'sees' dimensions: [Row, Column]
 # If we want to extract an entire column, we can do this: 
+col_extract1<-GA_DF[,1:3] #in python this would include only columns 1 and 2
+print(col_extract1)
 
 ```
 
 ```{r}
-
-
+col_extract2<-GA_DF[,4]
+print(col_extract2)
 ```
 
 ```{r}
@@ -71,25 +75,35 @@ Here we will illustrate slicing. Remember two key points in R:
 We are going to use logical conditions to exclude elements that don't fit our given criteria. We will only include items that evaluate to TRUE for the criteria. That is, if we want **GA_DF\[GA_DF\[3\]\>=140,\]** this should only include 5 rows of the species that are greater than or equal to 140 in weight. Notice the peculiar syntax of this type of slicing:
 
 ```{r}
+#[rows,columns]
 
 ```
 
 I'm just splitting the cell since it was long.
 
 ```{r}
+#a slice that combines two criteria
+# Only males and only individuals who weight more than 175 
+
+
 
 ```
 
 You can also use slicing to add a column to an existing dataframe with indexing/slicing:
 
 ```{r}
-
+GA_DF$Lifespan<-c(43,43,55,55,82,85,58,58,57,57)
+GA_DF
 ```
 
 We can rename the column name:
 
 ```{r}
-
+#names(GA_DF)[,5]<-"GA_Lifespan"
+#GA_DF
+names(GA_DF)
+# maybe we want to change the column name
+colnames(GA_DF)[5]<-"GA_Lifespan"
 ```
 
 Putting the attach in a separate cell so we don't keep calling it.
@@ -105,6 +119,7 @@ You could also use:
 A. **which**
 
 ```{r}
+
 
 ```
 
@@ -130,6 +145,7 @@ The apply family is usually much faster than a for loop in R (due to R being mos
 You can use the same logical criteria with apply functions, but it is often easier to solve the issue in a different way. Here is an example:
 
 ```{r}
+#tapply(data,criteria,function)
 
 ```
 
@@ -205,7 +221,8 @@ Since we changed the GA_DF file, we want to place the modified file into our RDa
 
 ```{r}
 #read.csv()
-write.csv(GA_DF, file="/Users/presgd/MyRFiles/Intro_to_R/RData/GA_DF_new_column.csv")
+write.csv(GA_DF, file="/Users/presgd/MyRFiles/Intro_to_R_2026_QMD/R1_Module1/GA_DF_new_column.csv")
+
 ```
 
 Always remember to detach your Dataframes (if you attached them):

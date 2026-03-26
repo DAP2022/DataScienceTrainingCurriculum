@@ -5,9 +5,21 @@ format: pdf
 editor: visual
 ---
 
-# Hint
+# PRIMM framework
 
-As we work through these notebooks, please take a moment and *PREDICT* what cells will print out *BEFORE* you run the cell. This will help as we work through the material.
+-   excellent strategy for learning to code
+
+**P** - Predict the code
+
+**R** - Run the code
+
+**I** - Interpret the code
+
+**M** - Modify the code
+
+**M** - Make the code 'from scratch'.
+
+As we work through these notebooks, please take a moment and PREDICT what cells will print out BEFORE you run the cell. This will help as we work through the material.
 
 # Preamble
 
@@ -25,15 +37,13 @@ A. **Basics**:
 
 ```{r}
 apes<-c("Gorilla gorilla", "Homo sapiens","Pan troglodytes")
-apes
+
 ```
 
 You can add to an existing vector by using the c() function again like this:
 
 ```{r}
-apes<-c(apes,"Orangutans")
-apes<-c("Pan paniscus",apes)
-print(apes)
+
 ```
 
 B. **Factors:**
@@ -53,8 +63,8 @@ expression <- c("low", "high", "medium", "high", "low", "medium", "high")
 # turn expression vector of strings into factor. Note that in this case, there is an 
 # issue since the numbers are assigned based on alphabetical order: high=1, low=2, medium=3 
 # This makes no sense. 
-expression <- factor(expression)
-str(expression)
+
+
 # Relevel the factors so that low=1, medium=2, and high=3. This will be 
 # important for plotting graphs of the categories and the order that they are displayed. 
 # Luckily, this is an easy thing to do since there are arguments in the factor()
@@ -93,9 +103,10 @@ Here are the two strategies mentioned above to create a matrix in R. As with all
 
 ```{r}
 #input your data as one long vector starting with the first element of the first column 
-# and going to the last element of the first column and then snaking back up to the first 
+# and going to the last element of the first column and then snaking back up to the first smoking_exercise<-c(7,9,12,87,4,8,9,102)
 # element of the second column. This is a bit awkward and nonintuitive.
-smoking_exercise<-c(7,9,12,87,4,8,9,102)
+
+
 ```
 
 Here is the second way:
@@ -104,6 +115,8 @@ Here is the second way:
 #---------------
 # Another way of producing a matrix: we could DIRECTLY use matrix(data,nrow=,ncol=). If don't # need to provide both nrow and ncol arguments because once you provide one, it will know the # other one. 
 smoking_exercise2<-c(7,9,12,87,4,8,9,102)
+
+
 ```
 
 Now add names to columns and rows
@@ -118,8 +131,8 @@ D. **Lists**:
 Highly flexible data structure in R; they can hold any number of other data structures in one place which makes it particularly convenient when we want to iterate over something. Some functions will require that you convert your data into a list to use as an argument, but we won't worry about that at this point. Here is an example of how to create a list:
 
 ```{r}
-list_1<-list(apes,c(400,150,110,200,99))
-list_1
+
+
 ```
 
 # DataFrames:
@@ -162,6 +175,9 @@ In case you aren't an evolutionary biologist, here is a broad explanation of sta
 ```{r}
 #file.choose() in console which gave me the path that I then put into the read.csv function
 
+
+
+
 ```
 
 We can examine this dataframe for a few moments.
@@ -169,6 +185,16 @@ We can examine this dataframe for a few moments.
 We're going to use some popular functions on individual columns of this dataframe to show off some R.
 
 ```{r}
+#attach(bumpus)
+```
+
+```{r}
+
+
+
+
+
+
 
 
 
@@ -185,6 +211,7 @@ tapply(data column,by which variable, function)
 ```
 
 ```{r}
+
 
 ```
 
