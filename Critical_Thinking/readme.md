@@ -1,5 +1,5 @@
-# Ai is a force multiplier. What is the 'force'? Critical thinking! 
-
+# Ai is a force multiplier. 
+## What is the 'force'? Critical thinking! 
 In the following courses, we will address:
 
 -----------------
