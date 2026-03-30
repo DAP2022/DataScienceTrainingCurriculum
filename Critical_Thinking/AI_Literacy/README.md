@@ -2,6 +2,7 @@
 
 ** This is a 12-hour mini-course that is part of the Jackson Laboratory Foundational Data Science Training Curriculum ** 
 ** The course content represented below is from the December 2025 version of the course. The content order will shift around a bit as we incorporate different guest researcher speakers each iteration **
+Here is the most recent proposed syllabus (March 2026) for the July 2026 [hybrid course.](AiLiteracy_Syllabus_0326.docx) 
 
 ## Course Summary
 Ai literacy is emancipatory. Understanding the limits and benefits of popular Ai tools is a requirement for individuals to autonomously participate in all aspects of modern society. This 12-hour course is a **code-free** exploration of Ai tools, with an emphasis on broadly understanding - and interacting with - different types of Machine Learning, and Large Language Models. Along with an introduction to the concepts central to Ai, we will also hear JAX speakers explain how they are practically incorporating Ai/LLM to optimize their own research.
