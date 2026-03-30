@@ -1,4 +1,4 @@
-# AI Literacy & DS Ethics
+# Ai Literacy & DS Ethics
 
 ** This is a 12-hour mini-course that is part of the Jackson Laboratory Foundational Data Science Training Curriculum ** 
 ** The course content represented below is from the December 2025 version of the course. The content order will shift around a bit as we incorporate different guest researcher speakers each iteration **
