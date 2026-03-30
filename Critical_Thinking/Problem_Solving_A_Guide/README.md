@@ -1,7 +1,7 @@
 This is a framework that will be filled in over time. 
 # Problem Solving:Critical Thinking & Problem Solving in the Age of AI
 ** This is a 12-hour mini-course that is part of the Jackson Laboratory Foundational Data Science Training Curriculum ** 
-The current (DRAFT) syllabus is [here]()
+The current (DRAFT) syllabus is [here](SolvingProblemsSyllabus_2026.docx)
 
               "That is not only NOT right; it is not even wrong!" – Wolfgang Pauli
 
