@@ -1,7 +1,8 @@
-This is a framework that will be filled in over time. 
 # Problem Solving:Critical Thinking & Problem Solving in the Age of AI
 ** This is a 12-hour mini-course that is part of the Jackson Laboratory Foundational Data Science Training Curriculum ** 
 The current (DRAFT) syllabus is [here](SolvingProblemsSyllabus_2026.docx)
+
+## Course Description
 
               "That is not only NOT right; it is not even wrong!" – Wolfgang Pauli
 
@@ -14,9 +15,8 @@ The current (DRAFT) syllabus is [here](SolvingProblemsSyllabus_2026.docx)
 4.  Execute Algorithmic Inquiry: Utilize Polya's 4-Step Method and the Wild & Pfannkuch Cycle to transform ad-hoc problem solving into a repeatable, rigorous investigative process.
 
 
-## Content: The following topics will be covered
-
 ## Lecture notes:
+To Be uploaded after the course material is completely built. 
 - [Module 1](Content/Module_1.md)
 - [Module 2](Content/Module_2.md)
 - [Module 3](Content/Module_3.md)
@@ -24,4 +24,5 @@ The current (DRAFT) syllabus is [here](SolvingProblemsSyllabus_2026.docx)
 - [Module 5](Content/Module_5.md)
   
 ## Assignments
+To be completed as the course material is built. 
 - [Problem Set 1](assignments/problem_set1.md)
