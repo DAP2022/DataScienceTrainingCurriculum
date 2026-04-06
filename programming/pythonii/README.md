@@ -41,6 +41,10 @@ There is an overview and downloadable .ipynb files.
   - <a href = "course_content_jupyter_notebooks/Module5B_0326.ipynb" download>Download (P2_Module5B.ipynb)
 
 ## Assignments
+
+We are using the same DNA sequence as we saw in Python I for some of the assignment questions - it can be found in your syllabus, but also here:
+5'-ATCGATCGATCGATCGACTGACTAATCATAGCTATGCATGCTACTCGATCGATCGATCGATCGATCGATCGATCGATCGATCATGCTAACATCGATCGATATCGATGCATCGACTAGTACTAT - 3'
+
 - [Problem Set 1](assignments/problem_set1.md)
 - [Problem Set 2](assignments/problem_set2.md)
 - [Problem Set 3](assignments/problem_set3.md)
