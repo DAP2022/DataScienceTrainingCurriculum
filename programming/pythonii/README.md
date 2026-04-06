@@ -8,7 +8,7 @@ Build on Python basics that you learned in Introduction to Python I. Download th
 ## Course Description: 
 This workshop is the second half of the introduction to the Python programming 
 language course. We will review the fundamental capabilities of Python, undertake
-a brief look at regex,  a deeper dive into functions with recursion, have an
+a brief look at fucntions,  a deeper dive into functions with recursion, have an
 overview of Object-Oriented Programming, and explore important libraries and
 packages such as NumPy, Pandas, SQLite and any other libraries that we have time
 to investigate.     
