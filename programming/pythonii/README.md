@@ -3,7 +3,8 @@
 ** This is a 12-hour mini-course that is part of the Jackson Laboratory Data Science Training Program **
 
 Build on Python basics that you learned in Introduction to Python I. Download the [syllabus](Python2Syllabus_2026.docx) for more details. 
-   
+![P2_Flowchart](https://github.com/user-attachments/assets/7b733159-3888-4b12-b7d9-dd1c8d1a35e0)
+
 ## Course Description: 
 This workshop is the second half of the introduction to the Python programming 
 language course. We will review the fundamental capabilities of Python, undertake
