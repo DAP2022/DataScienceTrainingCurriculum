@@ -37,6 +37,10 @@ There is an overview and downloadable .ipynb files.
   - <a href = "course_content_jupyter_notebooks/Module5AB_0326.ipynb" download>Download (Module5AB.ipynb)<a>
   
 ## Assignments
+
+We are using the same DNA sequence - it can be found in your syllabus, but also here:
+5'-ATCGATCGATCGATCGACTGACTAATCATAGCTATGCATGCTACTCGATCGATCGATCGATCGATCGATCGATCGATCGATCATGCTAACATCGATCGATATCGATGCATCGACTAGTACTAT - 3'
+
 - [Problem Set 1](assignments/problem_set1.md)
 - [Problem Set 2](assignments/problem_set2.md)
 - [Problem Set 3](assignments/problem_set3.md)
