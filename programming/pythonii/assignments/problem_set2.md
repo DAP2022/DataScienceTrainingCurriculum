@@ -38,7 +38,7 @@ Use pythontutor.com to step through your function for fib(5) and include 1-2 sen
 ## Question 4: Eliminate state (Functional thinking)
 
 1. rewrite the following to make it "stateless": 
-
+```
 x=0
 #x has state because we are setting it to be 0 and it is being modified depending on 
 #where it is in the program. 
@@ -48,6 +48,6 @@ for i in range(10):
     x=x+i
     print(x, "Go through the loop again and the value of x has changed!")
 print(x)
-
+```
 Assignment 3 will continue with higher level function conversions. 
 
