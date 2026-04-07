@@ -5,6 +5,9 @@
 Build on Python basics that you learned in Introduction to Python I. Download the [syllabus](Python2Syllabus_2026.docx) for more details. 
 ![P2_Flowchart](https://github.com/user-attachments/assets/7b733159-3888-4b12-b7d9-dd1c8d1a35e0)
 
+Functions: 
+ <img width="212" height="166" alt="function_Blackbox" src="https://github.com/user-attachments/assets/7f3d5451-a202-4384-97d1-7a84e7c97bdc" />
+
 ## Course Description: 
 This workshop is the second half of the introduction to the Python programming 
 language course. We will review the fundamental capabilities of Python, undertake
@@ -16,7 +19,7 @@ to investigate.
 ## Course Learning Outcomes: 
 Provide you with the tools to take a computational problem through the process of design, implementation, documentation, and testing. By the end of the second week of Python instruction, you will be able to:
 - Bundle instructions and flow into **fun**ctions
-- Understand regular expressions (‘regex”) and import and use the regex module. 
+- Understand **scope** and breaking down a larger problem into smaller identical problems via **recursion**
 - Improve the design and encapsulation of your earlier procedural Python solutions with Object-Oriented programming principles
 - Have a general understanding of the benefits and drawbacks of the major types of programming: procedural, functional, object oriented and Querying (SQLite)
 - Understand, Implement, and leverage commonly used libraries such as NumPy, Pandas, SQLite3.
