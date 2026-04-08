@@ -8,6 +8,9 @@ Build on Python basics that you learned in Introduction to Python I. Download th
 Functions: 
  <img width="212" height="166" alt="function_Blackbox" src="https://github.com/user-attachments/assets/7f3d5451-a202-4384-97d1-7a84e7c97bdc" />
 
+Object-Oriented Programming: 
+![Parent_Child_Class](https://github.com/user-attachments/assets/7a40267b-ff1a-420e-b921-85b9721641c8)
+
 ## Course Description: 
 This workshop is the second half of the introduction to the Python programming 
 language course. We will review the fundamental capabilities of Python, undertake
