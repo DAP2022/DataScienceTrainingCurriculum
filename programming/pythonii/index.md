@@ -30,7 +30,8 @@ There is an overview and downloadable .ipynb files.
   - <a href = "course_content_jupyter_notebooks/P2_Module2A_0326.ipynb" download>Download (P2_Module2A.ipynb)<a>
   - <a href = "course_content_jupyter_notebooks/P2_Module2B_0326.ipynb" download>Download (P2_Module2B.ipynb)<a>
 - [Module 3 Overview](course_content_jupyter_notebooks/Module_3.md)
-  - <a href = "course_content_jupyter_notebooks/P2_Module3AB_0326.ipynb" download>Download (P2_Module3A.ipynb)<a>
+  - <a href = "course_content_jupyter_notebooks/P2_Module3A_0326.ipynb" download>Download (P2_Module3A.ipynb)<a>
+  - <a href = "course_content_jupyter_notebooks/P2_Module3B_0326.ipynb" download>Download (P2_Module3B.ipynb)<a>
 - [Module 4 Overview](course_content_jupyter_notebooks/Module_4.md)
   - <a href = "course_content_jupyter_notebooks/Module4_Overview_of_Libraries.ipynb" download>Download (P2_Module4A_Library_Overview.ipynb)<a>
   - <a href = "course_content_jupyter_notebooks/P2_Module4A_0326.ipynb" download>Download (P2_Module4A.ipynb)<a>
