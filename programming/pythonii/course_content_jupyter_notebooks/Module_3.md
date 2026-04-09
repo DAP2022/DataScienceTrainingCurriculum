@@ -1,6 +1,10 @@
-There might be spill over from 2B so I have combined Module 3A and Module 3B into one module: Module 3AB which covers Object-Oriented Programming: 
+## Module 3A: An overview of the three programming paradigms - procedural, functional, and Object-Oriented Programming
+- We have been doing 'procedural' programming so far. This is the top-to-bottom evaluation that we know and love.
+- We have dipped our toes into some aspects of functional programming such as list comprehensions (Python I), recursion (module 2)
+- Now we look at higher order functions: map, and filter as additional examples from the functional programming domain
+- we discuss OOP which we will work on next. 
 
-## Module 3AB: Object-Oriented Programming
+## Module 3B: Object-Oriented Programming
 - Objects have attributes (nouns) and methods (verbs)
 - Bundled, encapsulated object
 - Classes
