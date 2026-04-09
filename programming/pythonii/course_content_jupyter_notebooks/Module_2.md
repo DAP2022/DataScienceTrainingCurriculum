@@ -22,11 +22,10 @@ https://pythontutor.com/render.html#mode=displayLinks to an external site.
 - A taste of encapsulation! We have already used the **re** module (in Python I)
 
 ## Module 2B Learning Objectives
-Recognize:
-• The benefits of modularization
-• Syntax of modules
-• How to call functions within modules
-Implement:
-• Bundle the ORFadviser function (Py-II M1) into a module and call it from a new cell
-• Create and call your own custom module
-<img width="468" height="122" alt="image" src="https://github.com/user-attachments/assets/1dd5529e-6086-42d4-93f8-99306fa01f7a" />
+- Recognize:
+    - The benefits of modularization
+    - Syntax of modules
+    - How to call functions within modules
+- Implement:
+    - Bundle the ORFadviser function (Py-II M1) into a module and call it from a new cell
+    - Create and call your own custom module
