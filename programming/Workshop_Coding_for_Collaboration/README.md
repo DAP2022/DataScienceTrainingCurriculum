@@ -1,5 +1,1 @@
-This will be an overview of the course eventually...
-
-[Presentation Slides](materials/slides.md)
-
-[Extra Resources](materials/extra_resources.md)
+Tuan Nguyen created the material for this course and it can be found at his GitHub here: https://github.com/ptuan5/better-code/tree/main
