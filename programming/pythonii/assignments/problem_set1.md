@@ -3,10 +3,10 @@
 A DNA string is called an open reading frame (ORF) if it begins with 'ATG', ends with 'TGA', 'TAG', or 'TAA', and has a length that is a multiple of 3. ORFs are interesting because they can encode proteins.
 
 **1.** Write a function called ORFadviser(DNA) that takes a user-defined string called DNA as input and works as follows:
-- The function returns the string 'This is an ORF.' if the input string satisfies all three of the conditions required of ORFs
-- Otherwise, if the first three symbols are not 'ATG', the function returns the string 'The first three bases are not ATG.'
-- Otherwise, if the string does not end with 'TGA', 'TAG', or 'TAA', the function returns the string 'The last three bases are not a stop codon.'
-- Otherwise, the function returns the string 'The string is not of the correct length.'
+- Is there a start codon which is the sequence "ATG"?
+- Is there a stop codon (any of the following: "TGA", "TAA", TAG") present
+- Is the number of nucleotides between any start and any stop codon divisible by 3 **and is the stop codon AFTER the start codon**?
+If these conditions are met, print out "there is a possible ORF in this sequence". If the conditions are not met, print out a specific message that identifies which condition was not met, for example "There is no possible reading frame in this sequence because there was no start codon". 
 - **Use the following test cases for your code:**
   
   A. "ATGAAATTTTGA" <-- this should pass (start codon separated by a unit of 3 from a stop codon)
