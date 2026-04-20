@@ -6,9 +6,9 @@ Please explain your steps. Fully utilize the power of RStudio (Posit) by using M
 *We will work through a very similar question in class using the built-in iris dataset. The msleep dataset is included in the ggplot2 package so you will need to load that package in order to access the data set. This will be demonstrated during class*  
 - Load the dataset.
 - Use at least four inspection functions to characterize it and describe at least three attributes (explain what you choose and why). How is this dataset structurally similar to the Bumpus dataset from R I? How is it different? 
-- Using base R slicing and subset(), extract all mammals that are: carnivores, sleep more than 12 hours total per day, and have a known body weight. How many animals meet all three criteria?
+- Using base R slicing and subset(), extract all mammals that are: carnivores (the vores column gives carni, herbi, insecti, omni), sleep more than 12 hours total per day, and have a known body weight. How many animals meet all three criteria?
 -  Use tapply() to calculate mean total sleep time by vore (diet category). Which diet group sleeps the most? Does this surprise you? Offer a biological hypothesis in a Markdown chunk.
--  *You will repeat this anlaysis using dplyr in Module 2*
+-  *You will repeat this analysis using dplyr in Module 2*
 
 ## Q2. Use the HairEyeColor built-in dataset for basic R to create a mosaic plot. 
 - This will be a similar process to what we did in class. Ask and answer, using a graph, a question based on this table.
