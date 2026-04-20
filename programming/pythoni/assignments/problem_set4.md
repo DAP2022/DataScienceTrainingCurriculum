@@ -19,7 +19,7 @@ We will use our sequence and use conditional statements to apply general rules t
 
 A.	Is there a start codon which is the sequence "ATG"?
 
-B.	Is there a stop codon (any of the following: "TGA", "TAA", TAG") present
+B.	Is there a stop codon (any of the following: "TGA", "TAA", TAG") present **and is the stop codon AFTER the start codon**?
 
 C.	Is the number of nucleotides between any start and any stop codon divisible by 3? 
 
