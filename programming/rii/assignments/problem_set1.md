@@ -12,8 +12,9 @@ Please explain your steps. Fully utilize the power of RStudio (Posit) by using M
 
 ## Q2. Use the HairEyeColor built-in dataset for basic R to create a mosaic plot. 
 - This will be a similar process to what we did in class. Ask and answer, using a graph, a question based on this table.
+- If you would like a dataset that is more biologically motivated, you can use the simulated gene expression- tissue type dataset that is shown at the beginning of the notebook instead of the HairEyeColor built-in data set. Just be sure to state a question and then illustrate it with a mosaicplot. 
 
 ## Q3:Using the Bumpus dataset:
 - Recreate three visualizations from R I Module 4 (histogram, boxplot, scatterplot). These are your baseline.
-- Now load ggplot2. Without being taught it yet, use the ggplot2 cheat sheet (find online or in your syllabus) to attempt ONE of the three plots in ggplot2. What was the most confusing aspect of the ggplot2 syntax compared to base R?
--	Save all four plots (three base R + one ggplot2 attempt) to a single PDF. This file will be referenced directly in Module 3 for a quality comparison.
+- Now load ggplot2. Without being taught it yet, use the ggplot2 cheat sheet (find online or in your syllabus) to attempt ONE of the three plots in ggplot2. What was the most confusing aspect of the ggplot2 syntax compared to base R? Here is a solid "cheatsheet": https://github.com/IDMNYU/p5.js-plot/blob/master/ggplot2-cheatsheet.pdf
+-	**Save all four plots (three base R + one ggplot2 attempt) to a single PDF**. This file will be referenced directly in Module 3 for a quality comparison.
