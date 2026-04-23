@@ -18,7 +18,6 @@
 
 ## Activities:
 - Formally test a hypothesis on the Bumpus data set
-- Recapitulate the ROC/AUC example 
 
 ## Extra External Resources: 
 1. https://en.wikipedia.org/wiki/Statistical_hypothesis_test
