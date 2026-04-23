@@ -9,9 +9,12 @@
     - The hard way: using sample, pbinom(), tidyverse etc.
     - The easy way: using binom.test() and prop.test()
 - Apply the Hypothesis Testing framework to the Bumpus dataset
+- Testing for Normality:
+    - Visualization: q-q plots
+    - Shapiro-Wilk test
+- You will simulate normally distributed data sets and non-normally distributed data sets (ex. Poisson Distributed data sets)
 - Apply the chi-squared contingency test to the bumpus dataset
-- Work through an example of ROC/AUC using the pROC library
-- Fisher’s exact test (another type of Contingency test that is exact)
+
 
 ## Activities:
 - Formally test a hypothesis on the Bumpus data set
