@@ -11,4 +11,5 @@ Kaplan Meier curves
 - Fisher’s exact test (another type of Contingency test that is exact)
 
 ## Activities:
-- Use data sets to investigate normality, test a hypothesis with all appropriate examinations of the data (normality etc.), and produce a Kaplan-Meier curve for a built-in data set. 
+- Use data sets to investigate normality, test a hypothesis with all appropriate examinations of the data (normality etc.), and produce a Kaplan-Meier curve for a built-in data set.
+- Recapitulate the ROC/AUC example 
