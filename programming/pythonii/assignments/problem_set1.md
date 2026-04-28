@@ -1,6 +1,6 @@
 ## Question 1: ORF --> Bundling your Python I solution into a function
 
-A DNA string is called an open reading frame (ORF) if it begins with 'ATG', ends with 'TGA', 'TAG', or 'TAA', and has a length that is a multiple of 3. ORFs are interesting because they can encode proteins. **You can reuse your your solution for this question from Python I for the ORF, and the codon-splitting loop from Python I Module 3, Question 3 for part 2.** Remember: Good code often gets reused so it is worth it to comment it well!
+A DNA string is called an open reading frame (ORF) if it begins with 'ATG', ends with 'TGA', 'TAG', or 'TAA', and has a length that is a multiple of 3. ORFs are interesting because they can encode proteins. Sometimes ORFs are embedded in a longer nucleotide sequence, but there still needs to be a ATG present, followed by a stop codon that is a multiple of 3 after the start codon. **You can reuse your your solution for this question from Python I for the ORF, and the codon-splitting loop from Python I Module 3, Question 3 for part 2.** Remember: Good code often gets reused so it is worth it to comment it well!
 
 **1.** Write a **function** called ORFadviser(DNA) that takes a user-defined string called DNA as input and works as follows:
 - Is there a start codon which is the sequence "ATG"?
@@ -20,6 +20,6 @@ A DNA string is called an open reading frame (ORF) if it begins with 'ATG', ends
   E. Include a couple of other test cases that should pass and fail in your code and explain them. **Trying to break your own code with test cases that are increasingly challenging is a crucial aspect of creating robust logic and code!**
   
    
-**2.** Use the provided dictionary to translate it into amino acids.
+**2.** Use the provided dictionary to translate it into amino acids using a function.
 Note: this is a question that is recycled from an earlier module but asks you to bundle your code solution (that has if/elif/else conditions) into a **function** format that will work with any sequence. As part of your solution, you should use a for loop turn the following sequence (with introns removed, as you did in Intro to Python I) into a list of codons:  5’- ATCGATCGATCGATCGACTGACTAATCATAGCTATGCATGCTACTCGATCGATCGATCGATCGATCGATCGATCGATCGATCATGCTAACATCGATCGATATCGATGCATCGACTAGTACTAT-3'. You should end up with a list that prints ["ATC","GAT", etc].
 
