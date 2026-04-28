@@ -1,6 +1,6 @@
 ## Question 1: ORF --> Bundling your Python I solution into a function
 
-A DNA string is called an open reading frame (ORF) if it begins with 'ATG', ends with 'TGA', 'TAG', or 'TAA', and has a length that is a multiple of 3. ORFs are interesting because they can encode proteins. **You can reuse your codon-splitting loop from Python I Module 3, Question 3 inside of this solution. Remember: Good code often gets reused so it is worth it to comment it well!**
+A DNA string is called an open reading frame (ORF) if it begins with 'ATG', ends with 'TGA', 'TAG', or 'TAA', and has a length that is a multiple of 3. ORFs are interesting because they can encode proteins. **You can reuse your your solution for this question from Python I for the ORF, and the codon-splitting loop from Python I Module 3, Question 3 for part 2.** Remember: Good code often gets reused so it is worth it to comment it well!
 
 **1.** Write a **function** called ORFadviser(DNA) that takes a user-defined string called DNA as input and works as follows:
 - Is there a start codon which is the sequence "ATG"?
