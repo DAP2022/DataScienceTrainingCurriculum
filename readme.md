@@ -1,4 +1,3 @@
-
 # DataScienceTrainingCurriculum
 
 Regardless of your specific domain (i.e. business, science, social sciences), Data Science allows the 
@@ -17,7 +16,6 @@ Processing, modeling, and interpreting the data requires skills from *four* gene
    
 We have created 12-hour mini-courses in each of the three categories, along with 90-minute to 3 hour shorter workshops
 
-<img width="1012" height="566" alt="Screenshot 2025-12-13 at 3 34 55 PM" src="https://github.com/user-attachments/assets/2c84ee88-429d-4384-9bc9-d23b14494b2c" />
-
+<img width="1131" height="695" alt="Screenshot 2026-05-19 at 3 42 26 PM" src="https://github.com/user-attachments/assets/1d58393a-7ea7-49ab-8b3d-cd6e7cf444d4" />
 
 Materials for these courses can be found here!
