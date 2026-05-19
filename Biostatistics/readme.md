@@ -56,8 +56,8 @@ The following topics will be covered:
 - Parametric: T-tests, ANOVA, Correlation, Regression (linear, multiple, logistic), ANCOVA
 - Transformation, nonparametric versions, simulations, dimension reduction
 
-# Biostatistics III: 
-Course Description: 
+# Biostatistics III:  
+Course Description: In development (anticipated: 2027)
 Topics covered in this third workshop will focus on experimental design, and include qualitative tools, and 
 Causal Analysis (with an emphasis on DAGs, and Mendelian Randomization). 
 
