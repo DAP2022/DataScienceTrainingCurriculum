@@ -2,8 +2,9 @@
 ** This 12-hour mini-course is part of The Jackson Laboratory Foundational Data Science Training Curriculum**
 Here is the [syllabus](BII_Learning_Path.docx).
 
-This folder will contain: 
+<img width="1024" height="1536" alt="flowchart_inferential_statistics_June2026" src="https://github.com/user-attachments/assets/cb0cfd57-3dd6-4658-bc34-d27adebf4aec" />
 
+This folder will contain: 
 1. Lecture notes
 - [Lecture 1A](content/LP2_Module1A.pdf)
 - [Lecture 1B](content/LP2_Module1B.pdf)
