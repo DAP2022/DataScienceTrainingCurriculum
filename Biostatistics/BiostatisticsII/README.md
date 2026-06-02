@@ -2,8 +2,6 @@
 ** This 12-hour mini-course is part of The Jackson Laboratory Foundational Data Science Training Curriculum**
 Here is the [syllabus](BII_Learning_Path.docx).
 
-<img width="1024" height="1536" alt="flowchart_inferential_statistics_June2026" src="https://github.com/user-attachments/assets/cb0cfd57-3dd6-4658-bc34-d27adebf4aec" />
-
 This folder will contain: 
 1. Lecture notes
 - [Lecture 1A](content/LP2_Module1A.pdf)
@@ -83,3 +81,6 @@ The following topics will be covered in Biostatistics II:
 - ANOVA, Tukey’s honestly significant test; Nonparametric versions: Kruskal-Wallis one-way ANOVA, Dunn post-hoc test
 - Supervised learning: Linear Correlation; Nonparametric version: Spearman rank-order correlation; Linear Regression, and some general linear models like multivariate regression, ANCOVA
 - Unsupervised learning: Categorization, such as k-means clustering, Dimension reduction such as Principal Component Analysis (PCA)
+
+**We will focus on the classic "statistical decision tree flowchart" that helps reveal the context and decisions that motivate the use of statistical tools**
+<img width="1024" height="1536" alt="flowchart_inferential_statistics_June2026" src="https://github.com/user-attachments/assets/a135ab36-8ec1-41e0-be94-91d25ad6d260" />
