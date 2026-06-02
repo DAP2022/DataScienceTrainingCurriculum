@@ -80,3 +80,7 @@ The following topics will be covered in Biostatistics II:
 - ANOVA, Tukey’s honestly significant test; Nonparametric versions: Kruskal-Wallis one-way ANOVA, Dunn post-hoc test
 - Supervised learning: Linear Correlation; Nonparametric version: Spearman rank-order correlation; Linear Regression, and some general linear models like multivariate regression, ANCOVA
 - Unsupervised learning: Categorization, such as k-means clustering, Dimension reduction such as Principal Component Analysis (PCA)
+
+ **We will focus on the construction of a flowchart, like this one, that gives context for the inferential statistic tools that are used for each circumstance** 
+<img width="1024" height="1536" alt="flowchart_inferential_statistics_June2026" src="https://github.com/user-attachments/assets/eedc5b7a-ebcb-4a38-b260-e522d27bb46b" />
+
