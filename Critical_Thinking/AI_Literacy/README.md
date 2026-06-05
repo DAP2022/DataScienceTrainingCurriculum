@@ -1,6 +1,7 @@
 # Ai Literacy & DS Ethics
 
 ** This is a 12-hour mini-course that is part of the Jackson Laboratory Foundational Data Science Training Curriculum ** 
+
 Here is the most recent proposed syllabus (March 2026) for the July 2026 [hybrid course.](AiLiteracy_Syllabus_0326.docx) 
 
 ## Course Summary
@@ -48,4 +49,3 @@ Ai literacy is emancipatory. Understanding the limits and benefits of popular Ai
 - [Module 3](Content/Module3_2026.pdf)
 - [Module 4](Content/Module4_2026.pdf)
 - [Module 5](Content/Module5_2026.pdf)
-
