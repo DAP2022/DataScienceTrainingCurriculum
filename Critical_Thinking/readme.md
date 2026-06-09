@@ -10,7 +10,7 @@ In the following courses, we will address:
 5. **How to read Science**- a 90 minute workshop on how to read a scientific paper.
 
 ------------------
-There are three pillars of Ai-augmented work: Data Biography (the sometimes opaque seemingly small decisions about data wrangling that compound); The Alignment Problem (are we doing what we *think* that we are doing?); The Calibration Problem (How confident can be in our result?).
+There are three pillars of Ai-augmented work: Data Biography (the sometimes opaque seemingly small decisions about data wrangling that compound); The Alignment Problem (are we doing what we *think* that we are doing?); The Calibration Problem (How confident can we be in our result?).
 
 <img width="854" height="463" alt="Screenshot 2026-06-09 at 10 18 17 AM" src="https://github.com/user-attachments/assets/417736d7-2105-46e6-b9ea-f28cb5d2c5ed" />
 
