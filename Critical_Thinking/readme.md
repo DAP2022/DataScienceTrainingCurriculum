@@ -9,6 +9,12 @@ In the following courses, we will address:
 4. **Data/Information Visualization** - 2-hour workshop: general guidelines to more specific principles of how our brains process visual information. Include statistical definitions (what type of variable), and Edward Tufte. 
 5. **How to read Science**- a 90 minute workshop on how to read a scientific paper.
 
-The following is an diagram of how the courses (created and offered so far at JAX) relate to each other: 
+------------------
+There are three pillars of Ai-augmented work: Data Biography (the sometimes opaque seemingly small decisions about data wrangling that compound); The Alignment Problem (are we doing what we *think* that we are doing?); The Calibration Problem (How confident can be in our result?).
+
+<img width="854" height="463" alt="Screenshot 2026-06-09 at 10 18 17 AM" src="https://github.com/user-attachments/assets/417736d7-2105-46e6-b9ea-f28cb5d2c5ed" />
+
+-------------------
+If you are taking the full course curriculum at JAX, here is an diagram of how the courses (created and offered so far at JAX) relate to each other: 
 
 <img width="1347" height="758" alt="Screenshot 2026-03-30 at 4 56 52 PM" src="https://github.com/user-attachments/assets/92e11ef7-f33a-4658-91c1-9b8c928e5c74" />
