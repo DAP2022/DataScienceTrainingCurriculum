@@ -16,7 +16,7 @@
 
 **Day 1: Exploring AI Literacy** 
 
-**_Motivation:** Answering the question: what can this tool _do_?_
+_**Motivation:** Answering the question: what can this tool _do_?_
 
 - _**Activity 1:**_ Create an Ai Use Case Statement:
 
