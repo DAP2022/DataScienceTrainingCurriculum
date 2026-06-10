@@ -24,9 +24,9 @@ The course integrates four complementary frameworks: Kahneman's System 1/System 
 
 ## Lecture notes for 3-day Workshop
 (This will eventually be expanded into a 5-day course)
-- [Module 1](Content/Module_1.md)
-- [Module 2](Content/Module_2.md)
-- [Module 3](Content/Module_3.md)
+- [Module 1](Content/Module_1.pdf)
+- [Module 2](Content/Module_2.pdf)
+- [Module 3](Content/Module_3.pdf)
 
   
 ## Assignments
