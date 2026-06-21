@@ -15,7 +15,7 @@ transduction of **raw data** into actionable **wisdom**.
 2. Statistics & ( a little) Linear Algebra
 3. Critical Thinking & Communication 
 -----------------
-THe general pillars necessary to transform from simply having data to becoming an Ai-enabled workforce: 
+The general pillars necessary to transform from simply having data to becoming an Ai-enabled workforce: 
 
 <img width="447" height="408" alt="Screenshot 2026-06-21 at 11 26 48 AM" src="https://github.com/user-attachments/assets/f12b79fe-aa44-4277-8c55-d50aebc02b65" />
 
