@@ -26,3 +26,10 @@ We have created 12-hour mini-courses in each of the three categories, along with
 <img width="1131" height="695" alt="Screenshot 2026-05-19 at 3 42 26 PM" src="https://github.com/user-attachments/assets/1d58393a-7ea7-49ab-8b3d-cd6e7cf444d4" />
 
 Materials for these courses can be found on this GitHub!
+
+In the fall of 2026, we will begin:
+---------------
+- a **Lunch & Learn** series that will include a variety of lectures, and activities to develop hands-on intuition about Ai
+- a **monthly book club** all about Ai.
+  
+Syllabuses for both of these new activities will be found on this Github in mid-September. 
