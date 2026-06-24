@@ -6,7 +6,8 @@ transduction of **raw data** into actionable **wisdom**.
 <img width="1261" height="666" alt="Screenshot 2026-05-19 at 3 40 22 PM" src="https://github.com/user-attachments/assets/35b87cbe-a3d4-45e3-82cb-0e0f77f72ce4" />
 
 -----------------
-### AI magnifies capability, not its absence. 
+<h3 align="center"> Ai magnifies capability, not its absence. </h3>
+
 ### Like any *FORCE MULTIPLIER*, when the base is zero, the product is zero. Foundational competence is the prerequisite for amplification!
 
 **Processing, modeling, and interpreting** the data requires skills from *three* general disciplines + your domain: 
@@ -16,9 +17,9 @@ transduction of **raw data** into actionable **wisdom**.
 3. Critical Thinking & Communication 
 -----------------
 The general pillars necessary to transform from simply having data to becoming an Ai-enabled workforce: 
-
+<p align="center">
 <img width="447" height="408" alt="Screenshot 2026-06-21 at 11 26 48 AM" src="https://github.com/user-attachments/assets/f12b79fe-aa44-4277-8c55-d50aebc02b65" />
-
+</p>
 ------------------
 
 We have created 12-hour mini-courses in each of the three categories, along with 90-minute to 3 hour shorter workshops. 
