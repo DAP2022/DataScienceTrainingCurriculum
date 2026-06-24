@@ -1,6 +1,7 @@
 # Ai Literacy & DS Ethics
 
 ** This is a 12-hour mini-course that is part of the Jackson Laboratory Foundational Data Science Training Curriculum ** 
+
 Here is the most recent proposed syllabus (March 2026) for the July 2026 [hybrid course.](AiLiteracy_Syllabus_0326.docx) 
 
 ## Course Summary
@@ -8,7 +9,7 @@ Ai literacy is emancipatory. Understanding the limits and benefits of popular Ai
 
 ## Course Learning Outcomes  
 1. Day 1 – Foundations of AI, ML & Data Science
-- Distinguish Ai literacy from Ai fleuncy. 
+- Distinguish Ai literacy from Ai fluency. 
 -	Distinguish “AI”, “machine learning” and “data-science / statistics” and recognize where supervised vs. unsupervised learning fit in the conceptual network.
 -	Trace key milestones in the history of AI to appreciate that the field isn’t “new”.
 -	Explain core prediction tools already familiar in science (logistic regression, K-means) and where simple neural-network models extend them.
