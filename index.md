@@ -12,9 +12,9 @@ transduction of **raw data** into actionable **wisdom**.
 
 **Processing, modeling, and interpreting** the data requires skills from *three* general disciplines + your domain: 
 
-1. [Programming](./programming/index.md)
-2. [Statistics](./Biostatistics/index.md) & (a little) [Linear Algebra](Biostatistics/Linear_Algebra_Workshop)
-3. [Critical Thinking & Communication](./Critical_Thinking/index.md)
+1. [Programming](programming/index.md)
+2. [Statistics](Biostatistics/index.md) & (a little) [Linear Algebra](Biostatistics/Linear_Algebra_Workshop)
+3. [Critical Thinking & Communication](Critical_Thinking/index.md)
    
 -----------------
 The general pillars necessary to transform from simply having data to becoming an Ai-enabled workforce: 
