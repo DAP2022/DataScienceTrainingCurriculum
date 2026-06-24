@@ -20,8 +20,8 @@ The general pillars necessary to transform from simply having data to becoming a
 <p align="center">
 <img width="447" height="408" alt="Screenshot 2026-06-21 at 11 26 48 AM" src="https://github.com/user-attachments/assets/f12b79fe-aa44-4277-8c55-d50aebc02b65" />
 </p>
-------------------
 
+------------------
 We have created 12-hour mini-courses in each of the three categories, along with 90-minute to 3 hour shorter workshops. 
 
 <img width="1131" height="695" alt="Screenshot 2026-05-19 at 3 42 26 PM" src="https://github.com/user-attachments/assets/1d58393a-7ea7-49ab-8b3d-cd6e7cf444d4" />
