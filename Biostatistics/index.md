@@ -1,6 +1,6 @@
 # Statistics Pipeline
 
-** These are three courses that provide the foundational statistical training offered by The Jackson Laboratory as part of their Data Science Curriculum **
+** These are three courses that provide the foundational statistical training offered by The Jackson Laboratory as part of their Data Science & Ai Enablement Curriculum **
 
 Statistics provides a framework for weighing and evaluating EVIDENCE. It is **applied epistemology**, not just a series of equations to memorize. Bayes’ and frequentist statistics bring slightly different philosophies to the table: Bayes is a quantification of personal
 belief (rooted in Hume; the parameter value is unknowable), frequentist is rooted in the idea of objective truth (there is
@@ -56,8 +56,8 @@ The following topics will be covered:
 - Parametric: T-tests, ANOVA, Correlation, Regression (linear, multiple, logistic), ANCOVA
 - Transformation, nonparametric versions, simulations, dimension reduction
 
-# Biostatistics III: 
-Course Description: 
+# Biostatistics III:  
+Course Description: In development (anticipated: 2027)
 Topics covered in this third workshop will focus on experimental design, and include qualitative tools, and 
 Causal Analysis (with an emphasis on DAGs, and Mendelian Randomization). 
 
