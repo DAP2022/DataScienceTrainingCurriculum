@@ -4,9 +4,9 @@ Python and R are the two most widely used open-source programming languages in d
 
 This repository contains teaching materials for both languages, organized into separate folders:
 - [Python I](pythoni/index.md)
-- [Python II](./programming/pythonii/index.md)
-- [R I](./programming/ri/index.md)
-- [R II](./programming/rii/index.md)
+- [Python II](pythonii/index.md)
+- [R I](ri/index.md)
+- [R II](rii/index.md)
 
 Whether you are new to programming or expanding your analytical toolkit, these resources provide a foundation for working with real-world data in either environment.
 
