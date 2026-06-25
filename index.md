@@ -1,4 +1,4 @@
-#<h3 align="center">Data Science Training Curriculum</h3>
+# <h3 align="center">Data Science Training Curriculum</h3>
 
 Regardless of your specific domain (i.e. business, science, social sciences), Data Science allows the 
 transduction of **raw data** into actionable **wisdom**.
