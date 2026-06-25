@@ -1,3 +1,4 @@
+# <h3 align="center"> Additional JAX Data Science Training Initiatives </h3>
 There are several additional Data Science Initiatives at JAX. In this folder, you will find the syllabuses and additional information for programs as they become available. 
 
 1. **Biomedical Data Science in Context (BDSiC)**: This is a two-week residential program that is aimed at undergraduates. You will find the *proposed* syllabus for the January 2027 iteration [here]().
