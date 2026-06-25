@@ -28,9 +28,13 @@ We have created 12-hour mini-courses in each of the three categories, along with
 
 Materials for these courses can be found on this GitHub!
 
-In the fall of 2026, we will begin:
+In the fall of 2026, we will:
 ---------------
-- a **Lunch & Learn** series that will include a variety of lectures, and activities to develop hands-on intuition about Ai
+**Begin:** 
+- a **Lunch & Learn** series that will include a variety of lectures, and activities to develop hands-on intuition about Ai;
 - a **monthly book club** all about Ai.
+
+**Continue (year 3)**
+- post an application (Anticipated: October) for the **2027 Data Science Training Fellows**.
   
-Syllabuses for both of these new activities will be found on this Github in mid-September. 
+Syllabuses for these activities will be found on this Github in mid-September. 
