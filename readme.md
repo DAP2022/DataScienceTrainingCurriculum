@@ -38,4 +38,4 @@ In the fall of 2026, we will:
 - post an application (Anticipated: October) for the **2027 JAX Data Science Training Fellows**;
 - advertise the 3rd "Biomedical Data Science in Context" two-week, residential 'bootcamp' in January 2027.
   
-Syllabuses for these activities will be found on this Github in mid-September. 
+Syllabuses for these activities will be found on [Other_DS_Initiatives](Other_DS_Initiatives/index.md) in mid-September. 
