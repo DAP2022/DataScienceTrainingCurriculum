@@ -35,8 +35,8 @@ In the fall of 2026, we will:
 - a **Lunch & Learn** series that will include a variety of lectures, and activities to develop hands-on intuition about Ai;
 - a **monthly book club** all about Ai.
 
-**Continue (year 3):**
+**Continue (year 3)**
 - post an application (Anticipated: October) for the **2027 JAX Data Science Training Fellows**;
-- advertise the 3rd "Biomedical Data Science in Context" two-week, residential 'bootcamp' that will run in January 2027.
+- advertise the 3rd "Biomedical Data Science in Context" two-week, residential 'bootcamp' in January 2027.
   
-Syllabuses for these activities will be found on this Github starting around mid-September. 
+Syllabuses for these activities will be found on [Other_DS_Initiatives](Other_DS_Initiatives/index.md) in mid-September. 
