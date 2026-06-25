@@ -35,6 +35,7 @@ In the fall of 2026, we will:
 - a **monthly book club** all about Ai.
 
 **Continue (year 3)**
-- post an application (Anticipated: October) for the **2027 Data Science Training Fellows**.
+- post an application (Anticipated: October) for the **2027 Data Science Training Fellows**;
+- advertise the 3rd "Biomedical Data Science in Context" two-week, residential 'bootcamp'.
   
 Syllabuses for these activities will be found on this Github in mid-September. 
