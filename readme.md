@@ -36,6 +36,6 @@ In the fall of 2026, we will:
 
 **Continue (year 3)**
 - post an application (Anticipated: October) for the **2027 Data Science Training Fellows**;
-- advertise the 3rd "Biomedical Data Science in Context" two-week, residential 'bootcamp'.
+- advertise the 3rd "Biomedical Data Science in Context" two-week, residential 'bootcamp' in January 2027.
   
 Syllabuses for these activities will be found on this Github in mid-September. 
