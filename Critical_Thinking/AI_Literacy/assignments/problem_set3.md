@@ -18,7 +18,7 @@
 
 **Motivation:** Answering the question: why do LLMs generate output this way? LLMs do not retrieve truth. They predict plausible continuations.
 
-**Activity 1:** Prompt Ask an LLM to explain the same concept different ways for three different audiences:
+**Activity 1:** Prompt: "Ask an LLM to explain the same concept different ways for three different audiences:"
 1. A novice
 2. An informed user
 3. An expert
