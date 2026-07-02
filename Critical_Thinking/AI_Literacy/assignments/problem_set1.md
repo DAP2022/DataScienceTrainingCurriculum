@@ -20,11 +20,11 @@ _**Motivation:** Answering the question: what can this tool _do_?_
 
 - _**Activity 1:**_ Create an Ai Use Case Statement:
 
-Throughout this course I will investigate the use of Ai for: __________________
+Throughout this course I will investigate the use of Ai/LLM for: __________________
 
 My chosen workflow category is: _________________
 
-My primary Ai tool is: ___________________
+My primary Ai/LLM tool is: ___________________
 
 This "Ai use case" will be used for each of the assignments this week. 
 
