@@ -7,4 +7,4 @@ There are several additional Data Science Initiatives at JAX. In this folder, yo
    
 3. **Monthly Reading Group**: We will meet to discuss a new book in the broad domain of Data Science or Ai every months. A syllabus will be uploaded for this in the fall of 2026. In the meantime, [here](Popular_AI_books_GitHub.docx) is a document that includes some brief thoughts about various popular books in this general field. These are the types of books that we will focus on in this book club. Suggestions are **very welcome!**
 
-4. **Data Science Training Fellows (& Pedagogy)**: We have had two cohorts in this program and will advertise for a third cohort in the fall of 2026. We will post a syllabus for this soon. 
+4. **Data Science Training Fellows (& Pedagogy)**: We have had two cohorts in this program and will advertise for a third cohort in the fall of 2026. We will post a syllabus for this soon. Pedagogy is the science and art of **identifying and curating key concepts** and then effectively communicating these ideas to allow your audience to accurately incorporate them into their own mental scaffold. 
