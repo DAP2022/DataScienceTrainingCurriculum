@@ -45,7 +45,7 @@ Ai literacy is emancipatory. Understanding the limits and benefits of popular Ai
 
 ## Lecture notes (pdfs)
 - [Module 1](Content/Module1_2026.pdf)
-- [Module 2](Content/Module2_2026.pdf)
+- [Module 2](Content/Module2_2026.pdf) plus instructions for the online module [games](Content/Module2_Link_reference.pdf)
 - [Module 3](Content/Module3_2026.pdf)
 - [Module 4](Content/Module4_2026.pdf)
 - [Module 5](Content/Module5_2026.pdf)
