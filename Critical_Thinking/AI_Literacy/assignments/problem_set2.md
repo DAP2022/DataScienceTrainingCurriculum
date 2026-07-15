@@ -1,15 +1,15 @@
- **Ai Workflow Reflection Portfolio**
+  **Ai Workflow Reflection Portfolio**
 ----------------
 **Portfolio Goal:** By the end of the week, you will create a personalized Ai Fluency Protocol informed by observations, analyses, and experiments conducted throughout the course. Each day's activities will contribute to the final Ai Fluency Protocol!
-- Participants use one of ChatGPT or Claude (for consistency)
-- Participants pick one real task from their own work and revisit that one category throughout the week. Here are the four categories: 
-  1.	Research understanding
+- Participants use one of ChatGPT or Claude or your favourite LLM (use just the same one for all 5 assignments for comparison consistency)
+- Participants pick one real task from their own work and revisit that one category throughout the week. Here are the four broad categories that may be relevant to JAX: 
+  **1.	Research understanding**
       -	Examples: summarize a paper, explain a method, identify limitations
-  2.	Writing & Communication
+ **2.	Writing & Communication**
       -	Examples: email drafting, editing, presentation preparation
-  3.	Data & Analysis
+  **3.	Data & Analysis**
       - Examples: coding, statistical interpretation, visualization
-  4.	Learning & Education
+  **4.	Learning & Education**
       - Examples: tutoring, concept explanations, study planning
 - Include at least one prompt, output excerpt, screenshot, or interaction example _that supports your analysis for each day_ in your answer. 
 -------------
