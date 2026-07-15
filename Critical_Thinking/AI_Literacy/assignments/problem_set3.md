@@ -12,7 +12,7 @@
   4.	Learning & Education
       - Examples: tutoring, concept explanations, study planning
 - Include at least one prompt, output excerpt, screenshot, or interaction example _that supports your analysis for each day_ in your answer. 
--------------](https://github.com/DAP2022/DataScienceTrainingCurriculum/blob/main/Critical_Thinking/AI_Literacy/assignments/problem_set2.md)
+-------------
 
 **Day 3: Attention and Prediction** 
 
