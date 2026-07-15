@@ -1,4 +1,4 @@
- **Ai Workflow Reflection Portfolio**
+**Ai Workflow Reflection Portfolio**
 ----------------
 **Portfolio Goal:** By the end of the week, you will create a personalized Ai Fluency Protocol informed by observations, analyses, and experiments conducted throughout the course. Each day's activities will contribute to the final Ai Fluency Protocol!
 - Participants use one of ChatGPT or Claude (for consistency)
@@ -12,7 +12,7 @@
   4.	Learning & Education
       - Examples: tutoring, concept explanations, study planning
 - Include at least one prompt, output excerpt, screenshot, or interaction example _that supports your analysis for each day_ in your answer. 
--------------
+-------------](https://github.com/DAP2022/DataScienceTrainingCurriculum/blob/main/Critical_Thinking/AI_Literacy/assignments/problem_set2.md)
 
 **Day 3: Attention and Prediction** 
 
