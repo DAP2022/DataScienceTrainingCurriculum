@@ -1,5 +1,6 @@
 # Problem Solving:Critical Thinking & Problem Solving in the Age of AI
-** This is a 12-hour mini-course that is part of the Jackson Laboratory Foundational Data Science Training Curriculum ** 
+*This is a 12-hour mini-course that is part of the Jackson Laboratory Foundational Data Science Training Curriculum* 
+
 The current syllabus for the **3-day Workshop version of this course** is [here](SolvingProblemsWORKSHOPSyllabus_2026.docx)
 
 ## Course Description
