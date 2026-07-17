@@ -13,7 +13,7 @@ Artificial intelligence can generate answers, explanations, and recommendations 
 
 This workshop develops the habits of mind required for calibrated decision-making under uncertainty. Participants will learn to recognize the hidden structures that shape conclusions, including cognitive biases, assumptions, incentives, data limitations, and problem framing choices. Through a series of reasoning exercises, and Ai audits, participants will confront situations where confidence and correctness diverge.
 
-The course integrates four complementary frameworks: Kahneman's System 1/System 2 model, the Paul-Elder Framework of Critical Thinking, Polya's Problem-Solving Method, and Wild & Pfannkuch's Statistical Thinking Cycle.  These will provide structural tools for evaluating claims, decomposing complex problems, interrogating data, and collaborating effectively with Ai systems. The goal of this workshop is not to eliminate uncertainty. The goal is to make better decisions despite it.
+The course integrates **four** complementary frameworks: **Kahneman's System 1/System 2 model, the Paul-Elder Framework of Critical Thinking, Polya's Problem-Solving Method, and Wild & Pfannkuch's Statistical Thinking Cycle.**  These will provide structural tools for evaluating claims, decomposing complex problems, interrogating data, and collaborating effectively with Ai systems. The goal of this workshop is not to eliminate uncertainty. The goal is to make better decisions despite it.
 
 
 ## Course Learning Outcomes  
