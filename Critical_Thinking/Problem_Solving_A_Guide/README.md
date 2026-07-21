@@ -22,6 +22,8 @@ The course integrates **four** complementary frameworks: **Kahneman's System 1/S
 3.  Reason Effectively Under Uncertainty: Apply Bayesian updating, causal reasoning, and structured decision-making approaches to revise beliefs appropriately as new evidence becomes available.
 4.  Apply Structural Frameworks for Problem Solving: Use the Paul-Elder Framework, Polya's Problem-Solving Method, and Wild & Pfannkuch's PPDAC Cycle to decompose problems, evaluate reasoning, interrogate evidence, and improve decision quality.
 
+## Course Audience
+Members of the biomedical research community, including scientists, trainees, clinicians, educators, and professional staff, who are interested in **practical frameworks for reasoning, decision-making, and the responsible use of Ai.**
 
 ## Lecture notes for 3-day Workshop
 (This will eventually be expanded into a 5-day course)
