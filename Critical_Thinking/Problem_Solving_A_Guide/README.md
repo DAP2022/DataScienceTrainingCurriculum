@@ -19,14 +19,14 @@ The course integrates **four** complementary frameworks: **Kahneman's System 1/S
 ## Course Learning Outcomes  
 1.  Evaluate the Calibration of Conclusions: Distinguish confidence from accuracy and assess whether a conclusion is justified by the available evidence, uncertainty, and assumptions.
 2.  Identify Hidden Sources of Error: Recognize how cognitive biases, incentives, assumptions, problem framing, measurement decisions, and data limitations influence reasoning and decision quality.
-3.  Reason Effectively Under Uncertainty: Apply Bayesian updating, causal reasoning, and structured decision-making approaches to revise beliefs appropriately as new evidence becomes available.
+3.  **Reason Effectively Under Uncertainty:** Apply Bayesian updating, causal reasoning, and structured decision-making approaches to revise beliefs appropriately as new evidence becomes available.
 4.  Apply Structural Frameworks for Problem Solving: Use the Paul-Elder Framework, Polya's Problem-Solving Method, and Wild & Pfannkuch's PPDAC Cycle to decompose problems, evaluate reasoning, interrogate evidence, and improve decision quality.
 
 ## Course Audience
 Members of the biomedical research community, including scientists, trainees, clinicians, educators, and professional staff, who are interested in **practical frameworks for reasoning, decision-making, and the responsible use of Ai.**
 
 ## Lecture notes for 3-day Workshop
-(This will eventually be expanded into a 5-day course)
+(This will eventually be expanded into a 12.5-hour course across 5 days)
 - [Module 1](Content/Module_1.pdf)
 - [Module 2](Content/Module_2.pdf)
 - [Module 3](Content/Module_3.pdf)
