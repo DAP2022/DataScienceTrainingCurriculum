@@ -1,11 +1,10 @@
 # <h3 align="center">Data Science Training Curriculum</h3>
 
-Regardless of your specific domain (i.e. business, science, social sciences), Data Science allows the 
-transduction of **raw data** into actionable **wisdom**.
+Regardless of your specific domain (i.e. business, science, social sciences), Data Science allows the transduction of **raw data** into actionable **wisdom**.
 
 <img width="1261" height="666" alt="Screenshot 2026-05-19 at 3 40 22 PM" src="https://github.com/user-attachments/assets/35b87cbe-a3d4-45e3-82cb-0e0f77f72ce4" />
 
-### The purpose of education is to develop human capacity for independent judgment.
+### 1. The purpose of education is to develop human capacity for independent judgment.
 
 Education should build the knowledge, mental models, critical reasoning, and metacognitive abilities that allow people to understand complex problems, evaluate evidence, challenge authoritative answers, revise their beliefs, and act responsibly. It should also teach learners to extend their capabilities through collaboration with other people and with machines.
 - Education therefore has both an individual and a collective responsibility: to develop capable people today while cultivating the conditions through which capable people can continue to develop tomorrow.
@@ -13,7 +12,7 @@ Education should build the knowledge, mental models, critical reasoning, and met
 -----------------
 <h3 align="center"> Ai magnifies capability, not its absence. </h3>
 
-### Like any *Force Multiplier*, when the base is zero, the product is zero. Foundational competence is the prerequisite for amplification!
+### 2. Like any *Force Multiplier*, when the base is zero, the product is zero. Foundational competence is the prerequisite for amplification!
 
 **Processing, modeling, and interpreting** the data requires skills from *three* general disciplines + your domain: 
 
@@ -22,12 +21,10 @@ Education should build the knowledge, mental models, critical reasoning, and met
 3. [Critical Thinking & Communication](./Critical_Thinking/index.md)
 -----------------
 
-### The general pillars necessary to transform from simply having data to becoming an Ai-enabled workforce: 
+### 3. The general pillars necessary to transform from simply having data to becoming an Ai-enabled workforce: 
 <p align="center">
 <img width="447" height="408" alt="Screenshot 2026-06-21 at 11 26 48 AM" src="https://github.com/user-attachments/assets/f12b79fe-aa44-4277-8c55-d50aebc02b65" />
 </p>
-
-------------------
 We have created 12-hour mini-courses in each of the three categories, along with 90-minute to 3 hour workshops. 
 
 <img width="1131" height="695" alt="Screenshot 2026-05-19 at 3 42 26 PM" src="https://github.com/user-attachments/assets/1d58393a-7ea7-49ab-8b3d-cd6e7cf444d4" />
