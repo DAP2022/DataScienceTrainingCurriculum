@@ -6,9 +6,15 @@ transduction of **raw data** into actionable **wisdom**.
 <img width="1261" height="666" alt="Screenshot 2026-05-19 at 3 40 22 PM" src="https://github.com/user-attachments/assets/35b87cbe-a3d4-45e3-82cb-0e0f77f72ce4" />
 
 -----------------
+### The purpose of education is to develop human capacity for independent judgment.
+
+Education should build the knowledge, mental models, critical reasoning, and metacognitive abilities that allow people to understand complex problems, evaluate evidence, challenge authoritative answers, revise their beliefs, and act responsibly. It should also teach learners to extend their capabilities through collaboration with other people and with machines.
+- Education therefore has both an individual and a collective responsibility: to develop capable people today while cultivating the conditions through which capable people can continue to develop tomorrow.
+- Technology should remove unnecessary barriers to learning, but it should not remove the cognitive work through which learners become capable of thinking without it.
+-----------------
 <h3 align="center"> Ai magnifies capability, not its absence. </h3>
 
-### Like any *FORCE MULTIPLIER*, when the base is zero, the product is zero. Foundational competence is the prerequisite for amplification!
+### Like any *Force Multiplier*, when the base is zero, the product is zero. Foundational competence is the prerequisite for amplification!
 
 **Processing, modeling, and interpreting** the data requires skills from *three* general disciplines + your domain: 
 
@@ -16,7 +22,8 @@ transduction of **raw data** into actionable **wisdom**.
 2. [Statistics](./Biostatistics/index.md) & (a little) [Linear Algebra](Biostatistics/Linear_Algebra_Workshop)
 3. [Critical Thinking & Communication](./Critical_Thinking/index.md)
 -----------------
-The general pillars necessary to transform from simply having data to becoming an Ai-enabled workforce: 
+
+### The general pillars necessary to transform from simply having data to becoming an Ai-enabled workforce: 
 <p align="center">
 <img width="447" height="408" alt="Screenshot 2026-06-21 at 11 26 48 AM" src="https://github.com/user-attachments/assets/f12b79fe-aa44-4277-8c55-d50aebc02b65" />
 </p>
@@ -28,6 +35,7 @@ We have created 12-hour mini-courses in each of the three categories, along with
 
 Materials for these courses can be found on this GitHub!
 
+---------------
 In the fall of 2026, we will:
 ---------------
 **Begin:** 
