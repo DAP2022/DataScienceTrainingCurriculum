@@ -4,7 +4,7 @@ Regardless of your specific domain (i.e. business, science, social sciences), Da
 
 <img width="1261" height="666" alt="Screenshot 2026-05-19 at 3 40 22 PM" src="https://github.com/user-attachments/assets/35b87cbe-a3d4-45e3-82cb-0e0f77f72ce4" />
 
-### 1. The purpose of education is to develop human capacity for independent judgment.
+### 1. The purpose of education & training is to develop human capacity for independent judgment.
 
 Education should build the knowledge, mental models, critical reasoning, and metacognitive abilities that allow people to understand complex problems, evaluate evidence, challenge authoritative answers, revise their beliefs, and act responsibly. It should also teach learners to extend their capabilities through collaboration with other people and with machines.
 - Education therefore has both an individual and a collective responsibility: to develop capable people today while cultivating the conditions through which capable people can continue to develop tomorrow.
