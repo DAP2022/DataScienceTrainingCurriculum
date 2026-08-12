@@ -35,14 +35,17 @@ We have created 12-hour mini-courses in each of the three categories, along with
 Materials for these courses can be found on this GitHub!
 
 ---------------
-In the fall of 2026, we will:
+### 4. Future Offerings:
 ---------------
+Genetics has a long history of grappling with the scientific, ethical, and societal consequences of statistical prediction and emerging technologies. That history uniquely positions geneticists to understand both the promise and the risks of Ai, particularly given the substantial conceptual and ethical overlap between the two fields. Beginning in the fall of 2026, we will be creating more opportunities for dialectical learning around these issues.
+
+We will:
 **Begin:** 
 - a **Lunch & Learn** series that will include a variety of lectures, and activities to develop hands-on intuition about Ai;
 - a **monthly book club** all about Ai.
 
 **Continue (year 3):**
 - post an application (Anticipated: October) for the **2027 JAX Data Science Training Fellows**;
-- advertise the 3rd "Biomedical Data Science in Context" two-week, residential 'bootcamp' in January 2027.
+- advertise the 3rd "Biomedical Data Science in Context" two-week, residential 'bootcamp' that will occur with Colby College in January 2027.
   
 Syllabuses for these activities will be found on [Other_DS_Initiatives](Other_DS_Initiatives/index.md) in mid-September. 
