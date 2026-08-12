@@ -15,9 +15,10 @@ Education should build the knowledge, mental models, critical reasoning, and met
 -----------------
 <h3 align="center"> Ai magnifies capability, not its absence. </h3>
 
-### 2. Like any *Force Multiplier*, when the base is zero, the product is zero. Foundational competence is the prerequisite for amplification!
+### 2. Foundational competence is the prerequisite for amplification!
 
-**Processing, modeling, and interpreting** the data requires skills from *three* general disciplines + your domain: 
+- **Like any *Force Multiplier*, when the base is zero, the product is zero.** 
+- **Processing, modeling, and interpreting** the data requires skills from *three* general disciplines + your domain: 
 
 1. [Programming](./programming/index.md)
 2. [Statistics](./Biostatistics/index.md) & (a little) [Linear Algebra](Biostatistics/Linear_Algebra_Workshop)
