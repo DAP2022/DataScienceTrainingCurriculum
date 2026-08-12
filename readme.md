@@ -43,7 +43,7 @@ Genetics has a long history of grappling with the scientific, ethical, and socie
 We will:
 **Begin:** 
 - a **Lunch & Learn** series that will include a variety of lectures, and activities to develop hands-on intuition about Ai;
-- a **monthly book club** accessible books that all broadly about Ai. Here is an annotated list of the type of books that we will read together: [Popular Accessible Books with Short Summary Thoughts](Other_DS_Initiatives/Popular_AI_books_2025.pdf).
+- a **monthly book club** accessible books that all broadly about Ai. Here is an annotated list of the type of books that we will read together: [Popular Accessible Books with Short Summary Thoughts](Other_DS_Initiatives/Popular_AI_Books_Github.pdf).
 
 **Continue (year 3):**
 - post an application (Anticipated: October) for the **2027 JAX Data Science Training Fellows**;
