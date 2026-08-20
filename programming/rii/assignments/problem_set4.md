@@ -17,10 +17,8 @@ The data file "R2_Sleep contains information on 10 individuals who took two diff
 - What type of t-test is most appropriate here, and why?
 - What sample size would be needed to detect a difference of 0.25 hours with 90% power?
 
-## Question 3: 
-ROC and AUC: Repeat the example that was worked in your Module 4 Notebook, but this time create **one graph that includes all of: gos6, WFNS, Age, s100b, and NDKA**. Calculate the AUC for these factors. Based on the AUC value, which of these factors are good classifiers for outcome after aSAH?
 
-## Question 4:
+## Question 3:
 Produce a Kaplan-Meier curve for the built-in Leukemia data set ('leukemia'). This dataset is similar to the lung dataset, but instead of male/female column, there is a column, x, that is "Maintained" or "Nonmaintained". Under the Status columns, the Censored individuals are given 1 and dead individuals are assigned the number 2.
 Begin by producing a ggplot histogram that distinguishes between censored and uncensored data.
 Create a survival object and peek at the columns.
