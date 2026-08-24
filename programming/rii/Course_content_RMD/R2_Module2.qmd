@@ -4,6 +4,18 @@ format: docx
 editor: visual
 ---
 
+# 
+
+# Preamble
+
+1.  Tidyverse uses logic and layering.
+2.  We will use two different types of data set:
+
+- built-in data set: star wars
+- expr_data dataframe that we simulated in R2_Module1
+
+2.  ggplot2 similarly uses the grammar of visualization
+
 # Tidyverse & ggplot2
 
 ## 1. Tidyverse
@@ -22,21 +34,11 @@ We will start this session with a brief discussion of the following resources.
 
 ## First up, we're going to discuss Hadley Wickham's [Workflow](https://r4ds.hadley.nz/intro.html)
 
-```{r pressure, echo=FALSE, fig.cap="A caption", out.width = '100%'}
-# if I have accidentally moved this image, you can access the visual with
-# the given link at workflow above.
-knitr::include_graphics("/Users/presgd/Desktop/Screenshots/WickhamsWorkFlow.png")
-```
-
--   Wickham mentions studies that point out approximately 80% of data science work is with data wrangling (i.e. Data Cleaning). This is not only dreadfully dreary work, it is inefficient effort and reduces the development of universal tools. Wickham's answer to this sad state of data chaos is to apply a similar universal logic to data production that he did to data visualization (with ggplot).
-
-Step 1: Install tidyverse package (you can use the Packages tab to do this), which bundles the many packages of the tidyverse together, and then load the package for this session:
-
 ```{r}
 library(tidyverse)
 ```
 
--   This will tell you the packages that are loaded in the tidyverse as well as any conflicts with Base R that exist. Tidyverse has an explicit policy that no errors or conflicts (or missing data) should be silent or invisible to the user so it will tell you when there is a mere possibility of conflict. It also, helpfully, gives you the solution. If you desperately need to use the Base R filter() method, you can still do so, but you will need to use the full name of stats::filter() so that R knows which 'namespace' to interrogate for it!
+- This will tell you the packages that are loaded in the tidyverse as well as any conflicts with Base R that exist. Tidyverse has an explicit policy that no errors or conflicts (or missing data) should be silent or invisible to the user so it will tell you when there is a mere possibility of conflict. It also, helpfully, gives you the solution. If you desperately need to use the Base R filter() method, you can still do so, but you will need to use the full name of stats::filter() so that R knows which 'namespace' to interrogate for it!
 
 We will also retrieve a data set to use for illustrating the power of the tidy philosophy. Dataframes that follow the principles of being 'tidy' are called *tibbles*.
 
@@ -55,21 +57,33 @@ Step 2: load the built in data set for Star Wars characters.
 #load builtin dataset records of star wars characters
 ```
 
+We will also load our simulated expr_data set from R2_Module1.
+
+```{r}
+expr_data<-read.csv(file="your file path here - use file.choose() in Console")
+head(expr_data)
+glimpse(expr_data)
+print("~~~~~~~~~~~~~~~")
+# expr_data is ALREADY a dataframe, but we need to ensure that it is specifically a tibble so this is good practice
+expr_tbl<-as_tibble(expr_data)
+glimpse(expr_tbl)
+```
+
 ## Now we will explore the general capabilities of dplyr, the data manipulation package of the tidyverse.
 
--   *You build up expressions in **dplyr**, like - as we will see in the next module - you built up layers of a visualization with ggplot2.This is not a coincidence and is, as I have mentioned previously, an attempt at regularizing how we interact with data.*
+- *You build up expressions in **dplyr**, like - as we will see in the next module - you built up layers of a visualization with ggplot2.This is not a coincidence and is, as I have mentioned previously, an attempt at regularizing how we interact with data.*
 
--   *Wickham calls functions "verbs" and he stacks them to tackle complex challenges, in a similar way as you might use multiple verbs to express a complex thought. He has systematized the dplyr functions in the following ways:*
+- *Wickham calls functions "verbs" and he stacks them to tackle complex challenges, in a similar way as you might use multiple verbs to express a complex thought. He has systematized the dplyr functions in the following ways:*
 
 1.  The first argument is ALWAYS a dataframe
 2.  The second argument is usually the columns that will be manipulated
 3.  The function produces a new dataframe
 
--   A pipe is used to combine functions. In new versions of R (4.0 and above), the pipe is now represented with "\|\>". The pipe takes the object on the left and passes it to the function on its right. Wickham recommends thinking about the pipe as a "then" statement.
+- A pipe is used to combine functions. In new versions of R (4.0 and above), the pipe is now represented with "\|\>". The pipe takes the object on the left and passes it to the function on its right. Wickham recommends thinking about the pipe as a "then" statement.
 
--   There are four categories of dplyr 'verbs' based on what they operate on: *rows*, *columns*, *groups* or *tables*. We will spend our time looking at the first three categories.
+- There are four categories of dplyr 'verbs' based on what they operate on: *rows*, *columns*, *groups* or *tables*. We will spend our time looking at the first three categories.
 
--   Note: dplyr does **not ever modify the original dataframe**; it creates a new dataframe at the end of its operations.
+- Note: dplyr does **not ever modify the original dataframe**; it creates a new dataframe at the end of its operations.
 
 Let's begin by predicting what the following does (and noting the particular syntax of the command)
 
@@ -78,6 +92,15 @@ Let's begin by predicting what the following does (and noting the particular syn
 ```
 
 The functions (or 'verbs') are stacked and the end of each one is indicated by the \|\> symbol and it is at the end of the line, similar to how the + acts with ggplot geom layers. \## Row functions The most important row functions are the following: filter(), arrange(), distinct(), and count().
+
+With the expr_tbl, we want to keep only the treated samples
+
+```{r}
+treated_samples <- expr_tbl |>
+  filter(Condition == "treated")
+
+head(treated_samples)
+```
 
 ### Filter()
 
@@ -105,6 +128,15 @@ You can use a helper word like 'desc' to override the default of ascending value
 
 ```
 
+For our expr_tbl, we might want to put the highest-expression sample first:
+
+```{r}
+high_to_low <- expr_tbl |>
+  arrange(desc(Expression))
+
+head(high_to_low)
+```
+
 ### distinct()
 
 finds all the unique rows in a dataframe. Let's see it with species:
@@ -117,6 +149,19 @@ finds all the unique rows in a dataframe. Let's see it with species:
 
 ```{r}
 
+```
+
+Back to expr_tbl example:
+
+```{r}
+# count(): how many samples fall into each expression category?
+expr_tbl |>
+  count(ExprCat)
+
+# we saw these same counts represented as tab3d and a mosaic plot in R2_Module1!
+# it is so easy with tidyverse...
+expr_tbl |>
+  count(Tissue, Condition, ExprCat)
 ```
 
 ## Quick group question:
@@ -175,6 +220,27 @@ This reduces the tibble to one row per group.
 
 ```
 
+And, now with expr_tbl in comparison to tapply!
+
+```{r}
+expr_summary <- expr_tbl |>
+  group_by(Tissue, Condition) |>
+  summarize(
+    mean_expression = mean(Expression),
+    sd_expression = sd(Expression)
+  )
+
+expr_summary
+
+#tapply(expr_data$Expression, list(expr_data$Tissue,expr_data$Condition),mean)
+expr_tbl_tapply_comp<-expr_tbl |>
+  group_by(Tissue, Condition) |>
+  summarize(
+    mean_expression = mean(Expression)
+  )
+expr_tbl_tapply_comp 
+```
+
 #### slice\_ functions
 
 You can extract specific rows from a within a group:
@@ -183,6 +249,16 @@ df \|\> slice_head(n = 1) takes the first row from each group.(if n=2, it will t
 
 ```{r}
 
+```
+
+And one last time with the expr_data:
+
+```{r}
+highest_expression <- expr_tbl |>
+  group_by(Tissue, Condition) |>
+  slice_max(Expression, n = 2)
+
+highest_expression
 ```
 
 ### Certificate of Completion Question on GitHub:
@@ -233,29 +309,29 @@ Finally, we want to graph out a boxplot of only the smallest 10 Petal.Lengths of
 
 We have been introduced to **The Tidyverse.** Now, we are going to download the **ggplot2** package to learn about extending our basic R visualization functionality and see how **ggplot2** uses the same type of layered logic to produce publication-worthy plots.
 
--   As review: What is a package? Why do we care? When we download R/RStudio, we are downloading a version that includes functions and features that were determined, by the developer, to be widely used and necessary for most end-users. However, not all functions used by every individual could be included in the base version of R/RStudio because including every niche equation and function would impossibly memory-intensive. This means that, as biologists', there are many functions that we might want to use that we will need to download individually in packages.
+- As review: What is a package? Why do we care? When we download R/RStudio, we are downloading a version that includes functions and features that were determined, by the developer, to be widely used and necessary for most end-users. However, not all functions used by every individual could be included in the base version of R/RStudio because including every niche equation and function would impossibly memory-intensive. This means that, as biologists', there are many functions that we might want to use that we will need to download individually in packages.
 
--   ggplot2 is a package developed by the R guru Hadley Wickham (his personal website is [here](http://hadley.nz)[;](http://hadley.nz;) a website that shows you how to obtain ggplot2 is [here](https://ggplot2.tidyverse.org)[;](https://ggplot2.tidyverse.org;) A truly comprehensive overview of R for Data Science [(2e)](https://r4ds.hadley.nz/)[;](https://r4ds.hadley.nz/;) finally, a website that contains basic documentation for ggplot2 is [here](https://ggplot2-book.org). ggplot2 uses a systematic "grammar" that makes it easier to use on complex data than the base packages of R. He has written widely about the "tidyverse", an attempt to define universal rules for wrangling data in a consistent way so that it is easily accessible for manipulation by data scientists. This sounds like a trivial concept but 'data grooming' due to poor data management practices can constitute a large chunk of a Data Scientists time and it is often really boring - but important!- labour. Hadley Wickham has also tackled the problem of making data visualization straightforward by creating universal rules (the so-called "[Grammar of Graphics](https://byrneslab.net/classes/biol607/readings/wickham_layered-grammar.pdf)"[)](https://byrneslab.net/classes/biol607/readings/wickham_layered-grammar.pdf)) with ggplot2 being the result of those efforts.
+- ggplot2 is a package developed by the R guru Hadley Wickham (his personal website is [here](http://hadley.nz)[;](http://hadley.nz;) a website that shows you how to obtain ggplot2 is [here](https://ggplot2.tidyverse.org)[;](https://ggplot2.tidyverse.org;) A truly comprehensive overview of R for Data Science [(2e)](https://r4ds.hadley.nz/)[;](https://r4ds.hadley.nz/;) finally, a website that contains basic documentation for ggplot2 is [here](https://ggplot2-book.org). ggplot2 uses a systematic "grammar" that makes it easier to use on complex data than the base packages of R. He has written widely about the "tidyverse", an attempt to define universal rules for wrangling data in a consistent way so that it is easily accessible for manipulation by data scientists. This sounds like a trivial concept but 'data grooming' due to poor data management practices can constitute a large chunk of a Data Scientists time and it is often really boring - but important!- labour. Hadley Wickham has also tackled the problem of making data visualization straightforward by creating universal rules (the so-called "[Grammar of Graphics](https://byrneslab.net/classes/biol607/readings/wickham_layered-grammar.pdf)"[)](https://byrneslab.net/classes/biol607/readings/wickham_layered-grammar.pdf)) with ggplot2 being the result of those efforts.
 
--   There are a number of freely available ggplot2 workbooks online, including the official ggplot2 documents given in the preceding paragraph. There is also [this one](https://github.com/hbctraining/Intro-to-R-flipped/blob/master/lessons/11_ggplot2.md) which is similar to dozens of others (and similar to this workbook).
+- There are a number of freely available ggplot2 workbooks online, including the official ggplot2 documents given in the preceding paragraph. There is also [this one](https://github.com/hbctraining/Intro-to-R-flipped/blob/master/lessons/11_ggplot2.md) which is similar to dozens of others (and similar to this workbook).
 
--   And, for a slightly more sophisticated way to create plots that all use the same colors and fonts etc, here is a quick pipeline for creating your own 'theme' for plots that you can [pass to ggplot](https://github.com/hbctraining/Intro-to-R-flipped/blob/master/lessons/11_ggplot2.md).
+- And, for a slightly more sophisticated way to create plots that all use the same colors and fonts etc, here is a quick pipeline for creating your own 'theme' for plots that you can [pass to ggplot](https://github.com/hbctraining/Intro-to-R-flipped/blob/master/lessons/11_ggplot2.md).
 
 ## Activities:
 
 ### Installing a package:
 
--   The first package that we will download is ggplot2.
+- The first package that we will download is ggplot2.
 
--   Let's go through an installation of ggplot2. We click on the "Packages" tab (lower right quadrant) and use the install button. A menu will pop up and you will want to type in ggplot2. We will then need to click on the box of ggplot2 that is given in the "Packages" tab when we want to ensure that it is open and available (when we open RStudio again after ending a previous session). You will see that there may be a number of packages in your package list but you need to click on boxes (this should result in a black check mark) to ensure that they have been loaded into the working memory for this particular session!
+- Let's go through an installation of ggplot2. We click on the "Packages" tab (lower right quadrant) and use the install button. A menu will pop up and you will want to type in ggplot2. We will then need to click on the box of ggplot2 that is given in the "Packages" tab when we want to ensure that it is open and available (when we open RStudio again after ending a previous session). You will see that there may be a number of packages in your package list but you need to click on boxes (this should result in a black check mark) to ensure that they have been loaded into the working memory for this particular session!
 
--   A second way to install a package, is to use the following command(I have hashed it out since I already have ggplot2 in my library. Remember that you can also use the install icon under the Packages tab):
+- A second way to install a package, is to use the following command(I have hashed it out since I already have ggplot2 in my library. Remember that you can also use the install icon under the Packages tab):
 
 ```{r}
 #install.packages("ggplot2")
 ```
 
--   You will probably get asked to choose a CRAN mirror - this doesn't matter that much. then you will need to load the package by either checking it off in the packages panel or typing library("ggplot2") at the command prompt in the console.
+- You will probably get asked to choose a CRAN mirror - this doesn't matter that much. then you will need to load the package by either checking it off in the packages panel or typing library("ggplot2") at the command prompt in the console.
 
 ## Using ggplot()!
 
@@ -269,11 +345,11 @@ Remember that we can use head/tail command to see the first six or last six rows
 
 ### Fundamentals of ggplot2
 
--   Remember when we quickly visited the generic plot function that is present in base R, plot()? ggplot() is the equivalent generic plot function that is part of the ggplot2 package. You always start a plot by using the ggplot function since that creates a coordinate system and then you add subsequent 'layers'.
+- Remember when we quickly visited the generic plot function that is present in base R, plot()? ggplot() is the equivalent generic plot function that is part of the ggplot2 package. You always start a plot by using the ggplot function since that creates a coordinate system and then you add subsequent 'layers'.
 
--   ggplot uses geometrical objects, called *geoms*, to visually represent the dataset. The bottom layer is initialized by the ggplot2() then we add additional layers to it using the "+" operator. Bar charts use *geom_bar*, histograms use *geom_histogram*, boxplots use *geom_boxplot* and scatterplots use *geom_point*. All of these geoms have a wide range of arguments that can be used with them. There is a [cheat sheet here](https://rstudio.github.io/cheatsheets/html/data-visualization.html).
+- ggplot uses geometrical objects, called *geoms*, to visually represent the dataset. The bottom layer is initialized by the ggplot2() then we add additional layers to it using the "+" operator. Bar charts use *geom_bar*, histograms use *geom_histogram*, boxplots use *geom_boxplot* and scatterplots use *geom_point*. All of these geoms have a wide range of arguments that can be used with them. There is a [cheat sheet here](https://rstudio.github.io/cheatsheets/html/data-visualization.html).
 
--   Notice an important point (indicated on the cheat sheet): some of the plots require that you put **aes** in the base geom and some of the plots require you to put the **aes** in the geom for that particular plot. This is shown on the cheat sheet with base geoms a, through to t. For instance, c \<- ggplot(mpg, aes(hwy)); c2 \<- ggplot(mpg). Open up the cheat sheet linked above and compare the expectations for the first geom (indicated by ggplot()).
+- Notice an important point (indicated on the cheat sheet): some of the plots require that you put **aes** in the base geom and some of the plots require you to put the **aes** in the geom for that particular plot. This is shown on the cheat sheet with base geoms a, through to t. For instance, c \<- ggplot(mpg, aes(hwy)); c2 \<- ggplot(mpg). Open up the cheat sheet linked above and compare the expectations for the first geom (indicated by ggplot()).
 
 ```{r}
 # reminder: we split up the geoms in the following way so that the lines in this 
@@ -281,9 +357,9 @@ Remember that we can use head/tail command to see the first six or last six rows
  car")
 ```
 
--   We will write this particular figure to a pdf. We will open the pdf, draw the figure, and then close the file. This needs to be done in one chunk. This allows you to automate the process when you use Knit.
+- We will write this particular figure to a pdf. We will open the pdf, draw the figure, and then close the file. This needs to be done in one chunk. This allows you to automate the process when you use Knit.
 
--   Another interesting feature of this version of R/Rstudio is that my default settings (and probably your default have me choose whether to see the graph inline or in the plot quadrant. You can change this preference by pulling down the gear symbol next to Knit and choosing "Chunk Output in Console". This will then render your plots in the plot quadrant.)
+- Another interesting feature of this version of R/Rstudio is that my default settings (and probably your default have me choose whether to see the graph inline or in the plot quadrant. You can change this preference by pulling down the gear symbol next to Knit and choosing "Chunk Output in Console". This will then render your plots in the plot quadrant.)
 
 ```{r}
 
@@ -339,10 +415,43 @@ You can add in ifelse statements with ggplot in a much more straightforward way 
 ggplot(data = mpg) + geom_point(mapping = aes(x = displ,y = hwy,color=displ>5)
 ```
 
+Once again, we will revisit the expr_tbl simulated dataset:
+
+```{r}
+expr_tbl |>
+  ggplot(
+    aes(
+      x = Tissue,
+      y = Expression,
+      fill = Condition
+    )
+  ) +
+  geom_boxplot() +
+  ggtitle("Gene Expression by Tissue and Treatment")
+
+# to remind you, when we used plain old boxplot function: 
+#boxplot(Expression ~ Tissue + Condition,data = expr_data)
+```
+
 There is also (of course!) a way to display multiple graphs in the same place, which is particularly useful to do for categorical variables. You need to split your data into subplots using something that ggplot calls a 'facet'. For a discrete categorical variable, you can use *'facet_wrap'* and for a combination of two variables, you can use *'facet_grid'*.
 
 ```{r}
 
+```
+
+And here is our expr_tbl:
+
+```{r}
+expr_tbl |>
+  ggplot(
+    aes(
+      x = Condition,
+      y = Expression,
+      fill = Condition
+    )
+  ) +
+  geom_boxplot() +
+  facet_wrap(~ Tissue)
 ```
 
 You can layer multiple geoms on each other, too. In the example below, we have a scatterplot with a loess smoothing for line of best fit through those points.
@@ -385,7 +494,7 @@ Does price increase with carat? We will determine the mean of each of the each c
 
 To build on a previous activity from Module 2, Q2 (we did most of the question in tidyverse, this is now using ggplot2 to recrate a graph):
 
--   Finally, we want to graph out a boxplot, **this time** **using ggplot**, of only the smallest 10 Petal.Lengths of each species. This should be one command.
+- Finally, we want to graph out a boxplot, **this time** **using ggplot**, of only the smallest 10 Petal.Lengths of each species. This should be one command.
 
 ```{r}
 

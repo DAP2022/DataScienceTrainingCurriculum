@@ -8,30 +8,36 @@ editor: visual
 
 1.  **General Hypothesis testing features**: The **four steps of hypothesis testing** and a quick mention of terms such as Null and Alternate hypotheses, type I and type II errors, p-values, false discovery rate of multiple testing, sensitivity, specificity. There is a document called **"R2_Module3_Hypothesis_Testing_Review.qmd"** that covers these definitions, as well as a [review pdf](https://github.com/DAP2022/DataScienceTrainingCurriculum/blob/main/programming/rii/Course_content_RMD/Statistics_Review_R2.pdf) here. These are concepts that were covered in Biostatistics I and Biostatistics II so these are superficial reviews, but might be necessary refreshers!
 
-    -   In addition, here are two flowchart websites that include [decisions](https://statsandr.com/blog/what-statistical-test-should-i-do/#flowchart) about [**WHAT**](https://onishlab.colostate.edu/wp-content/uploads/2019/07/which_test_flowchart.png) test and even [one](https://www.scribbr.com/statistics/statistical-tests/) that goes into more depth about the same decisions that I outline over the next three R Notebooks. This [one](https://martinctc.github.io/blog/common-statistical-tests-in-r-part-i/) includes R (& Python) code and one that includes code for [visualizing](https://www.data-to-viz.com/) the data.
+    - In addition, here are two flowchart websites that include [decisions](https://statsandr.com/blog/what-statistical-test-should-i-do/#flowchart) about [**WHAT**](https://onishlab.colostate.edu/wp-content/uploads/2019/07/which_test_flowchart.png) test and even [one](https://www.scribbr.com/statistics/statistical-tests/) that goes into more depth about the same decisions that I outline over the next three R Notebooks. This [one](https://martinctc.github.io/blog/common-statistical-tests-in-r-part-i/) includes R (& Python) code and one that includes code for [visualizing](https://www.data-to-viz.com/) the data.
 
 2.  **The Binomial Distribution** and how to use it. This section will include a little programming in R, as well as:
 
-    -   The Hard Way (using sample(), dbinom\*(), using tidyverse)
+    - The Hard Way (using sample(), dbinom\*(), using tidyverse)
 
-    -   The Easy Way:
+    - The Easy Way:
 
-        -   Using built in functions for the Binomial Test
+      - Using built in functions for the Binomial Test
 
-        -   Comparing the output of the Binomial Test to the more general Proportion Test (based on the chi-squared test).
+      - Comparing the output of the Binomial Test to the more general Proportion Test (based on the chi-squared test).
 
 3.  **The Normal Distribution**
 
-    -   How to **visualize** whether or your data is Normally distributed
+    - How to **visualize** whether or your data is Normally distributed
 
-    -   How to **formally** test if your data is Normally distributed
+    - How to **formally** test if your data is Normally distributed
+
+    - A worked example with the simulated expr_data
 
 4.  **A worked example**: Using Hypothesis testing on the bumpus Data set
 
+5.  **AUC/ROC (Area-under-Curve/Receiver-Operator Curve)**: ways to operationalize specificity and sensitivity when considering multiple hypotheses
+
+    ------------------------------------------------------------------------
+
 # 1. Hypothesis Testing Review
 
--   See the separate notebook called R2_Module3_Hypothesis_Testing_Review.qmd
--   And: [review pdf](https://github.com/DAP2022/DataScienceTrainingCurriculum/blob/main/programming/rii/Course_content_RMD/Statistics_Review_R2.pdf) document on GitHub.
+- See the separate notebook called R2_Module3_Hypothesis_Testing_Review.qmd
+- And: [review pdf](https://github.com/DAP2022/DataScienceTrainingCurriculum/blob/main/programming/rii/Course_content_RMD/Statistics_Review_R2.pdf) document on GitHub.
 
 # 2. The Binomial distribution:
 
@@ -198,7 +204,7 @@ Look at that! It is nicely set up to illustrate the rejection zones of our null 
 
 #### D. binom.test()
 
--   Using the Binomial distribution as the null hypothesis for hypothesis testing is such as a common procedure that R has a built in function for it: **binom.test()**. There is also a second built in function for hypothesis testing called the **Proportion test** (this is based on a chi-squared test, it is [**not**]{.underline} an exact test).
+- Using the Binomial distribution as the null hypothesis for hypothesis testing is such as a common procedure that R has a built in function for it: **binom.test()**. There is also a second built in function for hypothesis testing called the **Proportion test** (this is based on a chi-squared test, it is [**not**]{.underline} an exact test).
 
 ```{r}
 #we can compare the two sided probabilities with this simple test (no simulations, or long tidy manipulations necessary!)
@@ -221,15 +227,17 @@ Investigate how to determine if our distribution is Normally distributed. We hav
 
 ## [**1. Visual assessment:**]{.underline} histograms/boxplots, and ***Q-Q plots***
 
--   A **Q-Q plot** (which stands for Quantile-Quantile plot) compares any two distributions by plotting their quantiles against each other; [if the two distributions are similar, the comparison points should result in a straight line through y=x.]{.underline} If the two distributions are not the same but are related in a linear manner then they should lie on a different line.
+- We saw these in R1, Module 4 when we investigated scatterplots and histograms.
 
--   A **normal quantile plot** is a cumulative frequency plot that has a Y axis scaled so that a normal distribution will appear as a straight, diagonal line. A Normal Q-Q plot works in the same way but it compares the distribution of your data to a general normal distribution. [This means that if your data is normally distributed (or close), than the two distributions are equal and so the plotted points should lie on a straight line.]{.underline} These curves are useful in assessing how and where a non-normal distribution differs from the ideal
+- A **Q-Q plot** (which stands for Quantile-Quantile plot) compares any two distributions by plotting their quantiles against each other; [if the two distributions are similar, the comparison points should result in a straight line through y=x.]{.underline} If the two distributions are not the same but are related in a linear manner then they should lie on a different line.
 
--   Let's create *four* data sets where **one of them, x, is normally distributed** and **one of them, y, is not normally distributed (Poisson).**
+- A **normal quantile plot** is a cumulative frequency plot that has a Y axis scaled so that a normal distribution will appear as a straight, diagonal line. A Normal Q-Q plot works in the same way but it compares the distribution of your data to a general normal distribution. [This means that if your data is normally distributed (or close), than the two distributions are equal and so the plotted points should lie on a straight line.]{.underline} These curves are useful in assessing how and where a non-normal distribution differs from the ideal
 
--   We also create two other variables that are normally distributed with either significantly different variance but the same mean (z) or the same mean and sd as the poisson distributed variable (q). We will use these latter two distributions in a bit, when we test *homogeneity of variances*, a requirement for some parametric tests.
+- Let's create *four* data sets where **one of them, x, is normally distributed** and **one of them, y, is not normally distributed (Poisson).**
 
--   We can then run through some visual assessments to help us get used to what data will look like 'ideally': We will start by *simulating* a normal, a normal with large variance, and a non-normal distribution so we can compare them:
+- We also create two other variables that are normally distributed with either significantly different variance but the same mean (z) or the same mean and sd as the poisson distributed variable (q). We will use these latter two distributions in a bit, when we test *homogeneity of variances*, a requirement for some parametric tests.
+
+- We can then run through some visual assessments to help us get used to what data will look like 'ideally': We will start by *simulating* a normal, a normal with large variance, and a non-normal distribution so we can compare them:
 
 ```{r}
 #similar to the dbinom(), pbinom(), qbinom(), and rbinom() but for the normal distribution and the Poisson distribution:
@@ -293,6 +301,20 @@ As an additional tangent (I am undisciplined with information that I hope you fi
 # you can see from this last plot that qqplot doesn't warn us about when the variances aren't equal!! 
 ```
 
+Remember how we used rnorm() when we simulated the six groups in our expr_data dataframe? **Note that we should not run qqnorm (or Shapiro-Wilk etc) on the full 1200 observations since we simulated 6 different populations within those 1200 observations: brain-control, brain-treatment, liver-control, liver-treatment, heart-control, heart-treatment which were each simulated as normal distributions, but with a different mean.** Instead, we might want to break it down and ask ***Is gene expression approximately normally distributed within each experimental group?***
+
+```{r}
+# Brain controls only
+brain_control <- subset(
+  expr_data,
+  Tissue == "brain" & Condition == "control"
+)
+
+hist(brain_control$Expression)
+qqnorm(brain_control$Expression)
+qqline(brain_control$Expression, col = "red")
+```
+
 ## 2. [Formal test of normality:]{.underline} **Shapiro.wilk test**.
 
 Now, we move on to quantitative tests of normality to confirm or refine our initial visual judgment.
@@ -307,11 +329,38 @@ Shapiro-Wilks test **Shapiro.wilk tests the null hypothesis, Ho: x\~Normal distr
 
 ```
 
+...and now a quick check-in with the expr_data set. We will run Shapiro-Wilk on each of the six groups (brain-control, brain-treatment, liver-control, liver-treatment etc). Here, we ask ***Is gene expression approximately normally distributed within each experimental group?***
+
+```{r}
+brain_control <- subset(expr_data,Tissue == "brain" & Condition == "control")
+
+hist(brain_control$Expression,main = "Brain Control Expression",xlab = "Expression",col = "steelblue")
+
+qqnorm(brain_control$Expression)
+qqline(brain_control$Expression, col = "red")
+
+shapiro.test(brain_control$Expression)
+```
+
+We could also graph a boxplot to show the difference between Control and Treatment in Brain (which will be useful when we run t-tests!):
+
+```{r}
+brain <- subset(expr_data,Tissue == "brain")
+
+boxplot(
+  Expression ~ Condition,
+  data = brain,
+  col = c("#56B4E9", "#E69F00"),
+  main = "Brain Expression: Control vs Treated",
+  ylab = "Expression"
+)
+```
+
 # 4. Worked Eexample: **Hypothesis Testing**
 
--   **with the bumpus data set**
+- **with the bumpus data set**
 
--   We are going to run the Binomial test, using the hypothesis testing four step framework, on the bumpus data set (and also sneak in some refresher with a few side quests for how to do some exploratory data analysis).
+- We are going to run the Binomial test, using the hypothesis testing four step framework, on the bumpus data set (and also sneak in some refresher with a few side quests for how to do some exploratory data analysis).
 
 ```{r}
 bumpus<-read.csv("/Users/presgd/MyRFiles/Intro_to_R/RData/bumpus.csv")
@@ -379,7 +428,7 @@ This means that even though our sample doesn't contain equal proportions of male
 
 ### Step 2: choose our test based on the null distribution implied by the null hypothesis
 
--   Binomial test (binom.test()). We should look up the test and ensure that our data fulfills the assumptions of the test (and that it is legitimate to use the test on our type of data)
+- Binomial test (binom.test()). We should look up the test and ensure that our data fulfills the assumptions of the test (and that it is legitimate to use the test on our type of data)
 
 ### Step 3: what alpha do we want?
 
@@ -387,7 +436,7 @@ This means that even though our sample doesn't contain equal proportions of male
 
 ### Step 4: Conclude
 
--   any CI or additional information to include in our rejection or failure-to-reject the null hypothesis?
+- any CI or additional information to include in our rejection or failure-to-reject the null hypothesis?
 
 There are a number of ways of re-phrasing the given null hypothesis in step 1 in such a way that you can use the built in functions. Remember that the table you have counted is:
 
@@ -400,7 +449,7 @@ Males         51         36        87
               72        64         136
 ```
 
--   Putting your data counts into a table format often helps you refine your problem! Because of the variables that are fed into the binom.test, you need to re-frame the question a tiny bit. Possibly the easiest way to test this null hypothesis is to pick females (or males) and then use how many survived (or died) and use the proportion of survivor (or non-survivors) from the other sex.
+- Putting your data counts into a table format often helps you refine your problem! Because of the variables that are fed into the binom.test, you need to re-frame the question a tiny bit. Possibly the easiest way to test this null hypothesis is to pick females (or males) and then use how many survived (or died) and use the proportion of survivor (or non-survivors) from the other sex.
 
 ```{r}
 # we run TWO tests on this hypothesis since we are also comparing and contrasting the results of the binomial test and the proportion test. 
@@ -473,7 +522,7 @@ hmmmm. It seems like the proportion of females in the original sample brought to
 
 > Q1. Focus on only one trait in the Bumpus data set (you can choose whichever numeric trait appeals to you):
 >
-> -   **is there any indication of stabilizing selection on your chosen trait among the house sparrows?** To rephrase the previous question, more precisely:**Do the survivors of the storm have less variance than the non-surviving** You don't need to conduct a hypothesis test just provide graphical (hint: probably a boxplot) evidence and summary statistic evidence (mean, median etc).
+> - **is there any indication of stabilizing selection on your chosen trait among the house sparrows?** To rephrase the previous question, more precisely:**Do the survivors of the storm have less variance than the non-surviving** You don't need to conduct a hypothesis test just provide graphical (hint: probably a boxplot) evidence and summary statistic evidence (mean, median etc).
 
 ```{r}
 # Q1: Let's focus on wgt
@@ -504,7 +553,7 @@ hmmmm. It seems like the proportion of females in the original sample brought to
 
 Contingency Test Now we shall run a a$\chi^2$ contingency test and compare it to the above outcomes with the Bumpus data!
 
--   I have emphasized that it is a good programming habit to get into to 'park' the results of statistical tests into an informatively-named variable. What we haven't really seen yet is that you should also use a name that has a .ending that reflects the test used to create the variable. That is a hard sentence to parse, isn't it? The command in the next cell is an example of what I mean: '**Exercise_Smoking.chi'** is the variable where the results of running the 'chisq.test(smoking_exercise)' are parked in memory. This will make your life - and the memory of your computer- much easier.
+- I have emphasized that it is a good programming habit to get into to 'park' the results of statistical tests into an informatively-named variable. What we haven't really seen yet is that you should also use a name that has a .ending that reflects the test used to create the variable. That is a hard sentence to parse, isn't it? The command in the next cell is an example of what I mean: '**Exercise_Smoking.chi'** is the variable where the results of running the 'chisq.test(smoking_exercise)' are parked in memory. This will make your life - and the memory of your computer- much easier.
 
 We'll create a fast matrix of the bumpus survival dataset:
 
@@ -557,4 +606,123 @@ glimpse(snakes)
 
 ```
 
-## 
+# 5. AUC/ROC
+
+Back to regular notebook:
+
+------------------------------------------------------------------------
+
+- Receiver-Operator Curve
+
+- Area-Under-Curve
+
+- used in evaluating multiple hypotheses
+
+- you need to really understand sensitivity and specificity
+
+### ROC (Receiver Operator Curves) and AUC (Area Under the Curve):
+
+ROC are efficient ways to **evaluate the discrimination of a binary classifier across possible thresholds**. You *can* also compare several models using ROC curves, that is, **the fit of many models simultaneously under specific criteria where the key summaries of the model are visualized in one place.** Basically, ROC should help you determine which models fit your data better and [allow you to choose the best model]{.underline}. ROC can be used for ANY **binary classifier**, where there are TWO outcomes (logistic regression, Odds Ratio or other model where there are TWO outcomes). Accompanying the ROC is usually the AUC (area under the curve) value which provides a single number summarizing the performance of a particular model. You can graph the ROC and determine the AUC – and the corresponding confidence interval – for each model under consideration to decide which model is superior to another model.
+
+The drawback of ROC curves is, of course, that some of these key summaries can be challenging to understand initially. Take a moment to understand the following important terms, TP (True Positive), TN (True Negative), FP (False Positive), FN (False Negative). Wikipedia has clear resources that summaries what each of these means and gives several example tables of them. Since ROC and AUC (Area under Curve) are used in fields ranging from engineering, precision medicine, and genomics, I highly recommend that you understand crucial basic terms such as sensitivity, specificity, type I, type II errors, and Power and, of course, the relationships between them all! https://en.wikipedia.org/wiki/Receiver_operating_characteristic
+
+```         
+                       Disease                     No Disease      
+---------------------------------------------------------------
+Positive Test       True Positive(TP)             False Positive (FP)       
+Negative Test       False Negative (FN)           True Negative (TN)
+---------------------------------------------------------------
+```
+
+Sensitivity (same as Power): $True Positive Rate = P(+ test|Disease) = count TP/(count TP+ count FN)$
+
+Type I error: $False Positive Rate =  P(+test| NO Disease)= count FP/(count FP + count TN)$
+
+Specificity: $True Negative Rate = P(- test| No Disease)= count TN/(count FP +count TN)$
+
+Accuracy: $count TP + count TN/(total count in entire population) = (countTP + countTN)/(count TP+countFP+countTN+countFN)$
+
+Prevalence: True \# of individuals with condition in a population (usually estimated from population surveys)
+
+In genomics, we increasingly see ROC/AUC when considering if a particular genetic variant (often a SNP, but also other variants) is associated with a disease. Note: this is also done with Odds Ratio tests. However, AUROC (this is another way we see ROC/AUC written) gives a way to compare "oranges" to "oranges" since it is often used for other (non-DNA variant) biomarkers. This means that over the last 10 years, AUROC has been increasingly used alongside Odds Ratio and Hazard scores. Besides the possibility of association of the SNP with the disease, we want to know HOW the variant contributes to the disease, that is: Does the variant (or, really, a linked causative nucleotide) contribute in a recessive, dominant, or co-Dominant, additive etc. manner?
+
+As a side-note/warning: ROC curves tell us how well we can rank true variants higher than false ones. However, when true positives are rare, a great ROC can still hide poor precision. That’s why genomics often needs PR (precision-recall) curves or calibration plots alongside AUC.
+
+### pROC library/package
+
+You will find a summary of the pROC library here: https://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-12-77 and the help pdf here: https://cran.r-project.org/web/packages/pROC/pROC.pdf
+
+We are going to use the older and more established library, pROC.This library comes with a dataset called aSAH (Aneurysmal subarachnoid Hemorrhage Data). This data set, pulled from a paper (https://link.springer.com/article/10.1007/s00134-009-1641-y), contains 113 observations (patients) on 7 variables:
+
+1.  gos6 (Glasgow score at 6 months)
+
+2.  WFNS (World Federation of Neurological Surgeons) score when patient was admitted
+
+3.  Gender
+
+4.  Age
+
+5.  s100b - calcium binding protein which is a biomarker the blood brain barrier (since it is glial specific) and Central Nervous System. Elevated levels suggest Nervous System damage.
+
+6.  NDKA - Nucleoside Diphosphate Kinase A. This is another brain specific biomarker/enzyme
+
+7.  outcome: good or poor
+
+Stop! You will need to install the pROC library using the "Packages" tab in the fourth quadrant (lower right) of your RStudio. You can then load the library and check out the dataset aSAH.
+
+```{r}
+library(pROC)
+#let's peek at the data set embedded in this library
+head(aSAH)
+```
+
+We will now work through an example using Subarachnoid Hemorrhage Data.
+
+```{r}
+# we are creating roc objects which result from the function 'roc' from pROC # library. 
+# we want the outcome - presumably the dependent variable- along with one of the 
+# 6 factors that were previously identified as impacting the outcome.
+# remember that the $ means we are picking a particular column from the aSAH dataframe
+# the x argument is the outcome (response) which we think is impacted by whatever
+# column we put in the y axis (predictor). So in rocobjs100b, we think that the outcome
+# is impacted by the level of s100b in the patients blood. 
+
+
+```
+
+Now we will use ggplot2 to graph multiple curves simultaneously. Make sure ggplot2 is loaded!
+
+```{r}
+#library(ggplot2)
+# note: you want to use the argument legacy.axes=TRUE. 
+# This will ensure that the y axis is "1-specificity" which is what we want
+# for ROC curves!
+
+
+# add labels to x and y axis and a grey dashed line that gives a y=x line
+# this y=x line is where the model is better than random 
+
+
+
+```
+
+We can now put TWO (or more) ROC curves on the same graph.
+
+```{r}
+#bundle THREE ROC objects, rocobjs100b, rocobjwfns and a third object that is 
+# created within this function, ndka = rock(aSAH$outcome, aSAH$ndka)
+
+
+
+```
+
+```{r}
+
+
+```
+
+Since the AUC value is between 0.5 (random chance) and 1 (perfect discrimination), these would both be considered good classifiers, but wfns would be preferred between the two.
+
+[**CoC Question 4**]{.underline}
+
+ROC and AUC: Repeat the example that was worked in your Module 4 Notebook, but this time create **one graph that includes all of: gos6, WFNS, Age, s100b, and NDKA**. Calculate the AUC for these factors. Based on the AUC value, which of these factors are good classifiers for outcome after aSAH?
