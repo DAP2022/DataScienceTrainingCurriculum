@@ -7,7 +7,7 @@ Regardless of your specific domain (i.e. business, science, social sciences), Da
 ### 1. The purpose of education & training is to develop human capacity for independent judgment.
 
 Education should build the knowledge, mental models, critical reasoning, and metacognitive abilities that allow people to understand complex problems, evaluate evidence, challenge authoritative answers, revise their beliefs, and act responsibly. It should also teach learners to extend their capabilities through collaboration with other people and with machines.
-- Education therefore has both an individual and a collective responsibility: to develop capable people today while cultivating the conditions through which capable people can continue to develop tomorrow.
+- Education therefore has both an individual and a collective responsibility: to develop capable people today while cultivating the conditions through which capable people can continue to develop tomorrow. After all, the super power of human beings *is* working in groups. 
 - Technology should remove unnecessary barriers to learning, but it should not remove the cognitive work through which learners become capable of thinking without it.
 - The defining educational question of the Ai-augmented era: Does this system produce people capable of knowing, judging, troubleshooting, and advancing the field when existing tools, models, and assumptions fail?
 - You can learn more about my approach to cultivating intellectual agency here: [Danni's 2026 Ai-Augmentation Necessary Skills Manifesto](Presgraves_Education_Vision_2026.pdf)
