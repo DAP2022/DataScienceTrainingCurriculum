@@ -9,6 +9,7 @@ By the end of this course, students will be able to use the Python programming l
 - Clearly deconstruct a problem into manageable smaller problems.
 - Apply appropriate (and efficient) programming tools to solve a problem.
 - Understand and interpret other peoples' code.
+- Use comments to effectively explain and justify your code. 
 - Identify problems/deficiencies in existing code (ie. 'troubleshoot' code, your own code as well as peers) and reformulate the code with incorporated improvements.
 - Be able to explain your solution to your peers.
 
