@@ -31,7 +31,7 @@
 1.	Compute descriptive statistics (mean, median, SD, IQR) for Expression values grouped by Tissue and by Treatment separately. Present these as a formatted table using data.frame().
 2.	This dataset was designed to contain a Simpson's Paradox. BatchID is a confounding variable. Compare the mean Expression of Control vs. Treated samples: (a) overall (ignoring batch), (b) within Batch1 only, and (c) within Batch2 only. Do the conclusions change depending on whether you account for batch? Explain what this tells you about the danger of ignoring confounders in biological data.
 3.	Write a summary paragraph (in a Markdown chunk, not R code) describing what you have learned about this dataset across Modules 1–5. What are its strengths and limitations? What biological questions remain unanswered? What would you do next? (This narrative will be extended in R II.)
-4.	UMaine project milestone: Produce a single, well-formatted Quarto/RMarkdown report that compiles all five Module UG credit answers into one document titled "JAXMouse_RI_Analysis_LastnameFirstInitial.html". This is the R I component of your semester project.
+4.	UMaine project milestone: Produce a single, well-formatted Quarto/RMarkdown report that compiles all five Module UG credit answers into one document titled "JAXMouse_RI_Analysis_LastnameFirstInitial.html". *You can either copy-and-paste into this document from your 5 PS OR you can use include in a Markdown chunk. Both of these options will have some troubleshooting*. This is the R I component of your semester project.
 
 
 
