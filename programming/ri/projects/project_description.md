@@ -1,7 +1,7 @@
 # Capstone report for 1-credit UMaine course participants
 
 * In addition to the regular assignment questions, credit-seeking participants will also complete five additional questions that correspond to each of the five modules of the course.
-* **Dataset: JAXMouse_GeneExpression_Simulated.csv**. This single dataset threads through all 10 modules across both courses (5 in RI, 5 in RII). It is a simulated but realistic RNA-seq-style dataset inspired by publicly available mouse tissue gene expression data from GEO.
+* **Dataset: JAXMouse_GeneExpression_Simulated.csv**. This single dataset threads through all 10 modules across both courses (5 in RI, 5 in RII). It is a simulated but realistic RNA-seq-style dataset inspired by publicly available mouse tissue gene expression data from GEO. I have, in some cases, added some 'hints', mostly as a result of answers from the first cohort of UMaine. The hints serve to try to steer you in a particular direction for the answer, but are not necessary for your answer (that is: you might have a completely different solution for the same problem that doesn't use the hints). That is okay! You don't have any obligation to use the materials in the hints. 
 
 **Module 1: Using the JAXMouse_GeneExpression_Simulated.csv dataset:**
 1.	Read the dataset into R using read.csv(). Use at least four inspection functions (e.g., head(), str(), summary(), dim(), nrow(), ncol(), names()) to characterize the data. In a Markdown chunk, describe what each function revealed. What are the dimensions of this dataset? What data types are present?
@@ -10,9 +10,9 @@
 4.	UMaine project milestone: Save a cleaned version of the dataset (factors converted, column names verified) as **"JAXMouse_clean.csv"** using write.csv(). This file will be the input for all subsequent UG credit questions.
 
 **Module 2: Using your JAXMouse_clean.csv dataset (saved in Module 1):**
-1.	Write a function called summarize_gene that takes a gene name (character string) as input, subsets the JAXMouse dataset to that gene, and returns a named vector containing the mean, median, and standard deviation of the Expression values for that gene across all samples. Test your function on at least three different genes.
-2.	Use sapply() or lapply() to apply your summarize_gene function to the first 10 unique genes in the dataset. Store the result and inspect its structure. What class of object does sapply return in this case?
-3.	Write a function called flag_outlier that takes a numeric vector and returns TRUE if any value is more than 3 standard deviations from the mean (a common QC criterion in genomics), and FALSE otherwise. Apply this function using sapply across all genes. How many genes have at least one outlier sample?
+1.	Write a function called summarize_gene that takes a gene name (character string) as input, subsets the JAXMouse dataset to that gene, and returns a named vector containing the mean, median, and standard deviation of the Expression values for that gene across all samples. Test your function on at least three different genes. Hint: you will probably want to use some slicing or subsetting in your function. 
+2.	Use sapply() or lapply() to apply your summarize_gene function to the first **5** unique genes in the dataset. Hint: you may want to use unique() here.  Store the result and inspect its structure. What class of object does sapply return in this case?
+3.	Write a function called **flag_outlier** that takes a numeric vector and returns TRUE if any value is more than 3 standard deviations from the mean (a common QC criterion in genomics), and FALSE otherwise. Apply this function using sapply across all genes. How many genes have at least one outlier sample? Hint: you might use a handful of built-in functions such as any(), and split(). 
 4.	UMaine project milestone: Produce a summary table (data frame) with one row per gene containing: gene name, mean expression, SD, and whether it is flagged as an outlier. Save this as **"JAXMouse_gene_summary.csv".**
 
 **Module 3: Using JAXMouse_clean.csv:**
