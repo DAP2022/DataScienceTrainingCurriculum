@@ -7,7 +7,7 @@
 1.	Read the dataset into R using read.csv(). Use at least four inspection functions (e.g., head(), str(), summary(), dim(), nrow(), ncol(), names()) to characterize the data. In a Markdown chunk, describe what each function revealed. What are the dimensions of this dataset? What data types are present?
 2.	Identify which columns should be factors and convert them. What is the difference between a character column and a factor? Why does it matter in biological data?
 3.	Use tapply() to compute the mean Expression value for each Tissue type. Interpret the result: does any tissue appear to have systematically higher or lower expression? This will be revisited formally in RII Module 4.
-4.	UMaine project milestone: save this dataframe as **"JAXMouse_clean.csv"** using write.csv(). 
+4.	UMaine project milestone: save this dataframe as **"JAXMouse_clean.csv"** using write.csv(). *Note: If you are interested, you could save this with the formatting/cleaning that you did (that is: you could save it while preserving Factors etc) using saveRDS(name_manipulated_DF, "Path_to_save.RDS") and then reading it back into R with the readRDS("Path_to_save.rds") command.* 
 
 **Module 2: Using your JAXMouse_clean.csv dataset (saved in Module 1):**
 1.	Write a function called summarize_gene that takes a gene name (character string) as input, subsets the JAXMouse dataset to that gene, and returns a named vector containing the mean, median, and standard deviation of the Expression values for that gene across all samples. Test your function on at least three different genes. Hint: you will probably want to use some slicing or subsetting in your function. 
