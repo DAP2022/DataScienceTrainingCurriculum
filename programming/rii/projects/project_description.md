@@ -8,7 +8,6 @@
 2.	Identify the top 5 most highly expressed genes (highest mean expression across all samples). Identify the 5 most variably expressed genes (highest SD). Are any genes in both lists? What might this mean biologically?
 3.	Using base R, create a scatterplot of mean expression (x-axis) vs. SD of expression (y-axis) for each gene. Label the five most variable genes on the plot using text(). This type of "mean-variance" plot is foundational in RNA-seq analysis. Save to your existing **"JAXMouse_baseR_plots.pdf"** by appending a new page.
 4.	Undergraduate project milestone: Write a brief Markdown paragraph describing what the mean-variance plot reveals. In R II Module 3, you will recreate this as a polished ggplot2 figure and compare the two versions side by side.
-5. Write a brief Markdown paragraph describing what the mean-variance plot reveals. In R II Module 3 (below), you will recreate this as a polished ggplot2 figure and compare the two versions side by side.
 
 ## Module 2: Using JAXMouse_QCpass.csv
 1.	Is the JAXMouse dataset tidy? Each row should represent one observation of one variable. Evaluate this formally against the three rules of tidy data in a Markdown chunk. (Hint: consider what constitutes a single "observation" in this experiment.)
