@@ -55,9 +55,9 @@ print(col_extract2)
 
 ### A. Using logical operators:
 
--   The logical operators evaluate each element to be equal to FALSE or TRUE to a given criteria.
+- The logical operators evaluate each element to be equal to FALSE or TRUE to a given criteria.
 
--   These operators include the following:
+- These operators include the following:
 
 | Operator | Meaning                |
 |----------|------------------------|
@@ -137,8 +137,8 @@ As a brief recap: All of the so-called \***apply** functions will ***split the d
 
 For example:
 
--   The **lapply()** function takes a list as input, applies a function to each element of the list and returns a list of the same length as the original one.
--   The **sapply()** function takes the results of the lapply() function and simplifies it. In general, if the result is a list where every element is of length one, then sapply() returns a vector. If the result is a list where every element is a vector of the same length (\>1), sapply() returns a matrix. If sapply() can’t figure things out, then it just returns a list, no different from what lapply() would give you.
+- The **lapply()** function takes a list as input, applies a function to each element of the list and returns a list of the same length as the original one.
+- The **sapply()** function takes the results of the lapply() function and simplifies it. In general, if the result is a list where every element is of length one, then sapply() returns a vector. If the result is a list where every element is a vector of the same length (\>1), sapply() returns a matrix. If sapply() can’t figure things out, then it just returns a list, no different from what lapply() would give you.
 
 The apply family is usually much faster than a for loop in R (due to R being mostly a vector language). You can repeat a function on a column (or multiple columns) of data frame very efficiently using members of this family.
 
@@ -151,19 +151,19 @@ You can use the same logical criteria with apply functions, but it is often easi
 
 ## 3. Some final words on Boolean Logic and a few other operators that pop up sometimes:
 
--   If you have had some experience with other programming logic, this may confuse you (depending on the your prior language experience and we will re-visit this difference when it is appropriate in the future): simple Boolean expressions using the **&** ,the logical expression “AND” apply across all elements of a vector, whereas **&&**, also called “AND” applies across JUST the first element of a vector, **\|** , the logical expression “OR” across all elements of a vector and **\|\|** , also called “OR” across just the first element of a vector, can be evaluated to create straightforward programming expressions. It is also important to realize that all “AND” expressions are evaluated before the “OR” expressions.
+- If you have had some experience with other programming logic, this may confuse you (depending on the your prior language experience and we will re-visit this difference when it is appropriate in the future): simple Boolean expressions using the **&** ,the logical expression “AND” apply across all elements of a vector, whereas **&&**, also called “AND” applies across JUST the first element of a vector, **\|** , the logical expression “OR” across all elements of a vector and **\|\|** , also called “OR” across just the first element of a vector, can be evaluated to create straightforward programming expressions. It is also important to realize that all “AND” expressions are evaluated before the “OR” expressions.
 
--   For completeness, here are a few other operators that are used often in R:
+- For completeness, here are a few other operators that are used often in R:
 
-    -   any() (TRUE if any element meets the condition)
+  - any() (TRUE if any element meets the condition)
 
-    -   all() (TRUE if all elements meet the condition)
+  - all() (TRUE if all elements meet the condition)
 
-    -   %in% (TRUE if any element is in the following vector)
+  - %in% (TRUE if any element is in the following vector)
 
-        -   tangent: this is called an infix binary operator (%operator%)
+    - tangent: this is called an infix binary operator (%operator%)
 
-    -   match()
+  - match()
 
 ```{r}
 #create a sequential vector
@@ -224,6 +224,8 @@ Since we changed the GA_DF file, we want to place the modified file into our RDa
 write.csv(GA_DF, file="/Users/presgd/MyRFiles/Intro_to_R_2026_QMD/R1_Module1/GA_DF_new_column.csv")
 
 ```
+
+Note: Remember that **write.csv()** and **read.csv()** are portable **because they contain no formatting**. If you are wrangling a dataset and you want to preserve and retain the changes to that dataset (for instance, perhaps you want to convert columns from character data type to factors) then you will need to use a different set of commands: **saveRDS(),** and **readRDS()** which are equivalent to the write.csv() and read.csv() commands, but preserve the formatting.
 
 Always remember to detach your Dataframes (if you attached them):
 
