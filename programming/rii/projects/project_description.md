@@ -10,8 +10,8 @@
 * Provide brief explanations in Markdown chunks when requested. Focus on interpreting your results rather than simply describing the R commands.
   
 ## Module 1: Which Genes are most Variable?
-- Using JAXMouse_QCpass.csv (this was created in Module 3 of Intro to RI):
-_Goal: Use grouped calculations to investigate differences in gene expression among genes._
+- Using JAXMouse_QCpass.csv (this was created in Module 3 of Intro to RI)
+- _Goal: Use grouped calculations to investigate differences in gene expression among genes._
 ### Question 1: Summarizing gene expression
 - Import JAXMouse_QCpass.csv and inspect its structure.
 - Using aggregate() or tapply(), calculate the mean Expression for each gene.
@@ -29,7 +29,7 @@ _Goal: Use grouped calculations to investigate differences in gene expression am
 
 ## Module 2: Identifying Genes for Further Investigation
 - Using JAXMouse_QCpass.csv
-_Goal: Use the tidyverse to identify genes that differ most in average expression between Control and Treated observations._
+- _Goal: Use the tidyverse to identify genes that differ most in average expression between Control and Treated observations._
 ### Question 1: Summarizing expression by treatment
 - Load the dplyr package and import JAXMouse_QCpass.csv.
 - Use group_by() to group the data by Gene and Treatment.Use summarise() to calculate mean expression for each Gene × Treatment combination. Inspect the resulting table. Does every gene have a mean for both Control and Treated observations?
@@ -62,7 +62,7 @@ gene_wide <- gene_means |>
 
 ## Module 3: Visualizing Gene Expression with ggplot2
 - Using JAXMouse_QCpass.csv:
-_Goal: Use ggplot2 to create and interpret a more informative figure than the one you produced using base R._
+- _Goal: Use ggplot2 to create and interpret a more informative figure than the one you produced using base R._
 ### Question 1: Comparing tissues and treatments
 - Import JAXMouse_QCpass.csv and load ggplot2.
 - Create a boxplot using geom_boxplot() with Tissue on the x-axis and Expression on the y-axis. Use facet_wrap(~ Treatment) to display Control and Treated observations in separate panels. Color the boxes by Tissue using the fill aesthetic. Add a descriptive title, axis labels, and a theme. If the figure remains readable, try adding individual observations using geom_jitter() with a small point size and low transparency (alpha).
@@ -76,8 +76,8 @@ In a Markdown chunk, answer the following:
 **Project milestone: Save your figure as JAXMouse_ggplot_boxplot.png using ggsave().**
 
 ## Module 4: Hypothesis Testing and Multiple Comparisons
-_Goal: Understand how statistical evidence differs from the magnitude of an observed difference, why testing many genes increases the risk of false positives, and how to communicate these results with a volcano plot._
--Using JAXMouse_QCpass.csv and your **JAXMouse_gene_test_results.csv** (download from GitHub in datasets for RII):
+- _Goal: Understand how statistical evidence differs from the magnitude of an observed difference, why testing many genes increases the risk of false positives, and how to communicate these results with a volcano plot._
+- Using JAXMouse_QCpass.csv and your **JAXMouse_gene_test_results.csv** (download from GitHub in datasets for RII):
 ### Question 1: Testing one gene
 - **Choose one gene** from your list of 10 candidate genes identified in Module 2.
 - Use filter() to create a dataframe containing only observations for that gene. Use group_by() and summarise() to calculate the mean, standard deviation, and number of expression observations in the Control and Treated groups.
@@ -117,7 +117,8 @@ A volcano plot is commonly used to visualize gene expression results. It combine
 - _ In a Markdown chunk: Which genes show the largest differences in expression? Which have the strongest statistical evidence of a difference? Are these necessarily the same genes?_
 Note: The horizontal line represents a raw p-value threshold, while the point colors represent significance after multiple-testing correction. These are deliberately different criteria.
 
-4.	Consider what you have learned from the hypothesis tests, adjusted p-values, and volcano plot. Answer the following questions in a Markdown chunk.
+### Question 4: Consider what you have learned from the hypothesis tests, adjusted p-values, and volcano plot.
+Answer the following questions in a Markdown chunk.
 - Why is a statistically significant result not necessarily a biologically important result?
 - Can a gene have a large fold change but a relatively high p-value? What might explain this?
 - Can a gene have a small fold change but a very low p-value? What might explain this?
@@ -127,7 +128,7 @@ Project milestone: Save your volcano plot and retain your table containing raw a
 
 ## Module 5: Does Accounting for Other Variables Change Our Conclusions?
 - _Goal: Use multiple linear regression to investigate whether an apparent treatment-associated difference changes when other variables are included in the model. _
-- Using JAXMouse_QCpass.csv:
+- Using JAXMouse_QCpass.csv
 ### Question 1: Choosing a gene
 - Return to the gene-level test results from Module 4.
 - Identify the gene with the smallest raw p-value.
