@@ -181,6 +181,11 @@ Note: A change in a coefficient or p-value is informative even if neither result
 
 Project milestone: Include your model comparison table and interpretation in your final report.
 # **FINAL SEMESTER PROJECT DELIVERABLE:** 
-Compile your complete analysis from both RI and RII into a single polished Quarto report titled "JAXMouse_FinalReport_LastnameFirstInitial.html". The report should include: (a) an Introduction describing the biological question and dataset; (b) all five R I module analyses (data inspection through descriptive statistics); (c) all five R II module analyses (tidyverse wrangling, ggplot2 figures, hypothesis tests, ANOVA, regression); (d) a Conclusion section synthesizing your findings — does treatment alter gene expression, does this differ by tissue, and what biological story do these data tell?
-This final report demonstrates the complete R programming and data analysis workflow: from raw data to reproducible scientific communication — exactly as practiced by computational biologists in research settings. 
+Compile your complete analysis from both RI and RII into a single polished Quarto report titled "JAXMouse_FinalReport_LastnameFirstInitial.html". The report should include: 
+- (a) an Introduction describing the biological question and dataset;
+- (b) all five R I module analyses (data inspection through descriptive statistics);
+- (c) all five R II module analyses (tidyverse wrangling, ggplot2 figures, hypothesis tests, ANOVA, regression);
+- (d) a Conclusion section synthesizing your findings: does treatment alter gene expression, does this differ by tissue, and what biological story do these data tell?
+
+This final report demonstrates the complete R programming and data analysis workflow: from raw data to reproducible scientific communication, exactly as practiced by computational biologists in research settings. 
 
