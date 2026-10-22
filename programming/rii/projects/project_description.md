@@ -1,45 +1,120 @@
 # Capstone report for 1-credit UMaine course participants
 
 * In addition to the regular assignment questions, credit-seeking participants will also complete five additional questions that correspond to each of the five modules of the course.
-* **Dataset: JAXMouse_GeneExpression_Simulated.csv**. This single dataset threads through all 10 modules across both courses (5 in RI, 5 in RII). It is a simulated but realistic RNA-seq-style dataset inspired by publicly available mouse tissue gene expression data from GEO.
+* **Datasets:
+1. **JAXMouse_GeneExpression_Simulated.csv**. This single dataset threads through all 10 modules across both courses (5 in RI, 5 in RII). It is a simulated but realistic RNA-seq-style dataset inspired by publicly available mouse tissue gene expression data from GEO.
+2. **JAXMouse_QCpass.csv**. This was created in Module 3 of Intro to RI. You can also find it in the datasets folder on GitHub if you didn't manage to create it.
+3. **JAXMouse_gene_test_results.csv**. An instructor-provided file containing gene-level results from statistical comparisons between Control and Treated observations.
 * Throughout this course, you will build on your earlier work by learning to manipulate data with the tidyverse, create more sophisticated visualizations, perform statistical tests, and fit simple statistical models.
 * Some questions include suggested functions or intermediate steps. These are intended to help guide your thinking, particularly when a problem requires combining several concepts. You may develop alternative solutions using techniques covered in the course.
 * Provide brief explanations in Markdown chunks when requested. Focus on interpreting your results rather than simply describing the R commands.
   
-## Module 1: Using JAXMouse_QCpass.csv (this was created in Module 3 of Intro to RI):
-_Goal: Strengthen your ability to summarize gene expression, compare approaches to the same problem, and visualize relationships between numerical variables._
-1.	Review your R I Module 1 tapply() result (mean Expression by Tissue). Repeat this analysis now using base R aggregate() function as well.
- _In a Markdown Chunk:_ Do both approaches give the same result? Which do you find more readable and why?
-2.	Use unique() to determine how many different genes are in the dataset. Use aggregate() or tapply() to calculate the mean Expression for each gene. Use sort() to sort the results from highest to lowest mean expression. Identify the top 5 most highly expressed genes (highest mean expression across all samples). Repeat these steps but for standard deviation. Identify the 5 most variably expressed genes (highest SD). Are any genes in both lists?
-_In a Markdown chunk: What is the difference between a highly expressed gene and a highly variable gene? Suggest one biological or technical reason why a gene might have unusually variable expression._
-3.	A mean-variance plot helps us visualize the relationship between average gene expression and variability. Using base R, create a scatterplot of mean expression (x-axis) vs. SD of expression (y-axis) for each gene. In order to do this, you need to create a dataframe containing one row for each gene, with three columns (Gene, Mean_Expression, SD_Expression). You can use the results from question 2 and use **data.frame()**. Then use plot() to create a scatterplot with mean expression on the x-axis and standard deviation on the y-axis. Add a descriptive title and axis labesls (as always...). Use text() to label the five most variable genes on the plot. This type of "mean-variance" plot is foundational in RNA-seq analysis.  _In a Markdown chunk:_ Describe the relationship between mean expression and variability. Do the most variable genes also have the highest average expression? What might explain the pattern?
-4.	Undergraduate project milestone: Save to your existing **"JAXMouse_baseR_plots.pdf"** by appending a new page.Write a brief Markdown paragraph describing what the mean-variance plot reveals. In R II Module 3, you will recreate this as a polished ggplot2 figure and compare the two versions side by side.
+## Module 1: Which Genes are most Variable?
+- Using JAXMouse_QCpass.csv (this was created in Module 3 of Intro to RI):
+_Goal: Use grouped calculations to investigate differences in gene expression among genes._
+### Question 1: Summarizing gene expression
+- Import JAXMouse_QCpass.csv and inspect its structure.
+- Using aggregate() or tapply(), calculate the mean Expression for each gene.
+- Repeat the calculation to obtain the standard deviation of expression for each gene.
+- Identify the five genes with the highest mean expression and the five genes with the highest standard deviation. You can use sort() or order() to help.
+- Are any genes present in both lists?
 
-## Module 2: Using JAXMouse_QCpass.csv
-_Goal: Use dplyr to organize, filter, summarize, and prepare gene expression data for visualization and statistical analysis._
-1.	In tidy data, variables are organized in columns, observations are organized in rows, and different observational units are represented in separate tables. Is the JAXMouse dataset tidy? What does each row represent? Evaluate this formally against the three rules of tidy data in a Markdown chunk. (Hint: consider what constitutes a single "observation" in this experiment.)
-2.	In R I, you used tapply() to compare expression among tissues and treatments. You will now reproduce that analysis using dplyr. Use dplyr method, group_by() to group the dataset by Tissue and Treatment. Then use summarise() to compute mean, median, and SD of Expression for each combination of Tissue and Treatment. You can use arrange() and desc() to order the output by descending mean expression. _In a Markdown chunk:_ Which Tissue x Treatment combination has the highest mean expression? How does this compare to your base R tapply() result from R I Module 4?
-3.	You will create a simplified dataset containing only the variables needed to compare gene expression in Brain tissue. Use filter() to retain only the observations where Tissue is Brain. Then use select() to create a clean tibble retaining only the columns: SampleID, Gene, Expression, Treatment, Sex. Inspect the output with glimpse(). Pipe this directly into a ggplot2 boxplot of Expression by Treatment, once we have covered module 3 where we learn ggplot! Add a meaningful title, axis labels, and theme.
-4.	A common question in gene expression analysis is whether expression differs between experimental conditions. For this exercise, we will identify genes with the largest absolute difference in mean expression between Control and Treated observations. These are candidate genes for further investigation, not yet statistically validated differentially expressed genes. Use group_by() to group the data by Gene and Treatment. Use summarise() to calculate the mean expression within each group. Inspect the resulting table. You should have a separate mean for Control and Treated observations for every gene represented in both groups. You will then use pivot_wider() from the tidyr package to create separate columns for the Control and Treated means and then you will create a new column with mutatate() containing the difference: Mean_Treated - Mean_Control. Create another column containing the absolute value of this difference using abs(). Use arrange(desc(...)) to order the genes from largest to smallest absolute difference. Save this list as **"JAXMouse_top10_DE_candidates.csv"**. These genes will be the focus of the formal statistical tests in Module 4.
+### Question 2: Visualizing mean expression and variability
+- Create a dataframe containing one row per gene with its name, mean expression, and standard deviation.
+- Use base R plot() to create a scatterplot with mean expression on the x-axis and standard deviation on the y-axis.
+- Label the five most variable genes using text(). Add an informative title and axis labels.
+- In a Markdown chunk: Does variation in gene expression tend to increase with mean expression? Are highly expressed genes necessarily the most variable genes? Suggest one reason why expression might differ among observations.
 
-## Module 3: Using JAXMouse_QCpass.csv:
-_Goal: Develop more informative visualizations and critically evaluate how different plotting approaches communicate scientific information._
-1.	Recreate the base R boxplot from RI, Module 4, Q1 (Expression by Tissue) using ggplot2. Use geom_boxplot() colored by Tissue, with geom_jitter() overlaid, and facet_wrap(~ Treatment) to show Control vs. Treated side by side. Compare the two versions in a Markdown critique.
-2.	Recreate the mean-variance scatterplot from R II, Module 1, Q3 using ggplot2. Use geom_point(), color by a logical variable indicating whether the gene is among the top 10 DE candidates (from Module 2, RII) - it will likely be easiest to create a new logical column identifying whether each gene is among your ten candidate genes. You may find %in% useful. Use geom_point() to plot mean expression on the x-axis and standard deviation on the y-axis. Map the new logical variable to the color aesthetic so that candidate genes can be distinguished from other genes. Finally, use ggrepel or geom_text() to label those top 10 genes. 
-3.	Create a faceted ggplot2 violin plot (geom_violin() + geom_boxplot() overlaid) showing Expression distributions for each Tissue, faceted by Treatment. Add proper labels and a clean theme (e.g., theme_bw()). _In a Markdown chunk,_ describe what the violin plot reveals that a boxplot alone cannot.
-4.	Save your **three** polished ggplot2 figures from this module using ggsave(). Name them **"JAXMouse_ggplot_boxplot.png", "JAXMouse_MAplot.png"**, and **"JAXMouse_violin.png"**. These figures will be incorporated into your final semester project report.
+**Project milestone:** Save your plot as JAXMouse_mean_variance_baseR.pdf using pdf() and dev.off().
 
-## Module 4: Using JAXMouse_QCpass.csv and your **JAXMouse_gene_test_results.csv** (download from GitHub in datasets for RII):
-_Goal: Develop a basic workflow for statistical hypothesis testing and understand how statistical significance differs from effect size._
-1.	**Choose one gene** from your list of 1- candidate genes identified in Module 2. Use filter() to create a dataframe containing only observations for that gene. Use group_by() and summarise() to calculate the mean, standard deviation, and number of expression observations in the Control and Treated groups. Create a boxplot comparing expression between the two treatment groups. Use t.test() to compare the expression values between Control and Treated groups. For this exercise, use the default Welch two-sample t-test. Examine the output and identify: The estimated mean expression for each group. The test statistic. The p-value. The confidence interval for the difference between group means.
-_ In a Markdown chunk:_ State the null and alternative hypotheses. Is there evidence of a difference in expression between the two groups at a significance level of 0.05? Explain your conclusion in two or three sentences.
-2.	In Question 1, you performed a single hypothesis test. However, genomic studies often test hundreds or thousands of genes. For this question, use the file **JAXMouse_gene_test_results.csv** in your datasets. This table contains one row per gene, including mean Control expression, mean Treated expression, and the raw p-value from a treatment comparison. Import the table into R and inspect it using head() and str(). Use nrow() to determine how many genes were tested. Use a logical comparison to identify genes with raw p-values below 0.05. Use sum() to count how many genes meet this criterion. Use p.adjust() with method = "bonferroni" to calculate adjusted p-values for all genes in the table. Add these adjusted p-values as a new column. Count how many genes have adjusted p-values below 0.05. Compare the number of significant genes before and after correction. _In a Markdown chunk:_ Why does testing many genes increase the risk of false positives? What happens to the number of statistically significant genes when you apply the Bonferroni correction?
+## Module 2: Identifying Genes for Further Investigation
+- Using JAXMouse_QCpass.csv
+_Goal: Use the tidyverse to identify genes that differ most in average expression between Control and Treated observations._
+### Question 1: Summarizing expression by treatment
+- Load the dplyr package and import JAXMouse_QCpass.csv.
+- Use group_by() to group the data by Gene and Treatment.Use summarise() to calculate mean expression for each Gene × Treatment combination. Inspect the resulting table. Does every gene have a mean for both Control and Treated observations?
+
+### Question 2: Finding candidate genes
+To compare Control and Treated expression for each gene, it will be helpful to have one row per gene, with separate columns for mean Control and mean Treated expression. The pivot_wider() function from the tidyr package can accomplish this. You may use the following code to get started:
+```{r}
+library(dplyr)
+library(tidyr)
+
+gene_means <- jaxmouse |>
+  group_by(Gene, Treatment) |>
+  summarise(
+    Mean_Expression = mean(Expression, na.rm = TRUE),
+    .groups = "drop"
+  )
+
+gene_wide <- gene_means |>
+  pivot_wider(
+    names_from = Treatment,
+    values_from = Mean_Expression
+  )
+```
+- Run the code above, modifying the dataframe name if necessary. Inspect gene_wide using head().
+- Create a new column containing the difference between the Treated and Control means: Mean_Treated - Mean_Control (Hint: The example above will initially produce columns named Control and Treated. You can use those names directly in your calculation.)
+- Use abs() to calculate the absolute difference between the two means. Use arrange() and desc() to order the genes from largest to smallest absolute difference.Identify the ten genes with the largest differences.
+- In a Markdown chunk: What does a large difference between the treatment-group means suggest? Does it necessarily mean the difference is statistically significant? Explain briefly.
+
+**Project milestone: Save your ten candidate genes as JAXMouse_top10_DE_candidates.csv.** Note: These are candidate genes for further investigation, not genes that have yet been demonstrated to be differentially expressed.
+
+## Module 3: Visualizing Gene Expression with ggplot2
+- Using JAXMouse_QCpass.csv:
+_Goal: Use ggplot2 to create and interpret a more informative figure than the one you produced using base R._
+### Question 1: Comparing tissues and treatments
+- Import JAXMouse_QCpass.csv and load ggplot2.
+- Create a boxplot using geom_boxplot() with Tissue on the x-axis and Expression on the y-axis. Use facet_wrap(~ Treatment) to display Control and Treated observations in separate panels. Color the boxes by Tissue using the fill aesthetic. Add a descriptive title, axis labels, and a theme. If the figure remains readable, try adding individual observations using geom_jitter() with a small point size and low transparency (alpha).
+
+### Question 2: Interpreting the visualization
+In a Markdown chunk, answer the following:
+- Which tissue appears to have the highest median expression?
+- Does the relationship between Treatment and Expression appear similar across all three tissues?
+- What additional information does the faceted ggplot2 figure communicate compared with your earlier base R boxplot?
+
+**Project milestone: Save your figure as JAXMouse_ggplot_boxplot.png using ggsave().**
+
+## Module 4: Hypothesis Testing and Multiple Comparisons
+_Goal: Understand how statistical evidence differs from the magnitude of an observed difference, why testing many genes increases the risk of false positives, and how to communicate these results with a volcano plot._
+-Using JAXMouse_QCpass.csv and your **JAXMouse_gene_test_results.csv** (download from GitHub in datasets for RII):
+### Question 1: Testing one gene
+- **Choose one gene** from your list of 10 candidate genes identified in Module 2.
+- Use filter() to create a dataframe containing only observations for that gene. Use group_by() and summarise() to calculate the mean, standard deviation, and number of expression observations in the Control and Treated groups.
+- Create a boxplot comparing expression between the two treatment groups (Control versus Treatment).
+- Use t.test() to compare the expression values between Control and Treated groups. For this exercise, use the default Welch two-sample t-test. Examine the output and identify: The estimated mean expression for each group. The test statistic. The p-value. The confidence interval for the difference between group means.
+_ In a Markdown chunk:_ Complete the four steps in Hypothesis Testing:
+- State the null and alternative hypotheses.
+- Identify the appropirate statistical test and **its assumptions**
+- Is there evidence of a difference in expression between the two groups at a significance level of 0.05?
+- Explain your conclusion in two or three sentences.
+### Question 2: What changes when we test many genes?
+In Question 1, you performed a single hypothesis test. However, genomic studies often test hundreds or thousands of genes. For this question, use the file **JAXMouse_gene_test_results.csv** in your datasets. This table contains one row per gene, including mean Control expression, mean Treated expression, and the raw p-value from a treatment comparison. 
+- Import the table into R and inspect it using head() and str(). Use nrow() to determine how many genes were tested.
+- Use a logical comparison to identify genes with raw p-values below 0.05. Use sum() to count how many genes meet this criterion.
+- Use p.adjust() with method = "bonferroni" to calculate adjusted p-values for all genes in the table. Add these adjusted p-values as a new column. Count how many genes have adjusted p-values below 0.05. Compare the number of significant genes before and after correction by filling in the following table:
+
+| Measure     | Number of Genes |
+| ----------- | ----------- |
+| Total Genes Tested     |        |
+| Raw p-values below 0.05   |        |
+| Bonferroni_adjusted p-values below 0.05|     |
+
+
+_In a Markdown chunk:_ Why does testing many genes increase the risk of false positives? What happens to the number of statistically significant genes when you apply the Bonferroni correction?
 Hint: If you conduct 100 independent hypothesis tests and all null hypotheses are true, how many p-values below 0.05 would you expect on average? Why is multiple testing correction essential when testing many genes simultaneously? What would you expect if we tested the top 20 genes with alpha=0.05? (This is a foundational concept in genomics: bulk RNA-seq studies test thousands of genes at once.)
 
-3.	A volcano plot is commonly used to visualize gene expression results. It combines information about the magnitude of a difference between groups and the statistical evidence for that difference. You will use the same gene-level results table from Question 2.
-Part A: Preparing your data. Identify the columns containing mean expression for the Control and Treated groups. Calculate the ratio of mean Treated expression to mean Control expression. Use log2() to calculate the log2 fold change. Use -log10() to transform the raw p-values.Create a new logical column identifying genes with Bonferroni-adjusted p-values below 0.05. Hint: Your dataframe should now contain one row per gene, including a log2 fold change, a transformed p-value, and an indicator of statistical significance.
-Part B: Creating the plot. Use ggplot() and geom_point() to create a scatterplot with: x-axis: log2 fold change, y-axis: -log10(raw p-value). Color: whether the gene remains significant after Bonferroni correction. Add a horizontal reference line corresponding to a raw p-value of 0.05 using geom_hline().
-Add a vertical reference line at log2 fold change = 0 using geom_vline(). Add a meaningful title, axis labels, and a clean theme. Save the figure as JAXMouse_volcano.png using ggsave()._ In a Markdown chunk: Which genes show the largest differences in expression? Which have the strongest statistical evidence of a difference? Are these necessarily the same genes?_
+### Question 3: Creating a volcano plot
+A volcano plot is commonly used to visualize gene expression results. It combines information about the magnitude of a difference between groups and the statistical evidence for that difference. You will use the same gene-level results table from Question 2.
+##### Part A: Preparing your data. 
+- Identify the columns containing mean expression for the Control and Treated groups.
+- Calculate the ratio of mean Treated expression to mean Control expression. Use log2() to calculate the log2 fold change. Add this column to your dataframe.
+- Use -log10() to transform the raw p-values. Add this column to your dataframe.
+- Create a new logical column identifying genes with Bonferroni-adjusted p-values below 0.05. Hint: Your dataframe should now contain one row per gene, including a log2 fold change, a transformed p-value, and an indicator of statistical significance.
+#### Part B: Creating the plot. 
+- Use ggplot() and geom_point() to create a scatterplot with: x-axis: log2 fold change, y-axis: -log10(raw p-value). Color: whether the gene remains significant after Bonferroni correction. Add a horizontal reference line corresponding to a raw p-value of 0.05 using geom_hline(). Add a vertical reference line at log2 fold change = 0 using geom_vline(). Add a meaningful title, axis labels, and a clean theme.
+- Save the figure as JAXMouse_volcano.png using ggsave().
+- _ In a Markdown chunk: Which genes show the largest differences in expression? Which have the strongest statistical evidence of a difference? Are these necessarily the same genes?_
 Note: The horizontal line represents a raw p-value threshold, while the point colors represent significance after multiple-testing correction. These are deliberately different criteria.
 
 4.	Consider what you have learned from the hypothesis tests, adjusted p-values, and volcano plot. Answer the following questions in a Markdown chunk.
@@ -50,12 +125,60 @@ Note: The horizontal line represents a raw p-value threshold, while the point co
 - What additional information would you need before concluding that treatment causes a change in gene expression?
 Project milestone: Save your volcano plot and retain your table containing raw and Bonferroni-adjusted p-values. Include both in your final Quarto report.
 
-## Module 5: Using JAXMouse_QCpass.csv:
-1.So far, you have compared two treatment groups. You will now investigate whether expression differs among the three tissue types. Select one gene from your top 10 candidate genes. Create a dataframe containing only that gene's observations. Use ggplot2 to create a boxplot of Expression by Tissue. Use aov() to fit a one-way ANOVA model with Expression as the response and Tissue as the explaantory variable. Use summary() to examine the ANOVA table. If the ANOVA result is significant, use TukeyHSD() to determine which tissue pairs differ.  
-2.	Choose the gene from your top 10 Candidate genes that has the largest observed treatment-associated difference. Use filter() to create a dataframe with observations only for that gene. Use ggplot() to create a scatterplot with Age_weeks on the x-axis and Expression on the y-axis. Map Tissue to the color aesthetic so you can distinguish the tissue types. Use geom_smooth(method="lm") to add a fitted regression line. You may display separate lines for each tissue. Use cor.test to calculate the Pearson correlation between Age and Expression for each Tissue. Repeat using Spearm correlation by specifying method="spearman". _In a Markdown chunk: Does the relationship between age and expression appear similar across tissues? Do Pearson and Spearman correlations lead to similar conclusions? What can correlation tell us, and what can it not establish about causation?_
-Hint: Pearson correlation describes linear association, while Spearman correlation evaluates rank-based monotonic association. Neither establishes that age causes a change in gene expression.  
+## Module 5: Does Accounting for Other Variables Change Our Conclusions?
+- _Goal: Use multiple linear regression to investigate whether an apparent treatment-associated difference changes when other variables are included in the model. _
+- Using JAXMouse_QCpass.csv:
+### Question 1: Choosing a gene
+- Return to the gene-level test results from Module 4.
+- Identify the gene with the smallest raw p-value.
+- Use filter() to create a dataframe containing only observations for that gene.
+- Use str() to check the data types of Expression, Treatment, Tissue, Sex, Age_weeks, and BatchID. Convert categorical predictors to factors where necessary.
+- Create a boxplot comparing expression between Control and Treated observations for your selected gene.
+### Question 2: Building two regression models: 
+You will compare a model that considers Treatment alone with a model that also includes other variables. Use the following two model formulas. You do not need to develop the formulas independently.
 
+Model 1: Treatment only
+```{r}
+model1 <- lm(
+  Expression ~ Treatment,
+  data = gene_df
+)
 
+# Model 2: Including other predictors
+
+model2 <- lm(
+  Expression ~ Treatment + Tissue + Sex + Age_weeks + BatchID,
+  data = gene_df
+)
+```
+- Replace gene_df with the name of the dataframe containing your selected gene, if necessary.
+- Run Model 1 and use summary(model1) to examine the results.
+- Identify the estimated coefficient and p-value for Treatment.
+- Run Model 2 and use summary(model2) to examine the results.
+- Identify the estimated coefficient and p-value for Treatment in Model 2.
+- Record the R-squared value for each model.
+- Complete the following comparison table:
+
+  | Result    | Treatment Only | Multiple Predictors |
+| ----------- | ----------- | ----------- |
+| Treatment coefficient     |        |    |
+| Treatment p-value  |        |    |
+| R-Squared|     |  |
+
+### Question 3: Understanding Model Limits
+- Use plot(model2) to display the diagnostic plots for your second model.
+- Focus on the residuals-versus-fitted plot and the normal QQ plot.
+- Look for unusual patterns or observations that appear inconsistent with the fitted model.
+- Use summary(model2) to identify other predictors that appear associated with expression. Remember that categorical predictors may have multiple coefficients representing comparisons with reference groups.
+- In a Markdown chunk, answer the following:
+    - Did the estimated treatment effect change when you included other predictors?
+    - Why might the simple model and the multiple-predictor model give different results?
+    - What do the residual plots suggest about the fit of your model?
+    - Can you conclude that treatment caused changes in gene expression? Why or why not?
+
+Note: A change in a coefficient or p-value is informative even if neither result is statistically significant. These models provide an introductory illustration of adjusting for other variables, not a complete causal analysis.
+
+Project milestone: Include your model comparison table and interpretation in your final report.
 # **FINAL SEMESTER PROJECT DELIVERABLE:** 
 Compile your complete analysis from both RI and RII into a single polished Quarto report titled "JAXMouse_FinalReport_LastnameFirstInitial.html". The report should include: (a) an Introduction describing the biological question and dataset; (b) all five R I module analyses (data inspection through descriptive statistics); (c) all five R II module analyses (tidyverse wrangling, ggplot2 figures, hypothesis tests, ANOVA, regression); (d) a Conclusion section synthesizing your findings — does treatment alter gene expression, does this differ by tissue, and what biological story do these data tell?
 This final report demonstrates the complete R programming and data analysis workflow: from raw data to reproducible scientific communication — exactly as practiced by computational biologists in research settings. 
