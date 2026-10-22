@@ -105,16 +105,18 @@ _In a Markdown chunk:_ Why does testing many genes increase the risk of false po
 Hint: If you conduct 100 independent hypothesis tests and all null hypotheses are true, how many p-values below 0.05 would you expect on average? Why is multiple testing correction essential when testing many genes simultaneously? What would you expect if we tested the top 20 genes with alpha=0.05? (This is a foundational concept in genomics: bulk RNA-seq studies test thousands of genes at once.)
 
 ### Question 3: Creating a volcano plot
-A volcano plot is commonly used to visualize gene expression results. It combines information about the magnitude of a difference between groups and the statistical evidence for that difference. You will use the same gene-level results table from Question 2.
+A volcano plot is commonly used to visualize gene expression results. It combines information about the magnitude of a difference between groups and the statistical evidence for that difference. You will create a volcano plot using the instructor-provided gene-level results and the Bonferroni-adjusted p-values you calculated in Question 2.
 ##### Part A: Preparing your data. 
-- Identify the columns containing mean expression for the Control and Treated groups.
-- Calculate the ratio of mean Treated expression to mean Control expression. Use log2() to calculate the log2 fold change. Add this column to your dataframe.
-- Use -log10() to transform the raw p-values. Add this column to your dataframe.
+- Identify the columns containing mean expression for the Control and Treated groups (Mean_Control, Mean_Treated, raw_p) in your results dataframe.
+- For this exercise, assuming the expression means are on a positive, untransformed scale appropriate for ratios, calculate the log2 fold change using: log2(Mean_Treated / Mean_Control).** Add this column to your dataframe.**
+- Calculate the negative base-10 logarithm of each raw p-value using: -log10(raw_p). **Add this column to your dataframe.**
 - Create a new logical column identifying genes with Bonferroni-adjusted p-values below 0.05. Hint: Your dataframe should now contain one row per gene, including a log2 fold change, a transformed p-value, and an indicator of statistical significance.
 #### Part B: Creating the plot. 
 - Use ggplot() and geom_point() to create a scatterplot with: x-axis: log2 fold change, y-axis: -log10(raw p-value). Color: whether the gene remains significant after Bonferroni correction. Add a horizontal reference line corresponding to a raw p-value of 0.05 using geom_hline(). Add a vertical reference line at log2 fold change = 0 using geom_vline(). Add a meaningful title, axis labels, and a clean theme.
 - Save the figure as JAXMouse_volcano.png using ggsave().
-- _ In a Markdown chunk: Which genes show the largest differences in expression? Which have the strongest statistical evidence of a difference? Are these necessarily the same genes?_
+- _ In a Markdown chunk: Do more genes show higher mean expression in Control or Treated observations? How can you tell from the volcano plot? Identify the genes with the three largest absolute log2 fold changes and the genes with the three smallest raw p-values. Are they the same genes, and are they ranked in the same order? Why might genes with similar fold changes have different p-values? Consider the relationship between the magnitude of a difference, variability, and sample size. Many genes in this dataset show lower mean expression in Treated observations. Does this necessarily mean that treatment caused their expression to decrease? What other factors might contribute to this pattern?
+Hint: Recall your investigation of Simpson's paradox and batch effects in Introduction to R I.
+
 Note: The horizontal line represents a raw p-value threshold, while the point colors represent significance after multiple-testing correction. These are deliberately different criteria.
 
 ### Question 4: Consider what you have learned from the hypothesis tests, adjusted p-values, and volcano plot.
