@@ -3,7 +3,7 @@
 * In addition to the regular assignment questions, credit-seeking participants will also complete five additional questions that correspond to each of the five modules of the course.
 * **Datasets:
 1. **JAXMouse_GeneExpression_Simulated.csv**. This single dataset threads through all 10 modules across both courses (5 in RI, 5 in RII). It is a simulated but realistic RNA-seq-style dataset inspired by publicly available mouse tissue gene expression data from GEO.
-2. **JAXMouse_QCpass.csv**. This was created in Module 3 of Intro to RI. You can also find it in the datasets folder on GitHub if you didn't manage to create it.
+2. **JAXMouse_QCpass.csv**. This was created in Module 3 of Intro to RI. _You can also find it in the datasets folder on GitHub if you didn't manage to create it._****
 3. **JAXMouse_gene_test_results.csv**. An instructor-provided file containing gene-level results from statistical comparisons between Control and Treated observations.
 * Throughout this course, you will build on your earlier work by learning to manipulate data with the tidyverse, create more sophisticated visualizations, perform statistical tests, and fit simple statistical models.
 * Some questions include suggested functions or intermediate steps. These are intended to help guide your thinking, particularly when a problem requires combining several concepts. You may develop alternative solutions using techniques covered in the course.
