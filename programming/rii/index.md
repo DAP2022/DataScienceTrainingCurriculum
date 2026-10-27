@@ -1,7 +1,7 @@
 # Introduction to RII
 ** This is a 12-hour mini-course offered as part of The Jackson Laboratory Data Science Training Curriculum **
-- for Internal JAX participants (no credit hours): See [the syllabus](R2Syllabus_0326.pdf) for details.
-- for participants seeking 1 credit hour through UMaine: See [the Credit syllabus](R2Syllabus_UMaine_0326.pdf) for details.
+- for Internal JAX participants (no credit hours): See [the syllabus](R2Syllabus_1026.pdf) for details.
+- for participants seeking 1 credit hour through UMaine: See [the Credit syllabus](R2Syllabus_UMaine_0826.pdf) for details.
 
 ## Course Description: 
 This workshop is the second half of the introduction to the R programming
