@@ -78,6 +78,7 @@ In a Markdown chunk, answer the following:
 ## Module 4: Hypothesis Testing and Multiple Comparisons
 - _Goal: Understand how statistical evidence differs from the magnitude of an observed difference, why testing many genes increases the risk of false positives, and how to communicate these results with a volcano plot._
 - Using JAXMouse_QCpass.csv and your **JAXMouse_gene_test_results.csv** (download from GitHub in datasets for RII):
+
 ### Question 1: Testing one gene
 - **Choose one gene** from your list of 10 candidate genes identified in Module 2.
 - Use filter() to create a dataframe containing only observations for that gene. Use group_by() and summarise() to calculate the mean, standard deviation, and number of expression observations in the Control and Treated groups.
@@ -88,6 +89,7 @@ _ In a Markdown chunk:_ Complete the four steps in Hypothesis Testing:
 - Identify the appropirate statistical test and **its assumptions**
 - Is there evidence of a difference in expression between the two groups at a significance level of 0.05?
 - Explain your conclusion in two or three sentences.
+
 ### Question 2: What changes when we test many genes?
 In Question 1, you performed a single hypothesis test. However, genomic studies often test hundreds or thousands of genes. For this question, use the file **JAXMouse_gene_test_results.csv** in your datasets. This table contains one row per gene, including mean Control expression, mean Treated expression, and the raw p-value from a treatment comparison. 
 - Import the table into R and inspect it using head() and str(). Use nrow() to determine how many genes were tested.
@@ -101,7 +103,7 @@ In Question 1, you performed a single hypothesis test. However, genomic studies 
 | Bonferroni_adjusted p-values below 0.05|     |
 
 
-_In a Markdown chunk:_ Why does testing many genes increase the risk of false positives? What happens to the number of statistically significant genes when you apply the Bonferroni correction?
+- _In a Markdown chunk:_ Why does testing many genes increase the risk of false positives? What happens to the number of statistically significant genes when you apply the Bonferroni correction?
 Hint: If you conduct 100 independent hypothesis tests and all null hypotheses are true, how many p-values below 0.05 would you expect on average? Why is multiple testing correction essential when testing many genes simultaneously? What would you expect if we tested the top 20 genes with alpha=0.05? (This is a foundational concept in genomics: bulk RNA-seq studies test thousands of genes at once.)
 
 ### Question 3: Creating a volcano plot
