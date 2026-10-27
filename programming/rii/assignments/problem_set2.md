@@ -21,7 +21,7 @@ Please hand in an .rmd file in the format: **lastname_firstinitial_day2.qmd.** I
 This question directly builds on R I Module 4. Retrieve the same numeric trait you analyzed to answer that question.
 
 ------
-(Here is the question from RI, Module 4 to refresh your memory): Choose ONE numeric trait from the Bumpus dataset (e.g., total length, wing chord, weight, head width, humerus length). Use the same trait throughout this question.
+(Here is the question from RI, Module 4 to refresh your memory): Choose ONE numeric trait from the Bumpus dataset (e.g., total length, wing span, weight, head width, humerus length). Use the same trait throughout this question.
 
 - Using two different plot types, visually assess whether your chosen variable appears normally distributed. Which plot type do you find more informative and why? (Hint: a histogram AND one other type are expected.)
 - Create a boxplot of your chosen variable grouped by BOTH sex AND survival simultaneously (four groups: female survived, female died, male survived, male died). Describe in a Markdown chunk what the boxplot suggests about sex differences and survival differences in this trait.
