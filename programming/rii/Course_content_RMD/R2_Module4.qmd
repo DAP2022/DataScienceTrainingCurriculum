@@ -16,21 +16,21 @@ editor: visual
 
     - Some are robust to this assumption (but only to a certain extent)
 
-      +---------------------------------------------------+------------------------------------------------------------------------------------+--------------------------------------------------------------------+
-      | one sample t-test                                 | paired t-test                                                                      | two-sample t-test                                                  |
-      +===================================================+====================================================================================+====================================================================+
-      | Independent, random samples                       | **Not** independently sampled - because they are PAIRED.                           | Independent, random samples                                        |
-      +---------------------------------------------------+------------------------------------------------------------------------------------+--------------------------------------------------------------------+
-      | Normally distributed                              | [**Difference**]{.underline} **- not each distribution - is Normally distributed** | Each of the two sample groups is Normally distributed              |
-      +---------------------------------------------------+------------------------------------------------------------------------------------+--------------------------------------------------------------------+
-      |                                                   |                                                                                    | Variances of the two groups are similar (or the shape is the same) |
-      +---------------------------------------------------+------------------------------------------------------------------------------------+--------------------------------------------------------------------+
-      | --\> Signed Rank Test (Nonparametric alternative) |                                                                                    | --\> Welch's approximate t-test if variances are not similar       |
-      |                                                   |                                                                                    |                                                                    |
-      |                                                   |                                                                                    | --\> Mann-Whitney U test if not Normally Distributed               |
-      +---------------------------------------------------+------------------------------------------------------------------------------------+--------------------------------------------------------------------+
+      +---------------------------------------------------+------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------+
+      | one sample t-test                                 | paired t-test                                                                                        | two-sample t-test                                                  |
+      +===================================================+======================================================================================================+====================================================================+
+      | Independent, random samples                       | **Not** independently sampled - because they are PAIRED.                                             | Independent, random samples                                        |
+      +---------------------------------------------------+------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------+
+      | Normally distributed                              | [**Difference between each pair**]{.underline} **- not each distribution - is Normally distributed** | Each of the two sample groups is Normally distributed              |
+      +---------------------------------------------------+------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------+
+      |                                                   |                                                                                                      | Variances of the two groups are similar (or the shape is the same) |
+      +---------------------------------------------------+------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------+
+      | --\> Signed Rank Test (Nonparametric alternative) |                                                                                                      | --\> Welch's approximate t-test if variances are not similar       |
+      |                                                   |                                                                                                      |                                                                    |
+      |                                                   |                                                                                                      | --\> Mann-Whitney U test if not Normally Distributed               |
+      +---------------------------------------------------+------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------+
 
-      : **Assumptions of t-tests**
+**Assumptions of t-tests**
 
 - We refreshed the Hypothesis testing pipeline:
 
@@ -68,7 +68,7 @@ editor: visual
 
   - I have pasted this from Module 3 - it is the four different simulated distributions:
 
-  ```{r}
+```{r}
   #similar to the dbinom(), pbinom(), qbinom(), and rbinom() but for the normal distribution and the Poisson distribution: 
   # --------------------------------- 
   # normal distribution with 100 observations, mean of 1 and standard deviation of 1 
@@ -87,9 +87,9 @@ editor: visual
   hist(norm_2,main="Normal Distribution with large sd",col="Purple") 
   # Now let's peek at a boxplot 
   boxplot(norm_1, norm_2,pois_1)
-  ```
+```
 
-  ```{r}
+```{r}
   # let's have a look at the standard deviations of the three previously manufactored distributions:
    #sd=1, mean=1
    # sd=mean=lambda=1
@@ -100,19 +100,19 @@ editor: visual
   # function since you are comparing the variances of TWO samples. I have
   # compared norm_1, pois_1, and norm_2 below:  Corresponds to an alpha=0.01
    #alpha=0.01 ; confidence level=0.95, alpha=0.05
-  ```
+```
 
-  # 2. The Student's t test:
+# 2. The Student's t test:
 
-  - an approximation of Normal/Z test (z-scores) fueled by Guinness beer.
+- an approximation of Normal/Z test (z-scores) fueled by Guinness beer.
 
-  - *t tests!* are used to test if a population mean is equal to a particular value (one sample t test), to the mean of a different population (two sample t test) or if the difference between two means is equal to a particular value. All three of these tests use the same R command but they take different arguments in the same function. You can read up on the Student's t test here: <https://en.wikipedia.org/wiki/Student%27s_t-test>
+- *t tests!* are used to test if a population mean is equal to a particular value (one sample t test), to the mean of a different population (two sample t test) or if the difference between two means is equal to a particular value. All three of these tests use the same R command but they take different arguments in the same function. You can read up on the Student's t test here: <https://en.wikipedia.org/wiki/Student%27s_t-test>
 
-    ## 1. We will start with the [**one sample t test**]{.underline}:
+  ### 1. We will start with the [**one sample t test**]{.underline}:
 
-  $Ho: \mu_{moose}= 423 kg$ $Ha: \mu_{moose} \neq 423 kg$
+$Ho: \mu_{moose}= 423 kg$ $Ha: \mu_{moose} \neq 423 kg$
 
-  ```{r}
+```{r}
   # one sample t tests: moose weights!
   # statistical test is the one sample t test because we want to know if the population of all moose is equal to 423kg based on this sampl 
   weights_moose<-c(401,380,393,450,420,435,426,397,415)
@@ -129,9 +129,9 @@ editor: visual
 
   # let's check in and see what the mean is for this subset of 9 moose.
 
-  ```
+```
 
-  ```{r}
+```{r}
   # there don't appear to be any serious violations so let's continue with the t test
 
 
@@ -146,13 +146,13 @@ editor: visual
   # moose is less than the mean of the moose population, mu=423, we would use the following command: 
 
 
-  ```
+```
 
-  ### 2. Moving on to the [***two sample t test***]{.underline}:
+### 2. Moving on to the [***two sample t test***]{.underline}:
 
-  six individuals are given a treatment and 6 are given a placebo and we want to test whether or not there is a true difference between them: $H_o: \mu_1 - \mu_2 = 0$ $H_A: \mu_1 - \mu_2 \neq 0$ The assumption for the two sample t test is that the variances are reasonably equal. If the variances are dramatically different, you should use the default Welch's approximate t-test to buffer against unequal variances.
+six individuals are given a treatment and 6 are given a placebo and we want to test whether or not there is a true difference between them: $H_o: \mu_1 - \mu_2 = 0$ $H_A: \mu_1 - \mu_2 \neq 0$ The assumption for the two sample t test is that the variances are reasonably equal. If the variances are dramatically different, you should use the default Welch's approximate t-test to buffer against unequal variances.
 
-  ```{r}
+```{r}
   Drug<-c(101,110,103,93,99,104)
   Placebo<-c(91,87,99,77,88,91)
   # we should test these variables to see if they are both from normal distributions
@@ -170,14 +170,13 @@ editor: visual
   # overlay the means onto the last graph plotted - in this case the boxplot - with
   # the points function. Boxplots show medians but not means so we are just adding the means to this plot.  
 
-  ```
+```
 
-  ```{r}
+```{r}
   # standard deviations comparison
+```
 
-  ```
-
-  ```{r}
+```{r}
   # let's see if this works (we will see the var.test to test for equal variances below)
 
 
@@ -188,9 +187,9 @@ editor: visual
 
   # welch's t test is the default of the two sided t test, and assumes that variances are unequal. This is a conservative test
   # which is why it is the default. 
-  ```
+```
 
-  Two sample t test is *important*. Let's use our expr_data set to answer the question: ***Does treatment change expression in brain tissue?*** Within the brain tissue, there are 200 controls and 200 samples. We already saw, in R2_Module3, that the two conditions were both normally distributed (which makes sense, since we simulated them from a normal distribution in R2_Module1).
+Two sample t test is *important*. Let's use our expr_data set to answer the question: ***Does treatment change expression in brain tissue?*** Within the brain tissue, there are 200 controls and 200 samples. We already saw, in R2_Module3, that the two conditions were both normally distributed (which makes sense, since we simulated them from a normal distribution in R2_Module1).
 
 ```{r}
 # read in expr_data from file where we placed in Module 1 or from our Environment (if it is still present)
@@ -395,21 +394,26 @@ glimpse(sleep)
 
 
 ```
-# so that's bad news - the paired differences are not normally distributed according to shapiro.
-```
- We are at a decision point, the data is not normally distributed. What are our options? 
- 1. Transformation
- 2. Nonparametric alternative
- 3. t-test might still be robust depending on sample size and severity. 
- 
-Here, I use the paired t-test to demonstrate the formula, we will subsequently see what happens with transformations. 
+
+#### so that's bad news - the paired differences are not normally distributed according to shapiro.
+
+We are at a decision point, the data is not normally distributed. What are our options?
+
+1\. Transformation
+
+2\. Nonparametric alternative
+
+3\. t-test might still be robust depending on sample size and severity.
+
+Here, I use the paired t-test to demonstrate the formula, we will subsequently see what happens with transformations.
+
 ```{r}
 # but we will use it anyway to demonstrate the formula and then see what happens with transformations. 
 # Use the asinh(x) tranformation. 
 
 ```
 
-```{{r}}
+```{r}
 
 
 
@@ -427,7 +431,7 @@ We will see the non-parametric alternative to one-sample and paired t-test next.
 
 **In general, a common pipeline would be:**
 
-** Visual assessment --\> Formal tests of assumptions (usually based on the visual assessment) --\> Formal tests that rely on the assumptions (ie. t-tests and other parametric tests) or Formal tests that don't rely on the assumptions (ie. Welch's approximate t-test, Wilcoxon test, simulation, or Kaplan-Meier estimator and curve)**
+\*\* Visual assessment --\> Formal tests of assumptions (usually based on the visual assessment) --\> Formal tests that rely on the assumptions (ie. t-tests and other parametric tests) or Formal tests that don't rely on the assumptions (ie. Welch's approximate t-test, Wilcoxon test, simulation, or Kaplan-Meier estimator and curve)\*\*
 
 1.  You can use online simulations to explore to what extent we can violate the assumptions of the t test and still **appropriately** use the *t test* to analyze data. (for instance,[this](http://onlinestatbook.com/stat_sim/sampling_dist/index.html) helps you see what normally distributed samples look like).
 
@@ -503,23 +507,23 @@ A common transformation with biological data is the log transformation. This is 
 
 - Here are some common options (this list is not even close to exhaustive and it will dependent very much on your particular dataset)
 
-+----------------------+----------------------------------------------------------------------+------------------------+
-| Transformation       | Best for                                                             | R Implementation       |
-+======================+======================================================================+========================+
-| Yeo-Johnson          | general normality                                                    | car::yjPower(x,lambda) |
-+----------------------+----------------------------------------------------------------------+------------------------+
-| Cube Root            | Really skewed data, volumes                                          | sign(x)\*abs(x)\^(1/3) |
-+----------------------+----------------------------------------------------------------------+------------------------+
-| asinh                | log-like effect on both ends                                         | asinh(x)               |
-+----------------------+----------------------------------------------------------------------+------------------------+
-| shifted log          | Simple interpretation                                                | log(x+constant)        |
-+----------------------+----------------------------------------------------------------------+------------------------+
-| Square Root          | right skewedness and count data (especially if data follows Poisson) | sqrt()                 |
-+----------------------+----------------------------------------------------------------------+------------------------+
-| Arcsine Square Root  | proportions or percentages                                           | asin(sqrt(x))          |
-+----------------------+----------------------------------------------------------------------+------------------------+
-| log                  | so many situations: skew, reducing distance between points, etc      | log(x)                 |
-+----------------------+----------------------------------------------------------------------+------------------------+
++---------------------+----------------------------------------------------------------------+------------------------+
+| Transformation      | Best for                                                             | R Implementation       |
++=====================+======================================================================+========================+
+| Yeo-Johnson         | general normality                                                    | car::yjPower(x,lambda) |
++---------------------+----------------------------------------------------------------------+------------------------+
+| Cube Root           | Really skewed data, volumes                                          | sign(x)\*abs(x)\^(1/3) |
++---------------------+----------------------------------------------------------------------+------------------------+
+| asinh               | log-like effect on both ends                                         | asinh(x)               |
++---------------------+----------------------------------------------------------------------+------------------------+
+| shifted log         | Simple interpretation                                                | log(x+constant)        |
++---------------------+----------------------------------------------------------------------+------------------------+
+| Square Root         | right skewedness and count data (especially if data follows Poisson) | sqrt()                 |
++---------------------+----------------------------------------------------------------------+------------------------+
+| Arcsine Square Root | proportions or percentages                                           | asin(sqrt(x))          |
++---------------------+----------------------------------------------------------------------+------------------------+
+| log                 | so many situations: skew, reducing distance between points, etc      | log(x)                 |
++---------------------+----------------------------------------------------------------------+------------------------+
 
 ```{r}
 #log transformation; log()

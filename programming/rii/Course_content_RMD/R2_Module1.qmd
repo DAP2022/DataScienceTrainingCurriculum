@@ -67,27 +67,23 @@ editor: visual
       rep("treated", 200)
     )
 
-
     # ------------------------------------------------------------
     # Simulate gene expression
     # ------------------------------------------------------------
-    # We will use rnorm() to simulate continuous gene expression.
-    #
+    # We will use rnorm() to simulate continuous gene expression. This is
+    # important to note because it gives us information about the distribution
+    # of the gene expression later!
     # The three tissues have slightly different average
-    # expression levels.
-    #
+    # expression levels because are simulated with slightly different means!
     # Treatment increases the average expression by 0.5 over the controls. 
 
     Expression <- c(
-
       # brain
       rnorm(200, mean = 5.2, sd = 1.2),   # control
       rnorm(200, mean = 5.7, sd = 1.2),   # treated
-
       # heart
       rnorm(200, mean = 4.8, sd = 1.2),   # control
       rnorm(200, mean = 5.3, sd = 1.2),   # treated
-
       # liver
       rnorm(200, mean = 5.0, sd = 1.2),   # control
       rnorm(200, mean = 5.5, sd = 1.2)    # treated
@@ -103,9 +99,10 @@ editor: visual
     )
     ```
 
-# Section 2: Autonomous (Asynchronous) Summary Review of each RI Module:
+# Section 2: Asynchronous Summary Review of each RI Module:
 
-- you can work through this at your own leisure since example answers are provided
+- We'll touch on the major concepts in class, but we won't go into too many details since we will work ***through similar questions in Section 3***.
+- This section allows you to work through and review these concepts at your own leisure since example answers are provided.
 
 #### Module 1A:
 
@@ -219,8 +216,8 @@ brain <- expr_data[expr_data$Tissue == "brain", ]
 
 # Only treated brain samples
 treated_brain <- expr_data[
-  expr_data$Tissue == "brain" &
-  expr_data$Condition == "treated",
+  expr_data$Tissue == "brain" & # & means that BOTH conditions must be met
+  expr_data$Condition == "treated", 
 ]
 
 # you can also use the subset() function to select for particular criteria in your output
@@ -359,7 +356,7 @@ We were introduced to a package, *biostats*, and used it to simulate clinical da
 
 ------------------------------------------------------------------------
 
-# Section 3 (Synchronous section):We will work through this in class:
+# Section 3: We will work through this in class:
 
 # Details of each RI Module:
 

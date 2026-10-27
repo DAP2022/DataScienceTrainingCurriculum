@@ -356,7 +356,7 @@ boxplot(
 )
 ```
 
-# 4. Worked Eexample: **Hypothesis Testing**
+# 4. Worked Example: **Hypothesis Testing**
 
 - **with the bumpus data set**
 

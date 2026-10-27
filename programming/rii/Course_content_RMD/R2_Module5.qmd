@@ -3,6 +3,7 @@ title: "R2_Module5"
 format: docx
 editor: visual
 ---
+
 ## Preamble:
 
 This is a VERY long document, where I have attempted to include an exhaustive overview of ANOVA and Correlation/Regression. It is highly unlikely that we will make it through this notebook, but I wanted you to have it in case you want to reference any pieces/suggestions that might be relevant to your own work.
@@ -134,6 +135,7 @@ Step 4. Conclusions? - there are 9 statistically significant p-values. That does
 ## Two-Way ANOVA
 
 - I used 6 groups in order to demonstrate one-way ANOVA. However, in this case, there are really 3 groups (tissue types) with **two factors** (Control versus treatment).
+
 ```{r}
 
 
@@ -280,24 +282,28 @@ log transformation:
 
 - Okay! Now we have data that looks normal-ish enough ....although it rejects equality of variances between the groups so one way ANOVA is not appropriate
 
-- Fine! We know that parametric one-way ANOVA is inappropriate for our data, even transformed, because the variances are not equal between the categories. We conducted the analysis so that we would all know how to conduct ANOVA in R. 
-- Plus, we now have the results of the one-way parametric ANOVA that will allow us to compare those results with the nonparametric alternative (Kruskall Wallis). Remember that because variances aren't equal, we *should* be using an alternative to one-way ANOVA. This could be: 
-1. Welch's approximate ANOVA - if data are normally distributed, but variances are not equal 
-2. Kruskal Wallis - if data are neither normally distributed, nor homoscedastic.
+- Fine! We know that parametric one-way ANOVA is inappropriate for our data, even transformed, because the variances are not equal between the categories. We conducted the analysis so that we would all know how to conduct ANOVA in R.
+
+- Plus, we now have the results of the one-way parametric ANOVA that will allow us to compare those results with the nonparametric alternative (Kruskall Wallis). Remember that because variances aren't equal, we *should* be using an alternative to one-way ANOVA. This could be:
+
+1.  Welch's approximate ANOVA - if data are normally distributed, but variances are not equal
+2.  Kruskal Wallis - if data are neither normally distributed, nor homoscedastic.
+
 ```{r}
 #Welch's approximate ANOVA needs to use the log transformed data set since that was normally-ish distributed
 # Welch's ANOVA.You must set: var.equal = FALSE since the default is TRUE. 
 
 ```
-- Welch's approximate ANOVA is appropriate for this dataset, but we are also going to do the full Kruskal-Wallis test (with Dunn test as the post-hoc test) so that we see the full pipeline. Note that we were able to reject the null hypothesis with Welch's Approx. ANOVA. 
+
+- Welch's approximate ANOVA is appropriate for this dataset, but we are also going to do the full Kruskal-Wallis test (with Dunn test as the post-hoc test) so that we see the full pipeline. Note that we were able to reject the null hypothesis with Welch's Approx. ANOVA.
 - Here is the non-parametric Kruskal-Wallis test on the original, untransformed data:
+
 ```{r}
 
 
 ```
 
-We are not able to reject the null hypothesis with KW (this makes sense since you are throwing out information with a non-parametric method that you get to keep with a parametric method).
-**Let's *pretend* that we were able to reject our Ho that all categories means are equal.** (the p-value \>0.05 so we can't actually do that, but I am demonstrating the functions for you so we are just pretending that we could):
+We are not able to reject the null hypothesis with KW (this makes sense since you are throwing out information with a non-parametric method that you get to keep with a parametric method). **Let's *pretend* that we were able to reject our Ho that all categories means are equal.** (the p-value \>0.05 so we can't actually do that, but I am demonstrating the functions for you so we are just pretending that we could):
 
 ```{r}
 #load the rstatix library - if you don't have it, you will need to install it
@@ -322,7 +328,6 @@ Tangent: To calculate the power of our anova test, we can use the power.anova.te
 
 
 ```
-
 
 # LINEAR Correlation and LINEAR Regression Introduction
 
@@ -522,9 +527,9 @@ In regression analysis there are two variables: one is the Independent variable 
 
 With regression \$H_0:\\beta\$ = 0 (this means that we are testing that the true population slope is equal to zero). The first two steps in establishing assumptions are the same as linear correlation; the third step, homogeneity of variance, is new.
 
-1. Linearity
+1.  Linearity
 
-2. Normality of response variable
+2.  Normality of response variable
 
 We already looked at this when we were analyzing the data with correlation but I wanted to introduce a slightly different member of the \*apply\* family of functions. In the previous module (9), we used \*tapply\* on the ANOVA data. tapply was appropriate in that case because the data was grouped (high, medium and low maize yield). In our case, the age is continuous, not grouped, so we need to use another member of the apply family. In fact, we use apply(). Since the apply family is a massively important family of functions (if you have experience with other programming languages, it is equivalent to \*map()\* functions so it can take the place of a programming loop).
 
@@ -618,14 +623,17 @@ The linear model gives us the A (y-intercept) as well as the slope.
 
 The \>summary() gives you the intercept and slope of your linear model line among many other useful numbers such as \$R\^2\$ and the anova() takes your lm objects and spits out an anova table.
 
-#### Compute confidence interval using ggplot: 
+#### Compute confidence interval using ggplot:
+
 ```{r}
 
 
 ```
+
 The shaded region is a confidence band around the estimated regression relationship.
 
 #### EXTRA MATERIAL: Compute confidence interval from regular R (the 'hard way'):
+
 In order to calculate the 95% confidence intervals of the intercept of the regression equation and of the independent variable you use the \>confint() function.
 
 ```{r}
