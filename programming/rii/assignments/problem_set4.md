@@ -13,7 +13,8 @@ These steps should be included in your markdown chunks not your R programming ch
 It is discovered that the data discussed in the recitation were all male mooses (let's not discuss how this was ascertained). Female mooses from the same region, the north region, were all weighed: 301, 320, 382, 401, 349, 318, 342 and 369. Do northern female mooses weight less than their male counterparts? (include ALL four hypothesis testing steps and code with answer).
 
 ## Question 2: 
-The data file "R2_Sleep contains information on 10 individuals who took two different sleep aids. Each row represents a different individual, measured in each of the two ways. Do both measurements give the same result? (include ALL four hypothesis testing steps and code with answer). 
+The data file "R2_Sleep contains information on 10 individuals who took two different sleep aids. Each row represents a different individual, measured in each of the two ways. 
+- Do both measurements give the same result? (include ALL four hypothesis testing steps and code with answer). You will need to use a transformation to do this. 
 - What type of t-test is most appropriate here, and why?
 - What sample size would be needed to detect a difference of 0.25 hours with 90% power?
 
