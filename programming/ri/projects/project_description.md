@@ -9,7 +9,7 @@ The capstone is designed to build on skills you develop during the course. Each 
 
 For questions that ask you to interpret results, provide a brief explanation in a Markdown chunk. You do not need to write lengthy responses; a few thoughtful sentences are generally sufficient. 
 
-**Module 1: Using the JAXMouse_GeneExpression_Simulated.csv dataset:**
+## **Module 1: Using the JAXMouse_GeneExpression_Simulated.csv dataset:**
 _**Goal:**_ Import a data set, explore its structure, understand data types, and perform basic calculations. 
 ### Question 1: Importing and inspecting the data
 - Read the dataset into R using **read.csv()**.
@@ -25,7 +25,7 @@ _**Goal:**_ Import a data set, explore its structure, understand data types, and
 **Project milestone: Save your dataframe as JAXMouse_clean.csv using write.csv().**
 Hint: Use row.names = FALSE to avoid saving an extra row-number column. Remember that CSV files do not preserve R factor classes. You can convert categorical columns back into factors when you read the file again.
 
-**Module 2: Using the JAXMouse_GeneExpression_Simulated.csv dataset:**
+## **Module 2: Using the JAXMouse_GeneExpression_Simulated.csv dataset:**
 _**Goal: **_ Write a function and use sapply() to summarize expression for several genes.
 ### Question 1: Writing a gene-summary function
 You have already used functions such as mean(), median(), sd(). Now you will combine them into your own function investigating gene expression! Exciting, no? 
@@ -43,7 +43,7 @@ You have already used functions such as mean(), median(), sd(). Now you will com
 
 **Project milestone: Keep your function and gene-summary results in your Quarto notebook. You will revisit gene-level variation in R II.**
 
-**Module 3: Using the JAXMouse_GeneExpression_Simulated.csv dataset:**
+## **Module 3: Using the JAXMouse_GeneExpression_Simulated.csv dataset:**
 _Goal:_ Use Boolean slicing to identify observations that failed quality control, investigate missing values, and prepare a cleaned dataset.
 ### Question 1: Identifying observations that failed quality control
 The QC_pass column identifies whether each observation passed or failed quality control.
@@ -79,7 +79,7 @@ Now that your dataset has been cleaned, investigate one particular subset.
 **Project milestone: Save your cleaned dataframe (QC-passing observations with no missing Expression values) as: JAXMouse_QCpass.csv**. You will use this file for all remaining analyses in Introduction to R I and Introduction to R II.
 Note: For this assignment, we are treating each row as a gene-expression observation. Several observations may belong to the same biological sample, so the number of rows should not automatically be interpreted as the number of independent samples.
 
-**Module 4: Using JAXMouse_QCpass.csv:**
+## **Module 4: Using JAXMouse_QCpass.csv:**
 _Goal: _Create basic visualizations using base R and describe patterns in the data.
 - Use **JAXMouse_QCpass.csv** (created in Module 3) for this module.
 ### Question 1: Comparing expression among tissues
@@ -102,7 +102,7 @@ In Module 1, you calculated mean expression for each tissue. Now investigate whe
 
 **Project milestone: Save your boxplot and histogram in a PDF named JAXMouse_baseR_plots.pdf**, using pdf() and dev.off(). In R II, you will revisit the tissue boxplot using ggplot2 and compare the results.
 
-**Module 5: Using JAXMouse_QCpass.csv:**
+## **Module 5: Using JAXMouse_QCpass.csv:**
 _Goal:_ Summarize data, recognize how confounding variables affect conclusions, and integrate findings into a scientific report.
 ### Question 1: Describing expression by treatment
 - Use tapply() to calculate mean Expression for the Control and Treated groups.
