@@ -14,7 +14,7 @@ It is discovered that the data discussed in the recitation were all male mooses 
 
 ## Question 2: 
 The data file "R2_Sleep contains information on 10 individuals who took two different sleep aids. Each row represents a different individual, measured in each of the two ways. 
-- Do both measurements give the same result? (include ALL four hypothesis testing steps and code with answer). You will need to use a transformation to do this. 
+- Do both measurements give the same result? (include ALL four hypothesis testing steps and code with answer). You will need to use a transformation to do this. Remember that when you use a transformation, you must also transform your Ho so that you are still working on the same scale. 
 - What type of t-test is most appropriate here, and why?
 - What sample size would be needed to detect a difference of 0.25 hours with 90% power?
 
