@@ -1,30 +1,21 @@
-## 1A: Title: Introduction to R and RStudio and markdown  
-## Learning Objectives: 
-1. You will demonstrate a minimum level of competency in the RStudio environment. Competency includes: 
-- You will create a new .rmd file
-- You will correctly incorporate the R Markdown language
-- You will appropriately use 'R chunks' to manipulate data using R
-- You will successfully 'Knit' (equivalent to 'compiling') your final .rmd document into a word document and save as a html or word
-- You will examine the basic features of dataframes
-- You will manipulate a built-in data set as well as upload an external .csv file into the RStudio memory
+# MODULE 1 — Reviewing the Foundations: from R I to R II
 
-2. Instructional and Assessment Activities: 
--	We will work through Module_1A
-- We will import a dataframe and peek at it.
-- We will create, save, and knit our own file for our first Assignment. 
+### Question:  How do we leverage our foundational coding skills to efficiently interrogate a new biological dataset?
+### Answer:  We consolidate R I competencies, like data import (read.csv()), slicing, tapply(), base R plots, before layering the tidyverse on top. Everything you learned in R I is still valid; the tidyverse simply extends and simplifies it.
 
+## Learning Objectives
+•	Reload and inspect datasets using the full suite of base R tools (summary(), str(), head(), dim()).
+•	Apply slicing with conditionals, subset(), and the *apply family.
+•	Produce scatterplots, histograms, and mosaic plots in base R.
+•	Articulate what you find clunky or repetitive about base R syntax, this motivates the tidyverse.
+•	Understand the R II workflow:
+      
+        Tidy → Transform → Visualize → Model → Interpret
 
-## 1B: Title: Data Types & Structures in R
-## Learning Objectives:
-1.	Data Structures in R
-a.	Vectors, factors, matrices, lists, dataframes
-2.	You will download, access, and manipulate data
-a.	Subset, tapply
+## In-Class Activities
+•	Produce graphs with manipulated datasets in each of the above categories.
+•	Side-by-side comparison: base R approach vs. a preview of the tidyverse approach.
 
-## Instructional and Assessment Activities: 
-- We will work through Module_1B
-- We will compare and contrast vectors, dataframes and different types of data. 
-- Module 1 Assignment
-
-## Extra Resources - R Markdown Intro Cheat sheet: 
-https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf
+## Extra Resources: 
+R I refresher
+* R for Data Science: https://intro2r.com/
