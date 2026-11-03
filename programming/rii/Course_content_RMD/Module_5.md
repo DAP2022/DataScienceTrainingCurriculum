@@ -1,4 +1,6 @@
 ## Module 5AB - Title: ANOVA and linear correlation/regression
+### Question:  How can we reliably predict outcomes and map complex relationships between multiple variables while accounting for biological noise and outliers?
+### Answer:  We extend hypothesis testing from two-group comparisons to multi-group ANOVA and continuous relationships via correlation and linear regression, always checking assumptions and investigating residuals.
 
 ## Goals:
 - You will adequately test assumptions of the ANOVA test using bartlett to test for homogeneity of variances
