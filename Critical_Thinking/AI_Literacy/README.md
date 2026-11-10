@@ -2,7 +2,7 @@
 
 ** This is a 12-hour mini-course that is part of the Jackson Laboratory Foundational Data Science Training Curriculum ** 
 
-Here is the most recent proposed syllabus (March 2026) for the July 2026 [hybrid course.](AiLiteracy_Syllabus_0326.docx) 
+Here is the most recent syllabus for the July 2026 [hybrid course.](AiLiteracy_Syllabus_0326.docx) 
 
 ## Course Summary
 Ai literacy is emancipatory. Understanding the limits and benefits of popular Ai tools is a requirement for individuals to autonomously participate in all aspects of modern society. This 12-hour course is a **code-free** exploration of Ai tools, with an emphasis on broadly understanding - and interacting with - different types of Machine Learning, and Large Language Models. Along with an introduction to the concepts central to Ai, we will also hear JAX speakers explain how they are practically incorporating Ai/LLM to optimize their own research.
@@ -40,8 +40,8 @@ Ai literacy is emancipatory. Understanding the limits and benefits of popular Ai
 - Evaluate model answers (accuracy, bias, toxicity) and understand alignment debates.
 
 5. Day 5 – Ethics
-   - Identify ethical frameworks (Belmont, bias, alignment risks) and articulate why evaluation matters.
-   - Explore how bias creeps into LLMs through training data.
+ - Identify ethical frameworks (Belmont, bias, alignment risks) and articulate why evaluation matters.
+- Explore how bias creeps into LLMs through training data.
 
 ## Lecture notes (pdfs)
 - [Module 1](Content/Module1_2026.pdf)
