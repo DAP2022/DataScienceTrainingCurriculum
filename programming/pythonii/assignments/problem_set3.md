@@ -41,7 +41,8 @@ Build a platypus class that demonstrates: **inheritance**, **attribute overridin
 
 1. Create a Mammal superclass with at least three attributes and two methods
 2. Create a Playpus subclass that inherits from Mammal. Platypuses (and Echnida) are weird mammals since they lay eggs instead of giving birth to live young so that will be a difference that you might use to override?
-3. Create at least one instance of the Mammal and at least one instance of the Platypus. 
+3. Create at least one instance of the Mammal and at least one instance of the Platypus.
+4. Add an Echidna subclass.
 
 
 You can be as creative as you like. 
