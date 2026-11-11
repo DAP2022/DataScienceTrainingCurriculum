@@ -7,7 +7,7 @@ The current syllabus for the **4-day Workshop version of this course that is sch
 
               "That is not only NOT right; it is not even wrong!" – Wolfgang Pauli
 
-**Artificial intelligence can't replace thinking, but it can amplify poor thinking.** This three-day workshop helps participants develop the habits of mind required for fearless, evidence-based problem solving, a key skill in the age of Ai.
+**Artificial intelligence can't replace thinking, but it can amplify poor thinking.** This 12 hour course helps participants develop the habits of mind required for fearless, evidence-based problem solving, a key skill in the age of Ai.
 
 Artificial intelligence can generate answers, explanations, and recommendations at unprecedented speed. What it cannot do is determine when those answers should be trusted. In an environment where both experts and Ai systems can be confidently wrong, effective problem solving depends less on finding answers and more on evaluating evidence, uncertainty, assumptions, and reasoning.
 
