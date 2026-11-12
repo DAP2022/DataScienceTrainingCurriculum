@@ -71,7 +71,7 @@ This folder will contain:
 - [Project Descriptions](projects/project_description.md)
 
 4. Datasets
-- [Dataset 1](datasets/dataset1.md)
+- [Dataset 1](datasets/mousedataset.md)
 - [Dataset 2](datasets/dataset2.md)
 
 Topics covered in this second workshop will focus on focus on Hypothesis Testing and will include: Hypothesis testing as a reproducible pipeline, comparing means and medians of two (student’s t tests/Mann-Whitney U tests/Sign test) or more (ANOVA/Kruskal-Wallis) populations, investigating and applying basic supervised machine learning techniques (correlation, linear/logistic/multiple linear regression), and slightly more sophisticated unsupervised machine learning techniques (k-means, Principal Component Analysis). We will also spend time learning about the non-parametric versions of hypothesis testing, including bootstrap resampling, permutations, and simulation.
