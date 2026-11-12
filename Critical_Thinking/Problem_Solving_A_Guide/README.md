@@ -27,7 +27,7 @@ Members of the biomedical research community, including scientists, trainees, cl
 
 ## Lecture notes for 3-day Workshop
 (This will eventually be expanded into a 12.5-hour course across 5 days)
-- [Module 1](Content/Module_1.pdf)
+- [Module 1](Content/Module_1_Dec2026.pdf)
 - [Module 2](Content/Module_2.pdf)
 - [Module 3](Content/Module_3.pdf)
 
