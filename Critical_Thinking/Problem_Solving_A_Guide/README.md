@@ -37,4 +37,4 @@ To be completed as the course material is built.
 - [Problem Set 1](assignments/problem_set1.md)
 - [Problem Set 2](assignments/problem_set2.md)
 - [Problem Set 3](assignments/problem_set3.md)
-
+- [Problem Set 4](assignments/problem_set4.md)
