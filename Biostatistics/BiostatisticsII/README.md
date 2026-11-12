@@ -3,74 +3,48 @@
 Here is the [syllabus](BII_Learning_Path.docx).
 
 This folder will contain: 
-1. Lecture notes
-- [Lecture 1A](content/LP2_Module1A.pdf)
-- [Lecture 1B](content/LP2_Module1B.pdf)
-- [Lecture 1C](content/LP2_Module1C.pdf)
-- [Lecture 1WrapUp](content/LP2_Module1WrapUp.pdf)
-- [Lecture 2A](content/LP2_Module2A.pdf)
-- [Lecture 2B](content/LP2_Module2B.pdf)
-- [Lecture 2C](content/LP2_Module2C.pdf)
-- [Lecture 2D](content/LP2_Module2D.pdf)
-- [Lecture 2E](content/LP2_Module2E.pdf)
-- [Lecture 2F](content/LP2_Module2F.pdf)
-- [Lecture 2WrapUp](content/LP2_Module2WrapUp.pdf)
-- [Lecture 3A](content/LP2_Module3A.pdf)
-- [Lecture 3B](content/LP2_Module3B.pdf)
-- [Lecture 3C](content/LP2_Module3C.pdf)
-- [Lecture 3D](content/LP2_Module3D.pdf)
-- [Lecture 3E](content/LP2_Module3E.pdf)
-- [Lecture 3F](content/LP2_Module3F.pdf)
-- [Lecture 3WrapUp](content/LP2_Module3WrapUp.pdf)
-- [Lecture 4A](content/LP2_Module4A.pdf)
-- [Lecture 4B](content/LP2_Module4B.pdf)
-- [Lecture 4C](content/LP2_Module4C.pdf)
-- [Lecture 4D](content/LP2_Module4D.pdf)
-- [Lecture 4E](content/LP2_Module4E.pdf)
-- [Lecture 4F](content/LP2_Module4F.pdf)
-- [Lecture 4WrapUp](content/LP2_Module4WrapUp.pdf)
-- [Lecture 5A](content/LP2_Module5A.pdf)
-- [Lecture 5B](content/LP2_Module5B.pdf)
-- [Lecture 5C](content/LP2_Module5C.pdf)
-- [Lecture 5D](content/LP2_Module5D.pdf)
-- [Lecture 5E](content/LP2_Module5E.pdf)
-- [Lecture 5F](content/LP2_Module5F.pdf)
-- [Lecture 5WrapUp](content/LP2_Module5WrapUp.pdf)
-  
-2. Assignments
-- [Problem Set 1A](assignments/LP2_1A.pdf)
-- [Problem Set 1B](assignments/LP2_1B.pdf)
-- [Problem Set 1C](assignments/LP2_1C.pdf)
-- [Problem Set 2A](assignments/LP2_2A.pdf)
-- [Problem Set 2B](assignments/LP2_2B.pdf)
-- [Problem Set 2C](assignments/LP2_2C.pdf)
-- [Problem Set 2D](assignments/LP2_2D.pdf)
-- [Problem Set 2E](assignments/LP2_2E.pdf)
-- [Problem Set 2F](assignments/LP2_2F.pdf)
-- [Problem Set 3A](assignments/LP2_3A.pdf)
-- [Problem Set 3B](assignments/LP2_3B.pdf)
-- [Problem Set 3C](assignments/LP2_3C.pdf)
-- [Problem Set 3D](assignments/LP2_3D.pdf)
-- [Problem Set 3E](assignments/LP2_3E.pdf)
-- [Problem Set 3F](assignments/LP2_3F.pdf)
-- [Problem Set 4A](assignments/LP2_4A.pdf)
-- [Problem Set 4B](assignments/LP2_4B.pdf)
-- [Problem Set 4C](assignments/LP2_4C.pdf)
-- [Problem Set 4D](assignments/LP2_4D.pdf)
-- [Problem Set 4E](assignments/LP2_4E.pdf)
-- [Problem Set 4F](assignments/LP2_4F.pdf)
-- [Problem Set 5A](assignments/LP2_5A.pdf)
-- [Problem Set 5B](assignments/LP2_5B.pdf)
-- [Problem Set 5C](assignments/LP2_5C.pdf)
-- [Problem Set 5D](assignments/LP2_5D.pdf)
-- [Problem Set 5E](assignments/LP2_5E.pdf)
-- [Problem Set 5F](assignments/LP2_5F.pdf)
+1. Lecture notes and Assignments
+   
+|Module number | Lecture Notes | Assignments | 
+|---|---|---|
+|1A|[Lecture 1A](content/LP2_Module1A.pdf) | [Problem Set 1A](assignments/LP2_1A.pdf)|
+|1B| [Lecture 1B](content/LP2_Module1B.pdf)|[Problem Set 1B](assignments/LP2_1B.pdf)|
+|1C| [Lecture 1C](content/LP2_Module1C.pdf)|[Problem Set 1C](assignments/LP2_1C.pdf)|
+|1 Wrap up|[Lecture 1WrapUp](content/LP2_Module1WrapUp.pdf)||
+|2A|[Lecture 2A](content/LP2_Module2A.pdf)|[Problem Set 2A](assignments/LP2_2A.pdf)|
+|2B|[Lecture 2B](content/LP2_Module2B.pdf) | [Problem Set 2B](assignments/LP2_2B.pdf)|
+|2C|[Lecture 2C](content/LP2_Module2C.pdf) |[Problem Set 2C](assignments/LP2_2C.pdf) |
+|2D|[Lecture 2D](content/LP2_Module2D.pdf)|[Problem Set 2D](assignments/LP2_2D.pdf)|
+|2E|[Lecture 2E](content/LP2_Module2E.pdf)|[Problem Set 2E](assignments/LP2_2E.pdf)|
+|2F|[Lecture 2F](content/LP2_Module2F.pdf)|[Problem Set 2F](assignments/LP2_2F.pdf)|
+|2 Wrap up|[Lecture 2WrapUp](content/LP2_Module2WrapUp.pdf)||
+|3A|[Problem Set 3A](assignments/LP2_3A.pdf)|[Problem Set 3A](assignments/LP2_3A.pdf)|
+|3B|[Lecture 3B](content/LP2_Module3B.pdf)|[Problem Set 3B](assignments/LP2_3B.pdf)|
+|3C|[Lecture 3C](content/LP2_Module3C.pdf)|[Problem Set 3C](assignments/LP2_3C.pdf)|
+|3D|[Lecture 3D](content/LP2_Module3D.pdf)|[Problem Set 3D](assignments/LP2_3D.pdf)|
+|3E|[Lecture 3E](content/LP2_Module3E.pdf)|[Problem Set 3E](assignments/LP2_3E.pdf)|
+|3F|[Lecture 3F](content/LP2_Module3F.pdf)|[Problem Set 3F](assignments/LP2_3F.pdf)|
+|3 Wrap Up|[Lecture 3WrapUp](content/LP2_Module3WrapUp.pdf)||
+|4A|[Lecture 4A](content/LP2_Module4A.pdf)|[Problem Set 4A](assignments/LP2_4A.pdf)|
+|4B|[Lecture 4B](content/LP2_Module4B.pdf)|[Problem Set 4B](assignments/LP2_4B.pdf)|
+|4C|[Lecture 4C](content/LP2_Module4C.pdf)|[Problem Set 4C](assignments/LP2_4C.pdf)|
+|4D|[Lecture 4D](content/LP2_Module4D.pdf)|[Problem Set 4D](assignments/LP2_4D.pdf)|
+|4E|[Lecture 4E](content/LP2_Module4E.pdf)|[Problem Set 4E](assignments/LP2_4E.pdf)|
+|4F|[Lecture 4F](content/LP2_Module4F.pdf)|[Problem Set 4F](assignments/LP2_4F.pdf)|
+|4 Wrap up|[Lecture 4WrapUp](content/LP2_Module4WrapUp.pdf)||
+|5A|[Lecture 5A](content/LP2_Module5A.pdf)|[Problem Set 5A](assignments/LP2_5A.pdf)|
+|5B|[Lecture 5B](content/LP2_Module5B.pdf)|[Problem Set 5B](assignments/LP2_5B.pdf)|
+|5C|[Lecture 5C](content/LP2_Module5C.pdf)|[Problem Set 5C](assignments/LP2_5C.pdf)|
+|5D|[Lecture 5D](content/LP2_Module5D.pdf)|[Problem Set 5D](assignments/LP2_5D.pdf)|
+|5E|[Lecture 5E](content/LP2_Module5E.pdf)|[Problem Set 5E](assignments/LP2_5E.pdf)|
+|5F|[Lecture 5F](content/LP2_Module5F.pdf)|[Problem Set 5F](assignments/LP2_5F.pdf)|
+|5 Wrap up|[Lecture 5WrapUp](content/LP2_Module5WrapUp.pdf)||
 
 
-3. Projects (only for participants obtaining college credit for the course)
+2. Projects (only for participants obtaining college credit for the course)
 - [Project Descriptions](projects/project_description.md)
 
-4. Datasets
+3. Datasets
 - [Dataset 1](datasets/mousedataset.md)
 - [Dataset 2](datasets/dataset2.md)
 
