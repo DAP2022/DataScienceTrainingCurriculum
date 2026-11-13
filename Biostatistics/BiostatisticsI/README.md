@@ -17,7 +17,7 @@ This folder will contain:
 |1C| [Lecture 1C](Content/Module1C.pdf)|[Problem Set 1C](assignments/1CQ.pdf)|
 |1D| [Lecture 1D](Content/Module1D.pdf)|[Problem Set 1D](assignments/1DQ.pdf)|
 |1E|[Lecture 1E](Content/Module1E.pdf)|[Problem Set 1E](assignments/1EQ.pdf)|
-|1 Wrap up|[Lecture 1WrapUp](content/Module1_WrapUp.pdf)||
+|1 Wrap up|[Lecture 1WrapUp](Content/Module1_WrapUp.pdf)||
 |2A|[Lecture 2A](Content/Module2A.pdf)|[Problem Set 2A](assignments/2A.pdf)|
 |2B|[Lecture 2B](Content/Module2B.pdf) | [Problem Set 2B](assignments/2B.pdf)|
 |2C|[Lecture 2C](Content/Module2C.pdf) |[Problem Set 2C](assignments/2C.pdf) |
