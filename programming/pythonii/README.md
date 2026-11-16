@@ -31,7 +31,7 @@ Provide you with the tools to take a computational problem through the process o
 There is an overview and downloadable .ipynb files.  
 (if you are using GitHub path, the content of the files will appear online when you click on "Download"; if you are using the website, you must download them and open them using You can open these using Google Colab or you can use whatever your favourite Jupyter Notebook software is....)
 - [Module 1 Overview](course_content_jupyter_notebooks/Module_1.md)
-  - <a href = "course_content_jupyter_notebooks/P2_Module1A_0326_Python2.ipynb" download>Download (P2_Module1A.ipynb)<a>
+  - <a href = "course_content_jupyter_notebooks/P2_Module1A_0326.ipynb" download>Download (P2_Module1A.ipynb)<a>
   - <a href = "course_content_jupyter_notebooks/P2_Module1B_1126.ipynb" download>Download (P2_Module1B.ipynb)<a>
 - [Module 2 Overview](course_content_jupyter_notebooks/Module_2.md)
   - <a href = "course_content_jupyter_notebooks/P2_Module2A_1126.ipynb" download>Download (P2_Module2A.ipynb)<a>
