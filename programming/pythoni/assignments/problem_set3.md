@@ -1,4 +1,4 @@
-##Please hand in a Jupyter notebook named LastName_FirstInitial_Mod3.ipynb with at least two parts for each question: 
+## Please hand in a Jupyter notebook named LastName_FirstInitial_Mod3.ipynb with at least two parts for each question: 
 
 1. A markdown chunk that explains the logic of your answer. If you get stuck, you can hand-in pseudocode that includes a breakdown of the logic of how you are trying to solve the problem along with some pieces of code. 
 
