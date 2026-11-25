@@ -164,8 +164,8 @@ model2 <- lm(
 - Record the R-squared value for each model.
 - Complete the following comparison table:
 
-  | Result    | Treatment Only | Multiple Predictors |
-| ----------- | ----------- | ----------- |
+| Result    | Treatment Only | Multiple Predictors |
+| ---------- | ----------- | ----------- |
 | Treatment coefficient     |        |    |
 | Treatment p-value  |        |    |
 | R-Squared|     |  |
