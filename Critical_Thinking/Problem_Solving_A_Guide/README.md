@@ -29,7 +29,7 @@ Members of the biomedical research community, including scientists, trainees, cl
 (This will eventually be expanded into a 12.5-hour course across 5 days)
 - [Module 1](Content/Module_1_Dec2026.pdf)
 - [Module 2](Content/Module_2_Dec2026.pdf)
-- [Module 3](Content/Module_3.pdf)
+- [Module 3](Content/Module_3_Dec2026.pdf)
 
   
 ## Assignments
