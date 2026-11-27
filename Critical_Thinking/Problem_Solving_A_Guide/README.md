@@ -30,6 +30,7 @@ Members of the biomedical research community, including scientists, trainees, cl
 - [Module 1](Content/Module_1_Dec2026.pdf)
 - [Module 2](Content/Module_2_Dec2026.pdf)
 - [Module 3](Content/Module_3_Dec2026.pdf)
+- [Module 4](Content/Module_4_Dec2026.pdf)
 
   
 ## Assignments
